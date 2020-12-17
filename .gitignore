@@ -1,0 +1,15 @@
+# Folder config file (on Windows)
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows shortcuts
+*.lnk
+
+# node_modules content should be fetched with npm, not stored in version control
+node_modules/*
+
+# don't store generated CSS content in version control
+css*/
+!css/generated.md
