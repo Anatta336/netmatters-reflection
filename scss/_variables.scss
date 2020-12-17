@@ -1,0 +1,23 @@
+$breakpoints: (
+    "small": 991px,
+    "large": 1260px,
+);
+
+$nav-text-colour: #fff;
+$nav-background: #333645;
+$nav-highlight: #484a58;
+$nav-shadow:  #262834;
+$nav-font-size: (18px / 16px) * 1rem;
+$nav-font-size-first-line: (10px / 16px) * 1rem;
+
+$nav-bar-normal-width: 970px;
+$nav-bar-large-width: 1200px;
+
+$service-colours: (
+    "web-design": #926fb1,
+    "it-support": #4183d7,
+    "telecoms-services": #d64541,
+    "bespoke-software": #67809f,
+    "digital-marketing": #2ecc71,
+    "cyber-security": #f62459,
+)

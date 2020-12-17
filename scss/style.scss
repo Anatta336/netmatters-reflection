@@ -1,9 +1,8 @@
-// @import normalize.css file to normalize base style rules between browsers
-@import "../node_modules/normalize.css/normalize";
+@import "../node_modules/normalize.css/normalize",
+        "./icons/font",
+        "variables",
+        "nav-bar";
 
-// icon font
-@import "./icons/font";
-
-h1 {
-    font-size: 6rem;
+body {
+    font-family: 'Poppins', 'sans-serif';
 }
