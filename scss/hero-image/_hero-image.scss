@@ -1,0 +1,68 @@
+@use 'sass:map';
+@import "variables";
+
+#hero-image {
+    box-sizing: border-box;
+    height: 600px;
+    padding: 10.7em 0 0;
+
+    background-image: $hero-gradient-overlay, $hero-picture;
+    background-color: $hero-fallback-colour;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    color: $hero-text-colour;
+    text-align: center;
+
+    @each $breakpoint-name, $hero-height in $hero-height-by-breakpoint
+    {
+        $breakpoint-width: map.get($breakpoints, $breakpoint-name);
+        @media (min-width: $breakpoint-width) {
+            height: $hero-height;
+        }
+    }
+    
+    @media (min-width: map.get($breakpoints, "small")) {
+        text-align: left;
+        padding: 7.5em 9ch;
+    }
+
+    h2 {
+        font-size: $hero-heading-size;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin: 0 0 0.5em;
+    }
+
+    p {
+        font-size: $hero-para-size;
+        line-height: 1.8;
+        margin: 0;
+    }
+
+    a {
+        display: block;
+        background-color: $hero-button-colour;
+
+        margin: 2em auto 0;
+        width: 14.5ch;
+        padding: 1em 1.8ch;
+        border-radius: 3px;
+
+        @media (min-width: map.get($breakpoints, "small")) {
+            margin-left: 0;
+        }
+
+        font-size: $hero-button-size;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: $hero-text-colour;
+    }
+
+    // selects the icon
+    span::before {
+        font-size: 0.75em;
+    }
+}

@@ -1,4 +1,8 @@
+// "mobile" is default, with later breakpoint becoming
+// active when viewport width exceeds the associated value.
 $breakpoints: (
+    "mobile": 0px,
+    "extra-small": 768px,
     "small": 991px,
     "large": 1260px,
 );
