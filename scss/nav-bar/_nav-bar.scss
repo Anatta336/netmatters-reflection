@@ -1,4 +1,5 @@
 @use "sass:map";
+@import "variables";
 
 nav {
     @media (max-width: map.get($breakpoints, "small")) {

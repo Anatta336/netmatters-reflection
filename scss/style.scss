@@ -1,7 +1,8 @@
 @import "../node_modules/normalize.css/normalize",
+        "breakpoints",
+        "service-colours",
         "./icons/font",
-        "variables",
-        "nav-bar";
+        "./nav-bar/nav-bar";
 
 body {
     font-family: 'Poppins', 'sans-serif';
