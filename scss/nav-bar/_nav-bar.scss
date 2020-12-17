@@ -8,6 +8,7 @@ nav {
     }
     
     background-color: $nav-background;
+    border-bottom: 1px solid $nav-bottom-border;
 
     ul {
         display: flex;
