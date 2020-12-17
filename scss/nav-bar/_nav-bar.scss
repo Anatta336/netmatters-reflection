@@ -2,8 +2,9 @@
 @import "variables";
 
 nav {
-    @media (max-width: map.get($breakpoints, "small")) {
-        display: none;
+    display: none;
+    @media (min-width: map.get($breakpoints, "small")) {
+        display: block;
     }
     
     background-color: $nav-background;
