@@ -1,8 +1,16 @@
-%button {
+@mixin button($background-colour, $text-colour, $font-size) {
     display: block;
     border-radius: 3px;
 
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
+
+    background-color: $background-colour;
+    color: $text-colour;
+    font-size: $font-size;
+
+    margin: 2em auto;
+    width: 14.5ch;
+    padding: 0.8em 1.4ch;
 }

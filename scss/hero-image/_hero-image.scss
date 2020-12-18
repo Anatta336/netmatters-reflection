@@ -42,19 +42,15 @@
     }
 
     a {
-        @extend %button;
-        background-color: $hero-button-colour;
-
-        margin: 2em auto 0;
-        width: 14.5ch;
-        padding: 1em 1.8ch;
+        @include button(
+            $background-colour: $hero-button-colour,
+            $text-colour: $hero-text-colour,
+            $font-size: $hero-button-size
+        );
 
         @media (min-width: map.get($breakpoints, "small")) {
             margin-left: 0;
         }
-
-        font-size: $hero-button-size;
-        color: $hero-text-colour;
     }
 
     // selects the icon
