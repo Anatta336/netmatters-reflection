@@ -3,19 +3,13 @@
 
 #services {
     margin: 2rem 1rem;
-
-    article {
-        padding: 0;
-        margin: 0;
-    }
     
     a {
         @include margin-x-centre;
         display: flex;
         flex-direction: column;
-        height: 19.5rem;
         padding: 1.5em;
-        margin-top: 2rem;
+        margin-top: 0;
         margin-bottom: 2rem;
 
         text-decoration: none;
@@ -52,8 +46,6 @@
 
         // as this is a flex item, auto for top margin will push it to bottom of container
         margin: auto auto 0;
-
-
     }
 
     // generate a small horizontal line after the h2 element
@@ -99,11 +91,7 @@
             padding-top: ($services-icon-background-size - $services-icon-size) * 0.5;
         }
     }
-
-    // 991px or smaller moves to one card per row for:
-    // bespoke, support, marketing. Others are 2 per row,
-    // until 767 or smaller when they're all one per row.
-
+    
     // past extra-small first 3 cards remain as they are but rest are put into a 2x2 grid
     @media (min-width: map.get($breakpoints, 'extra-small')) {
         @include margin-x-centre;
@@ -122,12 +110,6 @@
                 flex-grow: 1;
             }
         }
-
-        .top-services {
-            > * {
-                flex-basis: 25rem;
-            }
-        }
     }
 
     @media (min-width: map.get($breakpoints, 'small')) {
@@ -139,7 +121,7 @@
 
             > * {
                 margin: 1rem;
-                flex-basis: 18rem;
+                flex-basis: 15rem;
                 flex-grow: 1;
             }
         }
@@ -154,6 +136,4 @@
             flex-basis: 13rem;
         }
     }
-
-    //TODO: button should be put to bottom of container with flex
 }
