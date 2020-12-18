@@ -1,0 +1,72 @@
+@use 'sass:map';
+@import 'variables';
+
+#about {
+    background-color: $about-background-colour;
+    color: $about-text-colour;
+
+    @media (min-width: map.get($breakpoints, "small")) {
+        background: $about-background-colour url('../img/netmatters-brand/alpha-overlay.png') no-repeat right;
+        background-size: auto 100%;
+    }
+
+    .content {
+        margin: 0;
+        padding: 2.5em 1.8ch;
+
+        @media (min-width: map.get($breakpoints, "extra-small")) {
+            width: 720px;
+            margin: 0 auto;
+        }
+        @media (min-width: map.get($breakpoints, "small")) {
+            width: 940px;
+        }
+    }
+
+    @media (min-width: map.get($breakpoints, "large")) {
+        .content {
+            width: 1200px;
+        }
+        h2,
+        p {
+            width: 570px;
+        }
+    }
+
+    h2 {
+        font-weight: 400;
+        font-size: $about-heading-size;
+        text-transform: uppercase;
+        margin: 0 0 1em;
+    }
+
+    p {
+        font-size: $about-para-size;
+        line-height: 1.9;
+    }
+
+    p:first-of-type {
+        font-weight: 600;
+    }
+
+    a {
+        @extend %button;
+
+        background-color: $about-button-backgroud-colour;
+        color: $about-button-text-colour;
+        font-size: $about-button-size;
+
+        margin: 2em auto 0 0;
+        width: 14.5ch;
+        padding: 0.8em 1.4ch;
+
+        @media (min-width: map.get($breakpoints, "small")) {
+            margin-left: 0;
+        }
+    }
+
+    // selects the icon
+    span::before {
+        font-size: 0.75em;
+    }
+}
