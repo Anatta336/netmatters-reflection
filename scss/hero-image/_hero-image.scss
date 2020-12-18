@@ -45,7 +45,9 @@
         @include button(
             $background-colour: $hero-button-colour,
             $text-colour: $hero-text-colour,
-            $font-size: $hero-button-size
+            $font-size: $hero-button-size,
+            $width: $hero-button-width,
+            $height: $hero-button-height
         );
 
         @media (min-width: map.get($breakpoints, "small")) {
