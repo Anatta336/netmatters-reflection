@@ -1,6 +1,7 @@
 @import '../node_modules/normalize.css/normalize',
         'breakpoints',
-        'button',
+        './mixins/button',
+        './mixins/margin-x-centre',
         'shared-colours',
         './icons/font',
         './nav-bar/nav-bar',
