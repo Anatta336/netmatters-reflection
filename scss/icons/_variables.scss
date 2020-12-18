@@ -1,17 +1,27 @@
 $icomoon-font-family: "netmatters-icons" !default;
 $icomoon-font-path: "../font" !default;
 
-//TODO: although this is provided by icomoon, it can be improved by using a map
+$icon-unicode-by-name: (
+    'icon-bars': '\e900',
+    'icon-code': '\e901',
+    'icon-facebook': '\e902',
+    'icon-grid': '\e903',
+    'icon-linked-in': '\e904',
+    'icon-monitor': '\e905',
+    'icon-phone': '\e906',
+    'icon-right-arrow': '\e907',
+    'icon-search': '\e908',
+    'icon-shield': '\e909',
+    'icon-student-cap': '\e90a',
+    'icon-twitter': '\e90b',
+);
 
-$icon-bars: "\e900";
-$icon-code: "\e901";
-$icon-facebook: "\e902";
-$icon-grid: "\e903";
-$icon-linked-in: "\e904";
-$icon-monitor: "\e905";
-$icon-phone: "\e906";
-$icon-right-arrow: "\e907";
-$icon-search: "\e908";
-$icon-shield: "\e909";
-$icon-student-cap: "\e90a";
-$icon-twitter: "\e90b";
+$icon-name-by-service: (
+    'web-design': 'icon-code',
+    'it-support': 'icon-monitor',
+    'telecoms-services': 'icon-phone',
+    'bespoke-software': 'icon-grid',
+    'digital-marketing': 'icon-bars',
+    'cyber-security': 'icon-shield',
+    'developer-training': 'icon-student-cap',
+);

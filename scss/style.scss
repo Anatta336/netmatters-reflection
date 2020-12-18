@@ -1,13 +1,20 @@
-@import "../node_modules/normalize.css/normalize",
-        "breakpoints",
-        "button",
-        "shared-colours",
-        "./icons/font",
-        "./nav-bar/nav-bar",
-        "./hero-image/hero-image",
-        "./about/about";
+@import '../node_modules/normalize.css/normalize',
+        'breakpoints',
+        'button',
+        'shared-colours',
+        './icons/font',
+        './nav-bar/nav-bar',
+        './hero-image/hero-image',
+        './services/services',
+        './about/about';
 
 body {
     font-family: 'Poppins', 'sans-serif';
     letter-spacing: 0.4px;
+    background-color: $page-background-colour;
+}
+
+h1,
+h2 {
+    font-weight: 400;
 }

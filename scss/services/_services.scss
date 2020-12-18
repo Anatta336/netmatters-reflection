@@ -1,0 +1,88 @@
+@use 'sass:map';
+@import 'variables';
+
+#services {
+    margin: 2rem 1rem;
+
+    a {
+        text-decoration: none;
+        color: $services-text-colour;
+        text-align: center;
+    }
+
+    article {
+        padding: 1.5em;
+        background-color: $services-card-background-colour;
+        border: 1px solid $services-card-border-colour;
+        border-radius: 3px;
+        box-shadow: 0 0 30px $services-card-shadow-colour;
+    }
+
+    h2 {
+        font-size: $services-heading-size;
+        font-weight: 400;
+    }
+
+    p {
+        font-size: $services-para-size;
+        line-height: 1.375rem;
+    }
+
+    .call-to-action {
+        // null $background-colour so the button mixin doesn't generate a
+        // background-color property. It will be set on a per-card basis
+        // depending on the card's id.
+        @include button(
+            $background-colour: null,
+            $text-colour: $services-button-text-colour,
+            $font-size: $services-button-size,
+            $width: $services-button-width,
+            $height: $services-button-height
+        );
+        margin: 1rem auto 0;
+    }
+
+    // generate a small horizontal line after the h2 element
+    h2::after {
+        content: '';
+        display: block;
+        background-color: $services-spacing-line-colour;
+        width: $services-spacing-line-width;
+        height: $services-spacing-line-height;
+
+        margin: 1rem auto 0;
+    }
+
+    // set button's colour based on the id of the service card it's within
+    // (assumes that all cards have an id listed in $service-colours)
+    @each $service-name, $colour in $service-colours {
+        .#{$service-name} .call-to-action {
+            background-color: $colour;
+        }
+    }
+
+    // generate icon appropriate to the id of the service card, placing
+    // the icon as a ::before pseudo-element on the card's h2.
+    @each $service-name, $icon-name in $icon-name-by-service {
+        $icon-unicode: map.get($icon-unicode-by-name, $icon-name);
+        $icon-background-colour: map.get($service-colours, $service-name);
+
+        .#{$service-name} h2::before {
+            @extend %icon;
+            content: $icon-unicode;
+            color: $services-icon-colour;
+
+            display: block;
+            box-sizing: border-box;
+            width: $services-icon-background-size;
+            height: $services-icon-background-size;
+            background-color: $icon-background-colour;
+            border-radius: 50%;
+
+            margin: 0 auto 1.3rem;
+
+            // vertically center icon within the element
+            padding-top: ($services-icon-background-size - $services-icon-size) * 0.5;
+        }
+    }
+}
