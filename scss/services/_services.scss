@@ -10,20 +10,22 @@
     }
     
     a {
+        @include margin-x-centre;
+        display: flex;
+        flex-direction: column;
+        height: 19.5rem;
+        padding: 1.5em;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+
         text-decoration: none;
         color: $services-text-colour;
         text-align: center;
 
-        display: block;
-        height: 19.5rem;
-
-        padding: 1.5em;
         background-color: $services-card-background-colour;
         border: 1px solid $services-card-border-colour;
         border-radius: 3px;
         box-shadow: 0 0 30px $services-card-shadow-colour;
-
-        margin: 2rem auto;
     }
 
     h2 {
@@ -47,7 +49,11 @@
             $width: $services-button-width,
             $height: $services-button-height
         );
-        margin: 1rem auto 0;
+
+        // as this is a flex item, auto for top margin will push it to bottom of container
+        margin: auto auto 0;
+
+
     }
 
     // generate a small horizontal line after the h2 element
@@ -100,27 +106,52 @@
 
     // past extra-small first 3 cards remain as they are but rest are put into a 2x2 grid
     @media (min-width: map.get($breakpoints, 'extra-small')) {
-        width: 47rem;
         @include margin-x-centre;
+        width: 46.875rem;
 
         .other-services {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: stretch;
-            align-content: space-between;
+            @include wrapped-flex;
 
             // negative margin reverses effect of external margins from children
             margin: 0 -1rem;
 
-            >* {
-                display: block;
-                
-                margin: 1rem 1rem;
-                flex-basis: 15rem;
+            // set up direct children as flex items
+            > * {
+                margin: 1rem;
+                flex-basis: 18rem;
                 flex-grow: 1;
             }
+        }
+
+        .top-services {
+            > * {
+                flex-basis: 25rem;
+            }
+        }
+    }
+
+    @media (min-width: map.get($breakpoints, 'small')) {
+        width: 60.625rem;
+
+        .top-services {
+            @include wrapped-flex;
+            margin: 0 -1rem;
+
+            > * {
+                margin: 1rem;
+                flex-basis: 18rem;
+                flex-grow: 1;
+            }
+        }
+    }
+
+    @media (min-width: map.get($breakpoints, 'large')) {
+        width: 75rem;
+
+        // other-services should form row of 4 at this breakpoint,
+        // so reduce their flex-basis to allow them to fit.
+        .other-services > * {
+            flex-basis: 13rem;
         }
     }
 
