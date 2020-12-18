@@ -1,0 +1,85 @@
+@use "../breakpoints";
+@use "../constants";
+@use "../icons";
+@use "../mixins";
+@use "../utility";
+
+$picture: url("../img/carousel/carousel-web-design.jpg");
+$fallback-colour: #472e3c;
+$gradient-overlay: linear-gradient(to right, black, transparent);
+$text-colour: #fff;
+$button-colour: constants.get-colour-for-service("web-design");
+
+$heading-size: utility.px-to-rem(48px);
+$para-size: utility.px-to-rem(20px);
+$button-size: utility.px-to-rem(20px);
+
+$button-width: 14rem;
+$button-height: 3.3rem;
+
+// when viewport width is larger than breakpoint, hero height should be:
+$height-by-breakpoint: (
+    "mobile": 531px,
+    "extra-small": 589px,
+    "small": 490px
+);
+
+#hero-image {
+    box-sizing: border-box;
+    height: utility.px-to-rem(600px);
+    padding: utility.px-to-rem(172px) 0 0;
+
+    @include mixins.hero-image(($gradient-overlay, $picture), $fallback-colour);
+    // background-image: $gradient-overlay, $picture;
+    // background-color: $fallback-colour;
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    
+    color: $text-colour;
+    text-align: center;
+
+    @each $breakpoint-name, $height in $height-by-breakpoint
+    {
+        @include breakpoints.above-breakpoint($breakpoint-name) {
+            height: $height;
+        }
+    }
+    
+    @include breakpoints.above-breakpoint("small") {
+        text-align: left;
+        padding: 7.5em 9ch;
+    }
+
+    h2 {
+        font-size: $heading-size;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin: 0 0 0.5em;
+    }
+
+    p {
+        font-size: $para-size;
+        line-height: 1.8;
+        margin: 0;
+    }
+
+    a {
+        @include mixins.button(
+            $background-colour: $button-colour,
+            $text-colour: $text-colour,
+            $font-size: $button-size,
+            $width: $button-width,
+            $height: $button-height
+        );
+
+        @include breakpoints.above-breakpoint("small") {
+            margin-left: 0;
+        }
+    }
+
+    // selects the icon
+    span::before {
+        font-size: 0.75em;
+    }
+}

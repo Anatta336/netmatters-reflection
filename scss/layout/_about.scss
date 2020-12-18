@@ -1,0 +1,90 @@
+@use "../breakpoints";
+@use "../constants";
+@use "../icons";
+@use "../mixins";
+@use "../utility";
+
+$background-colour: constants.$brand-background-colour;
+$text-colour: #fff;
+$button-background-colour: #fff;
+$button-text-colour: constants.$brand-background-colour;
+
+$heading-size: utility.px-to-rem(36px);
+$para-size: utility.px-to-rem(16px);
+$button-size: utility.px-to-rem(16px);
+
+$button-width: 10.5rem;
+$button-height: 2.7rem;
+
+#about {
+    background-color: $background-colour;
+    color: $text-colour;
+
+    
+    .content {
+        margin: 0;
+        padding: 2.5em 1.8ch;
+        
+        @include breakpoints.above-breakpoint("extra-small") {
+            width: 720px;
+            margin: 0 auto;
+        }
+        @include breakpoints.above-breakpoint("small") {
+            width: 940px;
+        }
+    }
+    
+    
+    h2 {
+        font-weight: 400;
+        font-size: $heading-size;
+        text-transform: uppercase;
+        margin: 0 0 1em;
+    }
+    
+    p {
+        font-size: $para-size;
+        line-height: 1.9;
+    }
+    
+    p:first-of-type {
+        font-weight: 600;
+    }
+    
+    a {
+    @include mixins.button(
+        $background-colour: $button-background-colour,
+        $text-colour: $button-text-colour,
+        $font-size: $button-size,
+        $width: $button-width,
+        $height: $button-height
+        );
+        
+        margin: 2em auto 0 0;
+        
+        @include breakpoints.above-breakpoint("small") {
+            margin-left: 0;
+        }
+    }
+        
+    // selects the icon
+    span::before {
+        font-size: 0.75em;
+    }
+
+    @include breakpoints.above-breakpoint("small") {
+        background: $background-colour url("../img/netmatters-brand/alpha-overlay.png") no-repeat right;
+        background-size: auto 100%;
+    }
+
+    @include breakpoints.above-breakpoint("large") {
+        .content {
+            width: 1200px;
+        }
+
+        h2,
+        p {
+            width: 570px;
+        }
+    }
+}

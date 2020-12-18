@@ -1,23 +1,51 @@
-@use 'sass:map';
-@import 'variables';
+@use "../breakpoints";
+@use "../constants";
+@use "../icons";
+@use "../mixins";
+@use "../utility";
+
+$menu-background-colour: constants.$brand-background-colour;
+$menu-colour: #fff;
+$menu-font-size: utility.px-to-rem(12px);
+$menu-icon-size: 1.2rem;
+$menu-width: utility.px-to-rem(63px);
+$menu-height: utility.px-to-rem(56px);
+
+$mobile-form-colour: #666;
+$mobile-search-border-colour: rgba(0, 0, 0, 0.1);
+$mobile-search-background-colour: rgba(0, 0, 0, 0.1);
+$mobile-search-text-colour: #555;
+$mobile-search-text-size: utility.px-to-rem(14px);
+$mobile-search-icon-size: 1.2rem;
+
+$wide-search-border-colour: #ccc;
+$wide-search-background-colour: #fff;
+$wide-search-text-colour: #555;
+$wide-search-button-background-colour: #999aa2;
+$wide-search-button-colour: #fff;
+$wide-search-icon-size: 1.4rem;
+
 
 header {
-
     .content {
-        padding: 1.25rem 0.9375rem;
-
+        padding:
+            utility.px-to-rem(20px)
+            utility.px-to-rem(15px);
+        
         display: grid;
         grid-template-columns: 1fr
-            (70px / 16px) * 1rem
-            (70px / 16px) * 1rem;
-        grid-template-rows: 4.375rem 4.5rem;
+            utility.px-to-rem(70px)
+            utility.px-to-rem(70px);
+        grid-template-rows:
+            utility.px-to-rem(70px)
+            utility.px-to-rem(72px);
         justify-items: center;
         align-items: center;
     }
 
     .icon-phone {
         font-size: 1.6rem;
-        flex-basis: (71px / 16px) * 1rem;
+        flex-basis: utility.px-to-rem(71px);
     }
 
     img {
@@ -26,33 +54,32 @@ header {
     }
 
     .hamburger-menu {
-        width: 100%;
-        height: 100%;
+        @include mixins.rounded-corners;
+
         display: flex;
         flex-direction: column;
         justify-content: center;
 
         box-sizing: border-box;
-        width: $header-menu-width;
-        height: $header-menu-height;
-        background-color: $header-menu-background-colour;
-        border-radius: 3px;
+        width: $menu-width;
+        height: $menu-height;
+        background-color: $menu-background-colour;
 
-        color: $header-menu-colour;
+        color: $menu-colour;
         text-align: center;
 
         // create the menu icon
         &::before {
             @extend %icon;
             display: block;
-            content: map.get($icon-unicode-by-name, 'hamburger');
-            font-size: $header-menu-icon-size;
+            content: icons.icon-unicode-from-name("hamburger");
+            font-size: $menu-icon-size;
             padding-bottom: 0.3em;
         }
 
         p {
             text-transform: uppercase;
-            font-size: $header-menu-font-size;
+            font-size: $menu-font-size;
             padding: 0;
             margin: 0;
         }
@@ -73,12 +100,12 @@ header {
             width: 100%;
             height: $input-height;
             padding: 0.3125rem 2rem 0.3125rem 0.9rem;
-            border: 2px solid $header-mobile-search-border-colour;
-            background-color: $header-mobile-search-background-colour;
-            border-radius: 3px;
+            border: 2px solid $mobile-search-border-colour;
+            background-color: $mobile-search-background-colour;
+            @include mixins.rounded-corners;
 
-            color: $header-mobile-search-text-colour;
-            font-size: $header-mobile-search-text-size;
+            color: $mobile-search-text-colour;
+            font-size: $mobile-search-text-size;
         }
 
         button {
@@ -88,12 +115,12 @@ header {
 
             border: 0;
             background-color: transparent;
-            font-size: $header-mobile-search-icon-size;
+            font-size: $mobile-search-icon-size;
 
-            // generate search icon glyph as the button's text
+            // generate search icon glyph as the button"s text
             &::after {
                 @extend %icon;
-                content: map.get($icon-unicode-by-name, 'search');
+                content: icons.icon-unicode-from-name("search");
             }
         }
     }
@@ -102,14 +129,14 @@ header {
     // - content is now fixed width
     // - contact icon is removed
     // - the search bar moves up into same line as logo and changes appearance
-    @media (min-width: map.get($breakpoints, "extra-small")) {
+    @include breakpoints.above-breakpoint("extra-small") {
         .icon-phone {
             display: none;
         }
 
         .content {
-            width: (750px / 16px) * 1rem;
-            @include margin-x-centre;
+            @include mixins.margin-x-centre;
+            width: utility.px-to-rem(750px);
             
             // grid layout changes, now just one row with logo's column fixed
             grid-template-columns:
@@ -148,9 +175,9 @@ header {
             }
 
             input {
-                border: 1px solid $header-wide-search-border-colour;
-                background-color: $header-wide-search-background-colour;
-                color: $header-wide-search-text-colour;
+                border: 1px solid $wide-search-border-colour;
+                background-color: $wide-search-background-colour;
+                color: $wide-search-text-colour;
                 border-radius: 0;
 
                 padding:
@@ -161,6 +188,8 @@ header {
             }
 
             button {
+                @include mixins.rounded-corners-right;
+
                 position: initial;
                 box-sizing: content-box;
                 width: (23px / 16px) * 1rem;
@@ -168,12 +197,12 @@ header {
                     (7px / 16px) * 1rem
                     (20px / 16px) * 1rem
                     (3px / 16px) * 1rem;
-                border: 1px solid $header-wide-search-button-background-colour;
-                background-color: $header-wide-search-button-background-colour;
-                color: $header-wide-search-button-colour;
-                font-size: $header-wide-search-icon-size;
+                
+                border: 1px solid $wide-search-button-background-colour;
+                background-color: $wide-search-button-background-colour;
 
-                border-radius: 0 3px 3px 0;
+                color: $wide-search-button-colour;
+                font-size: $wide-search-icon-size;
             }
         }
     }

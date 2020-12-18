@@ -1,0 +1,7 @@
+@mixin hero-image ($image, $fallback-colour) {
+    background-image: $image;
+    background-color: $fallback-colour;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

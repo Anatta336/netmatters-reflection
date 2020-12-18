@@ -1,34 +1,63 @@
-@use 'sass:map';
-@import 'variables';
+@use "../breakpoints";
+@use "../constants";
+@use "../icons";
+@use "../icons/variables" as icon-variables;
+@use "../mixins";
+@use "../utility";
+
+$card-background-colour: #fff;
+$card-border-colour: #ccc;
+$card-shadow-colour: rgba(0, 0, 0, 0.15);
+
+$text-colour: constants.$brand-background-colour;
+$button-text-colour: #fff;
+
+$heading-size: utility.px-to-rem(18px);
+$para-size: utility.px-to-rem(13px);
+$button-size: utility.px-to-rem(17px);
+
+$icon-colour: #fff;
+$icon-background-size: utility.px-to-rem(60px);
+$icon-size: 1rem;
+
+$spacing-line-colour: constants.$brand-background-colour;
+$spacing-line-width: utility.px-to-rem(28px);
+$spacing-line-height: utility.px-to-rem(3px);
+
+$button-width: 8rem;
+$button-height: 3rem;
 
 #services {
     margin: 2rem 1rem;
     
     a {
-        @include margin-x-centre;
+        @include mixins.margin-x-centre;
+
         display: flex;
         flex-direction: column;
+
         padding: 1.5em;
         margin-top: 0;
         margin-bottom: 2rem;
 
         text-decoration: none;
-        color: $services-text-colour;
+        color: $text-colour;
         text-align: center;
 
-        background-color: $services-card-background-colour;
-        border: 1px solid $services-card-border-colour;
-        border-radius: 3px;
-        box-shadow: 0 0 30px $services-card-shadow-colour;
+        background-color: $card-background-colour;
+        border: 1px solid $card-border-colour;
+        @include mixins.rounded-corners;
+
+        box-shadow: 0 0 30px $card-shadow-colour;
     }
 
     h2 {
-        font-size: $services-heading-size;
+        font-size: $heading-size;
         font-weight: 400;
     }
 
     p {
-        font-size: $services-para-size;
+        font-size: $para-size;
         line-height: 1.375rem;
     }
 
@@ -36,12 +65,12 @@
         // null $background-colour so the button mixin doesn't generate a
         // background-color property. It will be set on a per-card basis
         // depending on the card's id.
-        @include button(
+        @include mixins.button(
             $background-colour: null,
-            $text-colour: $services-button-text-colour,
-            $font-size: $services-button-size,
-            $width: $services-button-width,
-            $height: $services-button-height
+            $text-colour: $button-text-colour,
+            $font-size: $button-size,
+            $width: $button-width,
+            $height: $button-height
         );
 
         // as this is a flex item, auto for top margin will push it to bottom of container
@@ -50,18 +79,18 @@
 
     // generate a small horizontal line after the h2 element
     h2::after {
-        content: '';
+        content: "";
         display: block;
-        background-color: $services-spacing-line-colour;
-        width: $services-spacing-line-width;
-        height: $services-spacing-line-height;
+        background-color: $spacing-line-colour;
+        width: $spacing-line-width;
+        height: $spacing-line-height;
 
         margin: 1rem auto 0;
     }
 
     // set button's colour based on the id of the service card it's within
     // (assumes that all cards have an id listed in $service-colours)
-    @each $service-name, $colour in $service-colours {
+    @each $service-name, $colour in constants.$service-colours {
         .#{$service-name} .call-to-action {
             background-color: $colour;
         }
@@ -69,36 +98,37 @@
 
     // generate icon appropriate to the id of the service card, placing
     // the icon as a ::before pseudo-element on the card's h2.
-    @each $service-name, $icon-name in $icon-name-by-service {
-        $icon-unicode: map.get($icon-unicode-by-name, $icon-name);
-        $icon-background-colour: map.get($service-colours, $service-name);
+    @each $service-name, $icon-name in icon-variables.$icon-name-by-service {
+        $icon-unicode: icons.icon-unicode-from-name($icon-name);
+        $icon-background-colour: constants.get-colour-for-service($service-name);
 
         .#{$service-name} h2::before {
             @extend %icon;
+            @include mixins.oval;
+
             content: $icon-unicode;
-            color: $services-icon-colour;
+            color: $icon-colour;
 
             display: block;
             box-sizing: border-box;
-            width: $services-icon-background-size;
-            height: $services-icon-background-size;
+            width: $icon-background-size;
+            height: $icon-background-size;
             background-color: $icon-background-colour;
-            border-radius: 50%;
 
             margin: 0 auto 1.3rem;
 
             // vertically center icon within the element
-            padding-top: ($services-icon-background-size - $services-icon-size) * 0.5;
+            padding-top: ($icon-background-size - $icon-size) * 0.5;
         }
     }
     
     // past extra-small first 3 cards remain as they are but rest are put into a 2x2 grid
-    @media (min-width: map.get($breakpoints, 'extra-small')) {
-        @include margin-x-centre;
-        width: 46.875rem;
+    @include breakpoints.above-breakpoint("extra-small") {
+        @include mixins.margin-x-centre;
+        width: utility.px-to-rem(750px);
 
         .other-services {
-            @include wrapped-flex;
+            @include mixins.wrapped-flex;
 
             // negative margin reverses effect of external margins from children
             margin: 0 -1rem;
@@ -112,11 +142,11 @@
         }
     }
 
-    @media (min-width: map.get($breakpoints, 'small')) {
-        width: 60.625rem;
+    @include breakpoints.above-breakpoint("small") {
+        width: utility.px-to-rem(970px);
 
         .top-services {
-            @include wrapped-flex;
+            @include mixins.wrapped-flex;
             margin: 0 -1rem;
 
             > * {
@@ -127,8 +157,8 @@
         }
     }
 
-    @media (min-width: map.get($breakpoints, 'large')) {
-        width: 75rem;
+    @include breakpoints.above-breakpoint("large") {
+        width: utility.px-to-rem(1200px);
 
         // other-services should form row of 4 at this breakpoint,
         // so reduce their flex-basis to allow them to fit.

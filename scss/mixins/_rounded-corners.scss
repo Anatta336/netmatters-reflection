@@ -1,0 +1,24 @@
+$_radius: 3px;
+
+@mixin rounded-corners {
+    border-radius: $_radius;
+}
+@mixin rounded-corners-right {
+    border-top-right-radius: $_radius;
+    border-bottom-right-radius: $_radius;
+}
+@mixin rounded-corners-left {
+    border-top-left-radius: $_radius;
+    border-bottom-left-radius: $_radius;
+}
+@mixin rounded-corners-top {
+    border-top-left-radius: $_radius;
+    border-top-right-radius: $_radius;
+}
+@mixin rounded-corners-bottom {
+    border-bottom-left-radius: $_radius;
+    border-bottom-right-radius: $_radius;
+}
+@mixin oval {
+    border-radius: 50%;
+}

@@ -1,0 +1,13 @@
+@use "variables";
+
+@font-face {
+    font-family: "#{variables.$font-family}";
+    src:  url("#{variables.$font-path}/#{variables.$font-family}.eot?choi8y");
+    src:  url("#{variables.$font-path}/#{variables.$font-family}.eot?choi8y#iefix") format("embedded-opentype"),
+          url("#{variables.$font-path}/#{variables.$font-family}.ttf?choi8y") format("truetype"),
+          url("#{variables.$font-path}/#{variables.$font-family}.woff?choi8y") format("woff"),
+          url("#{variables.$font-path}/#{variables.$font-family}.svg?choi8y##{variables.$font-family}") format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}

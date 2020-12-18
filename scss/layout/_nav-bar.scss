@@ -1,0 +1,86 @@
+@use "../breakpoints";
+@use "../constants";
+@use "../icons";
+@use "../mixins";
+@use "../utility";
+
+$text-colour: #fff;
+$background: constants.$brand-background-colour;
+$highlight: #484a58;
+$shadow:  #262834;
+$bottom-border: #999aa2;
+
+$font-size: utility.px-to-rem(18px);
+$font-size-first-line: utility.px-to-rem(10px);
+
+$normal-width: utility.px-to-rem(970px);
+$large-width: utility.px-to-rem(1200px);
+
+nav {
+    // not displayed at all on smaller breakpoints
+    display: none;
+    
+    background-color: $background;
+    border-bottom: 1px solid $bottom-border;
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+        padding: 0;
+
+        border-left: 1px solid $highlight;
+        border-right: 1px solid $shadow;
+
+        width: $normal-width;
+
+        @include breakpoints.above-breakpoint("large") {
+            width: $large-width;
+        }
+    }
+
+    li {
+        flex-grow: 1;
+        flex-basis: 8ch;
+
+        display: block;
+        font-size: $font-size;
+        text-align: center;
+        
+        border-left: 1px solid $shadow;
+        border-right: 1px solid $highlight;
+
+        margin: 0;
+        padding: 0 3ch;
+    }
+    
+    a {
+        display: block;
+
+        color: $text-colour;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    p::first-line {
+        font-size: $font-size-first-line;
+    }
+
+    span::before {
+        display: block;
+
+        width: 1ch;
+        margin: 0 auto;
+        padding-top: 1em;
+    }
+
+    @each $service, $colour in constants.$service-colours {
+        a.#{$service} span {
+            color: $colour;
+        }
+    }
+
+    @include breakpoints.above-breakpoint("small") {
+        display: block;
+    }
+}

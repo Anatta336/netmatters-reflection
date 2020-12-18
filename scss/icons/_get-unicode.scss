@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "variables";
+
+@function icon-unicode-from-name($name) {
+    @if (not map.has-key(variables.$icon-unicode-by-name, $name)) {
+        @error "Name \"#{$name}\" must be a valid icon name as listed in icons/_variables.scss";
+    }
+    @return map.get(variables.$icon-unicode-by-name, $name);
+}
+
+@function icon-unicode-from-service($service) {
+    @if (not map.has-key(variables.$icon-name-by-service, $service)) {
+        @error "Service \"#{$service}\" must be a known service as listed in icons/_variables.scss";
+    }
+    $name: map.get(variables.$icon-name-by-service, $service);
+    @return icon-unicode-from-name($name);
+}

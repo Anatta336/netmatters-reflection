@@ -1,9 +1,16 @@
+@use "rounded-corners";
+
 @mixin button(
         $background-colour, $text-colour, $font-size,
         $width: 12rem, $height: 2.5rem
     ) {
+    @include rounded-corners.rounded-corners;
+
     display: block;
-    border-radius: 3px;
+    margin: 2em auto;
+    width: $width;
+    padding-top: ($height - $font-size) * 0.5;
+    padding-bottom: ($height - $font-size) * 0.5;
 
     text-align: center;
     text-transform: uppercase;
@@ -12,9 +19,4 @@
     background-color: $background-colour;
     color: $text-colour;
     font-size: $font-size;
-
-    margin: 2em auto;
-    width: $width;
-    padding-top: ($height - $font-size) * 0.5;
-    padding-bottom: ($height - $font-size) * 0.5;
 }
