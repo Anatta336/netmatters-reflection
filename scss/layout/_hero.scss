@@ -1,14 +1,12 @@
-@use "../breakpoints";
-@use "../constants";
 @use "../icons";
-@use "../mixins";
+@use "../theme";
 @use "../utility";
 
 $picture: url("../img/carousel/carousel-web-design.jpg");
 $fallback-colour: #472e3c;
 $gradient-overlay: linear-gradient(to right, black, transparent);
 $text-colour: #fff;
-$button-colour: constants.get-colour-for-service("web-design");
+$button-colour: themeget-colour-for-service("web-design");
 
 $heading-size: utility.px-to-rem(48px);
 $para-size: utility.px-to-rem(20px);
@@ -29,7 +27,7 @@ $height-by-breakpoint: (
     height: utility.px-to-rem(600px);
     padding: utility.px-to-rem(172px) 0 0;
 
-    @include mixins.hero-image(($gradient-overlay, $picture), $fallback-colour);
+    @include utility.hero-image(($gradient-overlay, $picture), $fallback-colour);
     // background-image: $gradient-overlay, $picture;
     // background-color: $fallback-colour;
     // background-position: center;
@@ -41,12 +39,12 @@ $height-by-breakpoint: (
 
     @each $breakpoint-name, $height in $height-by-breakpoint
     {
-        @include breakpoints.above-breakpoint($breakpoint-name) {
+        @include utility.above-breakpoint($breakpoint-name) {
             height: $height;
         }
     }
     
-    @include breakpoints.above-breakpoint("small") {
+    @include utility.above-breakpoint("small") {
         text-align: left;
         padding: 7.5em 9ch;
     }
@@ -65,7 +63,7 @@ $height-by-breakpoint: (
     }
 
     a {
-        @include mixins.button(
+        @include utility.button(
             $background-colour: $button-colour,
             $text-colour: $text-colour,
             $font-size: $button-size,
@@ -73,7 +71,7 @@ $height-by-breakpoint: (
             $height: $button-height
         );
 
-        @include breakpoints.above-breakpoint("small") {
+        @include utility.above-breakpoint("small") {
             margin-left: 0;
         }
     }

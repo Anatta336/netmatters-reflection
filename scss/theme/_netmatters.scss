@@ -1,7 +1,6 @@
 @use "sass:map";
 
 $brand-background-colour: #333645;
-
 $page-background-colour: #fefefe;
 
 $service-colours: (
@@ -14,9 +13,12 @@ $service-colours: (
     "developer-training": #926fb1,
 );
 
-@function get-colour-for-service($service) {
-    @if (not map.has-key($service-colours, $service)) {
-        @error "Service \"#{$service}\" must be a valid service name as listed in constants/_shared-colours.scss";
-    }
-    @return map.get($service-colours, $service);
-}
+$service-icons: (
+    "web-design": "code",
+    "it-support": "monitor",
+    "telecoms-services": "phone",
+    "bespoke-software": "grid",
+    "digital-marketing": "bars",
+    "cyber-security": "shield",
+    "developer-training": "student-cap",
+);

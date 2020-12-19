@@ -1,11 +1,9 @@
-@use "../breakpoints";
-@use "../constants";
 @use "../icons";
-@use "../mixins";
+@use "../theme";
 @use "../utility";
 
 $text-colour: #fff;
-$background: constants.$brand-background-colour;
+$background: theme.$brand-background-colour;
 $highlight: #484a58;
 $shadow:  #262834;
 $bottom-border: #999aa2;
@@ -34,7 +32,7 @@ nav {
 
         width: $normal-width;
 
-        @include breakpoints.above-breakpoint("large") {
+        @include utility.above-breakpoint("large") {
             width: $large-width;
         }
     }
@@ -74,13 +72,13 @@ nav {
         padding-top: 1em;
     }
 
-    @each $service, $colour in constants.$service-colours {
+    @each $service, $colour in theme.$service-colours {
         a.#{$service} span {
             color: $colour;
         }
     }
 
-    @include breakpoints.above-breakpoint("small") {
+    @include utility.above-breakpoint("small") {
         display: block;
     }
 }

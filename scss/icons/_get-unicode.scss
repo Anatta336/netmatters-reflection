@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "variables";
+@use "../theme";
 
 @function icon-unicode-from-name($name) {
     @if (not map.has-key(variables.$icon-unicode-by-name, $name)) {
@@ -9,9 +10,9 @@
 }
 
 @function icon-unicode-from-service($service) {
-    @if (not map.has-key(variables.$icon-name-by-service, $service)) {
-        @error "Service \"#{$service}\" must be a known service as listed in icons/_variables.scss";
+    @if (not map.has-key(theme.$service-icons, $service)) {
+        @error "Service \"#{$service}\" must be a known service as listed in the active theme.";
     }
-    $name: map.get(variables.$icon-name-by-service, $service);
+    $name: map.get(variables.$service-icons, $service);
     @return icon-unicode-from-name($name);
 }

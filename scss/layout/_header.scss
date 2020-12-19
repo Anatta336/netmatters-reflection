@@ -1,10 +1,8 @@
-@use "../breakpoints";
-@use "../constants";
 @use "../icons";
-@use "../mixins";
+@use "../theme";
 @use "../utility";
 
-$menu-background-colour: constants.$brand-background-colour;
+$menu-background-colour: theme.$brand-background-colour;
 $menu-colour: #fff;
 $menu-font-size: utility.px-to-rem(12px);
 $menu-icon-size: 1.2rem;
@@ -54,7 +52,7 @@ header {
     }
 
     .hamburger-menu {
-        @include mixins.rounded-corners;
+        @include utility.rounded-corners;
 
         display: flex;
         flex-direction: column;
@@ -102,7 +100,7 @@ header {
             padding: 0.3125rem 2rem 0.3125rem 0.9rem;
             border: 2px solid $mobile-search-border-colour;
             background-color: $mobile-search-background-colour;
-            @include mixins.rounded-corners;
+            @include utility.rounded-corners;
 
             color: $mobile-search-text-colour;
             font-size: $mobile-search-text-size;
@@ -129,13 +127,13 @@ header {
     // - content is now fixed width
     // - contact icon is removed
     // - the search bar moves up into same line as logo and changes appearance
-    @include breakpoints.above-breakpoint("extra-small") {
+    @include utility.above-breakpoint("extra-small") {
         .icon-phone {
             display: none;
         }
 
         .content {
-            @include mixins.margin-x-centre;
+            @include utility.margin-x-centre;
             width: utility.px-to-rem(750px);
             
             // grid layout changes, now just one row with logo's column fixed
@@ -188,7 +186,7 @@ header {
             }
 
             button {
-                @include mixins.rounded-corners-right;
+                @include utility.rounded-corners-right;
 
                 position: initial;
                 box-sizing: content-box;

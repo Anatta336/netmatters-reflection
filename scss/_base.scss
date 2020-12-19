@@ -1,9 +1,9 @@
-@use "constants";
+@use "theme";
 
 body {
     font-family: "Poppins", "sans-serif";
     letter-spacing: 0.4px;
-    background-color: constants.$page-background-colour;
+    background-color: theme.$page-background-colour;
 }
 
 h1,

@@ -1,13 +1,11 @@
-@use "../breakpoints";
-@use "../constants";
 @use "../icons";
-@use "../mixins";
+@use "../theme";
 @use "../utility";
 
-$background-colour: constants.$brand-background-colour;
+$background-colour: theme.$brand-background-colour;
 $text-colour: #fff;
 $button-background-colour: #fff;
-$button-text-colour: constants.$brand-background-colour;
+$button-text-colour: theme.$brand-background-colour;
 
 $heading-size: utility.px-to-rem(36px);
 $para-size: utility.px-to-rem(16px);
@@ -25,11 +23,11 @@ $button-height: 2.7rem;
         margin: 0;
         padding: 2.5em 1.8ch;
         
-        @include breakpoints.above-breakpoint("extra-small") {
+        @include utility.above-breakpoint("extra-small") {
             width: 720px;
             margin: 0 auto;
         }
-        @include breakpoints.above-breakpoint("small") {
+        @include utility.above-breakpoint("small") {
             width: 940px;
         }
     }
@@ -52,7 +50,7 @@ $button-height: 2.7rem;
     }
     
     a {
-    @include mixins.button(
+    @include utility.button(
         $background-colour: $button-background-colour,
         $text-colour: $button-text-colour,
         $font-size: $button-size,
@@ -62,7 +60,7 @@ $button-height: 2.7rem;
         
         margin: 2em auto 0 0;
         
-        @include breakpoints.above-breakpoint("small") {
+        @include utility.above-breakpoint("small") {
             margin-left: 0;
         }
     }
@@ -72,12 +70,12 @@ $button-height: 2.7rem;
         font-size: 0.75em;
     }
 
-    @include breakpoints.above-breakpoint("small") {
+    @include utility.above-breakpoint("small") {
         background: $background-colour url("../img/netmatters-brand/alpha-overlay.png") no-repeat right;
         background-size: auto 100%;
     }
 
-    @include breakpoints.above-breakpoint("large") {
+    @include utility.above-breakpoint("large") {
         .content {
             width: 1200px;
         }

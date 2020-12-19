@@ -1,15 +1,13 @@
-@use "../breakpoints";
-@use "../constants";
 @use "../icons";
 @use "../icons/variables" as icon-variables;
-@use "../mixins";
+@use "../theme";
 @use "../utility";
 
 $card-background-colour: #fff;
 $card-border-colour: #ccc;
 $card-shadow-colour: rgba(0, 0, 0, 0.15);
 
-$text-colour: constants.$brand-background-colour;
+$text-colour: theme.$brand-background-colour;
 $button-text-colour: #fff;
 
 $heading-size: utility.px-to-rem(18px);
@@ -20,7 +18,7 @@ $icon-colour: #fff;
 $icon-background-size: utility.px-to-rem(60px);
 $icon-size: 1rem;
 
-$spacing-line-colour: constants.$brand-background-colour;
+$spacing-line-colour: theme.$brand-background-colour;
 $spacing-line-width: utility.px-to-rem(28px);
 $spacing-line-height: utility.px-to-rem(3px);
 
@@ -31,7 +29,7 @@ $button-height: 3rem;
     margin: 2rem 1rem;
     
     a {
-        @include mixins.margin-x-centre;
+        @include utility.margin-x-centre;
 
         display: flex;
         flex-direction: column;
@@ -46,7 +44,7 @@ $button-height: 3rem;
 
         background-color: $card-background-colour;
         border: 1px solid $card-border-colour;
-        @include mixins.rounded-corners;
+        @include utility.rounded-corners;
 
         box-shadow: 0 0 30px $card-shadow-colour;
     }
@@ -65,7 +63,7 @@ $button-height: 3rem;
         // null $background-colour so the button mixin doesn't generate a
         // background-color property. It will be set on a per-card basis
         // depending on the card's id.
-        @include mixins.button(
+        @include utility.button(
             $background-colour: null,
             $text-colour: $button-text-colour,
             $font-size: $button-size,
@@ -90,7 +88,7 @@ $button-height: 3rem;
 
     // set button's colour based on the id of the service card it's within
     // (assumes that all cards have an id listed in $service-colours)
-    @each $service-name, $colour in constants.$service-colours {
+    @each $service-name, $colour in theme.$service-colours {
         .#{$service-name} .call-to-action {
             background-color: $colour;
         }
@@ -98,13 +96,13 @@ $button-height: 3rem;
 
     // generate icon appropriate to the id of the service card, placing
     // the icon as a ::before pseudo-element on the card's h2.
-    @each $service-name, $icon-name in icon-variables.$icon-name-by-service {
+    @each $service-name, $icon-name in theme.$service-icons {
         $icon-unicode: icons.icon-unicode-from-name($icon-name);
-        $icon-background-colour: constants.get-colour-for-service($service-name);
+        $icon-background-colour: theme.get-colour-for-service($service-name);
 
         .#{$service-name} h2::before {
             @extend %icon;
-            @include mixins.oval;
+            @include utility.oval;
 
             content: $icon-unicode;
             color: $icon-colour;
@@ -123,12 +121,12 @@ $button-height: 3rem;
     }
     
     // past extra-small first 3 cards remain as they are but rest are put into a 2x2 grid
-    @include breakpoints.above-breakpoint("extra-small") {
-        @include mixins.margin-x-centre;
+    @include utility.above-breakpoint("extra-small") {
+        @include utility.margin-x-centre;
         width: utility.px-to-rem(750px);
 
         .other-services {
-            @include mixins.wrapped-flex;
+            @include utility.wrapped-flex;
 
             // negative margin reverses effect of external margins from children
             margin: 0 -1rem;
@@ -142,11 +140,11 @@ $button-height: 3rem;
         }
     }
 
-    @include breakpoints.above-breakpoint("small") {
+    @include utility.above-breakpoint("small") {
         width: utility.px-to-rem(970px);
 
         .top-services {
-            @include mixins.wrapped-flex;
+            @include utility.wrapped-flex;
             margin: 0 -1rem;
 
             > * {
@@ -157,7 +155,7 @@ $button-height: 3rem;
         }
     }
 
-    @include breakpoints.above-breakpoint("large") {
+    @include utility.above-breakpoint("large") {
         width: utility.px-to-rem(1200px);
 
         // other-services should form row of 4 at this breakpoint,
