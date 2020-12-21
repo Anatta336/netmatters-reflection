@@ -2,6 +2,7 @@ $px-per-rem: 16px !default;
 
 @function px-to-rem ($pixel-value) {
     //TODO: is it possible to check what unit $pixel-value is in?
+    // Looks a lot like yes. Use built in function "unit()"
 
     @return ($pixel-value / $px-per-rem) * 1rem;
 }

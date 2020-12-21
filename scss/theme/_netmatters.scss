@@ -29,6 +29,12 @@ $service-icons: (
     "developer-training": "student-cap",
 );
 
+$social-media-icons: (
+    "facebook": "facebook",
+    "twitter": "twitter",
+    "linkedin": "linked-in",
+);
+
 $badge-row-height-by-breakpoints: (
     "extra-small": convert.px-to-rem(88px),
     "small": convert.px-to-rem(110px),
@@ -52,3 +58,8 @@ $badge-horizontal-padding: 20px;
 
 $spacing-line-length: convert.px-to-rem(28px);
 $spacing-line-height: convert.px-to-rem(3px);
+
+$footer-heading-font-size: convert.px-to-rem(16px);
+$footer-font-size: convert.px-to-rem(13px);
+
+$quarter-opaque: rgba(0, 0, 0, 0.25);

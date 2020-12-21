@@ -13,6 +13,14 @@
     @if (not map.has-key(theme.$service-icons, $service)) {
         @error "Service \"#{$service}\" must be a known service as listed in the active theme.";
     }
-    $name: map.get(variables.$service-icons, $service);
+    $name: map.get(theme.$service-icons, $service);
+    @return icon-unicode-from-name($name);
+}
+
+@function icon-unicode-for-social-media($social-media) {
+    @if (not map.has-key(theme.$social-media-icons, $social-media)) {
+        @error "Social-media \"#{$social-media}\" must be a social media name as listed in the active theme.";
+    }
+    $name: map.get(theme.$social-media-icons, $social-media);
     @return icon-unicode-from-name($name);
 }
