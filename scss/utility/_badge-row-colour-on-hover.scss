@@ -1,0 +1,44 @@
+@use "breakpoints";
+@use "colour-on-hover";
+@use "flex-row-container";
+@use "margin-x-center";
+@use "convert";
+@use "../theme";
+
+@mixin badge-row-colour-on-hover {
+    // don't display at smallest breakpoint
+    display: none;
+    
+    // do display at all other breakpoints
+    @include breakpoints.above-breakpoint("extra-small") {
+        @include flex-row-container.flex-row-container;
+        @include margin-x-center.margin-x-center;
+        
+        margin-top: convert.px-to-rem(50px);
+        margin-bottom: convert.px-to-rem(50px);
+    }
+
+    @each $breakpoint-name, $width in theme.$badge-row-container-width-by-breakpoints {
+        @include breakpoints.above-breakpoint($breakpoint-name) {
+            width: $width
+        }
+    }
+    
+    // allow images to scale to fit
+    img {
+        max-width: 100%;
+    }
+
+    .badge {
+        @include colour-on-hover.colour-on-hover;
+
+        padding: 0 theme.$badge-horizontal-padding;
+
+        // size of badges varies with breakpoints
+        @each $breakpoint-name, $height in theme.$badge-row-height-by-breakpoints {
+            @include breakpoints.above-breakpoint($breakpoint-name) {
+                max-height: $height;
+            }
+        }
+    }
+}

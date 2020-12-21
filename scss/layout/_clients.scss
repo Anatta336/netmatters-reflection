@@ -1,0 +1,64 @@
+@use "../utility";
+@use "../theme";
+
+#clients {
+    @include utility.badge-row-colour-on-hover;
+
+    .tooltip-wrapper {
+        // initially the tooltip is hidden
+        display: none;
+    }
+
+    .badge {
+        // set badge position relative so it becomes the anchor for .tooltip
+        position: relative;
+    }
+
+    .badge:hover .tooltip-wrapper {
+        display: block;
+        position: absolute;
+        bottom: 70px;
+
+        left: -100px;
+        right: -100px;
+    }
+
+    h3 {
+        font-size: theme.$tooltip-header-font-size;
+    }
+    p {
+        font-size: theme.$tooltip-font-size;
+        line-height: theme.$tooltip-line-height;
+    }
+
+    // generate a small horizontal line after the h2 element
+    h3::after {
+        @include utility.short-horizontal-line($line-colour: theme.$dark-contrast);
+    }
+
+    .tooltip-content {
+        @include utility.margin-x-center;
+
+        width: utility.px-to-rem(220px);
+        padding: utility.px-to-rem(20px);
+
+        text-align: center;
+        color: theme.$dark-contrast;
+        background-color: theme.$dark;
+    }
+
+    // create pointer at bottom of tooltip, indicating towards the associated icon.
+    .tooltip-wrapper::after {
+        @include utility.margin-x-center;
+
+        content: "";
+        display: block;
+        z-index: -1;
+        background-color: theme.$dark;
+        width: theme.$tooltip-pointer-size;
+        height: theme.$tooltip-pointer-size;
+
+        transform: translateY(theme.$tooltip-pointer-size * -0.5)
+            rotate(45deg);
+    }
+}

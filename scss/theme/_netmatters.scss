@@ -1,7 +1,13 @@
 @use "sass:map";
+@use "../utility/convert";
 
 $brand-background-colour: #333645;
 $page-background-colour: #fefefe;
+
+// colours are given in pairs so A-contrast should work with A as text and background (or vice versa)
+
+$dark: #333645;
+$dark-contrast: #fff;
 
 $service-colours: (
     "web-design": #926fb1,
@@ -22,3 +28,27 @@ $service-icons: (
     "cyber-security": "shield",
     "developer-training": "student-cap",
 );
+
+$badge-row-height-by-breakpoints: (
+    "extra-small": convert.px-to-rem(88px),
+    "small": convert.px-to-rem(110px),
+    "large": convert.px-to-rem(88px),
+);
+
+$badge-row-container-width-by-breakpoints: (
+    "extra-small": convert.px-to-rem(720px),
+    "small": convert.px-to-rem(940px),
+    "large": convert.px-to-rem(1170px),
+);
+
+//TODO: store a more general set of body, header, etc., font sizes
+
+$tooltip-header-font-size: convert.px-to-rem(18px);
+$tooltip-font-size: convert.px-to-rem(13px);
+$tooltip-line-height: 1.375rem;
+$tooltip-pointer-size: convert.px-to-rem(50px);
+
+$badge-horizontal-padding: 20px;
+
+$spacing-line-length: convert.px-to-rem(28px);
+$spacing-line-height: convert.px-to-rem(3px);

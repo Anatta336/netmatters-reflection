@@ -18,10 +18,6 @@ $icon-colour: #fff;
 $icon-background-size: utility.px-to-rem(60px);
 $icon-size: 1rem;
 
-$spacing-line-colour: theme.$brand-background-colour;
-$spacing-line-width: utility.px-to-rem(28px);
-$spacing-line-height: utility.px-to-rem(3px);
-
 $button-width: 8rem;
 $button-height: 3rem;
 
@@ -77,13 +73,7 @@ $button-height: 3rem;
 
     // generate a small horizontal line after the h2 element
     h2::after {
-        content: "";
-        display: block;
-        background-color: $spacing-line-colour;
-        width: $spacing-line-width;
-        height: $spacing-line-height;
-
-        margin: 1rem auto 0;
+        @include utility.short-horizontal-line;
     }
 
     // set button's colour based on the id of the service card it's within

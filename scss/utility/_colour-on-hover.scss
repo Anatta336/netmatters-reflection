@@ -1,0 +1,17 @@
+@mixin colour-on-hover {
+    .colour {
+        display: none;
+    }
+    .bw {
+        display: initial;
+    }
+
+    &:hover {
+        .colour {
+            display: initial;
+        }
+        .bw {
+            display: none;
+        }
+    }
+}
