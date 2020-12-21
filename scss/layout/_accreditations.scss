@@ -1,0 +1,61 @@
+@use "../utility";
+
+$badge-height-by-breakpoint: (
+    "extra-small": utility.px-to-rem(88px),
+    "small": utility.px-to-rem(110px),
+    "large": utility.px-to-rem(88px),
+);
+
+$container-width-by-breakpoint: (
+    "extra-small": utility.px-to-rem(720px),
+    "small": utility.px-to-rem(940px),
+    "large": utility.px-to-rem(1170px),
+);
+
+#accreditations {
+    // don't display at smallest breakpoint
+    display: none;
+    
+    // do display at all other breakpoints
+    @include utility.above-breakpoint("extra-small") {
+        @include utility.margin-x-center;
+        
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        
+        margin-top: utility.px-to-rem(50px);
+        margin-bottom: utility.px-to-rem(50px);
+    }
+
+    @each $breakpoint-name, $width in $container-width-by-breakpoint {
+        @include utility.above-breakpoint($breakpoint-name) {
+            width: $width
+        }
+    }
+    
+    .badge {
+        .colour {
+            display: none;
+        }
+        .bw {
+            display: initial;
+        }
+
+        &:hover {
+            .colour {
+                display: initial;
+            }
+            .bw {
+                display: none;
+            }
+        }
+
+        // size of badges varies with breakpoints
+        @each $breakpoint-name, $height in $badge-height-by-breakpoint {
+            @include utility.above-breakpoint($breakpoint-name) {
+                max-height: $height;
+            }
+        }
+    }
+}
