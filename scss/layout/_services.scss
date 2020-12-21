@@ -101,7 +101,7 @@ $button-height: 3rem;
         $icon-background-colour: theme.get-colour-for-service($service-name);
 
         .#{$service-name} h2::before {
-            @extend %icon;
+            @include icons.icon;
             @include utility.oval;
 
             content: $icon-unicode;

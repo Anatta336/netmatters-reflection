@@ -2,7 +2,7 @@
 
 // define as placeholder so rules can be reused elsewhere if icons are used
 // in a way other than setting the class name to be the name of an icon.
-%icon {
+@mixin icon {
     font-family: "#{variables.$font-family}" !important;
     font-style: normal;
     font-weight: normal;
@@ -14,13 +14,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-[class^="icon-"], [class*=" icon-"] {
-    @extend %icon;
-}
-
 @each $icon-name, $unicode in variables.$icon-unicode-by-name {
     .icon-#{$icon-name} {
         &::before {
+            @include icon;
             content: $unicode;
         }
     }
