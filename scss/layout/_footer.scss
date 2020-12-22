@@ -2,21 +2,54 @@
 @use "../utility";
 @use "../icons";
 
-footer {    
+footer {
+    // used in a couple of places where the value needs to be equal
+    $section-padding-x: utility.px-to-rem(15px);
+
     background-color: theme.$dark;
     color: theme.$dark-contrast;
+    font-size: theme.$footer-font-size;
+    line-height: 1.375rem;
 
     padding-top: utility.px-to-rem(47px);
     padding-bottom: utility.px-to-rem(43px);
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    .wrapper {
+        @include utility.margin-x-center;
 
-    font-size: theme.$footer-font-size;
+        // for the mobile breakpoint each flex item will take up a whole
+        // row, but that will change as we move up through the breakpoints.
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
 
-    line-height: 1.375rem;
+        // width of wrapper depends on the breakpoint
+        @each $breakpoint-name, $width in theme.$footer-width-by-breakpoints {
+            @include utility.above-breakpoint($breakpoint-name) {
+                width: $width;
+            }
+        }
+    }
 
+    section {
+        box-sizing: border-box;
+        padding: 0 $section-padding-x;
+        margin-bottom: utility.px-to-rem(30px);
+
+        // width of each section within the footer depends on the breakpoint
+        @each $breakpoint-name, $width in theme.$footer-section-width-by-breakpoints {
+            @include utility.above-breakpoint($breakpoint-name) {
+                width: $width;
+            }
+        }
+
+        // remove bottom margin at largest breakpoint
+        @include utility.above-breakpoint(utility.$largest-breakpoint-name) {
+            margin-bottom: 0;
+        }
+    }
+
+    // only underline anchor elements when they're hovered
     a {
         text-decoration: none;
         color: theme.$dark-contrast;
@@ -25,18 +58,15 @@ footer {
         text-decoration: underline;
     }
 
-    section {
-        width: 100%;
-        padding: 0 utility.px-to-rem(15px);
-        margin-bottom: utility.px-to-rem(30px);
-    }
-
+    // each section starts with an UPPERCASE h2 heading
     h2 {
         font-size: theme.$footer-heading-font-size;
         text-transform: uppercase;
         line-height: 1.1;
-        margin-bottom: utility.px-to-rem(26px);
+        margin: 0 0 utility.px-to-rem(26px);
     }
+
+    // remove default bullet point list styling
     ul {
         padding: 0;
     }
@@ -46,6 +76,7 @@ footer {
 
     address
     {
+        // the address is given as a series of <span> elements, which should each be on a fresh line
         span {
             display: block;
             font-style: normal;
@@ -70,9 +101,17 @@ footer {
     }
 
     .social-media {
+        // this section loses the usual padding so the social media buttons
+        // can be aligned with that padding line from their own padding.
+        padding: 0;
+        h2 {
+            padding-left: $section-padding-x;
+        }
+
+        // list container arranges social media buttons using wrapped flexbox layout
         ul {
             width: 100%;
-            margin: 0;
+            margin: utility.px-to-rem(-30px) 0 0;
 
             display: flex;
             flex-direction: row;
@@ -91,20 +130,24 @@ footer {
         }
         
         li {
+            // each item (including its padding) takes up half the available width
             display: block;
             box-sizing: border-box;
             width: 50%;
-            padding: utility.px-to-rem(30px) utility.px-to-rem(15px); 
+            padding: 0 $section-padding-x; 
         }
         a {
+            // the text (a single icon glyph) is centered within the item
             @include utility.flex-center;
             background-color: theme.$quarter-opaque;
             height: utility.px-to-rem(55px);
+            margin-top: utility.px-to-rem(30px);
 
             text-align: center;
-            font-size: 2rem;
+            font-size: utility.px-to-rem(28px);
         }
 
+        // colour changes on hover depending on class name matching a known social media brand
         @each $social-media-name, $colour in theme.$social-media-colours {
             a.#{$social-media-name}:hover {
                 background-color: $colour;

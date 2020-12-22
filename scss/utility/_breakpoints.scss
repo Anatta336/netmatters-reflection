@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:list";
 
 // "mobile" is default, with later breakpoint becoming
 // active when viewport width exceeds the associated value.
@@ -8,6 +9,10 @@ $_breakpoints: (
     "small": 991px,
     "large": 1260px,
 );
+
+$_largest-breakpoint-pair: list.nth($_breakpoints, -1);
+$largest-breakpoint-name: list.nth($_largest-breakpoint-pair, 1);
+$largest-breakpoint-size: list.nth($_largest-breakpoint-pair, 2);
 
 @function get-breakpoint($name) {
     @if (not map.has-key($_breakpoints, $name)) {

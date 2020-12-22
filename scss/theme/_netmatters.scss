@@ -41,6 +41,20 @@ $social-media-icons: (
     "linkedin": "linked-in",
 );
 
+$footer-width-by-breakpoints: (
+    "mobile": 100%,
+    "extra-small": convert.px-to-rem(750px),
+    "small": convert.px-to-rem(970px),
+    "large": convert.px-to-rem(1200px),
+);
+
+$footer-section-width-by-breakpoints: (
+    "mobile": 100%,
+    "extra-small": convert.px-to-rem(375px),
+    "small": convert.px-to-rem(485px),
+    "large": convert.px-to-rem(300px),
+);
+
 $badge-row-height-by-breakpoints: (
     "extra-small": convert.px-to-rem(88px),
     "small": convert.px-to-rem(110px),
