@@ -9,6 +9,8 @@ $page-background-colour: #fefefe;
 $dark: #333645;
 $dark-contrast: #fff;
 
+$faint: #666;
+
 $border-colour: #ccc;
 $border-thickness: 1px;
 $border-radius: convert.px-to-rem(3px);
@@ -45,6 +47,7 @@ $social-media-icons: (
     "linkedin": "linked-in",
 );
 
+//TODO: this is being used by latest-posts too, rename (and use for all similar wraps)
 $footer-width-by-breakpoints: (
     "mobile": 100%,
     "extra-small": convert.px-to-rem(750px),
@@ -71,12 +74,23 @@ $badge-row-container-width-by-breakpoints: (
     "large": convert.px-to-rem(1170px),
 );
 
+$latest-post-article-width-by-breakpoints: (
+    "mobile": 100%,
+    "extra-small": convert.px-to-rem(350px),
+    "small": convert.px-to-rem(455px),
+    "large": convert.px-to-rem(370px),
+);
+
 //TODO: store a more general set of body, header, etc., font sizes
 
 $blog-h2-font-size: convert.px-to-rem(20px);
-
+$blog-h3-font-size: convert.px-to-rem(16px);
+$blog-para-font-size: convert.px-to-rem(13px);
+$blog-para-line-height: 1.375rem;
+$blog-button-font-size: convert.px-to-rem(17px);
 $blog-category-font-size: convert.px-to-rem(12px);
 $blog-category-font-weight: 600;
+$blog-poster-font-size: convert.px-to-rem(14px);
 
 $tooltip-header-font-size: convert.px-to-rem(18px);
 $tooltip-font-size: convert.px-to-rem(13px);

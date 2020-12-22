@@ -2,18 +2,38 @@
 @use "../utility";
 
 #latest-posts {
-    @include utility.flex-row-container;
-    flex-wrap: wrap;
+    .wrapper {
+        @include utility.margin-x-center;
+        @include utility.flex-row-container;
+        
+        flex-wrap: wrap;
+    
+        padding: 0 utility.px-to-rem(15px);
+        margin-top: utility.px-to-rem(40px);
+        margin-bottom: utility.px-to-rem(40px);
 
-    padding: 0 utility.px-to-rem(15px);
+        // width of wrapper depends on the breakpoint
+        @each $breakpoint-name, $width in theme.$footer-width-by-breakpoints {
+            @include utility.above-breakpoint($breakpoint-name) {
+                width: $width;
+            }
+        }
+    }
+
+    .head-wrap {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
 
     h2 {
+        display: inline-block;
         text-transform: uppercase;
         font-size: theme.$blog-h2-font-size;
         font-weight: 600;
 
         padding: 0;
-        margin: utility.px-to-rem(40px) 0 0;
+        margin: 0 0 utility.px-to-rem(40px);
 
         &::after {
             @include utility.short-horizontal-line(
@@ -35,40 +55,135 @@
         @include utility.rounded-corners;
         
         box-sizing: border-box;
-        background-color: blanchedalmond; //TEMP
+        margin: 0 0 utility.px-to-rem(40px);
         
-        flex-basis: 100%;
-        
-        margin: utility.px-to-rem(50px) 0;
-
         // positioned so it will be the anchor for .category
         position: relative;
 
-        // category is short bit of text to be overlaid on the image
-        .category {
-            display: block;
-            padding: 0 utility.px-to-rem(10px);
-    
-            position: absolute;
-            right: 0;
-            top: utility.px-to-rem(10px);
-
-            color: theme.$dark-contrast;
-            font-size: theme.$blog-category-font-size;
-            font-weight: theme.$blog-category-font-weight;
-            text-transform: uppercase;
-            line-height: 1.438rem;
-
-            background-color: blue; //TEMP
+        // width of each section within the footer depends on the breakpoint
+        @each $breakpoint-name, $width in theme.$latest-post-article-width-by-breakpoints {
+            @include utility.above-breakpoint($breakpoint-name) {
+                width: $width;
+            }
         }
+
+        // just in the small breakpoint the final article preview is hidden
+        @include utility.above-breakpoint("extra-small") {
+            &:last-of-type {
+                display: none;
+            }
+        }
+        @include utility.above-breakpoint("large") {
+            &:last-of-type {
+                display: initial;
+            }
+        }
+    }
+
+    // category is a short bit of text to be overlaid on the image
+    .category {
+        display: block;
+        padding: 0 utility.px-to-rem(10px);
+
+        position: absolute;
+        right: 0;
+        top: utility.px-to-rem(10px);
+
+        // position in front of default layer
+        z-index: 1;
+
+        color: theme.$dark-contrast;
+        font-size: theme.$blog-category-font-size;
+        font-weight: theme.$blog-category-font-weight;
+        text-transform: uppercase;
+        line-height: 1.438rem;
+    }
+
+    h3 {
+        font-size: theme.$blog-h3-font-size;
+        margin-bottom: utility.px-to-rem(15px);
+    }
+
+    p {
+        color: theme.$faint;
+        font-size: theme.$blog-para-font-size;
+        line-height: theme.$blog-para-line-height;
+    }
+
+    .button {
+        @include utility.button(
+            $text-colour: theme.$dark-contrast,
+            $font-size: theme.$blog-button-font-size,
+            $width: 8rem,
+            $height: null,
+        );
+        padding: utility.px-to-rem(13px) utility.px-to-rem(10px);
+    }
+    
+    h3,
+    p,
+    .button {
+        margin-left: utility.px-to-rem(30px);
+        margin-right: utility.px-to-rem(30px);
+    }
+
+
+    // set various colours depending on the category of the article
+    @each $service-name, $colour in theme.$service-colours {
+        .#{$service-name} {
+            .category,
+            .button {
+                background-color: $colour;
+            }
+            h3 {
+                color: $colour;
+            }
+        }
+    }
+
+    .lead {
+        display: block;
+
+        // when the image enlarges, clip away the parts that extend out of the element.
+        overflow: hidden;
     }
 
     .lead img {
         width: 100%;
+        transition-property: transform, opacity;
+        transition-duration: 0.25s;
+        transition-timing-function: ease;
+    }
+
+    .lead:hover {
+        img {
+            opacity: 0.75;
+            transform: scale(1.1);
+        }
     }
 
     .poster img {
         max-width: 100;
     }
 
+    .poster {
+        margin: utility.px-to-rem(30px) utility.px-to-rem(30px) 0;
+        border-top: theme.$border-thickness solid theme.$border-colour;
+        padding: utility.px-to-rem(30px) 0;
+
+        p {
+            margin: 0;
+            padding: 0;
+            font-size: theme.$blog-poster-font-size;
+        }
+
+        p:first-of-type {
+            font-weight: 600;
+        }
+
+        img {
+            float: left;
+            padding-right: 23px;
+        }
+    }
 }

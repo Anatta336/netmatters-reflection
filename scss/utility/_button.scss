@@ -2,21 +2,34 @@
 @use "flex-center";
 
 @mixin button(
-        $background-colour, $text-colour, $font-size,
-        $width: 12rem, $height: 2.5rem
+        $background-colour: null,
+        $text-colour: null,
+        $font-size: null,
+        $width: 12rem,
+        $height: 2.5rem,
     ) {
     @include rounded-corners.rounded-corners;
     @include flex-center.flex-center;
 
     margin: 2em auto;
-    width: $width;
-    height: $height;
+    @if ($width) {
+        width: $width;
+    }
+    @if ($height) {
+        height: $height;
+    }
 
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
 
-    background-color: $background-colour;
-    color: $text-colour;
-    font-size: $font-size;
+    @if ($background-colour) {
+        background-color: $background-colour;
+    }
+    @if ($text-colour) {
+        color: $text-colour;
+    }
+    @if ($font-size) {
+        font-size: $font-size;
+    }
 }
