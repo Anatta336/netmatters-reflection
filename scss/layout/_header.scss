@@ -146,7 +146,7 @@ header {
     // - content is now fixed width
     // - contact icon is removed
     // - the search bar moves up into same line as logo and changes appearance
-    @include utility.above-breakpoint("extra-small") {
+    @include utility.above-breakpoint("small") {
         .icon-phone {
             display: none;
         }
@@ -229,7 +229,7 @@ header {
     // - search text input hidden, leaving only search button (clicking button should show text input, but that needs JS)
     // - support button appears
     // - contact button appears
-    @include utility.above-breakpoint("small") {
+    @include utility.above-breakpoint("medium") {
         .content {
             width: utility.px-to-rem(960px);
 

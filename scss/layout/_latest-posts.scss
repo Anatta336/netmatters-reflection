@@ -68,7 +68,7 @@
         }
 
         // just in the small breakpoint the final article preview is hidden
-        @include utility.above-breakpoint("extra-small") {
+        @include utility.above-breakpoint("small") {
             &:last-of-type {
                 display: none;
             }

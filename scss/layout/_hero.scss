@@ -19,8 +19,8 @@ $button-icon-name: "right-arrow";
 // when viewport width is larger than breakpoint, hero height should be:
 $height-by-breakpoint: (
     "mobile": 531px,
-    "extra-small": 589px,
-    "small": 490px
+    "small": 589px,
+    "medium": 490px
 );
 
 #hero-image {
@@ -55,7 +55,7 @@ $height-by-breakpoint: (
             $height: $button-height
         );
         
-        @include utility.above-breakpoint("small") {
+        @include utility.above-breakpoint("medium") {
             margin-left: 0;
         }
 
@@ -77,7 +77,7 @@ $height-by-breakpoint: (
         }
     }
     
-    @include utility.above-breakpoint("small") {
+    @include utility.above-breakpoint("medium") {
         text-align: left;
         padding: 7.5em 9ch;
     }

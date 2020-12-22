@@ -23,11 +23,11 @@ $button-height: 2.7rem;
         margin: 0;
         padding: 2.5em 1.8ch;
         
-        @include utility.above-breakpoint("extra-small") {
+        @include utility.above-breakpoint("small") {
             width: 720px;
             margin: 0 auto;
         }
-        @include utility.above-breakpoint("small") {
+        @include utility.above-breakpoint("medium") {
             width: 940px;
         }
     }
@@ -60,7 +60,7 @@ $button-height: 2.7rem;
         
         margin: 2em auto 0 0;
         
-        @include utility.above-breakpoint("small") {
+        @include utility.above-breakpoint("medium") {
             margin-left: 0;
         }
     }
@@ -70,7 +70,7 @@ $button-height: 2.7rem;
         font-size: 0.75em;
     }
 
-    @include utility.above-breakpoint("small") {
+    @include utility.above-breakpoint("medium") {
         background: $background-colour url("../img/netmatters-brand/alpha-overlay.png") no-repeat right;
         background-size: auto 100%;
     }

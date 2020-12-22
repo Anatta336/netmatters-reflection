@@ -50,34 +50,34 @@ $social-media-icons: (
 //TODO: this is being used by latest-posts too, rename (and use for all similar wraps)
 $footer-width-by-breakpoints: (
     "mobile": 100%,
-    "extra-small": convert.px-to-rem(750px),
-    "small": convert.px-to-rem(970px),
+    "small": convert.px-to-rem(750px),
+    "medium": convert.px-to-rem(970px),
     "large": convert.px-to-rem(1200px),
 );
 
 $footer-section-width-by-breakpoints: (
     "mobile": 100%,
-    "extra-small": convert.px-to-rem(375px),
-    "small": convert.px-to-rem(485px),
+    "small": convert.px-to-rem(375px),
+    "medium": convert.px-to-rem(485px),
     "large": convert.px-to-rem(300px),
 );
 
 $badge-row-height-by-breakpoints: (
-    "extra-small": convert.px-to-rem(88px),
-    "small": convert.px-to-rem(110px),
+    "small": convert.px-to-rem(88px),
+    "medium": convert.px-to-rem(110px),
     "large": convert.px-to-rem(88px),
 );
 
 $badge-row-container-width-by-breakpoints: (
-    "extra-small": convert.px-to-rem(720px),
-    "small": convert.px-to-rem(940px),
+    "small": convert.px-to-rem(720px),
+    "medium": convert.px-to-rem(940px),
     "large": convert.px-to-rem(1170px),
 );
 
 $latest-post-article-width-by-breakpoints: (
     "mobile": 100%,
-    "extra-small": convert.px-to-rem(350px),
-    "small": convert.px-to-rem(455px),
+    "small": convert.px-to-rem(350px),
+    "medium": convert.px-to-rem(455px),
     "large": convert.px-to-rem(370px),
 );
 

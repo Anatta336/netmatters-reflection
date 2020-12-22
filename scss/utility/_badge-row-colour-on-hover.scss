@@ -10,7 +10,7 @@
     display: none;
     
     // do display at all other breakpoints
-    @include breakpoints.above-breakpoint("extra-small") {
+    @include breakpoints.above-breakpoint("small") {
         @include flex-row-container.flex-row-container;
         @include margin-x-center.margin-x-center;
         

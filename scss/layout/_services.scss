@@ -111,7 +111,7 @@ $button-height: 3rem;
     }
     
     // past extra-small first 3 cards remain as they are but rest are put into a 2x2 grid
-    @include utility.above-breakpoint("extra-small") {
+    @include utility.above-breakpoint("small") {
         @include utility.margin-x-center;
         width: utility.px-to-rem(750px);
 
@@ -130,7 +130,7 @@ $button-height: 3rem;
         }
     }
 
-    @include utility.above-breakpoint("small") {
+    @include utility.above-breakpoint("medium") {
         width: utility.px-to-rem(970px);
 
         .top-services {

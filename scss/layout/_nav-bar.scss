@@ -78,7 +78,7 @@ nav {
         }
     }
 
-    @include utility.above-breakpoint("small") {
+    @include utility.above-breakpoint("medium") {
         display: block;
     }
 }
