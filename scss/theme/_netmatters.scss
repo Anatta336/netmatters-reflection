@@ -9,6 +9,10 @@ $page-background-colour: #fefefe;
 $dark: #333645;
 $dark-contrast: #fff;
 
+$border-colour: #ccc;
+$border-thickness: 1px;
+$border-radius: convert.px-to-rem(3px);
+
 $service-colours: (
     "web-design": #926fb1,
     "it-support": #4183d7,
@@ -68,6 +72,11 @@ $badge-row-container-width-by-breakpoints: (
 );
 
 //TODO: store a more general set of body, header, etc., font sizes
+
+$blog-h2-font-size: convert.px-to-rem(20px);
+
+$blog-category-font-size: convert.px-to-rem(12px);
+$blog-category-font-weight: 600;
 
 $tooltip-header-font-size: convert.px-to-rem(18px);
 $tooltip-font-size: convert.px-to-rem(13px);

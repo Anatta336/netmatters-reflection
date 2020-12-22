@@ -1,0 +1,74 @@
+@use "../theme";
+@use "../utility";
+
+#latest-posts {
+    @include utility.flex-row-container;
+    flex-wrap: wrap;
+
+    padding: 0 utility.px-to-rem(15px);
+
+    h2 {
+        text-transform: uppercase;
+        font-size: theme.$blog-h2-font-size;
+        font-weight: 600;
+
+        padding: 0;
+        margin: utility.px-to-rem(40px) 0 0;
+
+        &::after {
+            @include utility.short-horizontal-line(
+                $line-colour: theme.$dark,
+                $line-length: 100%,
+                $line-height: utility.px-to-rem(5px),
+            );
+            margin: utility.px-to-rem(40px) 0 0;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    article {
+        @include utility.border;
+        @include utility.rounded-corners;
+        
+        box-sizing: border-box;
+        background-color: blanchedalmond; //TEMP
+        
+        flex-basis: 100%;
+        
+        margin: utility.px-to-rem(50px) 0;
+
+        // positioned so it will be the anchor for .category
+        position: relative;
+
+        // category is short bit of text to be overlaid on the image
+        .category {
+            display: block;
+            padding: 0 utility.px-to-rem(10px);
+    
+            position: absolute;
+            right: 0;
+            top: utility.px-to-rem(10px);
+
+            color: theme.$dark-contrast;
+            font-size: theme.$blog-category-font-size;
+            font-weight: theme.$blog-category-font-weight;
+            text-transform: uppercase;
+            line-height: 1.438rem;
+
+            background-color: blue; //TEMP
+        }
+    }
+
+    .lead img {
+        width: 100%;
+    }
+
+    .poster img {
+        max-width: 100;
+    }
+
+}

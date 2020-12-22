@@ -1,23 +1,23 @@
-$_radius: 3px;
+@use "../theme";
 
 @mixin rounded-corners {
-    border-radius: $_radius;
+    border-radius: theme.$border-radius;
 }
 @mixin rounded-corners-right {
-    border-top-right-radius: $_radius;
-    border-bottom-right-radius: $_radius;
+    border-top-right-radius: theme.$border-radius;
+    border-bottom-right-radius: theme.$border-radius;
 }
 @mixin rounded-corners-left {
-    border-top-left-radius: $_radius;
-    border-bottom-left-radius: $_radius;
+    border-top-left-radius: theme.$border-radius;
+    border-bottom-left-radius: theme.$border-radius;
 }
 @mixin rounded-corners-top {
-    border-top-left-radius: $_radius;
-    border-top-right-radius: $_radius;
+    border-top-left-radius: theme.$border-radius;
+    border-top-right-radius: theme.$border-radius;
 }
 @mixin rounded-corners-bottom {
-    border-bottom-left-radius: $_radius;
-    border-bottom-right-radius: $_radius;
+    border-bottom-left-radius: theme.$border-radius;
+    border-bottom-right-radius: theme.$border-radius;
 }
 @mixin oval {
     border-radius: 50%;

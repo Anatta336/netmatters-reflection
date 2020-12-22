@@ -1,0 +1,5 @@
+@use "../theme";
+
+@mixin border {
+    border: theme.$border-thickness solid theme.$border-colour;
+}
