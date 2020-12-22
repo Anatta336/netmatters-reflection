@@ -104,5 +104,12 @@ footer {
             text-align: center;
             font-size: 2rem;
         }
+
+        @each $social-media-name, $colour in theme.$social-media-colours {
+            a.#{$social-media-name}:hover {
+                background-color: $colour;
+                text-decoration: none;
+            }
+        }
     }
 }
