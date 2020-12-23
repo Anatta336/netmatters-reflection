@@ -115,7 +115,9 @@
 
     // ---- breakpoints ----
 
-    @include theme.content-width-by-breakpoint;
+    @include theme.content-width-by-breakpoint(
+        $width-add: utility.px-to-rem(-30px)
+    );
     
     // similar results could be achieved using the grid layout instead of flexbox,
     // however spacing between elements is important to this layout, and spacing

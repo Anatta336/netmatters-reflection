@@ -5,13 +5,23 @@
     .wrapper {
         @include utility.margin-x-center;
         @include utility.flex-row-container;
-        @include theme.content-width-by-breakpoint;
+        @include theme.content-width-by-breakpoint(
+            $width-add: utility.px-to-rem(-30px)
+        );
         
         flex-wrap: wrap;
-    
-        padding: 0 utility.px-to-rem(15px);
+        
         margin-top: utility.px-to-rem(40px);
         margin-bottom: utility.px-to-rem(40px);
+
+        padding-left: 15px;
+        padding-right: 15px;
+
+        // remove horizontal padding once outside of "mobile" breakpoint
+        @include utility.above-breakpoint("small") {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
 
     .head-wrap {

@@ -20,19 +20,21 @@ nav {
     border-bottom: 1px solid theme.$nav-bar-bottom-border;
 
     .wrapper {
-        @include theme.content-width-by-breakpoint;
+        @include theme.content-width-by-breakpoint(
+            $width-add: utility.px-to-rem(-30px)
+        );
 
         display: flex;
         flex-direction: row;
         margin: 0 auto;
+
+        box-sizing: border-box;
         padding: 0;
 
         border-left: 1px solid theme.$primary-highlight;
         border-right: 1px solid theme.$primary-shadow;
 
         height: utility.px-to-rem(98px);
-
-        
     }
 
     .category {

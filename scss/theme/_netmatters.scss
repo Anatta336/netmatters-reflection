@@ -1,8 +1,7 @@
 @use "sass:map";
 @use "../utility/convert";
 
-$brand-background-colour: #333645;
-$page-background-colour: #fefefe;
+$page-background: #fefefe;
 
 // colours are given in sets so A-contrast should work with A as text and background (or vice versa)
 
@@ -63,16 +62,9 @@ $social-media-icons: (
 
 $content-width-by-breakpoints: (
     "mobile": 100%,
-    "small": convert.px-to-rem(750px - 30px),
-    "medium": convert.px-to-rem(970px - 30px),
-    "large": convert.px-to-rem(1200px - 30px),
-);
-
-//TODO: very similar to $content-width-by-breakpoints, so use that instead
-$badge-row-container-width-by-breakpoints: (
-    "small": convert.px-to-rem(720px),
-    "medium": convert.px-to-rem(940px),
-    "large": convert.px-to-rem(1170px),
+    "small": convert.px-to-rem(750px),
+    "medium": convert.px-to-rem(970px),
+    "large": convert.px-to-rem(1200px),
 );
 
 $footer-section-width-by-breakpoints: (

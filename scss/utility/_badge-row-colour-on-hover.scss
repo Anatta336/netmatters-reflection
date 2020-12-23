@@ -18,11 +18,9 @@
         margin-bottom: convert.px-to-rem(50px);
     }
 
-    @each $breakpoint-name, $width in theme.$badge-row-container-width-by-breakpoints {
-        @include breakpoints.above-breakpoint($breakpoint-name) {
-            width: $width
-        }
-    }
+    @include theme.content-width-by-breakpoint(
+        $width-add: utility.px-to-rem(-30px)
+    );
     
     // allow images to scale to fit
     img {
