@@ -5,11 +5,14 @@
 #about {
     background-color: theme.$primary;
     color: theme.$primary-contrast;
+
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     
     .content {
         @include utility.margin-x-center;
         @include theme.content-width-by-breakpoint;
-        margin: 2rem 1rem;
+        
         padding: 2.5rem 0;
     }
     
@@ -48,6 +51,7 @@
             @include icons.icon;
             content: icons.icon-unicode-from-name("right-arrow");
             font-size: 0.75em;
+            padding-left: 1rem;
         }
     }
 
