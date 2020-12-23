@@ -11,17 +11,24 @@ $bottom-border: #999aa2;
 $font-size: utility.px-to-rem(18px);
 $font-size-first-line: utility.px-to-rem(10px);
 
-$normal-width: utility.px-to-rem(970px);
-$large-width: utility.px-to-rem(1200px);
+$normal-width: utility.px-to-rem(938px);
+$large-width: utility.px-to-rem(1168px);
+
+$subcategory-height: utility.px-to-rem(45px);
+$subcategory-spacing-medium: utility.px-to-rem(20px);
+$subcategory-spacing-large: utility.px-to-rem(30px);
 
 nav {
     // not displayed at all on smaller breakpoints
     display: none;
+
+    // make this the anchor element for .subcategories
+    position: relative;
     
     background-color: $background;
     border-bottom: 1px solid $bottom-border;
 
-    ul {
+    .wrapper {
         display: flex;
         flex-direction: row;
         margin: 0 auto;
@@ -30,54 +37,159 @@ nav {
         border-left: 1px solid $highlight;
         border-right: 1px solid $shadow;
 
-        width: $normal-width;
+        height: utility.px-to-rem(98px);
 
+        width: $normal-width;
         @include utility.above-breakpoint("large") {
             width: $large-width;
         }
     }
 
-    li {
+    .category {
         flex-grow: 1;
         flex-basis: 8ch;
 
-        display: block;
-        font-size: $font-size;
-        text-align: center;
-        
+        padding-bottom: utility.px-to-rem(20px);
         border-left: 1px solid $shadow;
         border-right: 1px solid $highlight;
 
-        margin: 0;
-        padding: 0 3ch;
-    }
-    
-    a {
-        display: block;
-
-        color: $text-colour;
-        text-decoration: none;
-        text-transform: uppercase;
+        position: static;
     }
 
-    p::first-line {
-        font-size: $font-size-first-line;
-    }
+    // insert icon into the anchor element
+    @each $service, $icon-name in theme.$service-icons {
+        .#{$service} .category-head::before {
+            @include icons.icon;
+            content: icons.icon-unicode-from-name($icon-name);
+            display: block;
 
-    span::before {
-        display: block;
+            width: 1ch;
+            margin: 0 auto;
+            padding-top: 1em;
 
-        width: 1ch;
-        margin: 0 auto;
-        padding-top: 1em;
-    }
-
-    @each $service, $colour in theme.$service-colours {
-        a.#{$service} span {
-            color: $colour;
+            color: theme.get-colour-for-service($service);
         }
     }
 
+    a {
+        display: block;
+
+        margin: 0;
+        padding: 0 3ch;
+
+        text-decoration: none;
+    }
+    
+    h2 {
+        font-size: $font-size;
+        text-align: center;
+        color: $text-colour;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        margin: utility.px-to-rem(10px) 0 0;
+    }
+
+    .subcategories {
+        @include utility.flex-row-container;
+        @include utility.margin-x-center;
+        
+        justify-content: start;
+        height: $subcategory-height;
+
+        @each $breakpoint, $width in theme.$footer-width-by-breakpoints {
+            @include utility.above-breakpoint($breakpoint) {
+                width: $width;
+            }
+        }
+
+        // subcategory items are anchors with nicely centred text
+        a {
+            @include utility.flex-center;
+
+            color: theme.$dark-contrast;
+            text-align: left;
+            text-transform: uppercase;
+
+            padding: 0;
+            margin: 0;
+
+            // font size changes with breakpoints
+            @each $breakpoint, $font-size in theme.$nav-subcategory-size-by-breakpoints {
+                @include utility.above-breakpoint($breakpoint) {
+                    font-size: $font-size;
+                }
+            }
+        }
+
+        // add left padding to all subcategory items except the first one
+        a:not(:first-of-type) {
+            padding-left: $subcategory-spacing-medium;
+            @include utility.above-breakpoint("large") {
+                padding-left: $subcategory-spacing-large;
+            }
+        }
+        
+        // insert after every sub-category, except the final one
+        a:not(:last-of-type)::after {
+            content: "-";
+            padding-left: $subcategory-spacing-medium;
+            @include utility.above-breakpoint("large") {
+                padding-left: $subcategory-spacing-large;
+            }
+        }
+
+        // TODO: if these selects turn out too complex for IE11, can replace with a rule adding to all,
+        //          then a rule removing from the final one.
+    }
+
+    // .sub-wrapper holds the subcategories with the correct position and gives a page-wide background colour
+    .sub-wrapper {
+        display: none;
+
+        position: absolute;
+        bottom: $subcategory-height * -1;
+        left: 0;
+        width: 100%;
+    }
+
+    // when hovering over a category in the nav bar...
+    .category:hover{
+
+        // un-hide the sub-wrapper to show subcategories
+        .sub-wrapper {
+            display: block;
+        }
+
+        // change icon colour to make it visible against new background
+        .category-head::before {
+            color: theme.$dark-contrast;
+        }
+    }
+
+    // when service in main navigation bar is hovered over, set its background colour
+    @each $service, $colour in theme.$service-colours {
+        .#{$service}:hover  {
+            background-color: $colour;
+
+            // also set borders to be the same colour
+            border-color: $colour;
+        }
+    }
+
+    // set background colour of .sub-wrapper to match its parent service
+    @each $service, $colour in theme.$service-sub-colours {
+        .#{$service} .sub-wrapper {
+            background-color: $colour;
+        }
+    }
+
+    // first line of the category title is a different size
+    h2::first-line {
+        font-size: $font-size-first-line;
+    }
+
+    // show navigation bar at medium and above breakpoints
     @include utility.above-breakpoint("medium") {
         display: block;
     }

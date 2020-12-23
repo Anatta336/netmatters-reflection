@@ -24,6 +24,16 @@ $service-colours: (
     "cyber-security": #f62459,
     "developer-training": #926fb1,
 );
+    
+$service-sub-colours: (
+    "web-design": #79539a,
+    "it-support": #286abd,
+    "telecoms-services": #bc2c28,
+    "bespoke-software": #526781,
+    "digital-marketing": #25a25a,
+    "cyber-security": #de093f,
+    "developer-training": #79539a,
+);
 
 $service-icons: (
     "web-design": "code",
@@ -82,6 +92,11 @@ $latest-post-article-width-by-breakpoints: (
 );
 
 //TODO: store a more general set of body, header, etc., font sizes
+
+$nav-subcategory-size-by-breakpoints: (
+    "medium": convert.px-to-rem(13px),
+    "large": convert.px-to-rem(16px),
+);
 
 $blog-h2-font-size: convert.px-to-rem(20px);
 $blog-h3-font-size: convert.px-to-rem(16px);
