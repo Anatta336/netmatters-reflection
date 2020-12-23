@@ -10,6 +10,8 @@ $icon-background-size: utility.px-to-rem(60px);
     
     a {
         @include utility.margin-x-center;
+        @include utility.border;
+        @include utility.rounded-corners;
 
         display: flex;
         flex-direction: column;
@@ -17,16 +19,14 @@ $icon-background-size: utility.px-to-rem(60px);
         padding: 1.5em;
         margin-top: 0;
         margin-bottom: 2rem;
+        
+        background-color: theme.$primary-contrast;
+        box-shadow: 0 0 30px $card-shadow-colour;
 
         text-decoration: none;
         color: theme.$primary;
         text-align: center;
 
-        background-color: theme.$primary-contrast;
-        border: 1px solid theme.$border-colour;
-        @include utility.rounded-corners;
-
-        box-shadow: 0 0 30px $card-shadow-colour;
     }
 
     h2 {
@@ -95,9 +95,34 @@ $icon-background-size: utility.px-to-rem(60px);
         }
     }
 
+    // on hover, almost every element in the card changes colour
+    // some colour changes are regardless of the service
+    a:hover {
+        color: theme.$primary-contrast;
+
+        h2::before,     // icon
+        h2::after,      // horizontal line
+        .call-to-action {
+            background-color: theme.$primary-contrast;
+        }
+    }
+    // some elements change colour depending on the service type
+    @each $service, $colour in theme.$service-colours {
+        a.#{$service}:hover {
+            background-color: $colour;
+
+            h2::before,  // icon
+            .call-to-action {
+                color: $colour;
+            }
+        }
+    }
+
+    // ---- breakpoints ----
+
     @include theme.content-width-by-breakpoint;
     
-    // past extra-small first 3 cards remain as they are but rest are put into a 2x2 grid
+    // at small breakpoint, first 3 cards remain filling page, but others fit 2 to a row
     @include utility.above-breakpoint("small") {
         @include utility.margin-x-center;
 
@@ -113,9 +138,13 @@ $icon-background-size: utility.px-to-rem(60px);
                 flex-basis: 18rem;
                 flex-grow: 1;
             }
+
+            //TODO: rather than negative margins could only apply the external
+            //      margins on the external flex items. (Same for below)
         }
     }
 
+    // at medium breakpoint the first cards now also fit multiple in a row
     @include utility.above-breakpoint("medium") {
         .top-services {
             @include utility.wrapped-flex;
