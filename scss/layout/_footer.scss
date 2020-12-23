@@ -24,7 +24,7 @@ footer {
         flex-wrap: wrap;
 
         // width of wrapper depends on the breakpoint
-        @each $breakpoint-name, $width in theme.$footer-width-by-breakpoints {
+        @each $breakpoint-name, $width in theme.$content-width-by-breakpoints {
             @include utility.above-breakpoint($breakpoint-name) {
                 width: $width;
             }

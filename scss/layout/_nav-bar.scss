@@ -97,7 +97,7 @@ nav {
         justify-content: start;
         height: $subcategory-height;
 
-        @each $breakpoint, $width in theme.$footer-width-by-breakpoints {
+        @each $breakpoint, $width in theme.$content-width-by-breakpoints {
             @include utility.above-breakpoint($breakpoint) {
                 width: $width;
             }
