@@ -4,8 +4,8 @@
 
 $text-colour: #fff;
 
-$menu-background-colour: theme.$brand-background-colour;
-$menu-colour: #fff;
+$menu-background-colour: theme.$primary;
+$menu-colour: theme.$primary-contrast;
 $menu-font-size: utility.px-to-rem(12px);
 $menu-icon-size: 1.2rem;
 $menu-width: utility.px-to-rem(63px);

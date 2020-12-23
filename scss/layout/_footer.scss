@@ -38,7 +38,7 @@ footer {
         }
 
         // remove bottom margin at largest breakpoint
-        @include utility.above-breakpoint(utility.$largest-breakpoint-name) {
+        @include utility.above-breakpoint("large") {
             margin-bottom: 0;
         }
     }
@@ -133,12 +133,12 @@ footer {
         a {
             // the text (a single icon glyph) is centered within the item
             @include utility.flex-center;
+
+            font-size: utility.px-to-rem(28px);
+
             background-color: theme.$quarter-opaque;
             height: utility.px-to-rem(55px);
             margin-top: utility.px-to-rem(30px);
-
-            text-align: center;
-            font-size: utility.px-to-rem(28px);
         }
 
         // colour changes on hover depending on class name matching a known social media brand

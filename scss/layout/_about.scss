@@ -11,9 +11,17 @@
     
     .content {
         @include utility.margin-x-center;
-        @include theme.content-width-by-breakpoint;
-        
-        padding: 2.5rem 0;
+        @include theme.content-width-by-breakpoint(
+            $width-add: utility.px-to-rem(-30px)
+        );
+
+        padding: 2.5rem utility.px-to-rem(15px);
+
+        // remove horizontal padding once outside of "mobile" breakpoint
+        @include utility.above-breakpoint("small") {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
     
     h2 {
