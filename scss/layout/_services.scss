@@ -77,21 +77,16 @@ $icon-background-size: utility.px-to-rem(60px);
         .#{$service-name} h2::before {
             @include icons.icon;
             @include utility.oval;
+            @include utility.flex-center;
 
             content: $icon-unicode;
             color: theme.$primary-contrast;
-
-            display: block;
-            box-sizing: border-box;
-            width: $icon-background-size;
-            height: $icon-background-size;
             background-color: $icon-background-colour;
 
-            margin: 0 auto 1.3rem;
+            width: $icon-background-size;
+            height: $icon-background-size;
 
-            // vertically center icon within the element
-            //FIXME: this doesn't do that. Use flexbox instead
-            padding-top: ($icon-background-size - 1rem) * 0.5;
+            margin: 0 auto 1.3rem;
         }
     }
 
@@ -122,6 +117,10 @@ $icon-background-size: utility.px-to-rem(60px);
 
     @include theme.content-width-by-breakpoint;
     
+    // similar results could be achieved using the grid layout instead of flexbox,
+    // however spacing between elements is important to this layout, and spacing
+    // between grid tracks is not well supported in IE11.
+
     // at small breakpoint, first 3 cards remain filling page, but others fit 2 to a row
     @include utility.above-breakpoint("small") {
         @include utility.margin-x-center;
@@ -132,15 +131,11 @@ $icon-background-size: utility.px-to-rem(60px);
             // negative margin reverses effect of external margins from children
             margin: 0 -1rem;
 
-            // set up direct children as flex items
             > * {
                 margin: 1rem;
                 flex-basis: 18rem;
                 flex-grow: 1;
             }
-
-            //TODO: rather than negative margins could only apply the external
-            //      margins on the external flex items. (Same for below)
         }
     }
 
@@ -148,6 +143,8 @@ $icon-background-size: utility.px-to-rem(60px);
     @include utility.above-breakpoint("medium") {
         .top-services {
             @include utility.wrapped-flex;
+
+            // negative margin reverses effect of external margins from children
             margin: 0 -1rem;
 
             > * {
