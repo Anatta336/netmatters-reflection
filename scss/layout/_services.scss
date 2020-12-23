@@ -2,10 +2,10 @@
 @use "../theme";
 @use "../utility";
 
-$card-shadow-colour: rgba(0, 0, 0, 0.15);
-$icon-background-size: utility.px-to-rem(60px);
-
 #services {
+    $card-shadow-colour: rgba(0, 0, 0, 0.15);
+    $icon-background-size: utility.px-to-rem(60px);
+
     margin: 2rem 1rem;
     
     a {
