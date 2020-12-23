@@ -2,14 +2,11 @@
 @use "../theme";
 @use "../utility";
 
+//TODO: get rid of as many of these as possible
 $text-colour: #fff;
 
-$menu-background-colour: theme.$primary;
-$menu-colour: theme.$primary-contrast;
-$menu-font-size: utility.px-to-rem(12px);
+$menu-hover-colour: #22242e;
 $menu-icon-size: 1.2rem;
-$menu-width: utility.px-to-rem(63px);
-$menu-height: utility.px-to-rem(56px);
 
 $mobile-form-colour: #666;
 $mobile-search-border-colour: rgba(0, 0, 0, 0.1);
@@ -29,22 +26,22 @@ $support-background-colour: #4183d7;
 $contact-background-colour: #999aa2;
 $button-font-size: utility.px-to-rem(18px);
 
-$support-icon-name: "mouse";
-$contact-icon-name: "paper-plane";
-
 header {
+    // create grid layout within .content
     .content {
         padding:
             utility.px-to-rem(20px)
-            utility.px-to-rem(15px);
+            utility.px-to-rem(15px)
+            utility.px-to-rem(5px);
         
         display: grid;
-        grid-template-columns: 1fr
-            utility.px-to-rem(70px)
+        grid-template-columns:
+            1fr
+            utility.px-to-rem(90px)
             utility.px-to-rem(70px);
         grid-template-rows:
             utility.px-to-rem(70px)
-            utility.px-to-rem(72px);
+            utility.px-to-rem(70px);
         justify-items: center;
         align-items: center;
     }
@@ -55,55 +52,89 @@ header {
         display: none;
     }
 
-    .icon-phone {
+    a.phone {
         font-size: 1.6rem;
         flex-basis: utility.px-to-rem(71px);
+        color: theme.$primary;
+        text-decoration: none;
+
+        &::after {
+            @include icons.icon;
+            content: icons.icon-unicode-from-name("phone");
+        }
+        &:hover::after {
+            text-decoration: underline;
+        }
     }
 
+    .logo {
+        justify-self: start;
+    }
     img {
-        margin-right: auto;
         max-width: 100%;
-        margin-right: 2rem;
     }
 
+    //TODO: button still has some border stuff we don't want
     .hamburger-menu {
         @include utility.rounded-corners;
-
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
 
         box-sizing: border-box;
-        width: $menu-width;
-        height: $menu-height;
-        background-color: $menu-background-colour;
+        width: utility.px-to-rem(63px);
+        height: utility.px-to-rem(56px);
+        background-color: theme.$primary;
+        border: none;
 
-        color: $menu-colour;
+        cursor: pointer;
+
+        color: theme.$primary-contrast;
         text-align: center;
 
-        // create the menu icon
-        &::before {
-            @include icons.icon;
-            display: block;
-            content: icons.icon-unicode-from-name("hamburger");
-            font-size: $menu-icon-size;
-            padding-bottom: 0.3em;
-        }
-
-        p {
+        h2 {
             text-transform: uppercase;
-            font-size: $menu-font-size;
-            padding: 0;
+            font-size: theme.$header-menu-size;
+            padding: utility.px-to-rem(5px) 0 0;
             margin: 0;
         }
+
+        &:hover {
+            background-color: $menu-hover-colour;
+        }
+    }
+
+    // create the menu icon from 3 small block elements
+    .hamburger-icon,
+    .hamburger-icon::before,
+    .hamburger-icon::after {
+        content: "";
+        display: block;
+        width: utility.px-to-rem(33px);
+        height: utility.px-to-rem(3px);
+        background-color: theme.$primary-contrast;
+    }
+    .hamburger-icon {
+        position: relative;
+        margin: utility.px-to-rem(8px) 0;
+    }
+    .hamburger-icon::before {
+        position: absolute;
+        top: utility.px-to-rem(8px);
+    }
+    .hamburger-icon::after {
+        position: absolute;
+        bottom: utility.px-to-rem(8px);
     }
 
     form {
         grid-column: 1 / -1;
 
         width: 100%;
-        height: utility.px-to-rem((33px + 5px) * 2);
-        margin-left: 2rem;
+        height: utility.px-to-rem(47px);
+        margin: 0;
+        padding: 0;
         
         // positioned relative with no offset so it can anchor the absolute positioned button
         position: relative;
@@ -134,6 +165,8 @@ header {
             background-color: transparent;
             font-size: $mobile-search-icon-size;
 
+            cursor: pointer;
+
             // generate search icon glyph as the button"s text
             &::after {
                 @include icons.icon;
@@ -142,44 +175,59 @@ header {
         }
     }
 
+    // ---- breakpoints ----
+
+    .content {
+        @include theme.content-width-by-breakpoint($width-add: utility.px-to-rem(-30px));
+    }
+
     // at first breakpoint:
     // - content is now fixed width
-    // - contact icon is removed
-    // - the search bar moves up into same line as logo and changes appearance
+    // - phone icon is removed
+    // - the search bar moves up to same line as logo and changes appearance
     @include utility.above-breakpoint("small") {
-        .icon-phone {
+        // phone doesn't appear at all
+        a.phone {
             display: none;
         }
 
         .content {
             @include utility.margin-x-center;
-            width: utility.px-to-rem(750px);
+            padding-left: 0;
+            padding-right: 0;
+            padding-bottom: 20px;
             
             // grid layout changes, now just one row with logo's column fixed
             grid-template-columns:
-                utility.px-to-rem(345px)
-                1fr
-                utility.px-to-rem(70px);
+                1fr                         // logo
+                utility.px-to-rem(237px)    // search
+                utility.px-to-rem(80px);    // menu
             grid-template-rows: 4.375rem;
 
             justify-items: end;
         }
 
         // rearrange grid items to suit the new single-row layout.
-        img {
+        .logo {
+            // first column
             grid-column: 1 / 2;
+
+            padding-right: 60px
         }
         form {
+            // second column
             grid-column: 2 / 3;
+
+            // move up to top row
             grid-row: 1 / 2;
         }
         .hamburger-menu{
+            // final column
             grid-column: -2 / -1;
         }
 
         // search form is styled differently when on the top row
         form {
-            // width: utility.px-to-rem(237px);
             height: utility.px-to-rem(57px);
 
             display: flex;
@@ -196,10 +244,7 @@ header {
                 background-color: $wide-search-background-colour;
                 color: $wide-search-text-colour;
                 border-radius: 0;
-
-                padding:
-                    utility.px-to-rem(5px)
-                    utility.px-to-rem(15px);
+                padding: utility.px-to-rem(5px) utility.px-to-rem(15px);
 
                 flex-grow: 1;
             }
@@ -231,19 +276,17 @@ header {
     // - contact button appears
     @include utility.above-breakpoint("medium") {
         .content {
-            width: utility.px-to-rem(960px);
-
             // grid layout changes, adding more columns
             grid-template-columns:
-                utility.px-to-rem(446px)    // logo
-                utility.px-to-rem(172px)    // support
+                1fr                         // logo
+                utility.px-to-rem(165px)    // support
                 utility.px-to-rem(172px)    // contact
-                1fr                         // search
-                utility.px-to-rem(85px);    // menu
+                utility.px-to-rem(83px)     // search
+                utility.px-to-rem(83px);    // menu
         }
 
         // position grid items in correct column
-        img {
+        .logo {
             grid-column: 1 / 2;
         }
         .support {
@@ -259,83 +302,101 @@ header {
             grid-column: 5 / 6;
         }
 
-        // force every item into first row
-        img,
-        form,
-        .support,
-        .contact,
-        .hamburger-menu{
+        // force every grid item into first row
+        .content > * {
             grid-row: 1 / 2;
         }
 
         // .support and .contact styled as coloured buttons with icons
-        .support,
+        .support {
+            @include utility.button(
+                $background-colour: $support-background-colour,
+                $text-colour: theme.$primary-contrast,
+                $font-size: $button-font-size,
+                $width: utility.px-to-rem(145px),
+                $height: utility.px-to-rem(56px),
+            );
+            box-sizing: border-box;
+            margin: 0;
+
+            // generate icon
+            &::before {
+                @include icons.icon;
+                content: icons.icon-unicode-from-name("mouse");
+                font-size: 1.2em;
+                padding-right: 0.5em;
+            }
+        }
         .contact {
             @include utility.button(
-                $background-colour: null,
+                $background-colour: $contact-background-colour,
                 $text-colour: $text-colour,
                 $font-size: $button-font-size,
-                $width: utility.px-to-rem(120px),
-                $height: utility.px-to-rem(44px)
+                $width: utility.px-to-rem(152px),
+                $height: utility.px-to-rem(56px),
             );
-            box-sizing: content-box;
-            padding: utility.px-to-rem(5px) utility.px-to-rem(15px);
-        }
-        .support {
-            background-color: $support-background-colour;
+            box-sizing: border-box;
+            margin: 0;
 
+            // generate icon
             &::before {
                 @include icons.icon;
-                content: icons.icon-unicode-from-name($support-icon-name);
-                padding-right: 0.5em;
-            }
-        }
-        .contact {
-            background-color: $contact-background-colour;
-
-            &::before {
-                @include icons.icon;
-                content: icons.icon-unicode-from-name($contact-icon-name);
+                content: icons.icon-unicode-from-name("paper-plane");
+                font-size: 1.2em;
                 padding-right: 0.5em;
             }
         }
 
-        // search text field is removed
-        input {
-            display: none;
+        form {
+            // no longer need to set width
+            width: auto;
+
+            // search text field is removed
+            input {
+                display: none;
+            }
+
+            // all corners on search button are rounded
+            button {
+                @include utility.rounded-corners;
+            }
         }
 
-        // all corners on search button are rounded
-        button {
-            @include utility.rounded-corners;
-        }
-
-        .button.support,
-        .button.contact {
-            display: block;
-        }
     }
 
     // at final breakpoint:
     // - content fixed width increases
     // - search text input appears again
     @include utility.above-breakpoint("large") {
+        // grid layout doesn't need to change, the column used by search is already
+        // set to grow to fill available space.
+        
         .content {
-            width: utility.px-to-rem(1200px);
-            
-            // grid layout doesn't need to change, the column used by search is already
-            // set to grow to fill available space.
+            // grid layout changes, adding more columns
+            grid-template-columns:
+                1fr                         // logo
+                utility.px-to-rem(160px)    // support
+                utility.px-to-rem(172px)    // contact
+                utility.px-to-rem(323px)    // search
+                utility.px-to-rem(83px);    // menu
         }
 
         // search input field reappears
         // will already have correct styling from the earlier breakpoints.
-        input {
-            display: initial;
+        form {
+            box-sizing: border-box;
+            width: 100%;
+            padding-left: 20px;
+
+            input {
+                display: initial;
+            }
+
+            // only right-side corners are rounded now that the search field is back
+            button {
+                @include utility.rounded-corners-right;
+            }
         }
 
-        // only right-side corners are rounded now that the search field is back
-        button {
-            @include utility.rounded-corners-right;
-        }
     }
 }

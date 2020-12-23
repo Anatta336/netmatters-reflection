@@ -94,6 +94,8 @@ $nav-subcategory-size-by-breakpoints: (
     "large": convert.px-to-rem(16px),
 );
 
+$header-menu-size: convert.px-to-rem(12px);
+
 $nav-bar-category-size: convert.px-to-rem(18px);
 $nav-bar-category-size-first-line: convert.px-to-rem(10px);
 
@@ -104,7 +106,6 @@ $about-button-size: convert.px-to-rem(16px);
 $services-heading-size: convert.px-to-rem(18px);
 $services-para-size: convert.px-to-rem(13px);
 $services-button-size: convert.px-to-rem(17px);
-
 
 $blog-h2-font-size: convert.px-to-rem(20px);
 $blog-h3-font-size: convert.px-to-rem(16px);
