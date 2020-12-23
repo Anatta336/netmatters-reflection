@@ -17,7 +17,7 @@
     .badge:hover .tooltip-wrapper {
         display: block;
         position: absolute;
-        bottom: utility.px-to-rem(70px);
+        bottom: utility.px-to-rem(55px);
 
         // exact values don't matter, so long as both are large and negative.
         // Causes .tooltip-wrapper to be wide and centred on the badge, so that
@@ -28,6 +28,9 @@
 
     h3 {
         font-size: theme.$tooltip-header-font-size;
+        font-weight: 400;
+        margin: 0.4rem 0 0;
+        padding: 0;
     }
     p {
         font-size: theme.$tooltip-font-size;
@@ -44,7 +47,7 @@
         @include utility.margin-x-center;
 
         width: utility.px-to-rem(220px);
-        padding: utility.px-to-rem(20px);
+        padding: utility.px-to-rem(12px) utility.px-to-rem(18px);
 
         text-align: center;
         color: theme.$primary-contrast;
