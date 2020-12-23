@@ -2,87 +2,65 @@
 @use "../theme";
 @use "../utility";
 
-$background-colour: theme.$brand-background-colour;
-$text-colour: #fff;
-$button-background-colour: #fff;
-$button-text-colour: theme.$brand-background-colour;
-
-$heading-size: utility.px-to-rem(36px);
-$para-size: utility.px-to-rem(16px);
-$button-size: utility.px-to-rem(16px);
-
-$button-width: 10.5rem;
-$button-height: 2.7rem;
-
 #about {
-    background-color: $background-colour;
-    color: $text-colour;
-
+    background-color: theme.$primary;
+    color: theme.$primary-contrast;
     
     .content {
-        margin: 0;
-        padding: 2.5em 1.8ch;
-        
-        @include utility.above-breakpoint("small") {
-            width: 720px;
-            margin: 0 auto;
-        }
-        @include utility.above-breakpoint("medium") {
-            width: 940px;
-        }
+        @include utility.margin-x-center;
+        @include theme.content-width-by-breakpoint;
+        padding: 2.5rem 0;
     }
-    
     
     h2 {
         font-weight: 400;
-        font-size: $heading-size;
+        font-size: theme.$about-heading-size;
         text-transform: uppercase;
         margin: 0 0 1em;
     }
     
     p {
-        font-size: $para-size;
+        font-size: theme.$about-para-size;
         line-height: 1.9;
     }
     
+    // first paragraph is bold
     p:first-of-type {
         font-weight: 600;
     }
     
-    a {
-    @include utility.button(
-        $background-colour: $button-background-colour,
-        $text-colour: $button-text-colour,
-        $font-size: $button-size,
-        $width: $button-width,
-        $height: $button-height
+    .call-to-action {
+        // the call to action anchor is styled as a button
+        @include utility.button(
+            $background-colour: theme.$primary-contrast,
+            $text-colour: theme.$primary,
+            $font-size: theme.$about-button-size,
+            $width: 10.5rem,
+            $height: 2.7rem,
         );
         
-        margin: 2em auto 0 0;
-        
-        @include utility.above-breakpoint("medium") {
-            margin-left: 0;
+        // position left aligned, with space from content above
+        margin: 2rem 0 0;
+
+        // generate arrow icon within the button
+        &::after {
+            @include icons.icon;
+            content: icons.icon-unicode-from-name("right-arrow");
+            font-size: 0.75em;
         }
     }
-        
-    // selects the icon
-    span::before {
-        font-size: 0.75em;
-    }
 
+    // at medium and above breakpoints show a background image
     @include utility.above-breakpoint("medium") {
-        background: $background-colour url("../img/netmatters-brand/alpha-overlay.png") no-repeat right;
+        background: theme.$primary url("../img/netmatters-brand/alpha-overlay.png") no-repeat right;
         background-size: auto 100%;
     }
 
+    // at large breakpoint give text content a max width instead of stretching to fill
     @include utility.above-breakpoint("large") {
-        .content {
-            width: 1200px;
-        }
-
         h2,
         p {
-            width: 570px;
+            max-width: utility.px-to-rem(570px);
         }
     }
 }

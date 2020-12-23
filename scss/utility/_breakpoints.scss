@@ -10,6 +10,8 @@ $_breakpoints: (
     "large": 1260px,
 );
 
+//TODO: move _breakpoints definition to theme
+
 $_largest-breakpoint-pair: list.nth($_breakpoints, -1);
 $largest-breakpoint-name: list.nth($_largest-breakpoint-pair, 1);
 $largest-breakpoint-size: list.nth($_largest-breakpoint-pair, 2);

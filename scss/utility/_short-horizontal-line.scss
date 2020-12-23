@@ -2,7 +2,7 @@
 @use "margin-x-center";
 
 @mixin short-horizontal-line (
-        $line-colour: theme.$dark,
+        $line-colour: theme.$primary,
         $line-length: theme.$spacing-line-length,
         $line-height: theme.$spacing-line-height,
     ) {

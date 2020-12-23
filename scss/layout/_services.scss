@@ -109,11 +109,12 @@ $button-height: 3rem;
             padding-top: ($icon-background-size - $icon-size) * 0.5;
         }
     }
+
+    @include theme.content-width-by-breakpoint;
     
     // past extra-small first 3 cards remain as they are but rest are put into a 2x2 grid
     @include utility.above-breakpoint("small") {
         @include utility.margin-x-center;
-        width: utility.px-to-rem(750px);
 
         .other-services {
             @include utility.wrapped-flex;
@@ -131,8 +132,6 @@ $button-height: 3rem;
     }
 
     @include utility.above-breakpoint("medium") {
-        width: utility.px-to-rem(970px);
-
         .top-services {
             @include utility.wrapped-flex;
             margin: 0 -1rem;
@@ -146,8 +145,6 @@ $button-height: 3rem;
     }
 
     @include utility.above-breakpoint("large") {
-        width: utility.px-to-rem(1200px);
-
         // other-services should form row of 4 at this breakpoint,
         // so reduce their flex-basis to allow them to fit.
         .other-services > * {

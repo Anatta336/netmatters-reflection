@@ -5,19 +5,13 @@
     .wrapper {
         @include utility.margin-x-center;
         @include utility.flex-row-container;
+        @include theme.content-width-by-breakpoint;
         
         flex-wrap: wrap;
     
         padding: 0 utility.px-to-rem(15px);
         margin-top: utility.px-to-rem(40px);
         margin-bottom: utility.px-to-rem(40px);
-
-        // width of wrapper depends on the breakpoint
-        @each $breakpoint-name, $width in theme.$content-width-by-breakpoints {
-            @include utility.above-breakpoint($breakpoint-name) {
-                width: $width;
-            }
-        }
     }
 
     .head-wrap {
@@ -37,7 +31,7 @@
 
         &::after {
             @include utility.short-horizontal-line(
-                $line-colour: theme.$dark,
+                $line-colour: theme.$primary,
                 $line-length: 100%,
                 $line-height: utility.px-to-rem(5px),
             );
@@ -92,7 +86,7 @@
         // position in front of default layer
         z-index: 1;
 
-        color: theme.$dark-contrast;
+        color: theme.$primary-contrast;
         font-size: theme.$blog-category-font-size;
         font-weight: theme.$blog-category-font-weight;
         text-transform: uppercase;
@@ -112,7 +106,7 @@
 
     .button {
         @include utility.button(
-            $text-colour: theme.$dark-contrast,
+            $text-colour: theme.$primary-contrast,
             $font-size: theme.$blog-button-font-size,
             $width: 8rem,
             $height: null,

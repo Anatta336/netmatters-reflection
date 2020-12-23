@@ -4,16 +4,20 @@
 $brand-background-colour: #333645;
 $page-background-colour: #fefefe;
 
-// colours are given in pairs so A-contrast should work with A as text and background (or vice versa)
+// colours are given in sets so A-contrast should work with A as text and background (or vice versa)
 
-$dark: #333645;
-$dark-contrast: #fff;
+$primary: #333645;
+$primary-contrast: #fff;
+$primary-highlight: #484a58;
+$primary-shadow: #262834;
 
 $faint: #666;
 
 $border-colour: #ccc;
 $border-thickness: 1px;
 $border-radius: convert.px-to-rem(3px);
+
+$nav-bar-bottom-border: #999aa2;
 
 $service-colours: (
     "web-design": #926fb1,
@@ -59,9 +63,9 @@ $social-media-icons: (
 
 $content-width-by-breakpoints: (
     "mobile": 100%,
-    "small": convert.px-to-rem(750px),
-    "medium": convert.px-to-rem(970px),
-    "large": convert.px-to-rem(1200px),
+    "small": convert.px-to-rem(750px - 30px),
+    "medium": convert.px-to-rem(970px - 30px),
+    "large": convert.px-to-rem(1200px - 30px),
 );
 
 //TODO: very similar to $content-width-by-breakpoints, so use that instead
@@ -97,6 +101,13 @@ $nav-subcategory-size-by-breakpoints: (
     "medium": convert.px-to-rem(13px),
     "large": convert.px-to-rem(16px),
 );
+
+$nav-bar-category-size: convert.px-to-rem(18px);
+$nav-bar-category-size-first-line: convert.px-to-rem(10px);
+
+$about-heading-size: convert.px-to-rem(36px);
+$about-para-size: convert.px-to-rem(16px);
+$about-button-size: convert.px-to-rem(16px);
 
 $blog-h2-font-size: convert.px-to-rem(20px);
 $blog-h3-font-size: convert.px-to-rem(16px);

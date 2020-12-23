@@ -6,8 +6,8 @@ footer {
     // used in a couple of places where the value needs to be equal
     $section-padding-x: utility.px-to-rem(15px);
 
-    background-color: theme.$dark;
-    color: theme.$dark-contrast;
+    background-color: theme.$primary;
+    color: theme.$primary-contrast;
     font-size: theme.$footer-font-size;
     line-height: 1.375rem;
 
@@ -16,19 +16,13 @@ footer {
 
     .wrapper {
         @include utility.margin-x-center;
+        @include theme.content-width-by-breakpoint;
 
         // for the mobile breakpoint each flex item will take up a whole
         // row, but that will change as we move up through the breakpoints.
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-
-        // width of wrapper depends on the breakpoint
-        @each $breakpoint-name, $width in theme.$content-width-by-breakpoints {
-            @include utility.above-breakpoint($breakpoint-name) {
-                width: $width;
-            }
-        }
     }
 
     section {
@@ -52,7 +46,7 @@ footer {
     // only underline anchor elements when they're hovered
     a {
         text-decoration: none;
-        color: theme.$dark-contrast;
+        color: theme.$primary-contrast;
     }
     a:hover {
         text-decoration: underline;

@@ -33,7 +33,7 @@
 
     // generate a small horizontal line after the h2 element
     h3::after {
-        @include utility.short-horizontal-line($line-colour: theme.$dark-contrast);
+        @include utility.short-horizontal-line($line-colour: theme.$primary-contrast);
     }
 
     .tooltip-content {
@@ -43,8 +43,8 @@
         padding: utility.px-to-rem(20px);
 
         text-align: center;
-        color: theme.$dark-contrast;
-        background-color: theme.$dark;
+        color: theme.$primary-contrast;
+        background-color: theme.$primary;
     }
 
     // create pointer at bottom of tooltip, indicating towards the associated icon.
@@ -54,7 +54,7 @@
         content: "";
         display: block;
         z-index: -1;
-        background-color: theme.$dark;
+        background-color: theme.$primary;
         width: theme.$tooltip-pointer-size;
         height: theme.$tooltip-pointer-size;
 

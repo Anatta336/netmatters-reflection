@@ -1,5 +1,6 @@
 @forward "netmatters";
 @use "netmatters" as active-theme;
+@use "../utility/breakpoints" as breakpoint;
 @use "sass:map";
 
 @function get-colour-for-service($service) {
@@ -7,4 +8,12 @@
         @error "Service \"#{$service}\" must be a valid service name as listed in the theme";
     }
     @return map.get(active-theme.$service-colours, $service);
+}
+
+@mixin content-width-by-breakpoint {
+    @each $breakpoint-name, $width in active-theme.$content-width-by-breakpoints {
+        @include breakpoint.above-breakpoint($breakpoint-name) {
+            width: $width;
+        }
+    }
 }

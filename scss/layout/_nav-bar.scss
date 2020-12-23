@@ -2,15 +2,6 @@
 @use "../theme";
 @use "../utility";
 
-$text-colour: #fff;
-$background: theme.$brand-background-colour;
-$highlight: #484a58;
-$shadow:  #262834;
-$bottom-border: #999aa2;
-
-$font-size: utility.px-to-rem(18px);
-$font-size-first-line: utility.px-to-rem(10px);
-
 $normal-width: utility.px-to-rem(938px);
 $large-width: utility.px-to-rem(1168px);
 
@@ -25,24 +16,23 @@ nav {
     // make this the anchor element for .subcategories
     position: relative;
     
-    background-color: $background;
-    border-bottom: 1px solid $bottom-border;
+    background-color: theme.$primary;
+    border-bottom: 1px solid theme.$nav-bar-bottom-border;
 
     .wrapper {
+        @include theme.content-width-by-breakpoint;
+
         display: flex;
         flex-direction: row;
         margin: 0 auto;
         padding: 0;
 
-        border-left: 1px solid $highlight;
-        border-right: 1px solid $shadow;
+        border-left: 1px solid theme.$primary-highlight;
+        border-right: 1px solid theme.$primary-shadow;
 
         height: utility.px-to-rem(98px);
 
-        width: $normal-width;
-        @include utility.above-breakpoint("large") {
-            width: $large-width;
-        }
+        
     }
 
     .category {
@@ -50,8 +40,8 @@ nav {
         flex-basis: 8ch;
 
         padding-bottom: utility.px-to-rem(20px);
-        border-left: 1px solid $shadow;
-        border-right: 1px solid $highlight;
+        border-left: 1px solid theme.$primary-shadow;
+        border-right: 1px solid theme.$primary-highlight;
 
         position: static;
     }
@@ -81,9 +71,9 @@ nav {
     }
     
     h2 {
-        font-size: $font-size;
+        font-size: theme.$nav-bar-category-size;
         text-align: center;
-        color: $text-colour;
+        color: theme.$primary-contrast;
         text-decoration: none;
         text-transform: uppercase;
 
@@ -93,21 +83,16 @@ nav {
     .subcategories {
         @include utility.flex-row-container;
         @include utility.margin-x-center;
+        @include theme.content-width-by-breakpoint;
         
         justify-content: start;
         height: $subcategory-height;
-
-        @each $breakpoint, $width in theme.$content-width-by-breakpoints {
-            @include utility.above-breakpoint($breakpoint) {
-                width: $width;
-            }
-        }
 
         // subcategory items are anchors with nicely centred text
         a {
             @include utility.flex-center;
 
-            color: theme.$dark-contrast;
+            color: theme.$primary-contrast;
             text-align: left;
             text-transform: uppercase;
 
@@ -163,7 +148,7 @@ nav {
 
         // change icon colour to make it visible against new background
         .category-head::before {
-            color: theme.$dark-contrast;
+            color: theme.$primary-contrast;
         }
     }
 
@@ -186,7 +171,7 @@ nav {
 
     // first line of the category title is a different size
     h2::first-line {
-        font-size: $font-size-first-line;
+        font-size: theme.$nav-bar-category-size-first-line;
     }
 
     // show navigation bar at medium and above breakpoints
