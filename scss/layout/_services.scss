@@ -1,25 +1,9 @@
 @use "../icons";
-@use "../icons/variables" as icon-variables;
 @use "../theme";
 @use "../utility";
 
-$card-background-colour: #fff;
-$card-border-colour: #ccc;
 $card-shadow-colour: rgba(0, 0, 0, 0.15);
-
-$text-colour: theme.$brand-background-colour;
-$button-text-colour: #fff;
-
-$heading-size: utility.px-to-rem(18px);
-$para-size: utility.px-to-rem(13px);
-$button-size: utility.px-to-rem(17px);
-
-$icon-colour: #fff;
 $icon-background-size: utility.px-to-rem(60px);
-$icon-size: 1rem;
-
-$button-width: 8rem;
-$button-height: 3rem;
 
 #services {
     margin: 2rem 1rem;
@@ -35,23 +19,23 @@ $button-height: 3rem;
         margin-bottom: 2rem;
 
         text-decoration: none;
-        color: $text-colour;
+        color: theme.$primary;
         text-align: center;
 
-        background-color: $card-background-colour;
-        border: 1px solid $card-border-colour;
+        background-color: theme.$primary-contrast;
+        border: 1px solid theme.$border-colour;
         @include utility.rounded-corners;
 
         box-shadow: 0 0 30px $card-shadow-colour;
     }
 
     h2 {
-        font-size: $heading-size;
+        font-size: theme.$services-heading-size;
         font-weight: 400;
     }
 
     p {
-        font-size: $para-size;
+        font-size: theme.$services-para-size;
         line-height: 1.375rem;
     }
 
@@ -61,10 +45,10 @@ $button-height: 3rem;
         // depending on the card's id.
         @include utility.button(
             $background-colour: null,
-            $text-colour: $button-text-colour,
-            $font-size: $button-size,
-            $width: $button-width,
-            $height: $button-height
+            $text-colour: theme.$primary-contrast,
+            $font-size: theme.$services-button-size,
+            $width: 8rem,
+            $height: 3rem
         );
 
         // as this is a flex item, auto for top margin will push it to bottom of container
@@ -95,7 +79,7 @@ $button-height: 3rem;
             @include utility.oval;
 
             content: $icon-unicode;
-            color: $icon-colour;
+            color: theme.$primary-contrast;
 
             display: block;
             box-sizing: border-box;
@@ -106,7 +90,8 @@ $button-height: 3rem;
             margin: 0 auto 1.3rem;
 
             // vertically center icon within the element
-            padding-top: ($icon-background-size - $icon-size) * 0.5;
+            //FIXME: this doesn't do that. Use flexbox instead
+            padding-top: ($icon-background-size - 1rem) * 0.5;
         }
     }
 
