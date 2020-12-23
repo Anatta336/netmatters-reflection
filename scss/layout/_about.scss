@@ -9,6 +9,7 @@
     .content {
         @include utility.margin-x-center;
         @include theme.content-width-by-breakpoint;
+        margin: 2rem 1rem;
         padding: 2.5rem 0;
     }
     
