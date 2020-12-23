@@ -17,10 +17,13 @@
     .badge:hover .tooltip-wrapper {
         display: block;
         position: absolute;
-        bottom: 70px;
+        bottom: utility.px-to-rem(70px);
 
-        left: -100px;
-        right: -100px;
+        // exact values don't matter, so long as both are large and negative.
+        // Causes .tooltip-wrapper to be wide and centred on the badge, so that
+        // its child .tooltip-content can be center aligned within that.
+        left: -100rem;
+        right: -100rem;
     }
 
     h3 {
@@ -37,6 +40,7 @@
     }
 
     .tooltip-content {
+        // centred relative to its parent .tooltip-wrapper
         @include utility.margin-x-center;
 
         width: utility.px-to-rem(220px);
@@ -51,14 +55,16 @@
     .tooltip-wrapper::after {
         @include utility.margin-x-center;
 
+        // create a square which is then rotated 45° and moved up
         content: "";
         display: block;
-        z-index: -1;
         background-color: theme.$primary;
         width: theme.$tooltip-pointer-size;
         height: theme.$tooltip-pointer-size;
-
         transform: translateY(theme.$tooltip-pointer-size * -0.5)
             rotate(45deg);
+
+        // display under default layer
+        z-index: -1;
     }
 }
