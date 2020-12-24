@@ -89,6 +89,10 @@ header {
         &:hover {
             background-color: theme.$menu-button-hover;
         }
+
+        &:focus {
+            outline: none;
+        }
     }
 
     // create the menu icon from 3 small block elements
