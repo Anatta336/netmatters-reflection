@@ -1,0 +1,13 @@
+@use "../utility";
+
+// this container wraps the header, navigation bar, and hero image
+.first-container {
+    // height matches viewport height so long as that's over the minimum
+    min-height: utility.px-to-rem(700px);
+    height: 100vh;
+
+    // contained items are positioned using a simple flex layout,
+    // with the hero image able to expand and fill whatever space is left.
+    display: flex;
+    flex-direction: column;
+}

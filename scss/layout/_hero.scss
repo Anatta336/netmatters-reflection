@@ -2,9 +2,6 @@
 @use "../theme";
 @use "../utility";
 
-$picture: url("../img/carousel/carousel-web-design.jpg");
-$fallback-colour: #472e3c;
-$gradient-overlay: linear-gradient(to right, black, transparent);
 $text-colour: #fff;
 $button-colour: theme.get-colour-for-service("web-design");
 
@@ -16,24 +13,27 @@ $button-width: 14rem;
 $button-height: 3.3rem;
 $button-icon-name: "right-arrow";
 
-// when viewport width is larger than breakpoint, hero height should be:
-$height-by-breakpoint: (
-    "mobile": 531px,
-    "small": 589px,
-    "medium": 490px
-);
-
 $breakpoints-for-left-align: (
     "medium",
     "large"
 );
 
 #hero-image {
-    @include utility.hero-image(($gradient-overlay, $picture), $fallback-colour);
+    // at mobile breakpoint gradient overlay never reaches full transparency
+    @include utility.hero-image-background(
+        (
+            linear-gradient(to right, black, transparent 175%),
+            url("../img/carousel/carousel-web-design.jpg")
+        ), #472e3c
+    );
+
+    // use flex to position child element vertically centred
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     box-sizing: border-box;
-    height: utility.px-to-rem(600px);
-    padding: utility.px-to-rem(172px) 0 0;
+    height: 100%;
     
     color: $text-colour;
     text-align: center;
@@ -77,15 +77,17 @@ $breakpoints-for-left-align: (
     .wrapper {
         width: 100%;
     }
-
-    // height changes at several breakpoints (does it?)
-    @each $breakpoint-name, $height in $height-by-breakpoint
-    {
-        @include utility.above-breakpoint($breakpoint-name) {
-            height: $height;
-        }
-    }
     
+    // ---- breakpoints ----
+    @include utility.above-breakpoint("medium") {
+        @include utility.hero-image-background(
+            (
+                linear-gradient(to right, black, transparent 75%),
+                url("../img/carousel/carousel-web-design.jpg")
+            ), #472e3c
+        );
+    }
+
     // for larger breakpoints the wrapper no longer fills the page, instead
     // has a set width and is centered on the page.
     @each $breakpoint in $breakpoints-for-left-align {
