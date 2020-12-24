@@ -1,6 +1,38 @@
 @use "convert";
 @use "margin-x-center" as center;
 
+/*
+Example use. Note there can be multiple anchor
+elements each with their own tooltip, and only
+the ancestor tooltip for the hovered anchor will
+be shown.
+
+.tooltip-wrapper becomes very wide, so you likely
+want overflow-x: hidden set on some ancestor 
+container, which isn't shown in this example.
+
+HTML:
+<a>
+    Some text
+    <div class="tooltip-wrapper">
+        <div class="tooltip-content">
+            <p>A description of the link</p>
+        </div>
+    </div>
+</a>
+
+SCSS:
+@use "tooltip";
+
+.tooltip-wrapper {
+    @include tooltip.tooltip-wrapper;
+}
+
+a:hover .tooltip-wrapper {
+    @include utility.tooltip-wrapper-show;
+}
+*/
+
 @mixin tooltip-wrapper(
         $pointer-size: convert.px-to-rem(10px),
         $offset-above-parent: convert.px-to-rem(23px),

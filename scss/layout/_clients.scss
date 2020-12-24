@@ -4,26 +4,21 @@
 #clients {
     @include utility.badge-row-colour-on-hover;
 
-    .tooltip-wrapper {
-        // initially the tooltip is hidden
-        display: none;
-    }
-
     .badge {
         // set badge position relative so it becomes the anchor for .tooltip
         position: relative;
     }
 
-    .badge:hover .tooltip-wrapper {
-        display: block;
-        position: absolute;
-        bottom: utility.px-to-rem(55px);
+    .tooltip-wrapper {
+        @include utility.tooltip-wrapper(
+            $pointer-size: utility.px-to-rem(50px),
+            $offset-above-parent: utility.px-to-rem(55px),
+            $pointer-colour: theme.$primary,
+        );
+    }
 
-        // exact values don't matter, so long as both are large and negative.
-        // Causes .tooltip-wrapper to be wide and centred on the badge, so that
-        // its child .tooltip-content can be center aligned within that.
-        left: -100rem;
-        right: -100rem;
+    .badge:hover .tooltip-wrapper {
+        @include utility.tooltip-wrapper-show;
     }
 
     h3 {
@@ -52,22 +47,5 @@
         text-align: center;
         color: theme.$primary-contrast;
         background-color: theme.$primary;
-    }
-
-    // create pointer at bottom of tooltip, indicating towards the associated icon.
-    .tooltip-wrapper::after {
-        @include utility.margin-x-center;
-
-        // create a square which is then rotated 45° and moved up
-        content: "";
-        display: block;
-        background-color: theme.$primary;
-        width: theme.$tooltip-pointer-size;
-        height: theme.$tooltip-pointer-size;
-        transform: translateY(theme.$tooltip-pointer-size * -0.5)
-            rotate(45deg);
-
-        // display under default layer
-        z-index: -1;
     }
 }
