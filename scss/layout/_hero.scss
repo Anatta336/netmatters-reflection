@@ -2,23 +2,8 @@
 @use "../theme";
 @use "../utility";
 
-$text-colour: #fff;
-$button-colour: theme.get-colour-for-service("web-design");
-
-$heading-size: utility.px-to-rem(48px);
-$para-size: utility.px-to-rem(20px);
-$button-size: utility.px-to-rem(20px);
-
-$button-width: 14rem;
-$button-height: 3.3rem;
-$button-icon-name: "right-arrow";
-
-$breakpoints-for-left-align: (
-    "medium",
-    "large"
-);
-
 #hero-image {
+    
     // at mobile breakpoint gradient overlay never reaches full transparency
     @include utility.hero-image-background(
         (
@@ -35,29 +20,29 @@ $breakpoints-for-left-align: (
     box-sizing: border-box;
     height: 100%;
     
-    color: $text-colour;
+    color: theme.$primary-contrast;
     text-align: center;
     
     h2 {
-        font-size: $heading-size;
+        font-size: theme.$hero-heading-size;
         font-weight: 400;
         text-transform: uppercase;
         margin: 0 0 0.5em;
     }
     
     p {
-        font-size: $para-size;
+        font-size: theme.$hero-para-size;
         line-height: 1.8;
         margin: 0;
     }
     
     .call-to-action {
         @include utility.button(
-            $background-colour: $button-colour,
-            $text-colour: $text-colour,
-            $font-size: $button-size,
-            $width: $button-width,
-            $height: $button-height
+            $background-colour: theme.get-colour-for-service("web-design"),
+            $text-colour: theme.$primary-contrast,
+            $font-size: theme.$hero-button-size,
+            $width: 14rem,
+            $height: 3.3rem,
         );
         
         @include utility.above-breakpoint("medium") {
@@ -67,10 +52,12 @@ $breakpoints-for-left-align: (
         // generate icon after the text
         &::after {
             @include icons.icon;
-            content: icons.icon-unicode-from-name($button-icon-name);
+            content: icons.icon-unicode-from-name("right-arrow");
             font-size: 0.75em;
             padding-left: 0.3rem;
         }
+
+        //TODO: change background colour on hover
     }
     
     // at mobile breakpoint the wrapper fills page
@@ -80,6 +67,9 @@ $breakpoints-for-left-align: (
     
     // ---- breakpoints ----
     @include utility.above-breakpoint("medium") {
+
+        // when the content moves from centered to left aligned, change background
+        // gradient to allow right side of the image to show through more.
         @include utility.hero-image-background(
             (
                 linear-gradient(to right, black, transparent 75%),
@@ -90,7 +80,7 @@ $breakpoints-for-left-align: (
 
     // for larger breakpoints the wrapper no longer fills the page, instead
     // has a set width and is centered on the page.
-    @each $breakpoint in $breakpoints-for-left-align {
+    @each $breakpoint in $theme.$hero-breakpoints-for-left-align {
         @include utility.above-breakpoint($breakpoint) {
             $content-width: theme.get-content-width-for-breakpoint($breakpoint);
             .wrapper {

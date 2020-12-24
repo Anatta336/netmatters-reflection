@@ -3,8 +3,6 @@
 
 $page-background: #fefefe;
 
-// colours are given in sets so A-contrast should work with A as text and background (or vice versa)
-
 $primary: #333645;
 $primary-contrast: #fff;
 $primary-highlight: #484a58;
@@ -101,11 +99,20 @@ $nav-subcategory-size-by-breakpoints: (
     "large": convert.px-to-rem(16px),
 );
 
+$hero-breakpoints-to-left-align: (
+    "medium",
+    "large",
+);
+
 $header-menu-size: convert.px-to-rem(12px);
 $header-search-size: convert.px-to-rem(14px);
 
 $nav-bar-category-size: convert.px-to-rem(18px);
 $nav-bar-category-size-first-line: convert.px-to-rem(10px);
+
+$hero-heading-size: convert.px-to-rem(48px);
+$hero-para-size: convert.px-to-rem(20px);
+$hero-button-size: convert.px-to-rem(20px);
 
 $about-heading-size: convert.px-to-rem(36px);
 $about-para-size: convert.px-to-rem(16px);
