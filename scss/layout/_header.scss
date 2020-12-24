@@ -4,15 +4,15 @@
 
 //TODO: get rid of as many of these as possible
 
-$wide-search-border-colour: #ccc;
-$wide-search-background-colour: #fff;
-$wide-search-button-background-colour: #999aa2;
-$wide-search-button-colour: #fff;
-$wide-search-icon-size: 1.4rem;
+$primary-button-colour: #4183d7;
+$primary-button-hover-colour: #2a6ec6;
 
-$support-background-colour: #4183d7;
-$contact-background-colour: #999aa2;
+$secondary-button-colour: #999aa2;
+$secondary-button-hover-colour: #7e808a;
+
 $button-font-size: utility.px-to-rem(18px);
+
+$focus-colour: rgb(91, 192, 222);
 
 header {
     // create grid layout within .content
@@ -141,6 +141,11 @@ header {
                 2rem
                 utility.px-to-rem(5px)
                 0.9rem;
+            
+            &:focus {
+                // by default uses outline to show focus, but not wanted in this design
+                outline: none;
+            }
         }
 
         button {
@@ -228,13 +233,14 @@ header {
             }
 
             input {
-                border: 1px solid $wide-search-border-colour;
-                background-color: $wide-search-background-colour;
+                border: 1px solid $secondary-button-colour;
+                background-color: transparent;
                 color: theme.$secondary;
                 border-radius: 0;
                 padding: utility.px-to-rem(5px) utility.px-to-rem(15px);
 
                 flex-grow: 1;
+                min-width: 0;
             }
 
             button {
@@ -248,11 +254,16 @@ header {
                     utility.px-to-rem(20px)
                     utility.px-to-rem(3px);
                 
-                border: 1px solid $wide-search-button-background-colour;
-                background-color: $wide-search-button-background-colour;
+                border: 1px solid $secondary-button-colour;
+                background-color: $secondary-button-colour;
 
-                color: $wide-search-button-colour;
-                font-size: $wide-search-icon-size;
+                color: theme.$primary-contrast;
+                font-size: 1.4rem;
+
+                &:hover {
+                    background-color: $secondary-button-hover-colour;
+                    border-color: $secondary-button-hover-colour;
+                }
             }
         }
     }
@@ -298,7 +309,7 @@ header {
         // .support and .contact styled as coloured buttons with icons
         .support {
             @include utility.button(
-                $background-colour: $support-background-colour,
+                $background-colour: $primary-button-colour,
                 $text-colour: theme.$primary-contrast,
                 $font-size: $button-font-size,
                 $width: utility.px-to-rem(145px),
@@ -313,10 +324,14 @@ header {
                 font-size: 1.2em;
                 padding-right: 0.5em;
             }
+
+            &:hover {
+                background-color: $primary-button-hover-colour;
+            }
         }
         .contact {
             @include utility.button(
-                $background-colour: $contact-background-colour,
+                $background-colour: $secondary-button-colour,
                 $text-colour: theme.$primary-contrast,
                 $font-size: $button-font-size,
                 $width: utility.px-to-rem(152px),
@@ -330,6 +345,10 @@ header {
                 @include icons.icon(icons.icon-unicode-from-name("paper-plane"));
                 font-size: 1.2em;
                 padding-right: 0.5em;
+            }
+
+            &:hover {
+                background-color: $secondary-button-hover-colour;
             }
         }
 
@@ -376,13 +395,23 @@ header {
             padding-left: 20px;
 
             input {
+                @include utility.rounded-corners-left;
                 display: initial;
-                flex-grow: 1;
-                min-width: 0;
+
+                &:focus {
+                    border-color: $focus-colour;
+                    
+                    // inset shadow doesn't seem to appear within a text input field on Chrome,
+                    // but does appear on Firefox. The effect is subtle either way.
+                    box-shadow:
+                        inset 0 1px 1px rgba(black, 0.075),
+                        0 0 8px rgba($focus-colour, 0.6);
+                }
             }
 
             // only right-side corners are rounded now that the search field is back
             button {
+                border-radius: 0;
                 @include utility.rounded-corners-right;
             }
         }
