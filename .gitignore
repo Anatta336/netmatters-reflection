@@ -11,5 +11,5 @@ $RECYCLE.BIN/
 node_modules/*
 
 # don't store generated CSS content in version control
-css*/
+css/*
 !css/generated.md
