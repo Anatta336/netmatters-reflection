@@ -49,6 +49,21 @@
         }
     }
 
+    h3 {
+        font-size: theme.$blog-h3-font-size;
+        margin-bottom: utility.px-to-rem(42px);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    p {
+        color: theme.$faint;
+        font-size: theme.$blog-para-font-size;
+        line-height: theme.$blog-para-line-height;
+    }
+
     a {
         text-decoration: none;
         color: inherit;
@@ -71,7 +86,7 @@
             }
         }
 
-        // just in the small breakpoint the final article preview is hidden
+        // in the small and medium breakpoints the final article preview is hidden
         @include utility.above-breakpoint("small") {
             &:last-of-type {
                 display: none;
@@ -81,6 +96,34 @@
             &:last-of-type {
                 display: initial;
             }
+        }
+    }
+
+    .tooltip-wrapper {
+        @include utility.tooltip-wrapper(
+            $pointer-size: utility.px-to-rem(10px),
+            $offset-above-parent: utility.px-to-rem(23px),
+            $pointer-colour: theme.$primary,
+        );
+    }
+
+    .tooltip-content {
+        // centred relative to its parent .tooltip-wrapper
+        @include utility.margin-x-center;
+
+        padding: utility.px-to-rem(10px) utility.px-to-rem(15px);
+        max-width: utility.px-to-rem(170px);
+        background-color: theme.$primary;
+        
+        p {
+            padding: 0;
+            margin: 0;
+
+            font-size: theme.$blog-category-tooltip-font-size;
+            color: theme.$primary-contrast;
+            font-weight: 400;
+            text-align: center;
+            text-transform: initial;
         }
     }
 
@@ -101,24 +144,21 @@
         font-weight: theme.$blog-category-font-weight;
         text-transform: uppercase;
         line-height: 1.438rem;
-    }
 
-    h3 {
-        font-size: theme.$blog-h3-font-size;
-        margin-bottom: utility.px-to-rem(15px);
-    }
-
-    p {
-        color: theme.$faint;
-        font-size: theme.$blog-para-font-size;
-        line-height: theme.$blog-para-line-height;
+        &:hover {
+            text-decoration: underline;
+            
+            .tooltip-wrapper {
+                @include utility.tooltip-wrapper-show;
+            }
+        }
     }
 
     .button {
         @include utility.button(
             $text-colour: theme.$primary-contrast,
             $font-size: theme.$blog-button-font-size,
-            $width: 8rem,
+            $width: 7rem,
             $height: null,
         );
         padding: utility.px-to-rem(13px) utility.px-to-rem(10px);
@@ -138,6 +178,10 @@
             .category,
             .button {
                 background-color: $colour;
+
+                &:hover {
+                    background-color: theme.get-sub-colour-for-service($service-name);
+                }
             }
             h3 {
                 color: $colour;
@@ -159,15 +203,9 @@
         transition-timing-function: ease;
     }
 
-    .lead:hover {
-        img {
-            opacity: 0.75;
-            transform: scale(1.1);
-        }
-    }
-
     .poster img {
         max-width: 100;
+        @include utility.oval;
     }
 
     .poster {
@@ -183,11 +221,22 @@
 
         p:first-of-type {
             font-weight: 600;
+            color: theme.$primary;
         }
 
         img {
             float: left;
-            padding-right: 23px;
+            margin-right: 23px;
+        }
+    }
+
+    // image transition only happens at the larger breakpoints
+    @include utility.above-breakpoint("medium") {
+        .lead:hover {
+            img {
+                opacity: 0.75;
+                transform: scale(1.1);
+            }
         }
     }
 }

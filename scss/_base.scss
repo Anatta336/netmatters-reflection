@@ -4,6 +4,11 @@ body {
     font-family: "Poppins", "sans-serif";
     letter-spacing: 0.4px;
     background-color: theme.$page-background;
+
+    // as part of centering items such as tooltips,
+    // elements that stretch outside the page bounds may be created.
+    // They should be hidden, and not cause scroll bars.
+    overflow-x: hidden;
 }
 
 h1,

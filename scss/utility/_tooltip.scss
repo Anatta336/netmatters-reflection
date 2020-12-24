@@ -1,0 +1,47 @@
+@use "convert";
+@use "margin-x-center" as center;
+
+@mixin tooltip-wrapper(
+        $pointer-size: convert.px-to-rem(10px),
+        $offset-above-parent: convert.px-to-rem(23px),
+        $pointer-colour: #000,
+    ) {
+    // tooltip initially not visible
+    display: none;
+
+    // positioned absolute, using the .category element as anchor
+    position: absolute;
+    bottom: $offset-above-parent;
+
+    // exact values don't matter so long as together they're larger than
+    // the .tooltip-content width, and are both negative.
+    // Causes .tooltip-wrapper to be wide and centred on the badge, so that
+    // its child .tooltip-content can be center aligned within that.
+    left: -100rem;
+    right: -100rem;
+
+    // create new stacking context for parts of the tooltip
+    z-index: 0;
+
+    // create pointer at bottom of tooltip, indicating towards the associated icon.
+    &::after {
+        @include center.margin-x-center;
+
+        // create a square which is then rotated 45° and moved up
+        content: "";
+        display: block;
+        background-color: $pointer-colour;
+        width: $pointer-size;
+        height: $pointer-size;
+        transform: translateY($pointer-size * -0.5)
+            rotate(45deg);
+
+        // display under other parts of tooltip
+        position: relative;
+        z-index: -1;
+    }
+}
+
+@mixin tooltip-wrapper-show {
+    display: block;
+}
