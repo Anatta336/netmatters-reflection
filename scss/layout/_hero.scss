@@ -3,7 +3,7 @@
 @use "../utility";
 
 #hero-image {
-    
+
     // at mobile breakpoint gradient overlay never reaches full transparency
     @include utility.hero-image-background(
         (
@@ -44,9 +44,9 @@
             $width: 14rem,
             $height: 3.3rem,
         );
-        
-        @include utility.above-breakpoint("medium") {
-            margin-left: 0;
+
+        &:hover {
+            background-color: theme.get-sub-colour-for-service("web-design");
         }
 
         // generate icon after the text
@@ -57,9 +57,12 @@
             padding-left: 0.3rem;
         }
 
-        //TODO: change background colour on hover
+        // move to left align for medium and above breakpoints
+        @include utility.above-breakpoint("medium") {
+            margin-left: 0;
+        }
     }
-    
+
     // at mobile breakpoint the wrapper fills page
     .wrapper {
         width: 100%;
@@ -80,7 +83,7 @@
 
     // for larger breakpoints the wrapper no longer fills the page, instead
     // has a set width and is centered on the page.
-    @each $breakpoint in $theme.$hero-breakpoints-for-left-align {
+    @each $breakpoint in theme.$hero-breakpoints-to-left-align {
         @include utility.above-breakpoint($breakpoint) {
             $content-width: theme.get-content-width-for-breakpoint($breakpoint);
             .wrapper {

@@ -5,11 +5,21 @@
 @use "sass:map";
 @use "sass:math";
 
+//TODO: these should probably not be declared in an index file
+
+
 @function get-colour-for-service($service) {
     @if (not map.has-key(active-theme.$service-colours, $service)) {
         @error "Service \"#{$service}\" must be a valid service name as listed in the theme.";
     }
     @return map.get(active-theme.$service-colours, $service);
+}
+
+@function get-sub-colour-for-service($service) {
+    @if (not map.has-key(active-theme.$service-sub-colours, $service)) {
+        @error "Service \"#{$service}\" must be a valid service name as listed in the theme.";
+    }
+    @return map.get(active-theme.$service-sub-colours, $service);
 }
 
 @function get-content-width-for-breakpoint($breakpoint) {
