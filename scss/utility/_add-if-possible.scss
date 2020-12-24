@@ -1,0 +1,10 @@
+@use "sass:math";
+
+// if their units are compatible, add $a and $b.
+// if they're not compatible, return $a unaltered.
+@function add-if-possible($a, $b) {
+    @if (math.compatible($a, $b)) {
+        @return $a + $b;
+    }
+    @return $a;
+}

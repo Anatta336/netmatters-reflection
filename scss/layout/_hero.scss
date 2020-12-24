@@ -23,6 +23,11 @@ $height-by-breakpoint: (
     "medium": 490px
 );
 
+$breakpoints-for-left-align: (
+    "medium",
+    "large"
+);
+
 #hero-image {
     @include utility.hero-image(($gradient-overlay, $picture), $fallback-colour);
 
@@ -68,8 +73,12 @@ $height-by-breakpoint: (
         }
     }
     
+    // at mobile breakpoint the wrapper fills page
+    .wrapper {
+        width: 100%;
+    }
 
-    // height changes at several breakpoints
+    // height changes at several breakpoints (does it?)
     @each $breakpoint-name, $height in $height-by-breakpoint
     {
         @include utility.above-breakpoint($breakpoint-name) {
@@ -77,8 +86,19 @@ $height-by-breakpoint: (
         }
     }
     
-    @include utility.above-breakpoint("medium") {
-        text-align: left;
-        padding: 7.5em 9ch;
+    // for larger breakpoints the wrapper no longer fills the page, instead
+    // has a set width and is centered on the page.
+    @each $breakpoint in $breakpoints-for-left-align {
+        @include utility.above-breakpoint($breakpoint) {
+            $content-width: theme.get-content-width-for-breakpoint($breakpoint);
+            .wrapper {
+                @include utility.margin-x-center;
+                width: utility.add-if-possible(
+                    $content-width,
+                    utility.px-to-rem(-66px)
+                );
+                text-align: left;
+            }
+        }
     }
 }
