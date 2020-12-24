@@ -10,13 +10,20 @@ $primary-contrast: #fff;
 $primary-highlight: #484a58;
 $primary-shadow: #262834;
 
+$secondary: #555;
+
 $faint: #666;
+
+$menu-button-hover: #22242e;
 
 $border-colour: #ccc;
 $border-thickness: 1px;
 $border-radius: convert.px-to-rem(3px);
 
 $nav-bar-bottom-border: #999aa2;
+
+$transparent-primary: rgba(0, 0, 0, 0.1);
+$quarter-opaque: rgba(0, 0, 0, 0.25);
 
 $service-colours: (
     "web-design": #926fb1,
@@ -95,6 +102,7 @@ $nav-subcategory-size-by-breakpoints: (
 );
 
 $header-menu-size: convert.px-to-rem(12px);
+$header-search-size: convert.px-to-rem(14px);
 
 $nav-bar-category-size: convert.px-to-rem(18px);
 $nav-bar-category-size-first-line: convert.px-to-rem(10px);
@@ -128,5 +136,3 @@ $spacing-line-height: convert.px-to-rem(3px);
 
 $footer-heading-font-size: convert.px-to-rem(16px);
 $footer-font-size: convert.px-to-rem(13px);
-
-$quarter-opaque: rgba(0, 0, 0, 0.25);

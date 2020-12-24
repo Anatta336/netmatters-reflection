@@ -3,21 +3,9 @@
 @use "../utility";
 
 //TODO: get rid of as many of these as possible
-$text-colour: #fff;
-
-$menu-hover-colour: #22242e;
-$menu-icon-size: 1.2rem;
-
-$mobile-form-colour: #666;
-$mobile-search-border-colour: rgba(0, 0, 0, 0.1);
-$mobile-search-background-colour: rgba(0, 0, 0, 0.1);
-$mobile-search-text-colour: #555;
-$mobile-search-text-size: utility.px-to-rem(14px);
-$mobile-search-icon-size: 1.2rem;
 
 $wide-search-border-colour: #ccc;
 $wide-search-background-colour: #fff;
-$wide-search-text-colour: #555;
 $wide-search-button-background-colour: #999aa2;
 $wide-search-button-colour: #fff;
 $wide-search-icon-size: 1.4rem;
@@ -74,7 +62,6 @@ header {
         max-width: 100%;
     }
 
-    //TODO: button still has some border stuff we don't want
     .hamburger-menu {
         @include utility.rounded-corners;
         display: flex;
@@ -101,7 +88,7 @@ header {
         }
 
         &:hover {
-            background-color: $menu-hover-colour;
+            background-color: theme.$menu-button-hover;
         }
     }
 
@@ -136,24 +123,25 @@ header {
         margin: 0;
         padding: 0;
         
+        color: theme.$secondary;
+        font-size: theme.$header-search-size;
+
         // positioned relative with no offset so it can anchor the absolute positioned button
         position: relative;
 
         input {
+            @include utility.rounded-corners;
+
             box-sizing: border-box;
             width: 100%;
             height: 100%;
+            border: 2px solid theme.$transparent-primary;
+            background-color: theme.$transparent-primary;
             padding: 
                 utility.px-to-rem(5px)
                 2rem
                 utility.px-to-rem(5px)
                 0.9rem;
-            border: 2px solid $mobile-search-border-colour;
-            background-color: $mobile-search-background-colour;
-            @include utility.rounded-corners;
-
-            color: $mobile-search-text-colour;
-            font-size: $mobile-search-text-size;
         }
 
         button {
@@ -163,9 +151,11 @@ header {
 
             border: 0;
             background-color: transparent;
-            font-size: $mobile-search-icon-size;
+            font-size: 1.2em;
 
             cursor: pointer;
+
+            color: theme.$primary;
 
             // generate search icon glyph as the button"s text
             &::after {
@@ -242,7 +232,7 @@ header {
             input {
                 border: 1px solid $wide-search-border-colour;
                 background-color: $wide-search-background-colour;
-                color: $wide-search-text-colour;
+                color: theme.$secondary;
                 border-radius: 0;
                 padding: utility.px-to-rem(5px) utility.px-to-rem(15px);
 
@@ -330,7 +320,7 @@ header {
         .contact {
             @include utility.button(
                 $background-colour: $contact-background-colour,
-                $text-colour: $text-colour,
+                $text-colour: theme.$primary-contrast,
                 $font-size: $button-font-size,
                 $width: utility.px-to-rem(152px),
                 $height: utility.px-to-rem(56px),
@@ -384,12 +374,15 @@ header {
         // search input field reappears
         // will already have correct styling from the earlier breakpoints.
         form {
+            position: static;
             box-sizing: border-box;
             width: 100%;
             padding-left: 20px;
 
             input {
                 display: initial;
+                flex-grow: 1;
+                min-width: 0;
             }
 
             // only right-side corners are rounded now that the search field is back
