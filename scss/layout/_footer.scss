@@ -117,9 +117,7 @@ footer {
         @each $social-media-name, $icon-name in theme.$social-media-icons {
             $icon-code: icons.icon-unicode-for-social-media($social-media-name);
             a.#{$social-media-name}::before {
-                @include icons.icon;
-                content: $icon-code;
-
+                @include icons.icon($icon-code);
             }
         }
         

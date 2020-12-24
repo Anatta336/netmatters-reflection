@@ -47,8 +47,7 @@ header {
         text-decoration: none;
 
         &::after {
-            @include icons.icon;
-            content: icons.icon-unicode-from-name("phone");
+            @include icons.icon(icons.icon-unicode-from-name("phone"));
         }
         &:hover::after {
             text-decoration: underline;
@@ -159,8 +158,7 @@ header {
 
             // generate search icon glyph as the button"s text
             &::after {
-                @include icons.icon;
-                content: icons.icon-unicode-from-name("search");
+                @include icons.icon(icons.icon-unicode-from-name("search"));
             }
         }
     }
@@ -311,8 +309,7 @@ header {
 
             // generate icon
             &::before {
-                @include icons.icon;
-                content: icons.icon-unicode-from-name("mouse");
+                @include icons.icon(icons.icon-unicode-from-name("mouse"));
                 font-size: 1.2em;
                 padding-right: 0.5em;
             }
@@ -330,8 +327,7 @@ header {
 
             // generate icon
             &::before {
-                @include icons.icon;
-                content: icons.icon-unicode-from-name("paper-plane");
+                @include icons.icon(icons.icon-unicode-from-name("paper-plane"));
                 font-size: 1.2em;
                 padding-right: 0.5em;
             }

@@ -75,11 +75,10 @@
         $icon-background-colour: theme.get-colour-for-service($service-name);
 
         .#{$service-name} h2::before {
-            @include icons.icon;
+            @include icons.icon($icon-unicode);
             @include utility.oval;
             @include utility.flex-center;
 
-            content: $icon-unicode;
             color: theme.$primary-contrast;
             background-color: $icon-background-colour;
 

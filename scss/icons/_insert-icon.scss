@@ -2,13 +2,17 @@
 
 // define as placeholder so rules can be reused elsewhere if icons are used
 // in a way other than setting the class name to be the name of an icon.
-@mixin icon {
+@mixin icon($unicode: null) {
     font-family: "#{variables.$font-family}" !important;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
     text-transform: none;
     line-height: 1;
+
+    @if ($unicode) {
+        content: $unicode;
+    }
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

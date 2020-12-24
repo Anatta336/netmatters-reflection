@@ -56,8 +56,7 @@
 
         // generate arrow icon within the button
         &::after {
-            @include icons.icon;
-            content: icons.icon-unicode-from-name("right-arrow");
+            @include icons.icon(icons.icon-unicode-from-name("right-arrow"));
             font-size: 0.75em;
             padding-left: 1rem;
         }

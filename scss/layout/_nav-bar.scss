@@ -51,8 +51,7 @@ nav {
     // insert icon into the anchor element
     @each $service, $icon-name in theme.$service-icons {
         .#{$service} .category-head::before {
-            @include icons.icon;
-            content: icons.icon-unicode-from-name($icon-name);
+            @include icons.icon(icons.icon-unicode-from-name($icon-name));
             display: block;
 
             width: 1ch;
