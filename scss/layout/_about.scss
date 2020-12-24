@@ -61,6 +61,10 @@
             font-size: 0.75em;
             padding-left: 1rem;
         }
+
+        &:hover {
+            background-color: theme.$primary-contrast-hover;
+        }
     }
 
     // at medium and above breakpoints show a background image
