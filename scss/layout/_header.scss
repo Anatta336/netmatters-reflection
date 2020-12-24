@@ -17,11 +17,11 @@ $button-font-size: utility.px-to-rem(18px);
 header {
     // create grid layout within .content
     .content {
+        box-sizing: border-box;
         padding:
             utility.px-to-rem(20px)
             utility.px-to-rem(15px)
-            utility.px-to-rem(5px);
-        
+            utility.px-to-rem(5px);    
         display: grid;
         grid-template-columns:
             1fr

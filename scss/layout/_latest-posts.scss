@@ -10,10 +10,10 @@
         );
         
         flex-wrap: wrap;
-        
+
+        box-sizing: border-box;
         margin-top: utility.px-to-rem(40px);
         margin-bottom: utility.px-to-rem(40px);
-
         padding-left: 15px;
         padding-right: 15px;
 

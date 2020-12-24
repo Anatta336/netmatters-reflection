@@ -15,6 +15,7 @@
             $width-add: utility.px-to-rem(-30px)
         );
 
+        box-sizing: border-box;
         padding: 2.5rem utility.px-to-rem(15px);
 
         // remove horizontal padding once outside of "mobile" breakpoint

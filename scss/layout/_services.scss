@@ -6,7 +6,8 @@
     $card-shadow-colour: rgba(0, 0, 0, 0.15);
     $icon-background-size: utility.px-to-rem(60px);
 
-    margin: 2rem 1rem;
+    box-sizing: border-box;
+    padding: 2rem 1rem;
     
     a {
         @include utility.margin-x-center;
@@ -52,7 +53,8 @@
         );
 
         // as this is a flex item, auto for top margin will push it to bottom of container
-        margin: auto auto 0;
+        margin-top: auto;
+        margin-bottom: 0;
     }
 
     // generate a small horizontal line after the h2 element
