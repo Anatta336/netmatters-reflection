@@ -1,5 +1,11 @@
 @use "../utility";
+@use "../theme";
 
 #accreditations {
-    @include utility.badge-row-colour-on-hover;
+    @include utility.badge-row;
+
+    .badge {
+        @include utility.colour-on-hover;
+        padding: 0 theme.$badge-horizontal-padding;
+    }
 }

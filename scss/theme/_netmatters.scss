@@ -80,12 +80,6 @@ $footer-section-width-by-breakpoints: (
     "large": convert.px-to-rem(300px),
 );
 
-$badge-row-height-by-breakpoints: (
-    "small": convert.px-to-rem(88px),
-    "medium": convert.px-to-rem(110px),
-    "large": convert.px-to-rem(88px),
-);
-
 $latest-post-article-width-by-breakpoints: (
     "mobile": 100%,
     "small": convert.px-to-rem(350px),

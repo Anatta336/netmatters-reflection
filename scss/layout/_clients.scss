@@ -2,9 +2,14 @@
 @use "../theme";
 
 #clients {
-    @include utility.badge-row-colour-on-hover;
+    @include utility.badge-row;
+    max-height: 70px;
 
     .badge {
+        @include utility.colour-on-hover;
+
+        padding: 0 theme.$badge-horizontal-padding;
+
         // set badge position relative so it becomes the anchor for .tooltip
         position: relative;
     }

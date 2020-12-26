@@ -1,0 +1,29 @@
+@use "breakpoints";
+@use "flex-row-container";
+@use "margin-x-center" as center;
+@use "convert";
+@use "../theme";
+
+@mixin badge-row {
+    @include theme.content-width-by-breakpoint(
+        $width-add: convert.px-to-rem(-30px)
+    );
+    @include center.margin-x-center;
+
+    margin-top: convert.px-to-rem(50px);
+    margin-bottom: convert.px-to-rem(50px);
+        
+    // allow images to scale to fit
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+        
+    // don't display at smallest breakpoint
+    display: none;
+
+    // do display at small and above breakpoints
+    @include breakpoints.above-breakpoint("small") {
+        @include flex-row-container.flex-row-container;
+    }
+}
