@@ -2,3 +2,7 @@
     margin-left: auto;
     margin-right: auto;
 }
+@mixin margin-y-center {
+    margin-top: auto;
+    margin-bottom: auto;
+}

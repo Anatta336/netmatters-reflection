@@ -1,0 +1,34 @@
+// provides both standard and -ms- prefixed grid-related properties.
+
+@mixin display-grid {
+    display: -ms-grid;
+    display: grid;
+}
+
+@mixin grid-columns ($columns) {
+    -ms-grid-columns: $columns;
+    grid-template-columns: $columns;
+}
+
+@mixin grid-rows ($columns) {
+    -ms-grid-rows: $columns;
+    grid-template-rows: $columns;
+}
+
+//TODO: add some validation for these arguments
+
+@mixin grid-column-pick ($startTrack, $endTrack) {
+    $span: $endTrack - $startTrack;
+    -ms-grid-column: $startTrack;
+    -ms-grid-column-span: $span;
+
+    // wrapping variables in #{} forces the / to be used as a separator, not operator.
+    grid-column: #{$startTrack} / #{$endTrack};
+}
+
+@mixin grid-row-pick ($startTrack, $endTrack) {
+    $span: $endTrack - $startTrack;
+    -ms-grid-row: $startTrack;
+    -ms-grid-row-span: $span;
+    grid-row: #{$startTrack} / #{$endTrack};
+}

@@ -1,5 +1,5 @@
 @use "../theme";
-@use "margin-x-center";
+@use "margin-center" as center;
 
 @mixin short-horizontal-line (
         $line-colour: theme.$primary,
@@ -7,7 +7,7 @@
         $line-height: theme.$spacing-line-height,
     ) {
 
-    @include margin-x-center.margin-x-center;
+    @include center.margin-x-center;
     margin-top: 1rem;
 
     content: "";

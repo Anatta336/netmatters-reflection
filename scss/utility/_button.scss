@@ -7,11 +7,15 @@
         $font-size: null,
         $width: 12rem,
         $height: 2.5rem,
+        $set-margins: true,
     ) {
     @include rounded-corners.rounded-corners;
     @include flex-center.flex-center;
 
-    margin: 2em auto;
+    @if ($set-margins) {
+        margin: 2em auto;
+    }
+
     @if ($width) {
         width: $width;
     }
