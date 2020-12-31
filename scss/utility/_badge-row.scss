@@ -15,11 +15,10 @@
         
     // allow images to scale to fit
     img {
-        max-width: 100%;
-        height: auto;
+        width: 100%;
     }
         
-    // don't display at smallest breakpoint
+    // don't display at mobile breakpoint
     display: none;
 
     // do display at small and above breakpoints
