@@ -3,12 +3,12 @@
         display: none;
     }
     .bw {
-        display: initial;
+        display: block;
     }
 
     &:hover {
         .colour {
-            display: initial;
+            display: block;
         }
         .bw {
             display: none;
