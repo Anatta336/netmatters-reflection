@@ -1,13 +1,14 @@
 @use "sass:map";
 @use "sass:list";
+@use "convert";
 
 // "mobile" is default, with later breakpoint becoming
 // active when viewport width exceeds the associated value.
 $_breakpoints: (
-    "mobile": 0px,
-    "small": 768px,
-    "medium": 991px,
-    "large": 1260px,
+    "mobile": 0,
+    "small": convert.px-to-rem(768px),
+    "medium": convert.px-to-rem(991px),
+    "large": convert.px-to-rem(1260px),
 );
 
 //TODO: move _breakpoints definition to theme
