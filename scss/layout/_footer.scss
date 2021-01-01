@@ -2,10 +2,10 @@
 @use "../utility";
 @use "../icons";
 
-footer {
-    // used in a couple of places where the value needs to be equal
-    $section-padding-x: utility.px-to-rem(15px);
+// used in a couple of places where the value needs to be equal
+$section-padding-x: utility.px-to-rem(15px);
 
+footer {
     background-color: theme.$primary;
     color: theme.$primary-contrast;
     font-size: theme.$footer-font-size;

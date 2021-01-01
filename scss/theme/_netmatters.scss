@@ -10,8 +10,7 @@ $primary-highlight: #484a58;
 $primary-shadow: #262834;
 
 $secondary: #555;
-
-$faint: #666;
+$secondary-lighter: #666;
 
 $menu-button-hover: #22242e;
 
@@ -20,6 +19,14 @@ $border-thickness: 1px;
 $border-radius: convert.px-to-rem(3px);
 
 $nav-bar-bottom-border: #999aa2;
+
+$primary-button-colour: #4183d7;
+$primary-button-hover-colour: #2a6ec6;
+
+$secondary-button-colour: #999aa2;
+$secondary-button-hover-colour: #7e808a;
+
+$focus-colour: #5cc0df;
 
 $transparent-primary: rgba(0, 0, 0, 0.1);
 $transparent-secondary: rgba(0, 0, 0, 0.25);
@@ -101,6 +108,7 @@ $hero-breakpoints-to-left-align: (
 
 $header-menu-size: convert.px-to-rem(12px);
 $header-search-size: convert.px-to-rem(14px);
+$header-button-size: utility.px-to-rem(18px);
 
 $nav-bar-category-size: convert.px-to-rem(18px);
 $nav-bar-category-size-first-line: convert.px-to-rem(10px);

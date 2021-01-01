@@ -2,18 +2,9 @@
 @use "../theme";
 @use "../utility";
 
-//TODO: get rid of as many of these as possible
-
-$primary-button-colour: #4183d7;
-$primary-button-hover-colour: #2a6ec6;
-
-$secondary-button-colour: #999aa2;
-$secondary-button-hover-colour: #7e808a;
-
-$button-font-size: utility.px-to-rem(18px);
-
-$focus-colour: rgb(91, 192, 222);
-
+// Header is primarily arranged as a grid layout, which grid items being
+// moved around within that grid at various breakpoints.
+// Many of the grid items use flex layout within them.
 header {
     .content {
 
@@ -289,7 +280,7 @@ header {
             }
 
             input {
-                border: 1px solid $secondary-button-colour;
+                border: 1px solid theme.$secondary-button-colour;
                 background-color: transparent;
                 color: theme.$secondary;
                 border-radius: 0;
@@ -313,15 +304,15 @@ header {
                 // button doesn't grow to fill flex space
                 flex: 0 0 utility.px-to-rem(20px);
 
-                border: 1px solid $secondary-button-colour;
-                background-color: $secondary-button-colour;
+                border: 1px solid theme.$secondary-button-colour;
+                background-color: theme.$secondary-button-colour;
 
                 color: theme.$primary-contrast;
                 font-size: 1.4rem;
 
                 &:hover {
-                    background-color: $secondary-button-hover-colour;
-                    border-color: $secondary-button-hover-colour;
+                    background-color: theme.$secondary-button-hover-colour;
+                    border-color: theme.$secondary-button-hover-colour;
                 }
             }
         }
@@ -369,9 +360,9 @@ header {
         // .support and .contact styled as coloured buttons with icons
         .support {
             @include utility.button(
-                $background-colour: $primary-button-colour,
+                $background-colour: theme.$primary-button-colour,
                 $text-colour: theme.$primary-contrast,
-                $font-size: $button-font-size,
+                $font-size: theme.$header-button-size,
                 $width: utility.px-to-rem(145px),
                 $height: utility.px-to-rem(56px),
                 $set-margins: false,
@@ -386,14 +377,14 @@ header {
             }
 
             &:hover {
-                background-color: $primary-button-hover-colour;
+                background-color: theme.$primary-button-hover-colour;
             }
         }
         .contact {
             @include utility.button(
-                $background-colour: $secondary-button-colour,
+                $background-colour: theme.$secondary-button-colour,
                 $text-colour: theme.$primary-contrast,
-                $font-size: $button-font-size,
+                $font-size: theme.$header-button-size,
                 $width: utility.px-to-rem(152px),
                 $height: utility.px-to-rem(56px),
                 $set-margins: false,
@@ -408,7 +399,7 @@ header {
             }
 
             &:hover {
-                background-color: $secondary-button-hover-colour;
+                background-color: theme.$secondary-button-hover-colour;
             }
         }
 
@@ -459,13 +450,13 @@ header {
                 display: block;
 
                 &:focus {
-                    border-color: $focus-colour;
+                    border-color: theme.$focus-colour;
                     
                     // inset shadow doesn't seem to appear within a text input field on Chrome,
                     // but does appear on Firefox. The effect is subtle either way.
                     box-shadow:
                         inset 0 1px 1px rgba(black, 0.075),
-                        0 0 8px rgba($focus-colour, 0.6);
+                        0 0 8px rgba(theme.$focus-colour, 0.6);
                 }
             }
 

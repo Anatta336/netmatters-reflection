@@ -2,9 +2,6 @@
 @use "../theme";
 @use "../utility";
 
-$normal-width: utility.px-to-rem(938px);
-$large-width: utility.px-to-rem(1168px);
-
 $subcategory-height: utility.px-to-rem(45px);
 $subcategory-spacing-medium: utility.px-to-rem(20px);
 $subcategory-spacing-large: utility.px-to-rem(30px);
@@ -52,11 +49,13 @@ nav {
     @each $service, $icon-name in theme.$service-icons {
         .#{$service} .category-head::before {
             @include icons.icon(icons.icon-unicode-from-name($icon-name));
-            display: block;
-            padding-top: 1em;
-
+            
             font-size: 1.25rem;
             text-align: center;
+            
+            display: block;
+            padding-top: 1em;
+            padding-bottom: 0.3em;
 
             color: theme.get-colour-for-service($service);
         }
@@ -125,9 +124,6 @@ nav {
                 padding-left: $subcategory-spacing-large;
             }
         }
-
-        // TODO: if these selects turn out too complex for IE11, can replace with a rule adding to all,
-        //          then a rule removing from the final one.
     }
 
     // .sub-wrapper holds the subcategories with the correct position and gives a page-wide background colour
