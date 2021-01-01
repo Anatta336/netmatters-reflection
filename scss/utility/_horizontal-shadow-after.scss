@@ -1,0 +1,47 @@
+@use "../theme";
+
+// using this mixin also sets positioning of element you put it on,
+// and uses up the ::after pseudo-element.
+@mixin horizontal-shadow-after($height) {
+    position: relative;
+    
+    // create block to provide background shadow effect
+    &::after {
+        content: "";
+        background-image: linear-gradient(to bottom,                
+            theme.$transparent-primary,
+            transparent
+        );
+
+        position: absolute;
+
+        // -50 view width positions element far enough left that it'll
+        // always reach past left edge of viewport
+        left: -50vw;
+        bottom: -1 * $height;
+        height: $height;
+        width: 150vw;
+    }
+}
+
+@mixin horizontal-shadow-within($height) {
+    position: relative;
+    
+    // create block to provide background shadow effect
+    &::after {
+        content: "";
+        background-image: linear-gradient(to bottom,                
+            theme.$transparent-primary,
+            transparent
+        );
+
+        position: absolute;
+
+        // -50 view width positions element far enough left that it'll
+        // always reach past left edge of viewport
+        left: -50vw;
+        top: 0;
+        height: $height;
+        width: 150vw;
+    }
+}

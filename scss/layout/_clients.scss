@@ -3,7 +3,11 @@
 
 #clients {
     @include utility.badge-row;
-    max-height: 70px;
+    @include utility.horizontal-shadow-within(utility.px-to-rem(60px));
+    height: utility.px-to-rem(70px);
+
+    margin-top: 0;
+    padding: utility.px-to-rem(55px) 0 0;
 
     .badge {
         @include utility.colour-on-hover;
@@ -17,9 +21,13 @@
     .tooltip-wrapper {
         @include utility.tooltip-wrapper(
             $pointer-size: utility.px-to-rem(50px),
-            $offset-above-parent: utility.px-to-rem(55px),
+            $offset-above-parent: utility.px-to-rem(75px),
             $pointer-colour: theme.$primary,
         );
+
+        // put tooltip in front of default layer so the
+        // horizontal shadow doesn't affect it
+        z-index: 1;
     }
 
     .badge:hover .tooltip-wrapper {

@@ -2,10 +2,9 @@
 @use "../theme";
 @use "../utility";
 
-#services {
-    $card-shadow-colour: rgba(0, 0, 0, 0.15);
-    $icon-background-size: utility.px-to-rem(60px);
+$icon-background-size: utility.px-to-rem(60px);
 
+#services {
     box-sizing: border-box;
     padding: 2rem 1rem;
     
@@ -13,6 +12,7 @@
         @include utility.margin-x-center;
         @include utility.border;
         @include utility.rounded-corners;
+        @include utility.primary-box-shadow;
 
         display: flex;
         flex-direction: column;
@@ -22,7 +22,7 @@
         margin-bottom: 2rem;
         
         background-color: theme.$primary-contrast;
-        box-shadow: 0 0 30px $card-shadow-colour;
+        
 
         text-decoration: none;
         color: theme.$primary;
@@ -127,6 +127,8 @@
     // at small breakpoint, first 3 cards remain filling page, but others fit 2 to a row
     @include utility.above-breakpoint("small") {
         @include utility.margin-x-center;
+        padding-left: 0;
+        padding-right: 0;
 
         .other-services {
             @include utility.wrapped-flex;
@@ -152,7 +154,7 @@
 
             > * {
                 margin: 1rem;
-                flex-basis: 15rem;
+                flex-basis: 12rem;
                 flex-grow: 1;
             }
         }

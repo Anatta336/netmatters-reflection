@@ -13,9 +13,9 @@
 
         box-sizing: border-box;
         margin-top: utility.px-to-rem(40px);
-        margin-bottom: utility.px-to-rem(40px);
-        padding-left: 15px;
-        padding-right: 15px;
+        margin-bottom: utility.px-to-rem(20px);
+        padding-left: utility.px-to-rem(15px);
+        padding-right: utility.px-to-rem(15px);
 
         // remove horizontal padding once outside of "mobile" breakpoint
         @include utility.above-breakpoint("small") {
@@ -26,8 +26,12 @@
 
     .head-wrap {
         padding: 0;
-        margin: 0;
+        margin: 0 0 utility.px-to-rem(40px);
         width: 100%;
+
+        position: relative;
+
+        @include utility.horizontal-shadow-after(8rem);
     }
 
     h2 {
@@ -37,7 +41,7 @@
         font-weight: 600;
 
         padding: 0;
-        margin: 0 0 utility.px-to-rem(40px);
+        margin: 0;
 
         &::after {
             @include utility.short-horizontal-line(
@@ -72,6 +76,7 @@
     article {
         @include utility.border;
         @include utility.rounded-corners;
+        @include utility.primary-box-shadow;
         
         box-sizing: border-box;
         margin: 0 0 utility.px-to-rem(40px);

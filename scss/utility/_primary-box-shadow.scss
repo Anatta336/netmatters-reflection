@@ -1,0 +1,5 @@
+@use '../theme';
+
+@mixin primary-box-shadow ($colour: theme.$transparent-primary) {
+    box-shadow: 0 0 30px $colour;
+}
