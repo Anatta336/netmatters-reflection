@@ -1,8 +1,22 @@
+@use "sass:meta";
+@use "sass:math";
+
 $px-per-rem: 16px !default;
 
 @function px-to-rem ($pixel-value) {
-    //TODO: is it possible to check what unit $pixel-value is in?
-    // Looks a lot like yes. Use built in function "unit()"
+    
+    // there is a math.unit() function, but docs warn the return values aren't
+    // consistent so it should only be used for debugging, not for validation.
+    
+    @if not math.compatible($px-per-rem, 1px) {
+        @warn "$px-per-rem has been given a value of #{$px-per-rem} which isn't in px, so the px-to-rem function cannot operate.";
+        @return $pixel-value;
+    }
+    
+    @if not math.compatible($pixel-value, 1px) {
+        @warn "Attempting to convert #{$pixel-value} from px to rem, but it's not a px value.";
+        @return $pixel-value;
+    }
 
     @return ($pixel-value / $px-per-rem) * 1rem;
 }
