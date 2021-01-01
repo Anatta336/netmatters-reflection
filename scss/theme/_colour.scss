@@ -1,0 +1,16 @@
+@use "active-theme";
+@use "sass:map";
+
+@function get-colour-for-service($service) {
+    @if (not map.has-key(active-theme.$service-colours, $service)) {
+        @error "Service \"#{$service}\" must be a valid service name as listed in the theme.";
+    }
+    @return map.get(active-theme.$service-colours, $service);
+}
+
+@function get-sub-colour-for-service($service) {
+    @if (not map.has-key(active-theme.$service-sub-colours, $service)) {
+        @error "Service \"#{$service}\" must be a valid service name as listed in the theme.";
+    }
+    @return map.get(active-theme.$service-sub-colours, $service);
+}

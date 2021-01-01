@@ -32,13 +32,13 @@ footer {
 
         // width of each section within the footer depends on the breakpoint
         @each $breakpoint-name, $width in theme.$footer-section-width-by-breakpoints {
-            @include utility.above-breakpoint($breakpoint-name) {
+            @include theme.above-breakpoint($breakpoint-name) {
                 width: $width;
             }
         }
 
         // remove bottom margin at largest breakpoint
-        @include utility.above-breakpoint("large") {
+        @include theme.above-breakpoint("large") {
             margin-bottom: 0;
         }
     }
@@ -134,7 +134,7 @@ footer {
 
             font-size: utility.px-to-rem(28px);
 
-            background-color: theme.$transparent-secondary;
+            background-color: theme.$shadow-secondary;
             height: utility.px-to-rem(55px);
             margin-top: utility.px-to-rem(30px);
         }

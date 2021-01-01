@@ -20,7 +20,7 @@
         padding-right: utility.px-to-rem(15px);
 
         // remove horizontal padding after the "mobile" breakpoint
-        @include utility.above-breakpoint("small") {
+        @include theme.above-breakpoint("small") {
             padding-left: 0;
             padding-right: 0;
         }
@@ -89,18 +89,18 @@
 
         // width of each section within the footer depends on the breakpoint
         @each $breakpoint-name, $width in theme.$latest-post-article-width-by-breakpoints {
-            @include utility.above-breakpoint($breakpoint-name) {
+            @include theme.above-breakpoint($breakpoint-name) {
                 width: $width;
             }
         }
 
         // in the small and medium breakpoints the final article preview is hidden
-        @include utility.above-breakpoint("small") {
+        @include theme.above-breakpoint("small") {
             &:last-of-type {
                 display: none;
             }
         }
-        @include utility.above-breakpoint("large") {
+        @include theme.above-breakpoint("large") {
             &:last-of-type {
                 display: block;
             }
@@ -241,7 +241,7 @@
     }
 
     // image transition only happens at the larger breakpoints
-    @include utility.above-breakpoint("medium") {
+    @include theme.above-breakpoint("medium") {
         .lead:hover {
             img {
                 opacity: 0.75;

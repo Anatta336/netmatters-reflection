@@ -126,7 +126,7 @@ $icon-background-size: utility.px-to-rem(60px);
     // between grid tracks is not well supported in IE11.
 
     // at small breakpoint, first 3 cards remain filling page, but others fit 2 to a row
-    @include utility.above-breakpoint("small") {
+    @include theme.above-breakpoint("small") {
         @include utility.margin-x-center;
         padding-left: 0;
         padding-right: 0;
@@ -146,7 +146,7 @@ $icon-background-size: utility.px-to-rem(60px);
     }
 
     // at medium breakpoint the first cards now also fit multiple in a row
-    @include utility.above-breakpoint("medium") {
+    @include theme.above-breakpoint("medium") {
         .top-services {
             @include utility.wrapped-flex;
 
@@ -161,7 +161,7 @@ $icon-background-size: utility.px-to-rem(60px);
         }
     }
 
-    @include utility.above-breakpoint("large") {
+    @include theme.above-breakpoint("large") {
         // other-services should form row of 4 at this breakpoint,
         // so reduce their flex-basis to allow them to fit.
         .other-services > * {

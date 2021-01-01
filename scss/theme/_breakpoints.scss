@@ -1,0 +1,33 @@
+@use "active-theme" as theme;
+@use "../utility/add-if-possible" as add;
+@use "sass:map";
+
+@function get-breakpoint($name) {
+    @if (not map.has-key(theme.$breakpoints, $name)) {
+        @error "Name \"#{$name}\" must be a valid breakpoint name.";
+    }
+    @return map.get(theme.$breakpoints, $name);
+}
+
+@mixin above-breakpoint($name) {
+    @media (min-width: get-breakpoint($name)) {
+        @content;
+    }
+}
+
+@function get-content-width-for-breakpoint($breakpoint) {
+    @if (not map.has-key(theme.$content-width-by-breakpoints, $breakpoint)) {
+        @error "Breakpoint \"#{$breakpoint}\" must be a valid breakpoint name as liste din the theme.";
+    }
+    @return map.get(theme.$content-width-by-breakpoints, $breakpoint);
+}
+
+// note that $width-add is ignored for any breakpoint (but only that breakpoint)
+// if its unit is not compatible with the unit used in $content-width-by-breakpoints
+@mixin content-width-by-breakpoint($width-add: 0rem) {
+    @each $breakpoint-name, $width in theme.$content-width-by-breakpoints {
+        @include above-breakpoint($breakpoint-name) {
+            width: add.add-if-possible($width, $width-add);
+        }
+    }
+}

@@ -19,7 +19,7 @@
         padding: 2.5rem utility.px-to-rem(15px);
 
         // remove horizontal padding once outside of "mobile" breakpoint
-        @include utility.above-breakpoint("small") {
+        @include theme.above-breakpoint("small") {
             padding-left: 0;
             padding-right: 0;
         }
@@ -68,13 +68,13 @@
     }
 
     // at medium and above breakpoints show a background image
-    @include utility.above-breakpoint("medium") {
+    @include theme.above-breakpoint("medium") {
         background: theme.$primary url("../img/netmatters-brand/alpha-overlay.png") no-repeat right;
         background-size: auto 100%;
     }
 
     // at large breakpoint give text content a max width instead of stretching to fill
-    @include utility.above-breakpoint("large") {
+    @include theme.above-breakpoint("large") {
         h2,
         p {
             max-width: utility.px-to-rem(570px);

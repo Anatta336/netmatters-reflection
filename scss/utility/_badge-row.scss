@@ -1,4 +1,3 @@
-@use "breakpoints";
 @use "flex-row-container";
 @use "margin-center" as center;
 @use "convert";
@@ -22,7 +21,7 @@
     display: none;
 
     // do display at small and above breakpoints
-    @include breakpoints.above-breakpoint("small") {
+    @include theme.above-breakpoint("small") {
         @include flex-row-container.flex-row-container;
     }
 }

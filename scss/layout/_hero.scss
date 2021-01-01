@@ -57,7 +57,7 @@
         }
 
         // move to left align for medium and above breakpoints
-        @include utility.above-breakpoint("medium") {
+        @include theme.above-breakpoint("medium") {
             margin-left: 0;
         }
     }
@@ -68,7 +68,7 @@
     }
     
     // ---- breakpoints ----
-    @include utility.above-breakpoint("medium") {
+    @include theme.above-breakpoint("medium") {
 
         // when the content moves from centered to left aligned, change background
         // gradient to allow right side of the image to show through more.
@@ -83,7 +83,7 @@
     // for larger breakpoints the wrapper no longer fills the page, instead
     // has a set width and is centered on the page.
     @each $breakpoint in theme.$hero-breakpoints-to-left-align {
-        @include utility.above-breakpoint($breakpoint) {
+        @include theme.above-breakpoint($breakpoint) {
             $content-width: theme.get-content-width-for-breakpoint($breakpoint);
             .wrapper {
                 @include utility.margin-x-center;

@@ -108,7 +108,7 @@ nav {
 
             // font size changes with breakpoints
             @each $breakpoint, $font-size in theme.$nav-subcategory-size-by-breakpoints {
-                @include utility.above-breakpoint($breakpoint) {
+                @include theme.above-breakpoint($breakpoint) {
                     font-size: $font-size;
                 }
             }
@@ -117,7 +117,7 @@ nav {
         // add left padding to all subcategory items except the first one
         a:not(:first-of-type) {
             padding-left: $subcategory-spacing-medium;
-            @include utility.above-breakpoint("large") {
+            @include theme.above-breakpoint("large") {
                 padding-left: $subcategory-spacing-large;
             }
         }
@@ -126,7 +126,7 @@ nav {
         a:not(:last-of-type)::after {
             content: "-";
             padding-left: $subcategory-spacing-medium;
-            @include utility.above-breakpoint("large") {
+            @include theme.above-breakpoint("large") {
                 padding-left: $subcategory-spacing-large;
             }
         }
@@ -179,7 +179,7 @@ nav {
     }
 
     // show navigation bar at medium and above breakpoints
-    @include utility.above-breakpoint("medium") {
+    @include theme.above-breakpoint("medium") {
         display: block;
     }
 }

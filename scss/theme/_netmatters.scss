@@ -9,16 +9,14 @@ $primary-contrast-hover: #ebebeb;
 $primary-highlight: #484a58;
 $primary-shadow: #262834;
 
-$secondary: #555;
-$secondary-lighter: #666;
-
-$menu-button-hover: #22242e;
-
 $border-colour: #ccc;
 $border-thickness: 1px;
 $border-radius: convert.px-to-rem(3px);
 
+$secondary: #555;
+$secondary-lighter: #666;
 $nav-bar-bottom-border: #999aa2;
+$menu-button-hover: #22242e;
 
 $primary-button-colour: #4183d7;
 $primary-button-hover-colour: #2a6ec6;
@@ -26,11 +24,23 @@ $primary-button-hover-colour: #2a6ec6;
 $secondary-button-colour: #999aa2;
 $secondary-button-hover-colour: #7e808a;
 
+// Only used for the search text field input in header (for some breakpoints).
+// A nice design change would be to unify how focus is visually indicated.
 $focus-colour: #5cc0df;
 
-$transparent-primary: rgba(0, 0, 0, 0.1);
-$transparent-secondary: rgba(0, 0, 0, 0.25);
+$shadow-primary: rgba(0, 0, 0, 0.1);
+$shadow-secondary: rgba(0, 0, 0, 0.25);
 
+// "mobile" is default, with later breakpoint becoming
+// active when viewport width exceeds the associated value.
+$breakpoints: (
+    "mobile": 0,
+    "small": convert.px-to-rem(768px),
+    "medium": convert.px-to-rem(991px),
+    "large": convert.px-to-rem(1260px),
+);
+
+// each service offered by Netmatters has an associated colour and icon
 $service-colours: (
     "web-design": #926fb1,
     "it-support": #4183d7,
@@ -40,7 +50,6 @@ $service-colours: (
     "cyber-security": #f62459,
     "developer-training": #926fb1,
 );
-    
 $service-sub-colours: (
     "web-design": #79539a,
     "it-support": #286abd,
@@ -50,7 +59,6 @@ $service-sub-colours: (
     "cyber-security": #de093f,
     "developer-training": #79539a,
 );
-
 $service-icons: (
     "web-design": "code",
     "it-support": "monitor",
@@ -61,18 +69,21 @@ $service-icons: (
     "developer-training": "student-cap",
 );
 
+// each social media platform has a brand colour and icon
 $social-media-colours: (
     "facebook": #3b5998,
     "twitter": #00aced,
     "linkedin": #0077b5,
 );
-
 $social-media-icons: (
     "facebook": "facebook",
     "twitter": "twitter",
     "linkedin": "linked-in",
 );
 
+// several variables should change with the current breakpoint,
+// notably most of the page's content is held in content wrappers
+// that change in unision at each breakpoint.
 $content-width-by-breakpoints: (
     "mobile": 100%,
     "small": convert.px-to-rem(750px),
@@ -94,8 +105,6 @@ $latest-post-article-width-by-breakpoints: (
     "large": convert.px-to-rem(370px),
 );
 
-//TODO: store a more general set of body, header, etc., font sizes
-
 $nav-subcategory-size-by-breakpoints: (
     "medium": convert.px-to-rem(13px),
     "large": convert.px-to-rem(16px),
@@ -106,9 +115,21 @@ $hero-breakpoints-to-left-align: (
     "large",
 );
 
+$badge-horizontal-padding: 20px;
+
+$spacing-line-length: convert.px-to-rem(28px);
+$spacing-line-height: convert.px-to-rem(3px);
+
+$tooltip-line-height: 1.375rem;
+$tooltip-pointer-size: convert.px-to-rem(50px);
+
+// ---- font variables ----
+// reducing the number of different sizes used could be a
+// positive change for the page design.
+
 $header-menu-size: convert.px-to-rem(12px);
 $header-search-size: convert.px-to-rem(14px);
-$header-button-size: utility.px-to-rem(18px);
+$header-button-size: convert.px-to-rem(18px);
 
 $nav-bar-category-size: convert.px-to-rem(18px);
 $nav-bar-category-size-first-line: convert.px-to-rem(10px);
@@ -137,13 +158,6 @@ $blog-poster-font-size: convert.px-to-rem(14px);
 
 $tooltip-header-font-size: convert.px-to-rem(18px);
 $tooltip-font-size: convert.px-to-rem(13px);
-$tooltip-line-height: 1.375rem;
-$tooltip-pointer-size: convert.px-to-rem(50px);
-
-$badge-horizontal-padding: 20px;
-
-$spacing-line-length: convert.px-to-rem(28px);
-$spacing-line-height: convert.px-to-rem(3px);
 
 $footer-heading-font-size: convert.px-to-rem(16px);
 $footer-font-size: convert.px-to-rem(13px);
