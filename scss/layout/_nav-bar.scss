@@ -6,11 +6,17 @@ $subcategory-height: utility.px-to-rem(45px);
 $subcategory-spacing-medium: utility.px-to-rem(20px);
 $subcategory-spacing-large: utility.px-to-rem(30px);
 
+// Navigation bar consists of a set of categories, each with an icon.
+// The categories are laid out using a flex layout.
+// When a category is hovered over its associated sub-categories appear in
+// a new row directly beneath. These are also laid out using flex.
+// Icons and colouring are selecting depending on the class name given to
+// each category element.
 nav {
     // not displayed at all on smaller breakpoints
     display: none;
 
-    // make this the anchor element for .subcategories
+    // make this the positioned anchor for .subcategories
     position: relative;
     
     background-color: theme.$primary;
@@ -45,7 +51,7 @@ nav {
         position: static;
     }
 
-    // insert icon into the anchor element
+    // insert icon into the anchor element depending on its class name
     @each $service, $icon-name in theme.$service-icons {
         .#{$service} .category-head::before {
             @include icons.icon(icons.icon-unicode-from-name($icon-name));
@@ -116,7 +122,7 @@ nav {
             }
         }
         
-        // insert after every sub-category, except the final one
+        // insert decorative hyphen after every sub-category, except the final one
         a:not(:last-of-type)::after {
             content: "-";
             padding-left: $subcategory-spacing-medium;

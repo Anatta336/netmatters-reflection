@@ -2,6 +2,8 @@
 @use "../theme";
 @use "../utility";
 
+// the icon's background is a circle so a single size value is used
+// for both width and height.
 $icon-background-size: utility.px-to-rem(60px);
 
 #services {
@@ -42,8 +44,7 @@ $icon-background-size: utility.px-to-rem(60px);
 
     .call-to-action {
         // null $background-colour so the button mixin doesn't generate a
-        // background-color property. It will be set on a per-card basis
-        // depending on the card's id.
+        // background-color property. It will be set on a per-card basis.
         @include utility.button(
             $background-colour: null,
             $text-colour: theme.$primary-contrast,
@@ -62,8 +63,8 @@ $icon-background-size: utility.px-to-rem(60px);
         @include utility.short-horizontal-line;
     }
 
-    // set button's colour based on the id of the service card it's within
-    // (assumes that all cards have an id listed in $service-colours)
+    // set button's colour based on the class of the service card it's within
+    // (assumes that all cards have a calss listed in $service-colours)
     @each $service-name, $colour in theme.$service-colours {
         .#{$service-name} .call-to-action {
             background-color: $colour;

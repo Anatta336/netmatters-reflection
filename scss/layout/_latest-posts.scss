@@ -1,6 +1,8 @@
 @use "../theme";
 @use "../utility";
 
+// Latest posts section consists of a series of article previews.
+// Those previews are positioned using a wrapping flex layout.
 #latest-posts {
     .wrapper {
         @include utility.margin-x-center;
@@ -17,7 +19,7 @@
         padding-left: utility.px-to-rem(15px);
         padding-right: utility.px-to-rem(15px);
 
-        // remove horizontal padding once outside of "mobile" breakpoint
+        // remove horizontal padding after the "mobile" breakpoint
         @include utility.above-breakpoint("small") {
             padding-left: 0;
             padding-right: 0;
@@ -43,6 +45,7 @@
         padding: 0;
         margin: 0;
 
+        // below the h2 text, create a horizontal line matching its length
         &::after {
             @include utility.short-horizontal-line(
                 $line-colour: theme.$primary,
@@ -104,6 +107,8 @@
         }
     }
 
+    // tooltip-wrapper is styled so its horizontal centre matches the horizontal
+    // centre of the element that the tooltip is triggered by.
     .tooltip-wrapper {
         @include utility.tooltip-wrapper(
             $pointer-size: utility.px-to-rem(10px),
@@ -132,7 +137,8 @@
         }
     }
 
-    // category is a short bit of text to be overlaid on the image
+    // category is a short bit of text to be overlaid on the image, linking to
+    // show all posts belonging to that category.
     .category {
         display: block;
         padding: 0 utility.px-to-rem(10px);
@@ -175,7 +181,6 @@
         margin-left: utility.px-to-rem(30px);
         margin-right: utility.px-to-rem(30px);
     }
-
 
     // set various colours depending on the category of the article
     @each $service-name, $colour in theme.$service-colours {
