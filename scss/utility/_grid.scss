@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // provides both standard and -ms- prefixed grid-related properties.
 
 @mixin display-grid {
@@ -15,9 +17,14 @@
     grid-template-rows: $columns;
 }
 
-//TODO: add some validation for these arguments
-
 @mixin grid-column-pick ($startTrack, $endTrack) {
+    @if (($startTrack <= 0) or ($endTrack <= 0)) {
+        @error "grid-column-pick expects non-negative and non-zero track values, but got (#{$startTrack}, #{$endTrack})";
+    }
+    @if ($endTrack <= $startTrack) {
+        @error "grid-column-pick expects start and end tracks to be in order, but got (#{$startTrack}, #{$endTrack})";
+    }
+
     $span: $endTrack - $startTrack;
     -ms-grid-column: $startTrack;
     -ms-grid-column-span: $span;
@@ -27,6 +34,13 @@
 }
 
 @mixin grid-row-pick ($startTrack, $endTrack) {
+    @if (($startTrack <= 0) or ($endTrack <= 0)) {
+        @error "grid-row-pick expects non-negative and non-zero track values, but got (#{$startTrack}, #{$endTrack})";
+    }
+    @if ($endTrack <= $startTrack) {
+        @error "grid-row-pick expects start and end tracks to be in order, but got (#{$startTrack}, #{$endTrack})";
+    }
+
     $span: $endTrack - $startTrack;
     -ms-grid-row: $startTrack;
     -ms-grid-row-span: $span;
