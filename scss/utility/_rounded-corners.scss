@@ -19,6 +19,8 @@
     border-bottom-left-radius: theme.$border-radius;
     border-bottom-right-radius: theme.$border-radius;
 }
+
+// will be a circle if the element's width equals its height
 @mixin oval {
     border-radius: 50%;
 }

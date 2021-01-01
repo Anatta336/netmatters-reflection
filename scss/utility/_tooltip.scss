@@ -2,16 +2,15 @@
 @use "margin-center" as center;
 
 /*
-Example use. Note there can be multiple anchor
-elements each with their own tooltip, and only
-the ancestor tooltip for the hovered anchor will
-be shown.
+Example use.
+Note there can be multiple anchor elements each with their
+own tooltip, and only the ancestor tooltip for the hovered
+anchor will be shown.
 
-.tooltip-wrapper becomes very wide, so you likely
-want overflow-x: hidden set on some ancestor 
-container, which isn't shown in this example.
+.tooltip-wrapper becomes very wide, so you likely want to
+set overflow-x: hidden on some ancestor container.
 
-HTML:
+-- HTML:
 <a>
     Some text
     <div class="tooltip-wrapper">
@@ -21,7 +20,7 @@ HTML:
     </div>
 </a>
 
-SCSS:
+-- SCSS:
 @use "tooltip";
 
 .tooltip-wrapper {
@@ -38,6 +37,7 @@ a:hover .tooltip-wrapper {
         $offset-above-parent: convert.px-to-rem(23px),
         $pointer-colour: #000,
     ) {
+    
     // tooltip initially not visible
     display: none;
 
