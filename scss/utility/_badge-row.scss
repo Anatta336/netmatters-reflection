@@ -3,6 +3,8 @@
 @use "convert";
 @use "../theme";
 
+// create the container for simple row of badges, as seen in 
+// the client and accreditation sections of the landing page.
 @mixin badge-row {
     @include theme.content-width-by-breakpoint(
         $width-add: convert.px-to-rem(-30px)

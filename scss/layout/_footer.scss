@@ -2,6 +2,10 @@
 @use "../utility";
 @use "../icons";
 
+// Footer is a few <section>s of information, mostly text.
+// At the mobile breakpoint the sections are laid out in a single column.
+// As the viewport width increases, they adjust to form several columns.
+
 // used in a couple of places where the value needs to be equal
 $section-padding-x: utility.px-to-rem(15px);
 
@@ -144,7 +148,7 @@ footer {
 
             font-size: utility.px-to-rem(28px);
 
-            background-color: theme.$shadow-secondary;
+            background-color: theme.$footer-social-media-background;
             height: utility.px-to-rem(55px);
             margin-top: utility.px-to-rem(30px);
         }

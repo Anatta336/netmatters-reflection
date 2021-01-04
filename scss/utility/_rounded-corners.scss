@@ -1,5 +1,8 @@
 @use "../theme";
 
+// A set of mixins for making various combinations of an element's
+// corners rounded.
+
 @mixin rounded-corners {
     border-radius: theme.$border-radius;
 }

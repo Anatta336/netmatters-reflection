@@ -1,6 +1,9 @@
 @use "../theme";
 @use "margin-center" as center;
 
+// Styles this element as a filled rectangle.
+// Generally, but not necessarily, used on a
+// ::before or ::after pseudo-element.
 @mixin short-horizontal-line (
         $line-colour: theme.$primary,
         $line-length: theme.$spacing-line-length,

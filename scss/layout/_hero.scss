@@ -2,8 +2,9 @@
 @use "../theme";
 @use "../utility";
 
+// A large image with text and a call to action button overlaid.
+// The image has a gradient overlaid on it to aid text legibility.
 #hero-image {
-
     // at mobile breakpoint gradient overlay never reaches full transparency
     @include utility.hero-image-background(
         (
@@ -17,6 +18,7 @@
     flex-direction: column;
     justify-content: center;
 
+    // vertically fill the parent, which is expected to be .first-container
     box-sizing: border-box;
     height: 100%;
     
@@ -70,8 +72,7 @@
             margin-left: 0;
         }
 
-        // when the content moves from centered to left aligned, change background
-        // gradient to allow right side of the image to show through more.
+        // no longer need to darken right side of image, so change gradient
         @include utility.hero-image-background(
             (
                 linear-gradient(to right, black, transparent 75%),

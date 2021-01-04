@@ -134,7 +134,7 @@ $icon-background-size: utility.px-to-rem(60px);
         
         // at small breakpoint, first 3 cards remain filling page, but others fit 2 to a row
         .other-services {
-            @include utility.wrapped-flex;
+            @include utility.flex-wrapped;
 
             // negative margin reverses effect of external margins from children
             margin: 0 -1rem;
@@ -150,7 +150,7 @@ $icon-background-size: utility.px-to-rem(60px);
     @include theme.above-breakpoint("medium") {
         // at medium breakpoint the first cards now also fit multiple in a row
         .top-services {
-            @include utility.wrapped-flex;
+            @include utility.flex-wrapped;
 
             // negative margin reverses effect of external margins from children
             margin: 0 -1rem;

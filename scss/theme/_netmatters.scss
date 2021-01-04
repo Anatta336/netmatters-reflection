@@ -1,6 +1,9 @@
 @use "sass:map";
 @use "../utility/convert";
 
+// defines a set of variables which may be shared between
+// different sections of the page's layout.
+
 $page-background: #fefefe;
 
 $primary: #333645;
@@ -25,12 +28,14 @@ $secondary-button-colour: #999aa2;
 $secondary-button-hover-colour: #7e808a;
 
 // Only used for the search text field input in header (for some breakpoints).
-// A nice design change would be to unify how focus is visually indicated.
+// A nice design change would be to unify how focus is visually indicated,
+// for example having any focused element glow with this colour.
 $focus-colour: #5cc0df;
 
 $horizontal-shadow: rgba(#000, 0.075);
-$shadow-primary: rgba(0, 0, 0, 0.1);
-$shadow-secondary: rgba(0, 0, 0, 0.25);
+$shadow-primary: rgba(#000, 0.1);
+
+$footer-social-media-background: rgba(#000, 0.25);
 
 // "mobile" is default, with later breakpoint becoming
 // active when viewport width exceeds the associated value.
@@ -125,8 +130,8 @@ $tooltip-line-height: 1.375rem;
 $tooltip-pointer-size: convert.px-to-rem(50px);
 
 // ---- font variables ----
-// reducing the number of different sizes used could be a
-// positive change for the page design.
+// reducing the number of different sizes used and making them shared
+// between sections of the page could be a positive change for the design.
 
 $header-menu-size: convert.px-to-rem(12px);
 $header-search-size: convert.px-to-rem(14px);

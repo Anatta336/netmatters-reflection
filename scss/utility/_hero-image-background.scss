@@ -1,3 +1,4 @@
+// sets up a background-image to completely fill the element
 @mixin hero-image-background ($image, $fallback-colour) {
     background-image: $image;
     background-color: $fallback-colour;

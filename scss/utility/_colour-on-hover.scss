@@ -1,3 +1,19 @@
+/*
+Alternates hidden or block display on child elements
+so that the .colour element is shown when hovering.
+
+Example usage
+HTML:
+<div class="container">
+  <img class="colour" src="...">
+  <img class="bw" src="...">
+</div>
+
+Sass:
+.container {
+  @include utility.colour-on-hover;
+}
+*/
 @mixin colour-on-hover {
     .colour {
         display: none;

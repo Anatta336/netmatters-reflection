@@ -3,6 +3,9 @@
 
 $px-per-rem: 16px !default;
 
+// Converts a value in px to an equivalent value in rem.
+// If every px value in a style is passed through this function
+// then the page should scale with the user agent's font size.
 @function px-to-rem ($pixel-value) {
     
     // there is a math.unit() function, but docs warn the return values aren't

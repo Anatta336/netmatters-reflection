@@ -2,7 +2,7 @@
 
 // this container wraps the header, navigation bar, and hero image
 .first-container {
-    // height matches viewport height so long as that's over the minimum
+    // height matches viewport height so long as that's over a reasonable minimum
     min-height: utility.px-to-rem(700px);
     height: 100vh;
 

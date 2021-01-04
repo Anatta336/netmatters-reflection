@@ -1,12 +1,14 @@
 @use "rounded-corners";
 @use "flex-center";
 
+// style an element as a rounded button, with control over various
+// aspects of how it will appear.
 @mixin button(
         $background-colour: null,
         $text-colour: null,
         $font-size: null,
-        $width: 12rem,
-        $height: 2.5rem,
+        $width: null,
+        $height: null,
     ) {
     @include rounded-corners.rounded-corners;
     @include flex-center.flex-center;

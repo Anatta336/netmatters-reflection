@@ -1,3 +1,5 @@
+// Makes this element a flex container and sets
+// it up to provide simple centering.
 @mixin flex-center {
     display: flex;
     align-items: center;

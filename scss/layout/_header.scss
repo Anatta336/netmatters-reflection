@@ -6,9 +6,9 @@
 // moved around within that grid at various breakpoints.
 // Many of the grid items use flex layout within them.
 header {
+    // the HTML includes an h1 labelling the page, but it isn't
+    // intended to be displayed
     h1 {
-        // the HTML includes a header labelling the page, but it isn't
-        // intended to be displayed
         display: none;
     }
 
@@ -53,6 +53,45 @@ header {
         // form fills bottom row entirely
         @include utility.grid-column-pick(1, 4);
         @include utility.grid-row-pick(2, 3);
+    }
+
+    .support {
+        @include utility.button(
+            $background-colour: theme.$primary-button-colour,
+            $text-colour: theme.$primary-contrast,
+            $font-size: theme.$header-button-size,
+            $width: utility.px-to-rem(145px),
+            $height: utility.px-to-rem(56px),
+        );
+        box-sizing: border-box;
+
+        &::before {
+            @include icons.icon(icons.icon-unicode-from-name("mouse"), 1.25em);
+            padding-right: 0.5em;
+        }
+
+        &:hover {
+            background-color: theme.$primary-button-hover-colour;
+        }
+    }
+    .contact {
+        @include utility.button(
+            $background-colour: theme.$secondary-button-colour,
+            $text-colour: theme.$primary-contrast,
+            $font-size: theme.$header-button-size,
+            $width: utility.px-to-rem(152px),
+            $height: utility.px-to-rem(56px),
+        );
+        box-sizing: border-box;
+
+        &::before {
+            @include icons.icon(icons.icon-unicode-from-name("paper-plane"), 1.25em);
+            padding-right: 0.5em;
+        }
+
+        &:hover {
+            background-color: theme.$secondary-button-hover-colour;
+        }
     }
 
     // at mobile breakpoint these buttons don't appear.
@@ -230,7 +269,6 @@ header {
     // - phone icon is removed
     // - the search bar moves up to same line as logo and changes appearance
     @include theme.above-breakpoint("small") {
-
         // phone doesn't appear at all
         a.phone {
             display: none;
@@ -240,7 +278,7 @@ header {
             @include utility.margin-x-center;
             padding: utility.px-to-rem(20px) 0;
             
-            // grid layout changes, now just one row with logo's column fixed
+            // grid layout changes, now just one row
             @include utility.grid-columns(
                 1fr                         // logo
                 utility.px-to-rem(237px)    // search
@@ -261,13 +299,15 @@ header {
         form {
             // second column
             @include utility.grid-column-pick(2, 3);
-
-            // move up to top row
-            @include utility.grid-row-pick(1, 2);
         }
         .hamburger-menu{
             // final column
             @include utility.grid-column-pick(3, 4);
+        }
+
+        // place all items in first row
+        .content > * {
+            @include utility.grid-row-pick(1, 2);
         }
 
         // search form is styled differently when on the top row
@@ -322,14 +362,14 @@ header {
         }
     }
 
-    // at second breakpoint:
+    // at medium breakpoint:
     // - content fixed width increases
     // - search text input hidden, leaving only search button (clicking button should show text input, but that needs JS)
     // - support button appears
     // - contact button appears
     @include theme.above-breakpoint("medium") {
         .content {
-            // grid layout changes, adding more columns
+            // grid layout changes again, adding more columns
             @include utility.grid-columns (
                 1fr                         // logo
                 utility.px-to-rem(165px)    // support
@@ -356,49 +396,10 @@ header {
             @include utility.grid-column-pick(5, 6);
         }
 
-        // force every grid item into first row
-        .content > * {
-            @include utility.grid-row-pick(1, 2);
-        }
-
-        // .support and .contact styled as coloured buttons with icons
-        .support {
-            @include utility.button(
-                $background-colour: theme.$primary-button-colour,
-                $text-colour: theme.$primary-contrast,
-                $font-size: theme.$header-button-size,
-                $width: utility.px-to-rem(145px),
-                $height: utility.px-to-rem(56px),
-            );
-            box-sizing: border-box;
-
-            &::before {
-                @include icons.icon(icons.icon-unicode-from-name("mouse"), 1.25em);
-                padding-right: 0.5em;
-            }
-
-            &:hover {
-                background-color: theme.$primary-button-hover-colour;
-            }
-        }
+        // support and contact buttons appear
+        .support,
         .contact {
-            @include utility.button(
-                $background-colour: theme.$secondary-button-colour,
-                $text-colour: theme.$primary-contrast,
-                $font-size: theme.$header-button-size,
-                $width: utility.px-to-rem(152px),
-                $height: utility.px-to-rem(56px),
-            );
-            box-sizing: border-box;
-
-            &::before {
-                @include icons.icon(icons.icon-unicode-from-name("paper-plane"), 1.25em);
-                padding-right: 0.5em;
-            }
-
-            &:hover {
-                background-color: theme.$secondary-button-hover-colour;
-            }
+            display: flex;
         }
 
         form {
@@ -414,7 +415,7 @@ header {
                 // all corners on search button are rounded
                 @include utility.rounded-corners;
 
-                // position correctly in IE11
+                // align to the right
                 margin-left: auto;
             }
         }
@@ -438,7 +439,6 @@ header {
         // search input field reappears
         // will already have correct styling from the earlier breakpoints.
         form {
-            position: static;
             box-sizing: border-box;
             width: 100%;
             padding-left: 20px;

@@ -1,5 +1,6 @@
 @use '../theme';
 
+// Adds a standard shadow effect around the element
 @mixin primary-box-shadow ($colour: theme.$shadow-primary) {
     box-shadow: 0 0 30px $colour;
 }

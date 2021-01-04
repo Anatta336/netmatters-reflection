@@ -1,6 +1,7 @@
 @use "sass:math";
 
-// provides both standard and -ms- prefixed grid-related properties.
+// A set of mixins that wraps the basic grid properties to provide
+// properties that should work in both IE11 and modern browsers.
 
 @mixin display-grid {
     display: -ms-grid;
@@ -17,6 +18,7 @@
     grid-template-rows: $columns;
 }
 
+// Use similarly to grid-column, but only with positive values.
 @mixin grid-column-pick ($startTrack, $endTrack) {
     @if (($startTrack <= 0) or ($endTrack <= 0)) {
         @error "grid-column-pick expects non-negative and non-zero track values, but got (#{$startTrack}, #{$endTrack})";
@@ -33,6 +35,7 @@
     grid-column: #{$startTrack} / #{$endTrack};
 }
 
+// Use similarly to grid-row, but only with positive values.
 @mixin grid-row-pick ($startTrack, $endTrack) {
     @if (($startTrack <= 0) or ($endTrack <= 0)) {
         @error "grid-row-pick expects non-negative and non-zero track values, but got (#{$startTrack}, #{$endTrack})";

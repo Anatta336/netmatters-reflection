@@ -358,174 +358,22 @@ h2 {
   font-style: normal;
   font-display: block;
 }
-.icon-bars::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
+/*
+Alternates hidden or block display on child elements
+so that the .colour element is shown when hovering.
 
-.icon-code::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
+Example usage
+HTML:
+<div class="container">
+  <img class="colour" src="...">
+  <img class="bw" src="...">
+</div>
 
-.icon-facebook::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
+Sass:
+.container {
+  @include utility.colour-on-hover;
 }
-
-.icon-grid::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
-.icon-linked-in::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
-.icon-monitor::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
-.icon-right-arrow::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
-.icon-shield::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
-.icon-student-cap::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
-.icon-mouse::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
-.icon-paper-plane::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
-.icon-phone::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
-.icon-search::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
-.icon-twitter::before {
-  font-family: "netmatters-icons" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  content: "";
-}
-
+*/
 /*
 Example use.
 Note there can be multiple anchor elements each with their
@@ -612,7 +460,6 @@ a:hover .tooltip-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2em auto;
   width: 10.8125rem;
   height: 2.9375rem;
   text-align: center;
@@ -621,7 +468,6 @@ a:hover .tooltip-wrapper {
   background-color: #fff;
   color: #333645;
   font-size: 1.0625rem;
-  margin: 0;
 }
 #about .call-to-action::after {
   font-family: "netmatters-icons" !important;
@@ -631,10 +477,10 @@ a:hover .tooltip-wrapper {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 0.75em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-left: 0.75rem;
-  font-size: 0.75em;
 }
 #about .call-to-action:hover {
   background-color: #ebebeb;
@@ -783,7 +629,6 @@ a:hover .tooltip-wrapper {
   bottom: 4.6875rem;
   left: -100rem;
   right: -100rem;
-  z-index: 0;
   z-index: 1;
 }
 #clients .tooltip-wrapper::after {
@@ -801,17 +646,22 @@ a:hover .tooltip-wrapper {
 #clients .badge:hover .tooltip-wrapper {
   display: block;
 }
+#clients .tooltip-content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 13.75rem;
+  padding: 0.75rem 1.125rem;
+  text-align: center;
+  color: #fff;
+  background-color: #333645;
+}
 #clients h3 {
   font-size: 1.125rem;
   font-weight: 400;
   margin: 0.4rem 0 0;
   padding: 0;
 }
-#clients p {
-  font-size: 0.8125rem;
-  line-height: 1.375rem;
-}
-#clients h3::after {
+#clients h3 ::after {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1rem;
@@ -821,14 +671,9 @@ a:hover .tooltip-wrapper {
   width: 1.75rem;
   height: 0.1875rem;
 }
-#clients .tooltip-content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 13.75rem;
-  padding: 0.75rem 1.125rem;
-  text-align: center;
-  color: #fff;
-  background-color: #333645;
+#clients p {
+  font-size: 0.8125rem;
+  line-height: 1.375rem;
 }
 
 .first-container {
@@ -1061,12 +906,73 @@ header form {
   -ms-grid-row-span: 1;
   grid-row: 2/3;
 }
+header .support {
+  border-radius: 0.1875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 9.0625rem;
+  height: 3.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: #4183d7;
+  color: #fff;
+  font-size: 1.125rem;
+  box-sizing: border-box;
+}
+header .support::before {
+  font-family: "netmatters-icons" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  content: "";
+  font-size: 1.25em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-right: 0.5em;
+}
+header .support:hover {
+  background-color: #2a6ec6;
+}
+header .contact {
+  border-radius: 0.1875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 9.5rem;
+  height: 3.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: #999aa2;
+  color: #fff;
+  font-size: 1.125rem;
+  box-sizing: border-box;
+}
+header .contact::before {
+  font-family: "netmatters-icons" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  content: "";
+  font-size: 1.25em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-right: 0.5em;
+}
+header .contact:hover {
+  background-color: #7e808a;
+}
 header .support,
 header .contact {
   display: none;
 }
 header .phone {
-  font-size: 1.7rem;
   color: #333645;
   text-decoration: none;
   height: 100%;
@@ -1084,6 +990,7 @@ header .phone::after {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.7rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1164,7 +1071,6 @@ header form button {
   height: 100%;
   border: 0;
   background-color: transparent;
-  font-size: 1.4rem;
   cursor: pointer;
   color: #333645;
 }
@@ -1176,6 +1082,7 @@ header form button::after {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.4rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1243,14 +1150,16 @@ header .hamburger-icon::after {
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
     grid-column: 2/3;
-    -ms-grid-row: 1;
-    -ms-grid-row-span: 1;
-    grid-row: 1/2;
   }
   header .hamburger-menu {
     -ms-grid-column: 3;
     -ms-grid-column-span: 1;
     grid-column: 3/4;
+  }
+  header .content > * {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1/2;
   }
   header form {
     height: 3.5625rem;
@@ -1319,72 +1228,9 @@ header form button {
     -ms-grid-column-span: 1;
     grid-column: 5/6;
   }
-  header .content > * {
-    -ms-grid-row: 1;
-    -ms-grid-row-span: 1;
-    grid-row: 1/2;
-  }
-  header .support {
-    border-radius: 0.1875rem;
+  header .support,
+header .contact {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 9.0625rem;
-    height: 3.5rem;
-    text-align: center;
-    text-transform: uppercase;
-    text-decoration: none;
-    background-color: #4183d7;
-    color: #fff;
-    font-size: 1.125rem;
-    box-sizing: border-box;
-  }
-  header .support::before {
-    font-family: "netmatters-icons" !important;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    content: "";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 1.25em;
-    padding-right: 0.5em;
-  }
-  header .support:hover {
-    background-color: #2a6ec6;
-  }
-  header .contact {
-    border-radius: 0.1875rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 9.5rem;
-    height: 3.5rem;
-    text-align: center;
-    text-transform: uppercase;
-    text-decoration: none;
-    background-color: #999aa2;
-    color: #fff;
-    font-size: 1.125rem;
-    box-sizing: border-box;
-  }
-  header .contact::before {
-    font-family: "netmatters-icons" !important;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    content: "";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 1.25em;
-    padding-right: 0.5em;
-  }
-  header .contact:hover {
-    background-color: #7e808a;
   }
   header form {
     width: auto;
@@ -1403,7 +1249,6 @@ header form button {
     grid-template-columns: 1fr 10rem 10.75rem 20.1875rem 5.1875rem;
   }
   header form {
-    position: static;
     box-sizing: border-box;
     width: 100%;
     padding-left: 20px;
@@ -1467,19 +1312,18 @@ header form button {
   font-size: 3rem;
   font-weight: 400;
   text-transform: uppercase;
-  margin: 0 0 0.5em;
+  margin: 0 0 1.5625rem;
 }
 #hero-image p {
   font-size: 1.25rem;
   line-height: 1.8;
-  margin: 0;
+  margin: 0 0 2.1875rem;
 }
 #hero-image .call-to-action {
   border-radius: 0.1875rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2em auto;
   width: 14rem;
   height: 3.8rem;
   text-align: center;
@@ -1488,7 +1332,7 @@ header form button {
   background-color: #926fb1;
   color: #fff;
   font-size: 1.25rem;
-  margin-bottom: 0;
+  margin: 0 auto;
 }
 #hero-image .call-to-action:hover {
   background-color: #79539a;
@@ -1501,9 +1345,9 @@ header form button {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 0.75em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 0.75em;
   padding-left: 0.9rem;
 }
 @media (min-width: 61.9375rem) {
@@ -1655,7 +1499,7 @@ header form button {
   bottom: 1.4375rem;
   left: -100rem;
   right: -100rem;
-  z-index: 0;
+  z-index: 1;
 }
 #latest-posts .tooltip-wrapper::after {
   margin-left: auto;
@@ -1709,7 +1553,6 @@ header form button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2em auto;
   width: 8.0625rem;
   height: 2.9375rem;
   text-align: center;
@@ -1717,8 +1560,7 @@ header form button {
   text-decoration: none;
   color: #fff;
   font-size: 1.0625rem;
-  margin-top: 1.5625rem;
-  margin-bottom: 1.875rem;
+  margin: 1.5625rem auto 1.875rem;
 }
 #latest-posts h3,
 #latest-posts p,
@@ -1893,9 +1735,9 @@ nav .web-design .category-head::before {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.3rem;
   text-align: center;
   line-height: 1.2;
   display: block;
@@ -1911,9 +1753,9 @@ nav .it-support .category-head::before {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.3rem;
   text-align: center;
   line-height: 1.2;
   display: block;
@@ -1929,9 +1771,9 @@ nav .telecoms-services .category-head::before {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.3rem;
   text-align: center;
   line-height: 1.2;
   display: block;
@@ -1947,9 +1789,9 @@ nav .bespoke-software .category-head::before {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.3rem;
   text-align: center;
   line-height: 1.2;
   display: block;
@@ -1965,9 +1807,9 @@ nav .digital-marketing .category-head::before {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.3rem;
   text-align: center;
   line-height: 1.2;
   display: block;
@@ -1983,9 +1825,9 @@ nav .cyber-security .category-head::before {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.3rem;
   text-align: center;
   line-height: 1.2;
   display: block;
@@ -2001,9 +1843,9 @@ nav .developer-training .category-head::before {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.3rem;
   text-align: center;
   line-height: 1.2;
   display: block;
@@ -2202,7 +2044,6 @@ nav .developer-training .sub-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2em auto;
   width: 8rem;
   height: 3rem;
   text-align: center;
@@ -2210,8 +2051,7 @@ nav .developer-training .sub-wrapper {
   text-decoration: none;
   color: #fff;
   font-size: 1.0625rem;
-  margin-top: auto;
-  margin-bottom: 0;
+  margin: auto auto 0;
 }
 #services h3::after {
   margin-left: auto;
@@ -2253,6 +2093,7 @@ nav .developer-training .sub-wrapper {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 50%;
@@ -2273,6 +2114,7 @@ nav .developer-training .sub-wrapper {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 50%;
@@ -2293,6 +2135,7 @@ nav .developer-training .sub-wrapper {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 50%;
@@ -2313,6 +2156,7 @@ nav .developer-training .sub-wrapper {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 50%;
@@ -2333,6 +2177,7 @@ nav .developer-training .sub-wrapper {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 50%;
@@ -2353,6 +2198,7 @@ nav .developer-training .sub-wrapper {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 50%;
@@ -2373,6 +2219,7 @@ nav .developer-training .sub-wrapper {
   text-transform: none;
   line-height: 1;
   content: "";
+  font-size: 1.1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 50%;
