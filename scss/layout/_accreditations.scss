@@ -2,6 +2,7 @@
 @use "../theme";
 
 #accreditations {
+    @include utility.hide-section-heading;
     @include utility.badge-row;
 
     .badge {

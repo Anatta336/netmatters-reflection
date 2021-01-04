@@ -1,0 +1,7 @@
+@mixin hide-section-heading {
+    h2 {
+        // the HTML includes a header describing the section, but it isn't
+        // intended to be displayed
+        display: none;
+    }
+}

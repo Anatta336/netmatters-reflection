@@ -6,6 +6,12 @@
 // moved around within that grid at various breakpoints.
 // Many of the grid items use flex layout within them.
 header {
+    h1 {
+        // the HTML includes a header labelling the page, but it isn't
+        // intended to be displayed
+        display: none;
+    }
+
     .content {
 
         // create grid layout
@@ -125,7 +131,8 @@ header {
         color: theme.$primary-contrast;
         text-align: center;
 
-        h2 {
+        .title {
+            display: block;
             text-transform: uppercase;
             font-size: theme.$header-menu-size;
             padding: utility.px-to-rem(7px) 0 0;

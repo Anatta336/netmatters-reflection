@@ -7,6 +7,8 @@
 $icon-background-size: utility.px-to-rem(60px);
 
 #services {
+    @include utility.hide-section-heading;
+
     box-sizing: border-box;
     padding: 2rem 1rem;
     
@@ -30,7 +32,7 @@ $icon-background-size: utility.px-to-rem(60px);
         text-align: center;
     }
 
-    h2 {
+    h3 {
         font-size: theme.$services-heading-size;
         font-weight: 400;
         margin: 0 0 utility.px-to-rem(11px);
@@ -58,8 +60,8 @@ $icon-background-size: utility.px-to-rem(60px);
         margin-bottom: 0;
     }
 
-    // generate a small horizontal line after the h2 element
-    h2::after {
+    // generate a small horizontal line after the h3 element
+    h3::after {
         @include utility.short-horizontal-line;
         margin-top: utility.px-to-rem(14px);
     }
@@ -73,12 +75,12 @@ $icon-background-size: utility.px-to-rem(60px);
     }
 
     // generate icon appropriate to the id of the service card, placing
-    // the icon as a ::before pseudo-element on the card's h2.
+    // the icon as a ::before pseudo-element on the card's h3.
     @each $service-name, $icon-name in theme.$service-icons {
         $icon-unicode: icons.icon-unicode-from-name($icon-name);
         $icon-background-colour: theme.get-colour-for-service($service-name);
 
-        .#{$service-name} h2::before {
+        .#{$service-name} h3::before {
             @include icons.icon($icon-unicode);
             @include utility.oval;
             @include utility.flex-center;
@@ -98,8 +100,8 @@ $icon-background-size: utility.px-to-rem(60px);
     a:hover {
         color: theme.$primary-contrast;
 
-        h2::before,     // icon
-        h2::after,      // horizontal line
+        h3::before,     // icon
+        h3::after,      // horizontal line
         .call-to-action {
             background-color: theme.$primary-contrast;
         }
@@ -109,7 +111,7 @@ $icon-background-size: utility.px-to-rem(60px);
         a.#{$service}:hover {
             background-color: $colour;
 
-            h2::before,  // icon
+            h3::before,  // icon
             .call-to-action {
                 color: $colour;
             }

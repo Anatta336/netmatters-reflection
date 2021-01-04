@@ -2,6 +2,7 @@
 @use "../theme";
 
 #clients {
+    @include utility.hide-section-heading;
     @include utility.badge-row;
     @include utility.horizontal-shadow-within(2rem);
     height: utility.px-to-rem(70px);
@@ -45,7 +46,7 @@
         line-height: theme.$tooltip-line-height;
     }
 
-    // generate a small horizontal line after the h2 element
+    // generate a small horizontal line after the h3 element in the tooltip
     h3::after {
         @include utility.short-horizontal-line($line-colour: theme.$primary-contrast);
     }
