@@ -46,8 +46,6 @@ nav {
 
         border-left: 1px solid theme.$primary-shadow;
         border-right: 1px solid theme.$primary-highlight;
-
-        position: static;
     }
 
     // insert icon into the anchor element depending on its class name
@@ -69,7 +67,6 @@ nav {
 
     a {
         display: block;
-
         margin: 0;
         padding: 0 3ch;
 
@@ -85,6 +82,14 @@ nav {
         line-height: 1.0;
 
         margin: 0;
+
+        // Chrome and Firefox disagree on positioning text when the first line
+        // has its size changed. So instead of ::first-line, use a span.
+        .first {
+            // use block display to place on a separate line
+            display: block;
+            font-size: theme.$nav-bar-category-size-first-line;
+        }
     }
 
     .subcategories {
@@ -171,11 +176,6 @@ nav {
         .#{$service} .sub-wrapper {
             background-color: $colour;
         }
-    }
-
-    // first line of the category title is a different size
-    h2::first-line {
-        font-size: theme.$nav-bar-category-size-first-line;
     }
 
     // show navigation bar at medium and above breakpoints
