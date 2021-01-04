@@ -30,6 +30,11 @@ footer {
         padding: 0 $section-padding-x;
         margin-bottom: utility.px-to-rem(30px);
 
+        // last section doesn't need any bottom margin
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
         // width of each section within the footer depends on the breakpoint
         @each $breakpoint-name, $width in theme.$footer-section-width-by-breakpoints {
             @include theme.above-breakpoint($breakpoint-name) {
@@ -63,6 +68,7 @@ footer {
     // remove default bullet point list styling
     ul {
         padding: 0;
+        margin: 0;
     }
     li {
         list-style: none;
@@ -84,7 +90,7 @@ footer {
 
         // space between address block and the next item
         .adr {
-            padding-bottom: 1rem;
+            padding-bottom: utility.px-to-rem(22px);
         }
 
         // keep telephone and email data spans on same line as their label
@@ -105,7 +111,11 @@ footer {
         // list container arranges social media buttons using wrapped flexbox layout
         ul {
             width: 100%;
-            margin: utility.px-to-rem(-30px) 0 0;
+
+            // negative margin for ul positions the buttons near the header,
+            // while still allowing the buttons to have a vertical margin on themselves
+            // to create the correct vertical spacing when wrapped.
+            margin: utility.px-to-rem(-24px) 0 0;
 
             display: flex;
             flex-direction: row;

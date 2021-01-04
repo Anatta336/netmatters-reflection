@@ -6,8 +6,7 @@
     background-color: theme.$primary;
     color: theme.$primary-contrast;
 
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding: utility.px-to-rem(42px) 0 utility.px-to-rem(50px);
     
     .content {
         @include utility.margin-x-center;
@@ -16,7 +15,7 @@
         );
 
         box-sizing: border-box;
-        padding: 2.5rem utility.px-to-rem(15px);
+        padding: 0 utility.px-to-rem(15px);
 
         // remove horizontal padding once outside of "mobile" breakpoint
         @include theme.above-breakpoint("small") {
@@ -29,12 +28,13 @@
         font-weight: 400;
         font-size: theme.$about-heading-size;
         text-transform: uppercase;
-        margin: 0 0 1em;
+        margin: 0 0 utility.px-to-rem(28px);
     }
     
     p {
         font-size: theme.$about-para-size;
-        line-height: 1.9;
+        line-height: 1.875;
+        margin: 0 0 utility.px-to-rem(25px);
     }
     
     // first paragraph is bold
@@ -48,18 +48,20 @@
             $background-colour: theme.$primary-contrast,
             $text-colour: theme.$primary,
             $font-size: theme.$about-button-size,
-            $width: 10.5rem,
-            $height: 2.7rem,
+            $width: utility.px-to-rem(173px),
+            $height: utility.px-to-rem(47px),
         );
         
-        // position left aligned, with space from content above
-        margin: 2rem 0 0;
+        // position left aligned
+        margin: 0;
 
         // generate arrow icon within the button
         &::after {
             @include icons.icon(icons.icon-unicode-from-name("right-arrow"));
+            padding-left: 0.75rem;
+
+            // icon size relative to font size of button text
             font-size: 0.75em;
-            padding-left: 1rem;
         }
 
         &:hover {

@@ -28,6 +28,7 @@ $secondary-button-hover-colour: #7e808a;
 // A nice design change would be to unify how focus is visually indicated.
 $focus-colour: #5cc0df;
 
+$horizontal-shadow: rgba(#000, 0.075);
 $shadow-primary: rgba(0, 0, 0, 0.1);
 $shadow-secondary: rgba(0, 0, 0, 0.25);
 
@@ -140,7 +141,7 @@ $hero-button-size: convert.px-to-rem(20px);
 
 $about-heading-size: convert.px-to-rem(36px);
 $about-para-size: convert.px-to-rem(16px);
-$about-button-size: convert.px-to-rem(16px);
+$about-button-size: convert.px-to-rem(17px);
 
 $services-heading-size: convert.px-to-rem(18px);
 $services-para-size: convert.px-to-rem(13px);

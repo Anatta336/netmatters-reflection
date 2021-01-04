@@ -28,12 +28,12 @@
 
     .head-wrap {
         padding: 0;
-        margin: 0 0 utility.px-to-rem(40px);
+        margin: 0 0 utility.px-to-rem(49px);
         width: 100%;
 
         position: relative;
 
-        @include utility.horizontal-shadow-after(8rem);
+        @include utility.horizontal-shadow-after(2rem);
     }
 
     h2 {
@@ -52,12 +52,13 @@
                 $line-length: 100%,
                 $line-height: utility.px-to-rem(5px),
             );
-            margin: utility.px-to-rem(40px) 0 0;
+            margin: utility.px-to-rem(36px) 0 0;
         }
     }
 
     h3 {
         font-size: theme.$blog-h3-font-size;
+        margin-top: utility.px-to-rem(31px);
         margin-bottom: utility.px-to-rem(42px);
 
         &:hover {
@@ -169,10 +170,11 @@
         @include utility.button(
             $text-colour: theme.$primary-contrast,
             $font-size: theme.$blog-button-font-size,
-            $width: 7rem,
-            $height: null,
+            $width: utility.px-to-rem(129px),
+            $height: utility.px-to-rem(47px),
         );
-        padding: utility.px-to-rem(13px) utility.px-to-rem(10px);
+        margin-top: utility.px-to-rem(25px);
+        margin-bottom: utility.px-to-rem(30px);
     }
     
     h3,
@@ -214,12 +216,12 @@
     }
 
     .poster img {
-        max-width: 100;
+        max-width: 100%;
         @include utility.oval;
     }
 
     .poster {
-        margin: utility.px-to-rem(30px) utility.px-to-rem(30px) 0;
+        margin: 0 utility.px-to-rem(30px) 0;
         border-top: theme.$border-thickness solid theme.$border-colour;
         padding: utility.px-to-rem(30px) 0;
 
@@ -231,12 +233,13 @@
 
         p:first-of-type {
             font-weight: 600;
+            margin-top: utility.px-to-rem(2px);
             color: theme.$primary;
         }
 
         img {
+            margin-right: utility.px-to-rem(20px);
             float: left;
-            margin-right: 23px;
         }
     }
 

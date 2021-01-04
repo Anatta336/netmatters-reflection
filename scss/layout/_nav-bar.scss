@@ -44,7 +44,6 @@ nav {
         flex-grow: 1;
         flex-basis: 8ch;
 
-        padding-bottom: utility.px-to-rem(20px);
         border-left: 1px solid theme.$primary-shadow;
         border-right: 1px solid theme.$primary-highlight;
 
@@ -56,8 +55,9 @@ nav {
         .#{$service} .category-head::before {
             @include icons.icon(icons.icon-unicode-from-name($icon-name));
             
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             text-align: center;
+            line-height: 1.2;
             
             display: block;
             padding-top: 1em;

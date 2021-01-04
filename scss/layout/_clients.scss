@@ -3,7 +3,7 @@
 
 #clients {
     @include utility.badge-row;
-    @include utility.horizontal-shadow-within(utility.px-to-rem(60px));
+    @include utility.horizontal-shadow-within(2rem);
     height: utility.px-to-rem(70px);
 
     margin-top: 0;

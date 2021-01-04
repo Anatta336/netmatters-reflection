@@ -23,6 +23,11 @@
     color: theme.$primary-contrast;
     text-align: center;
     
+    .wrapper {
+        @include utility.margin-x-center;
+        @include theme.content-width-by-breakpoint($width-add: utility.px-to-rem(-30px));
+    }
+
     h2 {
         font-size: theme.$hero-heading-size;
         font-weight: 400;
@@ -42,8 +47,9 @@
             $text-colour: theme.$primary-contrast,
             $font-size: theme.$hero-button-size,
             $width: 14rem,
-            $height: 3.3rem,
+            $height: 3.8rem,
         );
+        margin-bottom: 0;
 
         &:hover {
             background-color: theme.get-sub-colour-for-service("web-design");
@@ -55,20 +61,15 @@
             font-size: 0.75em;
             padding-left: 0.3rem;
         }
-
-        // move to left align for medium and above breakpoints
-        @include theme.above-breakpoint("medium") {
-            margin-left: 0;
-        }
-    }
-
-    // at mobile breakpoint the wrapper fills page
-    .wrapper {
-        width: 100%;
     }
     
-    // ---- breakpoints ----
     @include theme.above-breakpoint("medium") {
+        // move to left align for medium and above breakpoints
+        text-align: left;
+
+        .call-to-action  {
+            margin-left: 0;
+        }
 
         // when the content moves from centered to left aligned, change background
         // gradient to allow right side of the image to show through more.
@@ -78,21 +79,5 @@
                 url("../img/carousel/carousel-web-design.jpg")
             ), #472e3c
         );
-    }
-
-    // for larger breakpoints the wrapper no longer fills the page, instead
-    // has a set width and is centered on the page.
-    @each $breakpoint in theme.$hero-breakpoints-to-left-align {
-        @include theme.above-breakpoint($breakpoint) {
-            $content-width: theme.get-content-width-for-breakpoint($breakpoint);
-            .wrapper {
-                @include utility.margin-x-center;
-                width: utility.add-if-possible(
-                    $content-width,
-                    utility.px-to-rem(-66px)
-                );
-                text-align: left;
-            }
-        }
     }
 }

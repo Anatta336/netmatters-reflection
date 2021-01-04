@@ -571,14 +571,13 @@ a:hover .tooltip-wrapper {
 #about {
   background-color: #333645;
   color: #fff;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 2.625rem 0 3.125rem;
 }
 #about .content {
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
-  padding: 2.5rem 0.9375rem;
+  padding: 0 0.9375rem;
 }
 @media (min-width: 0) {
   #about .content {
@@ -610,11 +609,12 @@ a:hover .tooltip-wrapper {
   font-weight: 400;
   font-size: 2.25rem;
   text-transform: uppercase;
-  margin: 0 0 1em;
+  margin: 0 0 1.75rem;
 }
 #about p {
   font-size: 1rem;
-  line-height: 1.9;
+  line-height: 1.875;
+  margin: 0 0 1.5625rem;
 }
 #about p:first-of-type {
   font-weight: 600;
@@ -625,15 +625,15 @@ a:hover .tooltip-wrapper {
   align-items: center;
   justify-content: center;
   margin: 2em auto;
-  width: 10.5rem;
-  height: 2.7rem;
+  width: 10.8125rem;
+  height: 2.9375rem;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   background-color: #fff;
   color: #333645;
-  font-size: 1rem;
-  margin: 2rem 0 0;
+  font-size: 1.0625rem;
+  margin: 0;
 }
 #about .call-to-action::after {
   font-family: "netmatters-icons" !important;
@@ -645,8 +645,8 @@ a:hover .tooltip-wrapper {
   content: "";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-left: 0.75rem;
   font-size: 0.75em;
-  padding-left: 1rem;
 }
 #about .call-to-action:hover {
   background-color: #ebebeb;
@@ -760,11 +760,11 @@ a:hover .tooltip-wrapper {
 }
 #clients::after {
   content: "";
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.075), transparent);
   position: absolute;
   left: -50vw;
   top: 0;
-  height: 3.75rem;
+  height: 2rem;
   width: 150vw;
 }
 #clients .badge {
@@ -884,6 +884,9 @@ footer section {
   padding: 0 0.9375rem;
   margin-bottom: 1.875rem;
 }
+footer section:last-of-type {
+  margin-bottom: 0;
+}
 @media (min-width: 0) {
   footer section {
     width: 100%;
@@ -924,6 +927,7 @@ footer h2 {
 }
 footer ul {
   padding: 0;
+  margin: 0;
 }
 footer li {
   list-style: none;
@@ -937,7 +941,7 @@ footer address .country-name {
   display: none;
 }
 footer address .adr {
-  padding-bottom: 1rem;
+  padding-bottom: 1.375rem;
 }
 footer address .tel,
 footer address .email {
@@ -951,7 +955,7 @@ footer .social-media h2 {
 }
 footer .social-media ul {
   width: 100%;
-  margin: -1.875rem 0 0;
+  margin: -1.5rem 0 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1021,8 +1025,8 @@ footer .social-media a.linkedin:hover {
 header .content {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 5.625rem 4.375rem;
-  grid-template-columns: 1fr 5.625rem 4.375rem;
+  -ms-grid-columns: 1fr 4.375rem 4.375rem;
+  grid-template-columns: 1fr 4.375rem 4.375rem;
   -ms-grid-rows: 4.375rem 4.375rem;
   grid-template-rows: 4.375rem 4.375rem;
   box-sizing: border-box;
@@ -1065,7 +1069,7 @@ header .contact {
   display: none;
 }
 header .phone {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: #333645;
   text-decoration: none;
   height: 100%;
@@ -1127,7 +1131,7 @@ header .hamburger-menu {
 header .hamburger-menu h2 {
   text-transform: uppercase;
   font-size: 0.75rem;
-  padding: 0.3125rem 0 0;
+  padding: 0.4375rem 0 0;
   margin: 0;
 }
 header .hamburger-menu:hover {
@@ -1162,7 +1166,7 @@ header form button {
   height: 100%;
   border: 0;
   background-color: transparent;
-  font-size: 1.2em;
+  font-size: 1.4rem;
   cursor: pointer;
   color: #333645;
 }
@@ -1437,6 +1441,30 @@ header form button {
   color: #fff;
   text-align: center;
 }
+#hero-image .wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 0) {
+  #hero-image .wrapper {
+    width: 100%;
+  }
+}
+@media (min-width: 48rem) {
+  #hero-image .wrapper {
+    width: 45rem;
+  }
+}
+@media (min-width: 61.9375rem) {
+  #hero-image .wrapper {
+    width: 58.75rem;
+  }
+}
+@media (min-width: 78.75rem) {
+  #hero-image .wrapper {
+    width: 73.125rem;
+  }
+}
 #hero-image h2 {
   font-size: 3rem;
   font-weight: 400;
@@ -1455,13 +1483,14 @@ header form button {
   justify-content: center;
   margin: 2em auto;
   width: 14rem;
-  height: 3.3rem;
+  height: 3.8rem;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   background-color: #926fb1;
   color: #fff;
   font-size: 1.25rem;
+  margin-bottom: 0;
 }
 #hero-image .call-to-action:hover {
   background-color: #79539a;
@@ -1480,36 +1509,16 @@ header form button {
   padding-left: 0.3rem;
 }
 @media (min-width: 61.9375rem) {
-  #hero-image .call-to-action {
-    margin-left: 0;
-  }
-}
-#hero-image .wrapper {
-  width: 100%;
-}
-@media (min-width: 61.9375rem) {
   #hero-image {
+    text-align: left;
     background-image: linear-gradient(to right, black, transparent 75%), url("../img/carousel/carousel-web-design.jpg");
     background-color: #472e3c;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
-}
-@media (min-width: 61.9375rem) {
-  #hero-image .wrapper {
-    margin-left: auto;
-    margin-right: auto;
-    width: 56.5rem;
-    text-align: left;
-  }
-}
-@media (min-width: 78.75rem) {
-  #hero-image .wrapper {
-    margin-left: auto;
-    margin-right: auto;
-    width: 70.875rem;
-    text-align: left;
+  #hero-image .call-to-action {
+    margin-left: 0;
   }
 }
 
@@ -1554,18 +1563,18 @@ header form button {
 }
 #latest-posts .head-wrap {
   padding: 0;
-  margin: 0 0 2.5rem;
+  margin: 0 0 3.0625rem;
   width: 100%;
   position: relative;
   position: relative;
 }
 #latest-posts .head-wrap::after {
   content: "";
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.075), transparent);
   position: absolute;
   left: -50vw;
-  bottom: -8rem;
-  height: 8rem;
+  bottom: -2rem;
+  height: 2rem;
   width: 150vw;
 }
 #latest-posts h2 {
@@ -1585,10 +1594,11 @@ header form button {
   background-color: #333645;
   width: 100%;
   height: 0.3125rem;
-  margin: 2.5rem 0 0;
+  margin: 2.25rem 0 0;
 }
 #latest-posts h3 {
   font-size: 1rem;
+  margin-top: 1.9375rem;
   margin-bottom: 2.625rem;
 }
 #latest-posts h3:hover {
@@ -1702,13 +1712,15 @@ header form button {
   align-items: center;
   justify-content: center;
   margin: 2em auto;
-  width: 7rem;
+  width: 8.0625rem;
+  height: 2.9375rem;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   color: #fff;
   font-size: 1.0625rem;
-  padding: 0.8125rem 0.625rem;
+  margin-top: 1.5625rem;
+  margin-bottom: 1.875rem;
 }
 #latest-posts h3,
 #latest-posts p,
@@ -1804,11 +1816,11 @@ header form button {
   transition-timing-function: ease;
 }
 #latest-posts .poster img {
-  max-width: 100;
+  max-width: 100%;
   border-radius: 50%;
 }
 #latest-posts .poster {
-  margin: 1.875rem 1.875rem 0;
+  margin: 0 1.875rem 0;
   border-top: 1px solid #ccc;
   padding: 1.875rem 0;
 }
@@ -1819,11 +1831,12 @@ header form button {
 }
 #latest-posts .poster p:first-of-type {
   font-weight: 600;
+  margin-top: 0.125rem;
   color: #333645;
 }
 #latest-posts .poster img {
+  margin-right: 1.25rem;
   float: left;
-  margin-right: 23px;
 }
 @media (min-width: 61.9375rem) {
   #latest-posts .lead:hover img {
@@ -1871,7 +1884,6 @@ nav .wrapper {
 nav .category {
   flex-grow: 1;
   flex-basis: 8ch;
-  padding-bottom: 1.25rem;
   border-left: 1px solid #262834;
   border-right: 1px solid #484a58;
   position: static;
@@ -1886,8 +1898,9 @@ nav .web-design .category-head::before {
   content: "";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-align: center;
+  line-height: 1.2;
   display: block;
   padding-top: 1em;
   padding-bottom: 0.3em;
@@ -1903,8 +1916,9 @@ nav .it-support .category-head::before {
   content: "";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-align: center;
+  line-height: 1.2;
   display: block;
   padding-top: 1em;
   padding-bottom: 0.3em;
@@ -1920,8 +1934,9 @@ nav .telecoms-services .category-head::before {
   content: "";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-align: center;
+  line-height: 1.2;
   display: block;
   padding-top: 1em;
   padding-bottom: 0.3em;
@@ -1937,8 +1952,9 @@ nav .bespoke-software .category-head::before {
   content: "";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-align: center;
+  line-height: 1.2;
   display: block;
   padding-top: 1em;
   padding-bottom: 0.3em;
@@ -1954,8 +1970,9 @@ nav .digital-marketing .category-head::before {
   content: "";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-align: center;
+  line-height: 1.2;
   display: block;
   padding-top: 1em;
   padding-bottom: 0.3em;
@@ -1971,8 +1988,9 @@ nav .cyber-security .category-head::before {
   content: "";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-align: center;
+  line-height: 1.2;
   display: block;
   padding-top: 1em;
   padding-bottom: 0.3em;
@@ -1988,8 +2006,9 @@ nav .developer-training .category-head::before {
   content: "";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-align: center;
+  line-height: 1.2;
   display: block;
   padding-top: 1em;
   padding-bottom: 0.3em;
@@ -2159,9 +2178,9 @@ nav h2::first-line {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  padding: 1.5em;
+  padding: 1.875rem;
   margin-top: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 0.6875rem;
   background-color: #fff;
   text-decoration: none;
   color: #333645;
@@ -2170,10 +2189,12 @@ nav h2::first-line {
 #services h2 {
   font-size: 1.125rem;
   font-weight: 400;
+  margin: 0 0 0.6875rem;
 }
 #services p {
   font-size: 0.8125rem;
   line-height: 1.375rem;
+  margin: 0 0 0.75rem;
 }
 #services .call-to-action {
   border-radius: 0.1875rem;
@@ -2200,6 +2221,7 @@ nav h2::first-line {
   background-color: #333645;
   width: 1.75rem;
   height: 0.1875rem;
+  margin-top: 0.875rem;
 }
 #services .web-design .call-to-action {
   background-color: #926fb1;
@@ -2240,7 +2262,7 @@ nav h2::first-line {
   background-color: #926fb1;
   width: 3.75rem;
   height: 3.75rem;
-  margin: 0 auto 1.3rem;
+  margin: 0 auto 1.0625rem;
 }
 #services .it-support h2::before {
   font-family: "netmatters-icons" !important;
@@ -2260,7 +2282,7 @@ nav h2::first-line {
   background-color: #4183d7;
   width: 3.75rem;
   height: 3.75rem;
-  margin: 0 auto 1.3rem;
+  margin: 0 auto 1.0625rem;
 }
 #services .telecoms-services h2::before {
   font-family: "netmatters-icons" !important;
@@ -2280,7 +2302,7 @@ nav h2::first-line {
   background-color: #d64541;
   width: 3.75rem;
   height: 3.75rem;
-  margin: 0 auto 1.3rem;
+  margin: 0 auto 1.0625rem;
 }
 #services .bespoke-software h2::before {
   font-family: "netmatters-icons" !important;
@@ -2300,7 +2322,7 @@ nav h2::first-line {
   background-color: #67809f;
   width: 3.75rem;
   height: 3.75rem;
-  margin: 0 auto 1.3rem;
+  margin: 0 auto 1.0625rem;
 }
 #services .digital-marketing h2::before {
   font-family: "netmatters-icons" !important;
@@ -2320,7 +2342,7 @@ nav h2::first-line {
   background-color: #2ecc71;
   width: 3.75rem;
   height: 3.75rem;
-  margin: 0 auto 1.3rem;
+  margin: 0 auto 1.0625rem;
 }
 #services .cyber-security h2::before {
   font-family: "netmatters-icons" !important;
@@ -2340,7 +2362,7 @@ nav h2::first-line {
   background-color: #f62459;
   width: 3.75rem;
   height: 3.75rem;
-  margin: 0 auto 1.3rem;
+  margin: 0 auto 1.0625rem;
 }
 #services .developer-training h2::before {
   font-family: "netmatters-icons" !important;
@@ -2360,7 +2382,7 @@ nav h2::first-line {
   background-color: #926fb1;
   width: 3.75rem;
   height: 3.75rem;
-  margin: 0 auto 1.3rem;
+  margin: 0 auto 1.0625rem;
 }
 #services a:hover {
   color: #fff;
@@ -2457,7 +2479,7 @@ nav h2::first-line {
   }
   #services .other-services > * {
     margin: 1rem;
-    flex-basis: 18rem;
+    flex-basis: 15rem;
     flex-grow: 1;
   }
 }
@@ -2476,10 +2498,13 @@ nav h2::first-line {
     flex-basis: 12rem;
     flex-grow: 1;
   }
+  #services .other-services > * {
+    flex-basis: 15rem;
+  }
 }
 @media (min-width: 78.75rem) {
   #services .other-services > * {
-    flex-basis: 13rem;
+    flex-basis: 12rem;
   }
 }
 
