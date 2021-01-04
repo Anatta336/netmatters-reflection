@@ -62,7 +62,6 @@ header {
     }
 
     .phone {
-        font-size: 1.7rem;
         color: theme.$primary;
         text-decoration: none;
 
@@ -77,7 +76,7 @@ header {
         justify-content: center;
 
         &::after {
-            @include icons.icon(icons.icon-unicode-from-name("phone"));
+            @include icons.icon(icons.icon-unicode-from-name("phone"), 1.7rem);
         }
         &:hover::after {
             text-decoration: underline;
@@ -185,7 +184,6 @@ header {
 
             border: 0;
             background-color: transparent;
-            font-size: 1.4rem;
 
             cursor: pointer;
 
@@ -193,7 +191,7 @@ header {
 
             // generate search icon glyph as the button's text
             &::after {
-                @include icons.icon(icons.icon-unicode-from-name("search"));
+                @include icons.icon(icons.icon-unicode-from-name("search"), 1.4rem);
             }
         }
     }
@@ -371,14 +369,11 @@ header {
                 $font-size: theme.$header-button-size,
                 $width: utility.px-to-rem(145px),
                 $height: utility.px-to-rem(56px),
-                $set-margins: false,
             );
             box-sizing: border-box;
 
-            // generate icon
             &::before {
-                @include icons.icon(icons.icon-unicode-from-name("mouse"));
-                font-size: 1.25em;
+                @include icons.icon(icons.icon-unicode-from-name("mouse"), 1.25em);
                 padding-right: 0.5em;
             }
 
@@ -393,14 +388,11 @@ header {
                 $font-size: theme.$header-button-size,
                 $width: utility.px-to-rem(152px),
                 $height: utility.px-to-rem(56px),
-                $set-margins: false,
             );
             box-sizing: border-box;
 
-            // generate icon
             &::before {
-                @include icons.icon(icons.icon-unicode-from-name("paper-plane"));
-                font-size: 1.25em;
+                @include icons.icon(icons.icon-unicode-from-name("paper-plane"), 1.25em);
                 padding-right: 0.5em;
             }
 

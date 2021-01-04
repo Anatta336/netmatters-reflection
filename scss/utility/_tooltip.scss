@@ -53,7 +53,7 @@ a:hover .tooltip-wrapper {
     right: -100rem;
 
     // create new stacking context for parts of the tooltip
-    z-index: 0;
+    z-index: 1;
 
     // create pointer at bottom of tooltip, indicating towards the associated icon.
     &::after {

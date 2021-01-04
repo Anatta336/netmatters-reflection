@@ -52,12 +52,11 @@ $icon-background-size: utility.px-to-rem(60px);
             $text-colour: theme.$primary-contrast,
             $font-size: theme.$services-button-size,
             $width: 8rem,
-            $height: 3rem
+            $height: 3rem,
         );
-
-        // as this is a flex item, auto for top margin will push it to bottom of container
-        margin-top: auto;
-        margin-bottom: 0;
+        // as this is a flex item in a vertical flex container, auto for top margin
+        // will push it to the bottom of its container.
+        margin: auto auto 0;
     }
 
     // generate a small horizontal line after the h3 element
@@ -81,7 +80,7 @@ $icon-background-size: utility.px-to-rem(60px);
         $icon-background-colour: theme.get-colour-for-service($service-name);
 
         .#{$service-name} h3::before {
-            @include icons.icon($icon-unicode);
+            @include icons.icon($icon-unicode, 1.1em);
             @include utility.oval;
             @include utility.flex-center;
 

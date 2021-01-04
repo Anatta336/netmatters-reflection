@@ -173,8 +173,7 @@
             $width: utility.px-to-rem(129px),
             $height: utility.px-to-rem(47px),
         );
-        margin-top: utility.px-to-rem(25px);
-        margin-bottom: utility.px-to-rem(30px);
+        margin: utility.px-to-rem(25px) auto utility.px-to-rem(30px);
     }
     
     h3,

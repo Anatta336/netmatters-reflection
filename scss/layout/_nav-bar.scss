@@ -51,9 +51,8 @@ nav {
     // insert icon into the anchor element depending on its class name
     @each $service, $icon-name in theme.$service-icons {
         .#{$service} .category-head::before {
-            @include icons.icon(icons.icon-unicode-from-name($icon-name));
+            @include icons.icon(icons.icon-unicode-from-name($icon-name), 1.3rem);
             
-            font-size: 1.3rem;
             text-align: center;
             line-height: 1.2;
             

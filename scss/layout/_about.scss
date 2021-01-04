@@ -51,17 +51,11 @@
             $width: utility.px-to-rem(173px),
             $height: utility.px-to-rem(47px),
         );
-        
-        // position left aligned
-        margin: 0;
 
         // generate arrow icon within the button
         &::after {
-            @include icons.icon(icons.icon-unicode-from-name("right-arrow"));
+            @include icons.icon(icons.icon-unicode-from-name("right-arrow"), 0.75em);
             padding-left: 0.75rem;
-
-            // icon size relative to font size of button text
-            font-size: 0.75em;
         }
 
         &:hover {
