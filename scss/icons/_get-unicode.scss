@@ -1,12 +1,12 @@
 @use "sass:map";
-@use "variables";
+@use "unicode";
 @use "../theme";
 
 @function icon-unicode-from-name($name) {
-    @if (not map.has-key(variables.$icon-unicode-by-name, $name)) {
-        @error "Name \"#{$name}\" must be a valid icon name as listed in icons/_variables.scss";
+    @if (not map.has-key(unicode.$icon-unicode-by-name, $name)) {
+        @error "Name \"#{$name}\" must be a valid icon name as listed in icons/_unicode.scss";
     }
-    @return map.get(variables.$icon-unicode-by-name, $name);
+    @return map.get(unicode.$icon-unicode-by-name, $name);
 }
 
 @function icon-unicode-from-service($service) {

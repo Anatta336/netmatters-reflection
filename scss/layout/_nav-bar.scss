@@ -55,13 +55,13 @@ nav {
         .#{$service} .category-head::before {
             @include icons.icon(icons.icon-unicode-from-name($icon-name));
             
-            font-size: 1.15rem;
+            font-size: 1.3rem;
             text-align: center;
             line-height: 1.2;
             
             display: block;
             padding-top: 1em;
-            padding-bottom: 0.3em;
+            padding-bottom: 0.4em;
 
             color: theme.get-colour-for-service($service);
         }

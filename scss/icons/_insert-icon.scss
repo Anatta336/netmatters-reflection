@@ -1,8 +1,9 @@
-@use "variables";
+@use "unicode";
+@use "font";
 
 @mixin icon($unicode: null) {
     // the icon font is only defined for normal style, weight, etc.
-    font-family: "#{variables.$font-family}" !important;
+    font-family: "#{font.$font-family}" !important;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -19,7 +20,7 @@
 
 // allows insertion of icon based on class name
 // e.g. class="icon-phone" will get the phone icon as a pseudo-element
-@each $icon-name, $unicode in variables.$icon-unicode-by-name {
+@each $icon-name, $unicode in unicode.$icon-unicode-by-name {
     .icon-#{$icon-name} {
         &::before {
             @include icon;

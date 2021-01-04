@@ -13,7 +13,6 @@ header {
     }
 
     .content {
-
         // create grid layout
         @include utility.display-grid;
         @include utility.grid-columns(
@@ -63,7 +62,7 @@ header {
     }
 
     .phone {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         color: theme.$primary;
         text-decoration: none;
 
@@ -192,7 +191,7 @@ header {
 
             color: theme.$primary;
 
-            // generate search icon glyph as the button"s text
+            // generate search icon glyph as the button's text
             &::after {
                 @include icons.icon(icons.icon-unicode-from-name("search"));
             }
@@ -315,7 +314,7 @@ header {
                 background-color: theme.$secondary-button-colour;
 
                 color: theme.$primary-contrast;
-                font-size: 1.4rem;
+                font-size: 1.55rem;
 
                 &:hover {
                     background-color: theme.$secondary-button-hover-colour;
@@ -379,7 +378,7 @@ header {
             // generate icon
             &::before {
                 @include icons.icon(icons.icon-unicode-from-name("mouse"));
-                font-size: 1.2em;
+                font-size: 1.25em;
                 padding-right: 0.5em;
             }
 
@@ -401,7 +400,7 @@ header {
             // generate icon
             &::before {
                 @include icons.icon(icons.icon-unicode-from-name("paper-plane"));
-                font-size: 1.2em;
+                font-size: 1.25em;
                 padding-right: 0.5em;
             }
 
