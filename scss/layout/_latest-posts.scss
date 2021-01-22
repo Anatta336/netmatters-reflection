@@ -5,6 +5,11 @@
 // Those previews are positioned using a wrapping flex layout.
 #latest-posts {
     .wrapper {
+        @include utility.horizontal-shadow-within(2rem);
+        padding-top: utility.px-to-rem(40px);
+    }
+
+    .content {
         @include utility.margin-x-center;
         @include utility.flex-row-container;
         @include theme.content-width-by-breakpoint(
@@ -14,7 +19,6 @@
         flex-wrap: wrap;
 
         box-sizing: border-box;
-        margin-top: utility.px-to-rem(40px);
         margin-bottom: utility.px-to-rem(20px);
         padding-left: utility.px-to-rem(15px);
         padding-right: utility.px-to-rem(15px);
@@ -26,14 +30,11 @@
         }
     }
 
-    .head-wrap {
-        padding: 0;
-        margin: 0 0 utility.px-to-rem(49px);
-        width: 100%;
-
-        position: relative;
-
-        @include utility.horizontal-shadow-after(2rem);
+    .heading-wrapper {
+        @include utility.margin-x-center;
+        @include theme.content-width-by-breakpoint(
+            $width-add: utility.px-to-rem(-30px)
+        );
     }
 
     h2 {
@@ -42,8 +43,8 @@
         font-size: theme.$blog-h2-font-size;
         font-weight: 600;
 
-        padding: 0;
         margin: 0;
+        padding: utility.px-to-rem(40px) 0 0;
 
         // below the h2 text, create a horizontal line matching its length
         &::after {

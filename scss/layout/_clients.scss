@@ -3,12 +3,14 @@
 
 #clients {
     @include utility.hide-section-heading;
-    @include utility.badge-row;
     @include utility.horizontal-shadow-within(2rem);
-    height: utility.px-to-rem(70px);
 
-    margin-top: 0;
-    padding: utility.px-to-rem(55px) 0 0;
+    .wrapper {
+        @include utility.badge-row;
+        height: utility.px-to-rem(70px);
+        margin-top: 0;
+        padding: utility.px-to-rem(55px) 0 0;
+    }
 
     .badge {
         @include utility.colour-on-hover;

@@ -17,7 +17,7 @@
 
         // -50 view width positions element far enough left that it'll
         // always reach past left edge of viewport
-        left: -50vw;
+        left: 0;
         bottom: -1 * $height;
         height: $height;
         width: 150vw;
@@ -37,11 +37,9 @@
 
         position: absolute;
 
-        // -50 view width positions element far enough left that it'll
-        // always reach past left edge of viewport
-        left: -50vw;
+        left: 0;
         top: 0;
         height: $height;
-        width: 150vw;
+        width: 100%;
     }
 }
