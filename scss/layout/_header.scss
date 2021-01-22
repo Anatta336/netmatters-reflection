@@ -444,7 +444,6 @@ header {
             padding-left: 20px;
 
             input {
-                @include utility.rounded-corners-left;
                 display: block;
 
                 &:focus {
