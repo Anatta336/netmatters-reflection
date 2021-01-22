@@ -158,7 +158,7 @@ header {
         align-items: center;
 
         box-sizing: border-box;
-        width: utility.px-to-rem(63px);
+        width: utility.px-to-rem(64px);
         height: utility.px-to-rem(56px);
         background-color: theme.$primary;
         border: none;
@@ -172,7 +172,7 @@ header {
             display: block;
             text-transform: uppercase;
             font-size: theme.$header-menu-size;
-            padding: utility.px-to-rem(7px) 0 0;
+            padding: utility.px-to-rem(6px) 0 0;
             margin: 0;
         }
 
@@ -247,7 +247,7 @@ header {
     }
     .hamburger-icon {
         position: relative;
-        margin: utility.px-to-rem(8px) 0;
+        margin: utility.px-to-rem(10px) 0 utility.px-to-rem(8px);
     }
     .hamburger-icon::before {
         position: absolute;
