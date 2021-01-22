@@ -19,4 +19,3 @@ Assuming you already have [npm](https://www.npmjs.com/get-npm) and [Dart Sass](h
 * Repeated styles should be in `/utility`.
 * Readily changed settings such as colours, font sizes, and icon choices should be in `/theme` 
 * Aim for consistency across browsers rather than recreating any differences between browsers in the original site.
-* 
