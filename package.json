@@ -2,14 +2,21 @@
   "name": "netmatters-home-reflection",
   "version": "0.1.0",
   "description": "A learning project created as part of the Netmatters SCS training programme.",
-  "main": "index.js",
+  "private": true,
   "dependencies": {
+    "@glidejs/glide": "^3.4.1",
     "normalize.css": "^8.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "sass": "^1.32.6",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "sass scss:public/css"
+    "prepare": "(sass src/scss:dist/css) & (webpack --config .webpack.config.js)",
+    "watch": "concurrently \"webpack --config .webpack.config.js --watch\" \"sass src/scss:dist/css --watch\" --kill-others-on-fail"
   },
   "repository": {
     "type": "git",
