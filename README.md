@@ -9,7 +9,7 @@ Opening `public/index.html` locally in a web browser should display the page cor
 If hosting, the `public` directory and its subdirectories should be made available.
 
 ## Building
-Assuming you already have [npm](https://www.npmjs.com/get-npm) and [Dart Sass](https://sass-lang.com/) installed on your machine, navigate to the root directory of the project and run the command
+Assuming you already have [npm](https://www.npmjs.com/get-npm) and [Dart Sass](https://sass-lang.com/) installed on your machine, navigate to the root directory of the project and run the command:
 ```
 npm install
 ```
