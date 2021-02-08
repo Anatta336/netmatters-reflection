@@ -218,26 +218,87 @@
 
         <!-- hero image carousel -->
         <section id="hero-carousel" class="glide">
-            <div data-glide-el="track" class="glide__track">
-            <ul class="glide__slides">
-                <li class="glide__slide">
-                    <div class="hero-image">
-                    <div class="wrapper">
-                        <h2>Web Design</h2>
-                        <p>For businesses looking to make a strong<br>and effective first impression.</p>
-                        <a class="call-to-action" href="https://www.netmatters.co.uk/web-design">Find out more</a>
-                    </div>
-                    </div>
-                </li>
-            </ul>
+            <div class="hiddenIfNoScript">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        <li class="glide__slide">
+                            <div class="hero-image web-design">
+                            <div class="wrapper">
+                                <h2>Web Design</h2>
+                                <p>For businesses looking to make a strong<br>and effective first impression.</p>
+                                <a class="call-to-action" href="https://www.netmatters.co.uk/web-design">Find out more</a>
+                            </div>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="hero-image it-support">
+                            <div class="wrapper">
+                                <h2>IT Support</h2>
+                                <p>Fast and cost-effective IT support<br>services for your business.</p>
+                                <a class="call-to-action" href="https://www.netmatters.co.uk/it-support">Find out more</a>
+                            </div>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="hero-image telecoms-services">
+                            <div class="wrapper">
+                                <h2>Telecoms Services</h2>
+                                <p>A new approach to connectivity, see how<br>we can help your business.</p>
+                                <a class="call-to-action" href="https://www.netmatters.co.uk/telecoms-services">Find out more</a>
+                            </div>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="hero-image bespoke-software">
+                            <div class="wrapper">
+                                <h2>Bespoke Software</h2>
+                                <p>Bring your business together<br>with solutions that grow with you.</p>
+                                <a class="call-to-action" href="https://www.netmatters.co.uk/bespoke-software">Find out more</a>
+                            </div>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="hero-image digital-marketing">
+                            <div class="wrapper">
+                                <h2>Digital Marketing</h2>
+                                <p>Generating you new business through<br>results-driven marketing activities.</p>
+                                <a class="call-to-action" href="https://www.netmatters.co.uk/digital-marketing">See how we can help you</a>
+                            </div>
+                            </div>
+                        </li>
+                        <li class="glide__slide">
+                            <div class="hero-image cyber-security">
+                            <div class="wrapper">
+                                <h2>Cyber Security</h2>
+                                <p>Keeping businesses and their customers&rsquo;<br>sensitive information protected.</p>
+                                <a class="call-to-action" href="https://www.netmatters.co.uk/cyber-security">Find out more</a>
+                            </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="glide__bullets" data-glide-el="controls[nav]">
+                    <!-- -1 tab index prevents a user needing to tab through these  -->
+                    <button class="glide__bullet" data-glide-dir="=0" tabindex="-1"></button>
+                    <button class="glide__bullet" data-glide-dir="=1" tabindex="-1"></button>
+                    <button class="glide__bullet" data-glide-dir="=2" tabindex="-1"></button>
+                    <button class="glide__bullet" data-glide-dir="=3" tabindex="-1"></button>
+                    <button class="glide__bullet" data-glide-dir="=4" tabindex="-1"></button>
+                    <button class="glide__bullet" data-glide-dir="=5" tabindex="-1"></button>
+                </div>
             </div>
-            <div class="glide__bullets" data-glide-el="controls[nav]">
-                <button class="glide__bullet" data-glide-dir="=0"></button>
-                <button class="glide__bullet" data-glide-dir="=1"></button>
-                <button class="glide__bullet" data-glide-dir="=2"></button>
-            </div>
-        </section>
 
+            <!-- if there's no JS available, show a static version of just the first slide -->
+            <noscript>
+            <div class="hero-image web-design">
+                <div class="wrapper">
+                    <h2>Web Design</h2>
+                    <p>For businesses looking to make a strong<br>and effective first impression.</p>
+                    <a class="call-to-action" href="https://www.netmatters.co.uk/web-design">Find out more</a>
+                </div>
+            </div>
+            </noscript>
+        </section>
     </div> <!-- class="first-container" -->
 
     <!-- services offered -->

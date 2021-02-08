@@ -2,16 +2,68 @@
 @use "../theme";
 @use "../utility";
 
+$bullet-size: 11px;
+$selected-ring-offset: 6px;
+
 #hero-carousel {
     // vertically fill the parent, which is expected to be .first-container
     box-sizing: border-box;
-    // height: 100%;
     flex-grow: 1;
 
+    .hiddenIfNoScript,
     .glide__track,
     .glide__slides {
         height: 100%;
         padding: 0;
         margin: 0;
+    }
+    
+    .glide__bullets {
+        position: absolute;
+        z-index: 2;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: inline-flex;
+        list-style: none;
+    }
+
+    .glide__bullet {
+        @include utility.oval;
+        background-color: rgba(#fff, 0.5);
+        width: $bullet-size;
+        height: $bullet-size;
+        margin: 0 10px;
+        padding: 0;
+        border: none;
+
+        // to be position anchor for the ring when active
+        position: relative;
+
+        &:hover {
+            background-color: #869791;
+        }
+        &:focus-visible {
+            outline: none;
+        }
+
+        &.glide__bullet--active {
+            background-color: #fff;
+            // shouldn't have any hover effect
+
+            &::after {
+                @include utility.oval;
+                content: "";
+                display: block;
+                border: 2px solid #fff;
+
+                // stretch this element out to be centred on its parent
+                position: absolute;
+                left: $selected-ring-offset * -1;
+                right: $selected-ring-offset * -1;
+                top: $selected-ring-offset * -1;
+                bottom: $selected-ring-offset * -1;
+            }
+        }
     }
 }

@@ -5,13 +5,32 @@
 // A large image with text and a call to action button overlaid.
 // The image has a gradient overlaid on it to aid text legibility.
 .hero-image {
-    // at mobile breakpoint gradient overlay never reaches full transparency
+
+    // show a background image in the "hero image" style, defaulting to the web-design image
     @include utility.hero-image-background(
-        (
-            linear-gradient(to right, black, transparent 175%),
-            url("../img/carousel/carousel-web-design.jpg")
-        ), #472e3c
+        $image: (linear-gradient(to right, black, transparent 175%),
+                url("../img/carousel/web-design.jpg")),
+        $fallback-colour: #472e3c
     );
+
+    @each $service-name in theme.$services-in-hero-carousel {
+        &.#{$service-name} {
+            // for each service name generate a rule to set a unique image
+            // at mobile breakpoint gradient overlay never reaches full transparency
+            background-image: 
+                linear-gradient(to right, black, transparent 175%),
+                url("../img/carousel/#{$service-name}.jpg");
+            
+            // colour the call to action button to match the service on this slide
+            .call-to-action {
+                background-color: theme.get-colour-for-service($service-name);
+
+                &:hover {
+                    background-color: theme.get-sub-colour-for-service($service-name);
+                }
+            }
+        }
+    }
 
     // use flex to position child element vertically centred
     display: flex;
@@ -43,17 +62,15 @@
     
     .call-to-action {
         @include utility.button(
-            $background-colour: theme.get-colour-for-service("web-design"),
             $text-colour: theme.$primary-contrast,
             $font-size: theme.$hero-button-size,
-            $width: 14rem,
             $height: 3.8rem,
         );
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 7px 19px;
         margin: 0 auto;
-
-        &:hover {
-            background-color: theme.get-sub-colour-for-service("web-design");
-        }
 
         // generate icon after the text
         &::after {
@@ -71,11 +88,12 @@
         }
 
         // no longer need to darken right side of image, so change gradient
-        @include utility.hero-image-background(
-            (
-                linear-gradient(to right, black, transparent 75%),
-                url("../img/carousel/carousel-web-design.jpg")
-            ), #472e3c
-        );
+        @each $service-name in theme.$services-in-hero-carousel {
+            &.#{$service-name} {
+                background-image:
+                    linear-gradient(to right, black, transparent 75%),
+                    url("../img/carousel/#{$service-name}.jpg");
+            }
+        }
     }
 }
