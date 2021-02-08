@@ -9,9 +9,10 @@ Opening `public/index.html` locally in a web browser should display the page cor
 If hosting, the `public` directory and its subdirectories should be made available.
 
 ## Building
-Assuming you already have [npm](https://www.npmjs.com/get-npm) and [Dart Sass](https://sass-lang.com/) installed on your machine, execute these commands from the root directory of the project:
-* `npm update`
-* `sass scss:public/css`
+Assuming you already have [npm](https://www.npmjs.com/get-npm) and [Dart Sass](https://sass-lang.com/) installed on your machine, navigate to the root directory of the project and run the command
+```
+npm install
+```
 
 ## Principles
 * As far as possible HTML should be semantic. With an element's class name(s) describing what it is, not how it should appear.

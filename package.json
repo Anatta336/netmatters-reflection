@@ -1,0 +1,24 @@
+{
+  "name": "netmatters-home-reflection",
+  "version": "0.1.0",
+  "description": "A learning project created as part of the Netmatters SCS training programme.",
+  "main": "index.js",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "sass scss:public/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anatta336/css-html-reflection.git"
+  },
+  "author": "Sam Driver",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anatta336/css-html-reflection/issues"
+  },
+  "homepage": "https://github.com/Anatta336/css-html-reflection#readme"
+}
