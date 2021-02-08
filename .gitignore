@@ -14,3 +14,7 @@ screenshots/*
 
 # IDE config
 .vscode/*
+
+dist/js/**/*.js
+dist/css/**/*.css
+dist/css/**/*.css.map

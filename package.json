@@ -1,6 +1,6 @@
 {
   "name": "netmatters-home-reflection",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A learning project created as part of the Netmatters SCS training programme.",
   "private": true,
   "dependencies": {

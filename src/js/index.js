@@ -7,4 +7,4 @@ console.log(Glide);
 const glide = new Glide('.glide').mount();
 console.log(glide);
 
-console.log('Bye to some.');
+console.log('Goodbye.');
