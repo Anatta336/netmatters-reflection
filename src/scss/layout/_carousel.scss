@@ -1,0 +1,17 @@
+@use "../icons";
+@use "../theme";
+@use "../utility";
+
+#hero-carousel {
+    // vertically fill the parent, which is expected to be .first-container
+    box-sizing: border-box;
+    // height: 100%;
+    flex-grow: 1;
+
+    .glide__track,
+    .glide__slides {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+}

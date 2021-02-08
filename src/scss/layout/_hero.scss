@@ -4,7 +4,7 @@
 
 // A large image with text and a call to action button overlaid.
 // The image has a gradient overlaid on it to aid text legibility.
-#hero-image {
+.hero-image {
     // at mobile breakpoint gradient overlay never reaches full transparency
     @include utility.hero-image-background(
         (
@@ -18,8 +18,6 @@
     flex-direction: column;
     justify-content: center;
 
-    // vertically fill the parent, which is expected to be .first-container
-    box-sizing: border-box;
     height: 100%;
     
     color: theme.$primary-contrast;

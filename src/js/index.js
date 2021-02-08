@@ -1,10 +1,10 @@
 import Glide from '@glidejs/glide';
 
-console.log('Hello, world.');
-
-console.log(Glide);
-
-const glide = new Glide('.glide').mount();
-console.log(glide);
-
-console.log('Goodbye.');
+const glide = new Glide('.glide', {
+  type: 'carousel',
+  startAt: 0,
+  perView: 1,
+  perTouch: 1,
+  autoplay: 4500,
+  hoverpause: true,
+}).mount();
