@@ -9,3 +9,8 @@ $RECYCLE.BIN/
 
 # node_modules content should be fetched with npm, not stored in version control
 node_modules/*
+
+screenshots/*
+
+# IDE config
+.vscode/*
