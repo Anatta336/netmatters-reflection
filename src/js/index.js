@@ -1,4 +1,5 @@
 import Glide from '@glidejs/glide';
+import sideMenu from './sideMenu';
 
 // unhide anything waiting to know that JavaScript is available
 document.querySelectorAll('.hiddenIfNoScript').forEach((element) => {
@@ -15,3 +16,5 @@ const glide = new Glide('.glide', {
   hoverpause: true,
   animationDuration: 250,
 }).mount();
+
+const menu = sideMenu();

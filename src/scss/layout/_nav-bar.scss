@@ -18,6 +18,8 @@ nav {
 
     // make this the positioned anchor for .subcategories
     position: relative;
+
+    z-index: 5;
     
     background-color: theme.$primary;
     border-bottom: 1px solid theme.$nav-bar-bottom-border;

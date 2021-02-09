@@ -1,0 +1,48 @@
+
+.page-scrim-holder {
+    position: relative;
+    right: 0;
+    transition: right 500ms;
+
+    &::after {
+        content: "";
+
+        // positioned over all the content
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        
+        background: rgba(#000, 0.4);
+        
+        // initially 0 size and transparent
+        opacity: 0.0;
+        width: 0;
+        height: 0;
+    
+        // transition to this state will fade opacity and once that's done instantly change width & height
+        transition: opacity 500ms,
+            width 0ms 500ms, height 0ms 500ms;
+    }
+    
+    &.menu-open {
+        right: 350px;
+        cursor: pointer;
+        transition: right 500ms;
+    
+        &::after {
+            width: 100%;
+            height: 100%;
+    
+            opacity: 1.0;
+    
+            // transition ot this state instantly changes width & height, and fades opacity
+            transition: opacity 500ms;
+        }
+    }
+}
+
+.page-content {
+    height: 100vh;
+    overflow: auto;
+}
