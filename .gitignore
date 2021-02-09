@@ -16,5 +16,6 @@ screenshots/*
 .vscode/*
 
 dist/js/**/*.js
+dist/js/**/*.js.map
 dist/css/**/*.css
 dist/css/**/*.css.map
