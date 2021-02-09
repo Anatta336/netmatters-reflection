@@ -36,26 +36,76 @@
         outline: none;
     }
 
-    // create the menu icon from 3 small block elements
-    .hamburger-icon,
-    .hamburger-icon::before,
-    .hamburger-icon::after {
+    .hamburger-icon-whole {
+        // use as position anchor for ::before and ::after pseudo-elements
+        position: relative;
+
+        width: utility.px-to-rem(33px);
+        height: utility.px-to-rem(3px);
+
+        margin: utility.px-to-rem(10px) 0 utility.px-to-rem(8px);
+    }
+
+    // hamburger menu made up of 3 block elements
+    .hamburger-icon-top,
+    .hamburger-icon-middle,
+    .hamburger-icon-bottom {
         content: "";
         display: block;
         width: utility.px-to-rem(33px);
         height: utility.px-to-rem(3px);
         background-color: theme.$primary-contrast;
-    }
-    .hamburger-icon {
-        position: relative;
-        margin: utility.px-to-rem(10px) 0 utility.px-to-rem(8px);
-    }
-    .hamburger-icon::before {
+
+        // positioned using .hamburger-icon-whole as anchor
         position: absolute;
-        top: utility.px-to-rem(8px);
+
     }
-    .hamburger-icon::after {
-        position: absolute;
-        bottom: utility.px-to-rem(8px);
+    
+    // ---- Animation ----
+    // When menu becomes active:
+    // * top and bottom lines move to overlap middle
+    // * whole icon rotates 135 degrees and middle line rotates a further 90 degrees
+    // So the ≡ transforms into ×
+
+    $duration-translate: 100ms;
+    $duration-rotate: 300ms;
+
+    .hamburger-icon-whole {
+        // rotation transition to non-active state begins immediately
+        transition: transform $duration-rotate ease-in;
+    }
+
+    .hamburger-icon-top,
+    .hamburger-icon-bottom {
+        transition: transform $duration-translate $duration-rotate ease-in;
+    }
+    .hamburger-icon-top {
+        transform: translateY(utility.px-to-rem(-8px));
+    }
+    .hamburger-icon-bottom {
+        transform: translateY(utility.px-to-rem(8px));
+    }
+
+    .hamburger-icon-middle {
+        transition: transform $duration-rotate ease-in;
+    }
+
+    &.menu-open {
+        .hamburger-icon-whole {
+            // transition is delayed while the top and bottom move into place
+            transition: transform $duration-rotate $duration-translate ease-out;
+            transform: rotate(135deg);
+        }
+
+        .hamburger-icon-top,
+        .hamburger-icon-bottom {
+            transition: transform $duration-translate ease-out;
+            transform: translateY(0);
+        }
+
+        .hamburger-icon-middle {
+            transition: transform $duration-rotate $duration-translate ease-out;
+            transform: rotate(90deg);
+        }
     }
 }
