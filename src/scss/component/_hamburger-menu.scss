@@ -1,0 +1,61 @@
+@use "../utility";
+@use "../theme";
+
+@mixin hamburger-menu {
+    @include utility.rounded-corners;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    width: utility.px-to-rem(64px);
+    height: utility.px-to-rem(56px);
+    background-color: theme.$primary;
+    border: none;
+
+    cursor: pointer;
+
+    color: theme.$primary-contrast;
+    text-align: center;
+
+    .title {
+        display: block;
+        text-transform: uppercase;
+        font-size: theme.$header-menu-size;
+        padding: utility.px-to-rem(6px) 0 0;
+        margin: 0;
+    }
+
+    &:hover {
+        background-color: theme.$menu-button-hover;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    // create the menu icon from 3 small block elements
+    .hamburger-icon,
+    .hamburger-icon::before,
+    .hamburger-icon::after {
+        content: "";
+        display: block;
+        width: utility.px-to-rem(33px);
+        height: utility.px-to-rem(3px);
+        background-color: theme.$primary-contrast;
+    }
+    .hamburger-icon {
+        position: relative;
+        margin: utility.px-to-rem(10px) 0 utility.px-to-rem(8px);
+    }
+    .hamburger-icon::before {
+        position: absolute;
+        top: utility.px-to-rem(8px);
+    }
+    .hamburger-icon::after {
+        position: absolute;
+        bottom: utility.px-to-rem(8px);
+    }
+}
