@@ -7,22 +7,37 @@ export default function sideMenu(
   const menu = document.querySelector(menuContentSelector);
   let isMenuOpen = false;
 
+  const toInformOfMenuState = [
+    menuButton,
+    scrimHolder,
+    menu,
+  ];
+
   menuButton.addEventListener('click', onClickMenuButton);
 
+  function informOfMenuState() {
+    if (isMenuOpen) {
+      toInformOfMenuState.forEach((element) => {
+        element.classList.add('menu-open');
+      });
+    } else {
+      toInformOfMenuState.forEach((element) => {
+        element.classList.remove('menu-open');
+      });
+    }
+  }
+
   function onClickMenuButton(event) {
+    // stop propagation so it can't also trigger onClickPageWithMenuOpen
     event.stopImmediatePropagation();
     toggle();
   }
   
   function onClickPageWithMenuOpen(event) {
-    // don't allow clicks to trigger interactions on the page contents
-    // TODO: is this needed?
-    // event.preventDefault();
     hide();
   }
 
   function toggle() {
-    console.log('toggle', isMenuOpen);
     if (isMenuOpen) {
       hide();
     } else {
@@ -31,17 +46,15 @@ export default function sideMenu(
   }
 
   function show() {
-    console.log('show');
-    scrimHolder.classList.add('menu-open');
-    scrimHolder.addEventListener('click', onClickPageWithMenuOpen);
     isMenuOpen = true;
+    informOfMenuState();
+    scrimHolder.addEventListener('click', onClickPageWithMenuOpen);
   }
 
   function hide() {
-    console.log('hide');
-    scrimHolder.classList.remove('menu-open');
-    scrimHolder.removeEventListener('click', onClickPageWithMenuOpen);
     isMenuOpen = false;
+    informOfMenuState();
+    scrimHolder.removeEventListener('click', onClickPageWithMenuOpen);
   }
 
   return {

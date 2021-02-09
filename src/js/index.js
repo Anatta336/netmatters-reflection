@@ -12,7 +12,7 @@ const glide = new Glide('.glide', {
   perView: 1,
   perTouch: 1,
   gap: 0,
-  autoplay: 4500,
+  // autoplay: 4500, // TEMP!
   hoverpause: true,
   animationDuration: 250,
 }).mount();

@@ -1,14 +1,26 @@
+@use "theme";
+@use "utility";
+
+body {
+    z-index: 0;
+}
+
+$menu-width-mobile: utility.px-to-rem(275px);
+$menu-width-medium: utility.px-to-rem(350px);
+
 .page-scrim-holder {
     position: relative;
+    z-index: 1;
     right: 0;
     transition: right 500ms;
 
     &::after {
-        content: "";
+        // initially not shown
+        content: none;
 
         // positioned over all the content
         position: absolute;
-        z-index: 999;
+        z-index: 10;
         top: 0;
         left: 0;
         
@@ -25,7 +37,12 @@
     }
     
     &.menu-open {
-        right: 350px;
+        content: "";
+
+        right: $menu-width-mobile;
+        @include theme.above-breakpoint("medium") {
+            right: $menu-width-medium;
+        }
         cursor: pointer;
         transition: right 500ms;
     
@@ -44,4 +61,27 @@
 .page-content {
     height: 100vh;
     overflow: auto;
+    background: theme.$page-background;
+}
+
+.menu-content {
+    // hidden by default
+    display: none;
+    
+    &.menu-open {
+        display: block;
+    }
+    
+    z-index: 0;
+    height: 100vh;
+    overflow: auto;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $menu-width-mobile;
+    @include theme.above-breakpoint("medium") {
+        width: $menu-width-medium;
+    }
+
 }
