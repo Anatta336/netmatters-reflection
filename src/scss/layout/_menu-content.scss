@@ -5,6 +5,13 @@
 $menu-header-font-size: 1.125rem;
 $menu-content-font-size: 1rem;
 
+$dark-faint: rgba(#000, 0.25);
+$light-faint: rgba(#fff, 0.05);
+
+$menu-light-border: 1px solid rgba(#fff, 0.10);
+$menu-dark-border: 1px solid rgba(#000, 0.25);
+$menu-darker-border: 1px solid rgba(#000, 0.45);
+
 .menu-content {
     box-sizing: border-box;
     background-color: #333645;
@@ -23,7 +30,8 @@ $menu-content-font-size: 1rem;
             display: none;
         }
 
-        padding: 0 utility.px-to-rem(21px);
+        padding: 0 utility.px-to-rem(21px) utility.px-to-rem(21px);
+        border-bottom: $menu-dark-border;
 
         & > li {
             padding: utility.px-to-rem(20px) 0 0;
@@ -31,7 +39,7 @@ $menu-content-font-size: 1rem;
 
         // category-head gets highlighted when it or any of its sub-links is hovered over
         li:hover a.category-head {
-            background-color: rgba(#fff, 0.05);
+            background-color: $light-faint;
         }
 
         a {
@@ -49,13 +57,13 @@ $menu-content-font-size: 1rem;
             font-size: $menu-header-font-size;
             
             padding: utility.px-to-rem(19px) 0 utility.px-to-rem(18px);
-            outline: 1px solid rgba(#000, 0.25);
-            border: 1px solid rgba(#fff, 0.10);
+            outline: $menu-dark-border;
+            border: $menu-light-border;
             
 
             background-color: transparent;
             &:hover {
-                background-color: rgba(#fff, 0.05);
+                background-color: $light-faint;
             }
         }
 
@@ -97,7 +105,7 @@ $menu-content-font-size: 1rem;
         .category-list {
             @include utility.rounded-corners;
             margin-top: utility.px-to-rem(20px);
-            background-color: rgba(#000, 0.25);
+            background-color: $dark-faint;
 
             a {
                 padding: utility.px-to-rem(10px) 0;
@@ -107,10 +115,10 @@ $menu-content-font-size: 1rem;
                 box-sizing: border-box;
             }
             li:not(:first-of-type) {
-                border-top: 1px solid rgba(#fff, 0.05);
+                border-top: $menu-light-border;
             }
             li:not(:last-of-type) {
-                border-bottom: 1px solid rgba(#000, 0.45);
+                border-bottom: $menu-darker-border;
             }
         }
     }
@@ -125,11 +133,43 @@ $menu-content-font-size: 1rem;
             font-size: $menu-content-font-size;
             line-height: 1;
         }
+        
+        // first layer of lists are the section headers
+        & > li {
+            border-top: $menu-light-border;
+            border-bottom: $menu-dark-border;
+            box-sizing: border-box;
+
+            &:hover > a {
+                background-color: $light-faint;
+            }
+        }
+
+        // second layer of lists are the section contents
+        li li {
+            border-top: $menu-dark-border;
+
+            a {
+                border-top: 1px solid $light-faint;
+                background-color: $dark-faint;
+
+                font-size: 0.875rem;
+                padding: utility.px-to-rem(15px) utility.px-to-rem(20px);
+                line-height: 1.42857143;
+
+                box-sizing: border-box;
+
+                &::before {
+                    content: "\BB";
+                    padding-right: utility.px-to-rem(19px);
+                }
+            }
+        }
 
         .support {
             // hide this one item at larger screen sizes
             @include theme.above-breakpoint("medium") {
-                // display: none; // TEMP: disabled to more easily check styling
+                display: none;
             }
         }
     }
