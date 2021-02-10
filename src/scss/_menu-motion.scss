@@ -69,6 +69,10 @@ $duration-menu-open: 500ms;
     height: 100vh;
     overflow: auto;
 
+    // although doesn't change width when menu opens/closes, the page content does still
+    // use its transition duration during resize between breakpoints. So do the same here.
+    transition: width $duration-menu-open;
+
     position: absolute;
     right: 0;
     top: 0;
