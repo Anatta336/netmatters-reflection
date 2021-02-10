@@ -2,6 +2,135 @@
 @use "../theme";
 @use "../utility";
 
+$menu-header-font-size: 1.125rem;
+$menu-content-font-size: 1rem;
+
 .menu-content {
+    box-sizing: border-box;
+    background-color: #333645;
+
+    line-height: 1.42857143;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu-services {
+        // hide this part of the menu at larger screen sizes
+        @include theme.above-breakpoint("medium") {
+            display: none;
+        }
+
+        padding: 0 utility.px-to-rem(21px);
+
+        & > li {
+            padding: utility.px-to-rem(20px) 0 0;
+        }
+
+        // category-head gets highlighted when it or any of its sub-links is hovered over
+        li:hover a.category-head {
+            background-color: rgba(#fff, 0.05);
+        }
+
+        a {
+            display: block;
+            
+            text-decoration: none;
+            color: theme.$primary-contrast;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        a.contact-us,
+        a.category-head {
+            @include utility.rounded-corners;
+            
+            font-size: $menu-header-font-size;
+            
+            padding: utility.px-to-rem(19px) 0 utility.px-to-rem(18px);
+            outline: 1px solid rgba(#000, 0.25);
+            border: 1px solid rgba(#fff, 0.10);
+            
+
+            background-color: transparent;
+            &:hover {
+                background-color: rgba(#fff, 0.05);
+            }
+        }
+
+        // insert icon to match the service type of each category
+        @each $service-name, $service-icon in theme.$service-icons {
+            .#{$service-name} a.category-head {
+                &::before {
+                    @include icons.icon(icons.icon-unicode-from-name($service-icon), 1.3rem);
+                
+                    text-align: center;
+                    line-height: 1.2;
+                    
+                    display: block;
+                    padding-bottom: 0.4em;
+
+                    color: theme.get-colour-for-service($service-name);
+                }
+            }
+        }
+
+        h2 {
+            font-size: theme.$nav-bar-category-size;
+            text-align: center;
+            color: theme.$primary-contrast;
+            text-transform: uppercase;
+            line-height: 1.0;
+
+            margin: 0;
+            padding: 0 0 utility.px-to-rem(4px);
+
+            .first {
+                // use block display to place on a separate line
+                display: block;
+                font-size: theme.$nav-bar-category-size-first-line;
+                padding: utility.px-to-rem(2px) 0 utility.px-to-rem(7px);
+            }
+        }
+
+        .category-list {
+            @include utility.rounded-corners;
+            margin-top: utility.px-to-rem(20px);
+            background-color: rgba(#000, 0.25);
+
+            a {
+                padding: utility.px-to-rem(10px) 0;
+            }
+
+            li {
+                box-sizing: border-box;
+            }
+            li:not(:first-of-type) {
+                border-top: 1px solid rgba(#fff, 0.05);
+            }
+            li:not(:last-of-type) {
+                border-bottom: 1px solid rgba(#000, 0.45);
+            }
+        }
+    }
     
+    .menu-navigation {
+        a {
+            display: block;
+            color: theme.$primary-contrast;
+            padding: utility.px-to-rem(20px);
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: $menu-content-font-size;
+            line-height: 1;
+        }
+
+        .support {
+            // hide this one item at larger screen sizes
+            @include theme.above-breakpoint("medium") {
+                // display: none; // TEMP: disabled to more easily check styling
+            }
+        }
+    }
 }

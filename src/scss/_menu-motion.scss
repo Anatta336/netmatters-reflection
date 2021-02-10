@@ -2,11 +2,13 @@
 @use "utility";
 
 body {
+    // start a new stacking context, within which will be .page-scrim-holder and .menu-content
     z-index: 0;
 }
 
 $menu-width-mobile: utility.px-to-rem(275px);
 $menu-width-medium: utility.px-to-rem(350px);
+$duration-menu-open: 500ms;
 
 .page-scrim-holder {
     position: relative;
@@ -15,12 +17,11 @@ $menu-width-medium: utility.px-to-rem(350px);
     transition: right 500ms;
 
     &::after {
-        // initially not shown
-        content: none;
+        content: "";
 
         // positioned over all the content
         position: absolute;
-        z-index: 10;
+        z-index: 1;
         top: 0;
         left: 0;
         
@@ -32,20 +33,19 @@ $menu-width-medium: utility.px-to-rem(350px);
         height: 0;
     
         // transition to this state will fade opacity and once that's done instantly change width & height
-        transition: opacity 500ms,
-            width 0ms 500ms, height 0ms 500ms;
+        transition: opacity $duration-menu-open,
+            width 0ms $duration-menu-open, height 0ms $duration-menu-open;
     }
     
     &.menu-open {
-        content: "";
-
+        
         right: $menu-width-mobile;
         @include theme.above-breakpoint("medium") {
             right: $menu-width-medium;
         }
         cursor: pointer;
-        transition: right 500ms;
-    
+        transition: right $duration-menu-open;
+        
         &::after {
             width: 100%;
             height: 100%;
@@ -53,7 +53,7 @@ $menu-width-medium: utility.px-to-rem(350px);
             opacity: 1.0;
     
             // transition to this state instantly changes width & height, and fades opacity
-            transition: opacity 500ms;
+            transition: opacity $duration-menu-open;
         }
     }
 }
@@ -65,13 +65,6 @@ $menu-width-medium: utility.px-to-rem(350px);
 }
 
 .menu-content {
-    // hidden by default
-    display: none;
-    
-    &.menu-open {
-        display: block;
-    }
-    
     z-index: 0;
     height: 100vh;
     overflow: auto;
@@ -83,5 +76,4 @@ $menu-width-medium: utility.px-to-rem(350px);
     @include theme.above-breakpoint("medium") {
         width: $menu-width-medium;
     }
-
 }
