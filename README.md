@@ -4,9 +4,9 @@
 This is a learning project created as part of the *Netmatters Ltd.* SCS training scheme.
 
 ## Usage
-Opening `public/index.html` locally in a web browser should display the page correctly.
+Opening `dist/index.html` locally in a web browser should display the page correctly. Note that by default Chrome will not store cookies from pages loaded through `file://` so some functionality may not work.
 
-If hosting, the `public` directory and its subdirectories should be made available.
+If hosting, the `dist` directory and its subdirectories should be made available.
 
 ## Building
 Assuming you already have [npm](https://www.npmjs.com/get-npm) installed on your machine, navigate to the root directory of the project and run the command:
@@ -14,7 +14,7 @@ Assuming you already have [npm](https://www.npmjs.com/get-npm) installed on your
 npm install
 ```
 
-If you're working on files in `./src` and want the project to automatically be rebuilt with those changes you can run:
+If you're working on files in `src` and want the project to automatically be rebuilt with those changes you can run:
 ```
 npm run watch
 ```
