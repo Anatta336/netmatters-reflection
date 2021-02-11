@@ -1,0 +1,127 @@
+@use "../theme";
+@use "../utility";
+
+$cookie-modal-scrim: rgba(#000, 0.7);
+$cookie-modal-background: #fff;
+
+$modal-header-size: 1.625rem;
+$modal-header-line-colour: #e5e5e5;
+$modal-body-size: 1rem;
+$modal-body-colour: #666;
+
+$modal-primary-button-colour: #926fb1;
+$modal-primary-button-hover-colour: #7e57a0;
+
+$modal-button-font-size: utility.px-to-rem(17px);
+
+.cookie-check {
+    // hidden by default
+    display: none;
+
+    // completely cover the screen
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 10;
+    background-color: $cookie-modal-scrim;
+
+    overflow-y: auto;
+
+    .wrapper {
+        width: 100%;
+        height: 100%;
+
+        box-sizing: border-box;
+        padding: utility.px-to-rem(30px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content {
+        background-color: $cookie-modal-background;
+        flex-shrink: 0;
+        margin: auto;
+
+        @include theme.above-breakpoint('small') {
+            width: utility.px-to-rem(600px);
+        }
+
+        h2 {
+            color: theme.$primary;
+            font-size: $modal-header-size;
+            margin: 0;
+            // padding: utility.px-to-rem(20px) utility.px-to-rem(20px) utility.px-to-rem(19px);
+            padding: utility.px-to-rem(18px);
+
+            border-bottom: 1px solid $modal-header-line-colour;
+        }
+
+        p {
+            color: $modal-body-colour;
+            font-size: $modal-body-size;
+            line-height: 1.875rem;
+
+            padding: utility.px-to-rem(20px);
+            margin: 0;
+
+            &:not(:first-of-type) {
+                padding-top: utility.px-to-rem(5px);
+            }
+        }
+    
+        .buttons {
+            border-top: 1px solid $modal-header-line-colour;
+            padding: utility.px-to-rem(19px) utility.px-to-rem(20px) utility.px-to-rem(20px);
+
+            @include theme.above-breakpoint('small') {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .button {
+            @include utility.button(
+                $background-colour: theme.$secondary-button-colour,
+                $text-colour: theme.$primary-contrast,
+                $font-size: $modal-button-font-size,
+                $width: auto,
+                $height: utility.px-to-rem(47px)
+            );
+
+            @include theme.above-breakpoint('small') {
+                width: utility.px-to-rem(265px);
+            }
+
+            &:hover {
+                background-color: theme.$secondary-button-hover-colour;
+            }
+
+            &:first-of-type {
+                margin-bottom: utility.px-to-rem(30px);
+
+                @include theme.above-breakpoint('small') {
+                    margin-bottom: 0;
+                }
+            }
+
+            &.primary {
+                background-color: $modal-primary-button-colour;
+
+                &:hover {
+                    background-color: $modal-primary-button-hover-colour;
+                }
+            }
+        }
+
+
+    }
+}
+
+
+
