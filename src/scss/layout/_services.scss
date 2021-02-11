@@ -6,7 +6,7 @@
 // for both width and height.
 $icon-background-size: utility.px-to-rem(60px);
 
-#services {
+.services {
     @include utility.hide-section-heading;
 
     box-sizing: border-box;

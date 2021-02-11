@@ -10,7 +10,6 @@ export default function cookies() {
     document.cookie = `${permissionName}=true; SameSite=Strict; max-age=${secondsInAYear}`;
   }
 
-
   /**
    * Checks if the user has already accepted the use of cookies for this site.
    * @returns {boolean} True if a permission cookie for this site has already been stored.

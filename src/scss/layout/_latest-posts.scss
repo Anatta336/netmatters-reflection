@@ -3,7 +3,7 @@
 
 // Latest posts section consists of a series of article previews.
 // Those previews are positioned using a wrapping flex layout.
-#latest-posts {
+.latest-posts {
     .wrapper {
         @include utility.horizontal-shadow-within(2rem);
         padding-top: utility.px-to-rem(40px);

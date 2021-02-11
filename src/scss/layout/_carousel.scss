@@ -5,7 +5,7 @@
 $bullet-size: 11px;
 $selected-ring-offset: 6px;
 
-#hero-carousel {
+.hero-carousel {
     // vertically fill the parent, which is expected to be .first-container
     box-sizing: border-box;
     flex-grow: 1;

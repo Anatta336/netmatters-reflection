@@ -1,7 +1,7 @@
 @use "../utility";
 @use "../theme";
 
-#accreditations {
+.accreditations {
     @include utility.hide-section-heading;
     @include utility.badge-row;
 

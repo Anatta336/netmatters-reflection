@@ -1,7 +1,7 @@
 @use "../utility";
 @use "../theme";
 
-#clients {
+.clients {
     @include utility.hide-section-heading;
     @include utility.horizontal-shadow-within(2rem);
 
