@@ -18,6 +18,10 @@ $selected-ring-offset: 6px;
         margin: 0;
     }
     
+    .glide__slides {
+        will-change: auto;
+    }
+
     .glide__bullets {
         position: absolute;
         z-index: 2;
