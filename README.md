@@ -3,11 +3,6 @@
 ## About
 This is a learning project created as part of the *Netmatters Ltd.* SCS training scheme.
 
-## Usage
-Opening `dist/index.html` locally in a web browser should display the page correctly. Note that by default Chrome will not store cookies from pages loaded through `file://` so some functionality may not work.
-
-If hosting, the `dist` directory and its subdirectories should be made available.
-
 ## Building
 Assuming you already have [npm](https://www.npmjs.com/get-npm) installed on your machine, navigate to the root directory of the project and run the command:
 ```
@@ -18,6 +13,11 @@ If you're working on files in `src` and want the project to automatically be reb
 ```
 npm run watch
 ```
+
+## Usage
+Opening `dist/index.html` locally in a web browser should display the page correctly. Note that by default Chrome will not store cookies from pages loaded through `file://` so some functionality may not work.
+
+If hosting, the `dist` directory and its subdirectories should be made available.
 
 ## Principles
 * As far as possible HTML should be semantic. With an element's class name(s) describing what it is, not how it should appear.
