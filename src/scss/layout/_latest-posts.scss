@@ -35,6 +35,11 @@
         @include theme.content-width-by-breakpoint(
             $width-add: utility.px-to-rem(-30px)
         );
+
+        padding-left: utility.px-to-rem(15px);
+        @include theme.above-breakpoint("small") {
+            padding-left: 0;
+        }
     }
 
     h2 {
