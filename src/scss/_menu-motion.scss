@@ -60,7 +60,8 @@ $duration-menu-open: 500ms;
 
 .page-content {
     height: 100vh;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     background: theme.$page-background;
 }
 
