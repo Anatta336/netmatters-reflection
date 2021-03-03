@@ -1,0 +1,16 @@
+@use '../theme';
+
+.sticky-header {
+    width: 100vw;
+    background-color: theme.$page-background;
+    
+    z-index: 10;
+    
+    &.sticky-active {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        box-shadow: 0 0 #000 5px 20px;
+    }
+}

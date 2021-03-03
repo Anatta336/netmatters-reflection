@@ -1,6 +1,7 @@
 import Glide from '@glidejs/glide';
 import cookies from './cookies';
 import sideMenu from './sideMenu';
+import stickyHeader from './stickyHeader';
 
 // unhide anything waiting to know that JavaScript is available
 document.querySelectorAll('.hidden-if-no-script').forEach((element) => {
@@ -19,6 +20,10 @@ const glide = new Glide('.glide', {
 }).mount();
 
 const menu = sideMenu();
+const header = stickyHeader(
+  document.querySelector('.page-content'),
+  document.querySelector('.sticky-header')
+);
 
 const permission = cookies();
 

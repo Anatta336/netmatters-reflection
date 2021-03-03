@@ -1,7 +1,8 @@
 export default function sideMenu(
-  menuButtonSelector = '.hamburger-menu',
-  scrimHolderSelector = '.page-scrim-holder',
-  menuContentSelector = '.menu-content') {
+    menuButtonSelector = '.hamburger-menu',
+    scrimHolderSelector = '.page-scrim-holder',
+    menuContentSelector = '.menu-content',
+  ) {
   const menuButton = document.querySelector(menuButtonSelector);
   const scrimHolder = document.querySelector(scrimHolderSelector);
   const menu = document.querySelector(menuContentSelector);
