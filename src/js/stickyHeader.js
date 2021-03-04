@@ -1,13 +1,24 @@
 /**
- * Makes the given header element behave as a sticky header
- * within the scrollingElement.
- * @param {HTMLElement} scrollingElement 
- * @param {HTMLElement} header 
+ * Makes the given header element behave as a "peeking" header,
+ * which appears at the top of the screen whenever the user scrolls up.
+ * @param {HTMLElement} header The header that should be shown at the top of the screen.
+ * @param {HTMLElement} scrollingElement The element to monitor for scroll events.
+ * @param {HTMLElement} cloneHolder An element that will hold the cloned version of the header.
+ * @param {string} cloneClassName Class to add to the cloned version of the header.
  */
 export default function stickyHeader(
-    scrollingElement,
     header,
+    scrollingElement,
+    cloneHolder,
+    cloneClassName,
   ) {
+
+  /**
+   * @type {HTMLElement} Deep cloned version of the header
+   */
+  const clonedHeader = header.cloneNode(true);
+  clonedHeader.classList.add(cloneClassName);
+  cloneHolder.appendChild(clonedHeader);
 
   const replacementDiv = document.createElement('div');
   replacementDiv.style.height = header.clientHeight + "px";
@@ -26,16 +37,22 @@ export default function stickyHeader(
     prevScrollTop = scrollingElement.scrollTop;
   });
 
+  let isActive = false;
+
   function makeActive() {
-    header.classList.add('sticky-active');
-    headerContainer.prepend(replacementDiv);
+    if (isActive) {
+      return;
+    }
+
+
   }
 
   function makeInactive() {
-    header.classList.remove('sticky-active');
-    if (replacementDiv.parentNode && replacementDiv.parentNode === headerContainer) {
-      headerContainer.removeChild(replacementDiv);
+    if (!isActive) {
+      return;
     }
+
+
   }
 
   return {

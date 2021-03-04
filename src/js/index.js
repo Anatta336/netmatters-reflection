@@ -21,8 +21,10 @@ const glide = new Glide('.glide', {
 
 const menu = sideMenu();
 const header = stickyHeader(
+  document.querySelector('.sticky-header'),
   document.querySelector('.page-content'),
-  document.querySelector('.sticky-header')
+  document.querySelector('.header-clone-holder'),
+  'cloned-header'
 );
 
 const permission = cookies();
