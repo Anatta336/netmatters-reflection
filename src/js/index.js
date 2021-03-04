@@ -19,19 +19,28 @@ const glide = new Glide('.glide', {
   animationDuration: 250,
 }).mount();
 
-const menu = sideMenu();
 const header = stickyHeader(
   document.querySelector('.sticky-header'),
   document.querySelector('.page-content'),
-  document.querySelector('.header-clone-holder'),
+  document.querySelector('.page-holder'),
   'cloned-header'
 );
+
+// sideMenu must be called after stickyHeader, as stickyHeader generates an extra menu button
+const menu = sideMenu(
+  document.querySelectorAll('.hamburger-menu'),
+  document.querySelector('.page-holder'),
+);
+
+menu.addInformOnMenuOpen(document.querySelector('.menu-content'));
+menu.addInformOnMenuOpen(document.querySelector('.cloned-header'));
+
 
 const permission = cookies();
 
 // check if user has previously accepted the use of cookies
 if (!permission.checkForPermissionCookie()) {
-  // if user hasn't yet accepted cookies, display the .cookie.check modal (was hidden by default in CSS)
+  // if user hasn't yet accepted cookies, display the .cookie-check modal (was hidden by default in CSS)
   const cookieModal = document.querySelector('.cookie-check');
   cookieModal.style.display = 'block';
 
