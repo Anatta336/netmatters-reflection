@@ -29,8 +29,8 @@
     "build-assets": "copyfiles -u 1 \"assets/**/*\" \"dist\"",
     "watch-css": "sass src/scss:dist/css --watch",
     "watch-js": "webpack --config .webpack.config.js --watch",
-    "watch-html": "onchange \"src/*.html\" -- npm run html",
-    "watch-assets": "onchange \"assets/**/*\" -- npm run assets",
+    "watch-html": "onchange \"src/*.html\" -- npm run build-html",
+    "watch-assets": "onchange \"assets/**/*\" -- npm run build-assets",
     "watch": "concurrently --kill-others-on-fail \"npm:watch-*\"",
     "prepare": "concurrently \"npm:build-*\""
   },
