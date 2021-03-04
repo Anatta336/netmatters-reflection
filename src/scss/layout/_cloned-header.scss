@@ -1,0 +1,38 @@
+@use '../theme';
+@use '../utility';
+@use '../menu-motion';
+
+$scrollbar-width: utility.px-to-rem(17px);
+
+.cloned-header {
+    background-color: theme.$page-background;
+
+    position: fixed;
+    z-index: 10;
+
+    // when not active, move out of view
+    top: -100%;
+    left: 0;
+
+    // leave space for the scroll bar
+    right: $scrollbar-width;
+
+    // box-shadow: 0 0 #000 5px 20px;
+
+    transition: top 400ms,
+        left menu-motion.$duration-menu-open,
+        right menu-motion.$duration-menu-open;
+
+    &.menu-open {
+        right: menu-motion.$menu-width-mobile + $scrollbar-width;
+        left: -1 * menu-motion.$menu-width-mobile;
+        @include theme.above-breakpoint("medium") {
+            right: menu-motion.$menu-width-medium + $scrollbar-width;
+            left: -1 * menu-motion.$menu-width-medium;
+        }
+    }
+
+    &.header-active {
+        top: 0;
+    }
+}

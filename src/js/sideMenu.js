@@ -1,29 +1,49 @@
+/**
+ * 
+ * @param {NodeListOf<HTMLElement>} menuButtons 
+ * @param {HTMLElement} scrimHolder
+ */
 export default function sideMenu(
-  menuButtonSelector = '.hamburger-menu',
-  scrimHolderSelector = '.page-scrim-holder',
-  menuContentSelector = '.menu-content') {
-  const menuButton = document.querySelector(menuButtonSelector);
-  const scrimHolder = document.querySelector(scrimHolderSelector);
-  const menu = document.querySelector(menuContentSelector);
+    menuButtons,
+    scrimHolder,
+  ) {
   let isMenuOpen = false;
 
-  const toInformOfMenuState = [
-    menuButton,
-    scrimHolder,
-    menu,
-  ];
+  const menuOpenClassName = 'menu-open';
 
-  menuButton.addEventListener('click', onClickMenuButton);
+  /**
+   * Array of elements that will be given the menu-open class when the menu is open.
+   * @type {Array<HTMLElement>}
+   */
+  const toInformOfMenuState = [];
+  addInformOnMenuOpen(scrimHolder);
+  menuButtons.forEach(menuButton => {
+    addInformOnMenuOpen(menuButton);
+  });
 
-  function informOfMenuState() {
+  menuButtons.forEach(menuButton => {
+    menuButton.addEventListener('click', onClickMenuButton);
+  })
+
+  /**
+   * Broadcast menu state to all elements by setting their class.
+   */
+  function broadcastMenuState() {
+    toInformOfMenuState.forEach(element => {
+      updateMenuOpenClass(element);
+    });
+  }
+
+  /**
+   * Add or remove menu-open class to an element depending on whether the menu
+   * is currently open.
+   * @param {HTMLElement} element Element to set the class on.
+   */
+  function updateMenuOpenClass(element) {
     if (isMenuOpen) {
-      toInformOfMenuState.forEach((element) => {
-        element.classList.add('menu-open');
-      });
+      element.classList.add(menuOpenClassName);
     } else {
-      toInformOfMenuState.forEach((element) => {
-        element.classList.remove('menu-open');
-      });
+      element.classList.remove(menuOpenClassName);
     }
   }
 
@@ -47,19 +67,32 @@ export default function sideMenu(
 
   function show() {
     isMenuOpen = true;
-    informOfMenuState();
+    broadcastMenuState();
     scrimHolder.addEventListener('click', onClickPageWithMenuOpen);
   }
 
   function hide() {
     isMenuOpen = false;
-    informOfMenuState();
+    broadcastMenuState();
     scrimHolder.removeEventListener('click', onClickPageWithMenuOpen);
+  }
+
+  /**
+   * Adds element to have the menu-open class set whenwhen the menu is open.
+   * @param {HTMLElement} element Element that will be given the menu-open class when the menu is open.
+   */
+  function addInformOnMenuOpen(element) {
+    // apply current state
+    updateMenuOpenClass(element);
+
+    // inform of future changes
+    toInformOfMenuState.push(element);
   }
 
   return {
     toggle,
     show,
-    hide
+    hide,
+    addInformOnMenuOpen,
   };
 };
