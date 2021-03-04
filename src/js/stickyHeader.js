@@ -4,17 +4,19 @@
  * @param {HTMLElement} header The header that should be shown at the top of the screen.
  * @param {HTMLElement} scrollingElement The element to monitor for scroll events.
  * @param {HTMLElement} cloneHolder An element that will hold the cloned version of the header.
- * @param {string} cloneClassName Class to add to the cloned version of the header.
  */
 export default function stickyHeader(
     header,
     scrollingElement,
     cloneHolder,
-    cloneClassName,
   ) {
 
+  const activeClassName = 'header-active';
+  const cloneClassName = 'cloned-header';
+
   /**
-   * @type {HTMLElement} Deep cloned version of the header
+   * Deep cloned copy of the header, which is displayed when user scrolls upwards.
+   * @type {HTMLElement}
    */
   const clonedHeader = header.cloneNode(true);
   clonedHeader.classList.add(cloneClassName);
@@ -23,15 +25,12 @@ export default function stickyHeader(
   const replacementDiv = document.createElement('div');
   replacementDiv.style.height = header.clientHeight + "px";
 
-  const headerContainer = header.parentNode;
-
   let prevScrollTop = 0;
   scrollingElement.addEventListener('scroll', function(event) {
-    if (scrollingElement.scrollTop <= prevScrollTop) {
-      // scrolling up or stationary
+    if (scrollingElement.scrollTop <= prevScrollTop
+      && scrollingElement.scrollTop > header.clientHeight) {
       makeActive();
     } else {
-      // scrolling down
       makeInactive();
     }
     prevScrollTop = scrollingElement.scrollTop;
@@ -44,7 +43,8 @@ export default function stickyHeader(
       return;
     }
 
-
+    isActive = true;
+    clonedHeader.classList.add(activeClassName);
   }
 
   function makeInactive() {
@@ -52,7 +52,8 @@ export default function stickyHeader(
       return;
     }
 
-
+    isActive = false;
+    clonedHeader.classList.remove(activeClassName);
   }
 
   return {

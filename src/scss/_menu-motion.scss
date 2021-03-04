@@ -2,7 +2,7 @@
 @use "utility";
 
 body {
-    // start a new stacking context, within which will be .page-scrim-holder and .menu-content
+    // start a new stacking context, within which will be .page-holder and .menu-content
     z-index: 0;
 }
 
@@ -10,7 +10,7 @@ $menu-width-mobile: utility.px-to-rem(275px);
 $menu-width-medium: utility.px-to-rem(350px);
 $duration-menu-open: 500ms;
 
-.page-scrim-holder {
+.page-holder {
     position: relative;
     z-index: 1;
     right: 0;
@@ -60,7 +60,7 @@ $duration-menu-open: 500ms;
 
 .page-content {
     height: 100vh;
-    position:relative;
+    position: relative;
     overflow-x: hidden;
     overflow-y: auto;
     background: theme.$page-background;

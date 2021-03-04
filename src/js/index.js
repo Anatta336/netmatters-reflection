@@ -23,7 +23,6 @@ const header = stickyHeader(
   document.querySelector('.sticky-header'),
   document.querySelector('.page-content'),
   document.querySelector('.page-holder'),
-  'cloned-header'
 );
 
 // sideMenu must be called after stickyHeader, as stickyHeader generates an extra menu button
