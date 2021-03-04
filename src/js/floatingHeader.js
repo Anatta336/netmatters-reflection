@@ -5,7 +5,7 @@
  * @param {HTMLElement} scrollingElement The element to monitor for scroll events.
  * @param {HTMLElement} cloneHolder An element that will hold the cloned version of the header.
  */
-export default function stickyHeader(
+export default function floatingHeader(
     header,
     scrollingElement,
     cloneHolder,

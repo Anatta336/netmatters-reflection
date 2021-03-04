@@ -1,7 +1,7 @@
 import Glide from '@glidejs/glide';
 import cookies from './cookies';
 import sideMenu from './sideMenu';
-import stickyHeader from './stickyHeader';
+import floatingHeader from './floatingHeader';
 
 // unhide anything waiting to know that JavaScript is available
 document.querySelectorAll('.hidden-if-no-script').forEach((element) => {
@@ -19,13 +19,13 @@ const glide = new Glide('.glide', {
   animationDuration: 250,
 }).mount();
 
-const header = stickyHeader(
+const header = floatingHeader(
   document.querySelector('.sticky-header'),
   document.querySelector('.page-content'),
   document.querySelector('.page-holder'),
 );
 
-// sideMenu must be called after stickyHeader, as stickyHeader generates an extra menu button
+// sideMenu must be called after floatingHeader, as floatingHeader generates an extra menu button
 const menu = sideMenu(
   document.querySelectorAll('.hamburger-menu'),
   document.querySelector('.page-holder'),
