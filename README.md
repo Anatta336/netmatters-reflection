@@ -9,13 +9,18 @@ Assuming you already have [npm](https://www.npmjs.com/get-npm) installed on your
 npm install
 ```
 
-If you're working on files in `src` and want the project to automatically be rebuilt with those changes you can run:
+If you're working on files in `src` or checking out a commit and want the project to automatically be rebuilt with those changes you can run:
 ```
 npm run watch
 ```
 
+To manually trigger a rebuild of the project's `dist/` directory without `npm install` you can run:
+```
+npm run prepare
+```
+
 ## Usage
-Opening `dist/index.html` locally in a web browser should display the page correctly. Note that by default Chrome will not store cookies from pages loaded through `file://` so some functionality may not work.
+After building, opening `dist/index.html` locally in a web browser should display the page correctly. Note that by default Chrome will not store cookies from pages loaded through `file://` so some functionality may not work.
 
 If hosting, the `dist` directory and its subdirectories should be made available.
 

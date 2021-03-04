@@ -15,7 +15,5 @@ screenshots/*
 # IDE config
 .vscode/*
 
-dist/js/**/*.js
-dist/js/**/*.js.map
-dist/css/**/*.css
-dist/css/**/*.css.map
+# the whole dist directory will be built locally, not stored in version control
+dist/*
