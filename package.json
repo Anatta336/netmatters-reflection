@@ -23,17 +23,14 @@
   "main": "src/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-
     "build-css": "sass src/scss:dist/css",
     "build-js": "webpack --config .webpack.config.js",
     "build-html": "copyfiles -u 1 \"src/*.html\" \"dist\"",
     "build-assets": "copyfiles -u 1 \"assets/**/*\" \"dist\"",
-
     "watch-css": "sass src/scss:dist/css --watch",
     "watch-js": "webpack --config .webpack.config.js --watch",
     "watch-html": "onchange \"src/*.html\" -- npm run html",
     "watch-assets": "onchange \"assets/**/*\" -- npm run assets",
-
     "watch": "concurrently --kill-others-on-fail \"npm:watch-*\"",
     "prepare": "concurrently \"npm:build-*\""
   },
