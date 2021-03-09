@@ -23,8 +23,15 @@ class SQLiteDatabase implements DatabaseInterface
         }
     }
 
-    public function getPDO(): \PDO
+    public function fetchResults(string $sqlQuery, ...$values): array
     {
-       return $this->pdo;
+        $statement = $this->pdo->prepare($sqlQuery);
+
+        for ($i = 0; $i < count($values); $i++) {
+            $statement->bindValue($i + 1, $values[$i]);
+        }
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
