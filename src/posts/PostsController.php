@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
-namespace Netmatters;
+namespace Netmatters\Posts;
+
+use Netmatters\Database\DatabaseInterface;
 
 class PostsController
 {
@@ -8,8 +10,7 @@ class PostsController
 
     function __construct(DatabaseInterface $database)
     {
-        $this->model = new PostsModel($database);
-        $this->view = new PostsView();
+
     }
 
     public function getHTMLForLatestPostsPreviews(): string

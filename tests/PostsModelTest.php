@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
-use Netmatters\DatabaseInterface;
-use Netmatters\PostsModel;
+use Netmatters\Database\DatabaseInterface;
+use Netmatters\Posts\PostsModel;
 use PHPUnit\Framework\TestCase;
 
 class PostsModelTest extends TestCase
@@ -49,21 +49,21 @@ class PostsModelTest extends TestCase
     public function testReturnsOneResult(): void
     {
         $model = new PostsModel($this->databaseStub);
-        $recentPosts = $model->getRecentPosts(1);
+        $recentPosts = $model->getRecentPostsArray(1);
         $this->assertSame([$this->data[3]], $recentPosts);
     }
 
     public function testReturnsTwoResults(): void
     {
         $model = new PostsModel($this->databaseStub);
-        $recentPosts = $model->getRecentPosts(2);
+        $recentPosts = $model->getRecentPostsArray(2);
         $this->assertSame([$this->data[3], $this->data[0]], $recentPosts);
     }
 
     public function testReturnsThreeResults(): void
     {
         $model = new PostsModel($this->databaseStub);
-        $recentPosts = $model->getRecentPosts(3);
+        $recentPosts = $model->getRecentPostsArray(3);
         $this->assertSame([$this->data[3], $this->data[0], $this->data[1]], $recentPosts);
     }
 }

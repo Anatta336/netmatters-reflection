@@ -1,5 +1,5 @@
 <?php
-namespace Netmatters;
+namespace Netmatters\Database;
 
 class SQLiteDatabase implements DatabaseInterface
 {

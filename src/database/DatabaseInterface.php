@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-namespace Netmatters;
+namespace Netmatters\Database;
 
 interface DatabaseInterface
 {
