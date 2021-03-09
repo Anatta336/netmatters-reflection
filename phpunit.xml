@@ -1,0 +1,26 @@
+<phpunit
+    bootstrap="vendor/autoload.php"
+    colors="true"
+>
+    <logging>
+        <testdoxHtml outputFile="tests/log/testdox.html"/>
+        <testdoxText outputFile="tests/log/testdox.txt"/>
+    </logging>
+<!--
+    <coverage cacheDirectory="tests/cache"
+        includeUncoveredFiles="true"
+        processUncoveredFiles="true"
+        pathCoverage="false"
+        ignoreDeprecatedCodeUnits="true"
+        disableCodeCoverageIgnore="true"
+    >
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+        <report>
+            <html outputDirectory="tests/log/coverage-report" lowUpperBound="50" highLowerBound="90"/>
+            <text outputFile="tests/log/coverage.txt" showUncoveredFiles="true" showOnlySummary="true"/>
+        </report>
+    </coverage>
+    -->
+</phpunit>

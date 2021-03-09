@@ -34,6 +34,13 @@ The URL stored for an image doesn't include a file extension, as generally both 
 
 ## SQLite3 CLI
 With several assumptions.
+
+cmd
 ```
 $ "C:\Program Files\sqlite3\sqlite3.exe" db\netmatters.db
+```
+
+powershell:
+```
+& 'C:\Program Files\sqlite3\sqlite3.exe' db\netmatters.db
 ```

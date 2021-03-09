@@ -22,7 +22,7 @@
   ],
   "main": "src/js/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": ".\\vendor\\bin\\phpunit tests",
     "build-css": "sass src/scss:dist/css",
     "build-js": "webpack --config .webpack.config.js",
     "build-php": "copyfiles -u 1 \"src/**/*.php\" \"dist\"",
@@ -32,7 +32,7 @@
     "watch-php": "onchange \"src/**/*.php\" -- npm run build-php",
     "watch-assets": "onchange \"assets/**/*\" -- npm run build-assets",
     "watch": "concurrently --kill-others-on-fail \"npm:watch-*\"",
-    "prepare": "concurrently \"npm:build-*\""
+    "prepare": "concurrently \"npm:build-*\" \"composer install\""
   },
   "repository": {
     "type": "git",

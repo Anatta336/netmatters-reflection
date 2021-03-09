@@ -7,13 +7,21 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# node_modules content should be fetched with npm, not stored in version control
+# node_modules content should be fetched with npm
 node_modules/*
+
+# vendor content should be fetched with composer
+vendor/*
 
 screenshots/*
 
 # IDE config
 .vscode/*
 
-# the whole dist directory will be built locally, not stored in version control
+# the whole dist directory will be built locally
 dist/*
+
+# cache and output from tests
+tests/cache/*
+tests/log/*
+.phpunit.result.cache
