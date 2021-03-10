@@ -5,7 +5,7 @@ class ImageView
 {
     public function pictureHtml(Image $image, string $urlStart, string $altText): string
     {
-        $result = "<picture>";
+        $result = "<picture>\n";
         foreach ($image->getExtensions() as $extension) {
             $result .= "<source srcset=\""
                 . $urlStart . $image->getImageUrl() . "." . $extension->getExtension()
