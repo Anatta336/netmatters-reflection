@@ -2,6 +2,7 @@
 namespace Netmatters\Posts;
 
 use DateTime;
+use Netmatters\Images\Image;
 
 /**
  * Immutable data object for a single post.
@@ -16,15 +17,15 @@ class Post
     private string $typeName;
     private string $typeSlug;
     private string $posterName;
-    private string $posterImageUrl;
+    private Image $headerImage;
     private string $contentShort;
-    private string $imageUrl;
+    private Image $posterImage;
 
     function __construct(string $title, string $slug, DateTime $date,
         string $categoryName, string $categorySlug,
         string $typeName, string $typeSlug,
-        string $posterName, string $posterImageUrl,
-        string $contentShort, string $imageUrl)
+        string $posterName, Image $posterImage,
+        string $contentShort, Image $headerImage)
     {
         $this->title = $title;
         $this->slug = $slug;
@@ -34,9 +35,9 @@ class Post
         $this->typeName = $typeName;
         $this->typeSlug = $typeSlug;
         $this->posterName = $posterName;
-        $this->posterImageUrl = $posterImageUrl;
+        $this->posterImage = $posterImage;
         $this->contentShort = $contentShort;
-        $this->imageUrl = $imageUrl;
+        $this->headerImage = $headerImage;
     }
 
     public function getTitle(): string
@@ -71,16 +72,16 @@ class Post
     {
         return $this->posterName;
     }
-    public function getPosterImageUrl(): string
+    public function getPosterImage(): Image
     {
-        return $this->posterImageUrl;
+        return $this->posterImage;
     }
     public function getContentShort(): string
     {
         return $this->contentShort;
     }
-    public function getImageUrl(): string
+    public function getHeaderImage(): Image
     {
-        return $this->imageUrl;
+        return $this->headerImage;
     }
 }

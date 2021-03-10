@@ -2,14 +2,22 @@
 namespace Netmatters\Posts;
 
 use Netmatters\Database\DatabaseInterface;
+use Netmatters\Images\ImagesModel;
 
 class PostsModel
 {
     protected DatabaseInterface $database;
+    protected ImagesModel $imagesModel;
+    protected PostFactory $postFactory;
 
-    function __construct(DatabaseInterface $database)
+    function __construct(
+        DatabaseInterface $database,
+        ImagesModel $imagesModel,
+        PostFactory $postFactory)
     {
         $this->database = $database;
+        $this->imagesModel = $imagesModel;
+        $this->postFactory = $postFactory;
     }
 
     public function getRecentPostsArray(int $count): array
@@ -17,13 +25,13 @@ class PostsModel
         $sql = "SELECT post.slug AS slug, post.title AS title,
                     post.postedDate AS postedDate,
                     post.contentShort AS contentShort,
-                    post.headImageUrl AS imageUrl,
+                    post.headImageId AS headerImageId,
                     category.name AS categoryName,
                     category.slug AS categorySlug,
                     postType.name AS typeName,
                     postType.slug AS typeSlug,
                     poster.name AS posterName,
-                    poster.imageUrl AS posterImageUrl
+                    poster.imageId AS posterImageId
                 FROM post
                 JOIN category ON post.categoryId = category.id
                 JOIN postType ON post.typeId = postType.id
@@ -33,7 +41,6 @@ class PostsModel
         return $this->database->fetchResults($sql, $count);
     }
 
-    
     /**
      * Retrieves the most recent posts.
      * @param int $count How many posts to fetch.
@@ -41,9 +48,30 @@ class PostsModel
      */
     public function getRecentPosts(int $count): array
     {
-        return array_map(function ($postData) {
-            return PostFactory::createFromArray($postData);
-        }, $this->getRecentPostsArray($count));
+        $posts = [];
+        foreach ($this->getRecentPostsArray($count) as $postData) {
+            if (!isset($postData['headerImageId'])) {
+                // TODO: log warning
+                echo "no header image id";
+                continue;
+            }
+            $headerImage = $this->imagesModel
+                ->getImageById((int)$postData['headerImageId']);
+
+            if (!isset($postData['posterImageId'])) {
+                // TODO: log warning
+                echo "no poster image id";
+                continue;
+            }
+            $posterImage = $this->imagesModel
+                ->getImageById((int)$postData['posterImageId']);
+
+            $post = $this->postFactory->createFromResults(
+                $postData, $headerImage, $posterImage);
+            array_push($posts, $post);
+        }
+
+        return $posts;
     }
 }
 

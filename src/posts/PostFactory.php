@@ -2,23 +2,27 @@
 namespace Netmatters\Posts;
 
 use DateTime;
+use Netmatters\Images\Image;
 
 class PostFactory
 {
-    public static function createFromArray(array $array): Post
+    public function createFromResults(
+        array $results,
+        Image $headerImage,
+        Image $posterImage): Post
     {
         return new Post(
-            $array['title'],
-            $array['slug'],
-            new DateTime($array['postedDate']),
-            $array['categoryName'],
-            $array['categorySlug'],
-            $array['typeName'],
-            $array['typeSlug'],
-            $array['posterName'],
-            $array['posterImageUrl'],
-            $array['contentShort'],
-            $array['imageUrl']
+            $results['title'],
+            $results['slug'],
+            new DateTime($results['postedDate']),
+            $results['categoryName'],
+            $results['categorySlug'],
+            $results['typeName'],
+            $results['typeSlug'],
+            $results['posterName'],
+            $posterImage,
+            $results['contentShort'],
+            $headerImage,
         );
     }
 }
