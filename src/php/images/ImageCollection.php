@@ -49,4 +49,9 @@ class ImageCollection
         
         return $this->images[$id] === $image;
     }
+
+    public function count(): int 
+    {
+        return count($this->images);
+    }
 }

@@ -74,5 +74,4 @@ class ImageTest extends TestCase
         $image = new Image(123, "\" onload=\"alert(1);\"", [$this->jpg], $this->jpg);
         $this->assertSame('&quot; onload=&quot;alert(1);&quot;', $image->getImageUrl());
     }
-    
 }
