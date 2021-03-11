@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 use Netmatters\Database\SQLiteDatabase;
-use Netmatters\Images\ExtensionCollection;
+use Netmatters\Images\Extensions\ExtensionCollection;
 use Netmatters\Images\ImageFactory;
 use Netmatters\Images\ImagesModel;
 use Netmatters\Posts\PostFactory;

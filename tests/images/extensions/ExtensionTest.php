@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Netmatters\Images\Extension;
+use Netmatters\Images\Extensions\Extension;
 use PHPUnit\Framework\TestCase;
 
 class ExtensionTest extends TestCase

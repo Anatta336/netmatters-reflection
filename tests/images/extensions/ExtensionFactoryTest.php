@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
-use Netmatters\Images\Extension;
-use Netmatters\Images\ExtensionFactory;
+use Netmatters\Images\Extensions\Extension;
+use Netmatters\Images\Extensions\ExtensionFactory;
 use PHPUnit\Framework\TestCase;
 
 class ExtensionFactoryTest extends TestCase

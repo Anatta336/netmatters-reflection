@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Netmatters\Images\Extension;
+use Netmatters\Images\Extensions\Extension;
 use Netmatters\Images\ImageView;
 use Netmatters\Images\Image;
 use PHPUnit\Framework\TestCase;

@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-namespace Netmatters\Images;
+namespace Netmatters\Images\Extensions;
 
 class ExtensionFactory
 {

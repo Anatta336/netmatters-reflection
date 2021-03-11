@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
-use Netmatters\Images\Extension;
-use Netmatters\Images\ExtensionCollection;
+use Netmatters\Images\Extensions\Extension;
+use Netmatters\Images\Extensions\ExtensionCollection;
 use PHPUnit\Framework\TestCase;
 
 class ExtensionCollectionTest extends TestCase

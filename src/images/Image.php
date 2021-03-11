@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 namespace Netmatters\Images;
 
+use Netmatters\Images\Extensions\Extension;
+
 /**
  * Immutable data object for an image available in one more more formats.
  */

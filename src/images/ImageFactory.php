@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
 namespace Netmatters\Images;
 
+use Netmatters\Images\Extensions\ExtensionCollection;
+use Netmatters\Images\Extensions\ExtensionFactory;
+
 class ImageFactory
 {
     private ExtensionCollection $extensionCollection;
