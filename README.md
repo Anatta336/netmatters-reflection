@@ -14,7 +14,7 @@ If you're working on files in `src` or checking out a commit and want the projec
 $ npm run watch
 ```
 
-To manually trigger a rebuild of the project's `dist/` directory without `npm install` you can run:
+To manually trigger a rebuild of the project's `public/` directory without `npm install` you can run:
 ```
 $ npm run prepare
 ```
@@ -22,7 +22,7 @@ $ npm run prepare
 ## Usage
 After building, start a local server using:
 ```
-$ php -S localhost:8000 -t dist/
+$ php -S localhost:8000 -t public/
 ```
 
 You should then be able to access the site by loading `http://localhost:8000/` in a web browser.
