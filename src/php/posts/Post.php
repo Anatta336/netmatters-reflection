@@ -27,16 +27,16 @@ class Post
         string $posterName, Image $posterImage,
         string $contentShort, Image $headerImage)
     {
-        $this->title = $title;
-        $this->slug = $slug;
+        $this->title = htmlspecialchars($title, ENT_QUOTES);
+        $this->slug = htmlspecialchars($slug, ENT_QUOTES);
         $this->date = $date;
-        $this->categoryName = $categoryName;
-        $this->categorySlug = $categorySlug;
-        $this->typeName = $typeName;
-        $this->typeSlug = $typeSlug;
-        $this->posterName = $posterName;
+        $this->categoryName = htmlspecialchars($categoryName, ENT_QUOTES);
+        $this->categorySlug = htmlspecialchars($categorySlug, ENT_QUOTES);
+        $this->typeName = htmlspecialchars($typeName, ENT_QUOTES);
+        $this->typeSlug = htmlspecialchars($typeSlug, ENT_QUOTES);
+        $this->posterName = htmlspecialchars($posterName, ENT_QUOTES);
         $this->posterImage = $posterImage;
-        $this->contentShort = $contentShort;
+        $this->contentShort = htmlspecialchars($contentShort, ENT_QUOTES);
         $this->headerImage = $headerImage;
     }
 

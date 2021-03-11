@@ -15,7 +15,7 @@ class PostsView
     }
     public function setCategoryUrlStart(string $value): string
     {
-        $this->categoryUrlStart = $value;
+        $this->categoryUrlStart = htmlspecialchars($value, ENT_QUOTES);
         return $this->categoryUrlStart;
     }
 
@@ -25,7 +25,7 @@ class PostsView
     }
     public function setArticleUrlStart(string $value): string
     {
-        $this->articleUrlStart = $value;
+        $this->articleUrlStart = htmlspecialchars($value, ENT_QUOTES);
         return $this->articleUrlStart;
     }
 
@@ -35,7 +35,7 @@ class PostsView
     }
     public function setImageUrlStart(string $value): string
     {
-        $this->imageUrlStart = $value;
+        $this->imageUrlStart = htmlspecialchars($value, ENT_QUOTES);
         return $this->imageUrlStart;
     }
 

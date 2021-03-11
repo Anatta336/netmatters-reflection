@@ -22,7 +22,7 @@ class Image
         array $extensions, Extension $defaultExtension)
     {
         $this->id = $id;
-        $this->imageUrl = $imageUrl;
+        $this->imageUrl = htmlspecialchars($imageUrl, ENT_QUOTES);
         $this->extensions = $extensions;
         $this->defaultExtension = $defaultExtension;
     }

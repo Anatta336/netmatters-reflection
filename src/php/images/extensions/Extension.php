@@ -13,8 +13,8 @@ class Extension
     function __construct(int $id, string $extension, string $pictureType)
     {
         $this->id = $id;
-        $this->extension = $extension;
-        $this->pictureType = $pictureType;
+        $this->extension = htmlspecialchars($extension, ENT_QUOTES);
+        $this->pictureType = htmlspecialchars($pictureType, ENT_QUOTES);
     }
 
     public function getId(): int
