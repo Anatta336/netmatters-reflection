@@ -46,8 +46,8 @@ One for each type of post. e.g. news, careers, guides, etc.
 * extensionId - INTEGER
 * isDefault - BOOLEAN - true if this should be the "fallback" version of the image, should work in as many browsers as possible and provide reasonable image quality.
 
-## SQL to create and populate
-Note that because the `post` table uses foreign key constraints, the other tables should be populated first. Similarly `image`, `extension`, then `imageHasExtension` should be populated before the other tables.
+## SQL to create and populate with sample data
+Note that because the `post` table uses foreign key constraints, the other tables should be populated first. Similarly `image`, `extension`, then `imageHasExtension` should be populated before the other tables. Running the commands in the order listed here will satisfy foreign key constraints.
 
 ### Image
 ```sql

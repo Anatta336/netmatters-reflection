@@ -18,8 +18,8 @@ screenshots/*
 # IDE config
 .vscode/*
 
-# the whole dist directory will be built locally
-dist/*
+# the whole public directory will be built locally
+public/*
 
 # cache and output from tests
 tests/cache/*
