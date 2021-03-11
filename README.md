@@ -19,6 +19,16 @@ To manually trigger a rebuild of the project's `public/` directory without `npm 
 $ npm run prepare
 ```
 
+## Testing
+To run the unit tests:
+```
+$ npm test
+```
+
+Results can be found in `tests/log/`
+
+A coverage report will be available at `tests/log/coverage-report/index.html`
+
 ## Usage
 After building, start a local server using:
 ```

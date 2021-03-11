@@ -22,5 +22,5 @@
             <text outputFile="tests/log/coverage.txt" showUncoveredFiles="true" showOnlySummary="true"/>
         </report>
     </coverage>
-    -->
+-->
 </phpunit>
