@@ -6,7 +6,8 @@ use PHPUnit\Framework\TestCase;
 
 class ExtensionViewTest extends TestCase
 {
-    protected function createStubExtension($id, $extension, $pictureType): Extension
+    protected function createStubExtension(
+        int $id, string $extension, string $pictureType): Extension
     {
         $stub = $this->createStub(Extension::class);
         $stub->method('getId')->willReturn($id);
@@ -14,7 +15,7 @@ class ExtensionViewTest extends TestCase
         $stub->method('getPictureType')->willReturn($pictureType);
         return $stub;
     }
-
+    
     public function testCreateHtmlSourceElement(): void
     {
         $extension = $this->createStubExtension(1, '.png', 'image/png');
@@ -54,5 +55,20 @@ class ExtensionViewTest extends TestCase
         $outputOne = ExtensionView::htmlSourceElement('img/myPicture', $extensionOne);
         $outputTwo = ExtensionView::htmlSourceElement('img/myPicture', $extensionTwo);
         $this->assertSame($outputOne, $outputTwo);
+    }
+
+    public function testImageUrlCannotBreakOutOfAttributeSingleQuote(): void
+    {
+        $extension = $this->createStubExtension(1, '.png', 'image/png');
+        $actual = ExtensionView::htmlSourceElement("img/myPicture.png' onload='alert(1);'", $extension);
+        $expected = '<source srcset="img/myPicture.png&#039; onload=&#039;alert(1);&#039;.png" type="image/png">' . "\n";
+        $this->assertSame($expected, $actual);
+    }
+    public function testImageUrlCannotBreakOutOfAttributeDoubleQuote(): void
+    {
+        $extension = $this->createStubExtension(1, '.png', 'image/png');
+        $actual = ExtensionView::htmlSourceElement("img/myPicture.png\" onload=\"alert(1);\"", $extension);
+        $expected = '<source srcset="img/myPicture.png&quot; onload=&quot;alert(1);&quot;.png" type="image/png">' . "\n";
+        $this->assertSame($expected, $actual);
     }
 }
