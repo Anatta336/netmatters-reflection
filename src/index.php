@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require 'inc/head.php' ?>
+<?php include 'partials/head.html' ?>
 <body>
-    <?php require 'inc/cookieCheck.php' ?>
+    <?php include 'partials/cookieCheck.html' ?>
     <div class="page-holder">
         <div class="page-content">
             <div class="first-container">
                 <div class="sticky-header">
-                    <?php require 'inc/header.php' ?>
-                    <?php require 'inc/navigationBar.php' ?>
+                    <?php
+                    include 'partials/header.html';
+                    include 'partials/navigationBar.html';
+                    ?>
                 </div>
-                <?php require 'inc/heroCarousel.php' ?>
+                <?php include 'partials/heroCarousel.html' ?>
             </div>
-            <?php require 'inc/services.php' ?>
-            <?php require 'inc/about.php' ?>
-            <?php require 'inc/latestPosts.php' ?>
-            <?php require 'inc/clients.php' ?>
-            <?php require 'inc/footer.php' ?>
-            <?php require 'inc/accreditations.php' ?>
+            <?php
+            include 'partials/services.html';
+            include 'partials/about.html';
+            include 'views/latestPosts.php';
+            include 'partials/clients.html';
+            include 'partials/footer.html';
+            include 'partials/accreditations.html';
+            ?>
         </div>
     </div>
-    <?php require 'inc/menuContent.php' ?>
+    <?php include 'partials/menuContent.html' ?>
 </body>
 </html>

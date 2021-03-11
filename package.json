@@ -26,10 +26,12 @@
     "build-css": "sass src/scss:dist/css",
     "build-js": "webpack --config .webpack.config.js",
     "build-php": "copyfiles -u 1 \"src/**/*.php\" \"dist\"",
+    "build-html": "copyfiles -u 1 \"src/**/*.html\" \"dist\"",
     "build-assets": "copyfiles -u 1 \"assets/**/*\" \"dist\"",
     "watch-css": "sass src/scss:dist/css --watch",
     "watch-js": "webpack --config .webpack.config.js --watch",
     "watch-php": "onchange \"src/**/*.php\" -- npm run build-php",
+    "watch-html": "onchange \"src/**/*.html\" -- npm run build-html",
     "watch-assets": "onchange \"assets/**/*\" -- npm run build-assets",
     "watch": "concurrently --kill-others-on-fail \"npm:watch-*\"",
     "prepare": "concurrently \"npm:build-*\" \"composer install\""
