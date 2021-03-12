@@ -26,110 +26,140 @@ section.contact {
         }
     }
 
+    .content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
     form {
         max-width: utility.px-to-rem(400px);
         padding: 0 16px;
-    }
-
-    .error {
-        // initially hidden, but revealed if the "show" class is added
-        display: none;
-        &.show {
-            display: block;
-        }
-        
-        margin-top: 0;
-        margin-bottom: 16px;
-        padding: 6px;
-        background-color: theme.$error-colour;
-        border-left: 3px solid theme.$error-colour-accent;
-    }
-
-    fieldset {
-        border: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-    }
-
-    legend {
-        display: block;
-        margin-bottom: 16px;
-        margin-left: -6px;
-    }
-
-    label {
-        cursor: pointer;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin-bottom: 16px;
-    }
-
-    .user-message label {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    input[type="text"],
-    input[type="email"],
-    textarea {
-        @include utility.rounded-corners;
-        
-        border: 1px solid rgb(204, 204, 204);
-        padding: 3px;
-        flex-grow: 1;
-        
-        &:focus,
-        &:focus-visible {
-            outline: none;
-            border-color: theme.$focus-colour;
-            box-shadow: 0 0 10px 0 theme.$focus-colour;
-        }
-    }
-
-    input[type="text"],
-    input[type="email"] {
-        margin-left: 6px;
-        width: 40px;
-        height: 1.8rem;
-    }
-
-    textarea {
-        box-sizing: border-box;
-        margin: 0;
-        margin-top: 6px;
-        width: 100%;
-        resize: vertical;
-    }
-
-    .checkbox {
-        label {
-            @include component.checkmark(
-                $background: #fff,
-                $border-colour: rgb(51, 54, 69),
-                $tick-colour: rgb(51, 54, 69),
-                $focus-colour: #000,
-                $checkbox-size: utility.px-to-rem(26px),
-                $border-thickness: 3px,
-                $tick-thickness: 2px
-            );
-        }
-        input[type="checkbox"] {
+        .error {
+            // initially hidden, but revealed if the "show" class is added
             display: none;
+            &.show {
+                display: block;
+            }
+            
+            margin-top: 0;
+            margin-bottom: 16px;
+            padding: 6px;
+            background-color: theme.$error-colour;
+            border-left: 3px solid theme.$error-colour-accent;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        legend {
+            display: block;
+            margin: 0;
+            margin-bottom: 16px;
+        }
+
+        label {
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .user-message label {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            @include utility.rounded-corners;
+            
+            border: 1px solid rgb(204, 204, 204);
+            padding: 3px;
+            flex-grow: 1;
+            
+            &:focus,
+            &:focus-visible {
+                outline: none;
+                border-color: theme.$focus-colour;
+                box-shadow: 0 0 10px 0 theme.$focus-colour;
+            }
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            margin-left: 6px;
+            width: 40px;
+            height: 1.8rem;
+        }
+
+        textarea {
+            box-sizing: border-box;
+            margin: 0;
+            margin-top: 6px;
+            width: 100%;
+            resize: vertical;
+        }
+
+        .checkbox {
+            label {
+                @include component.checkmark(
+                    $background: #fff,
+                    $border-colour: rgb(51, 54, 69),
+                    $tick-colour: rgb(51, 54, 69),
+                    $focus-colour: #000,
+                    $checkbox-size: utility.px-to-rem(26px),
+                    $border-thickness: 3px,
+                    $tick-thickness: 2px
+                );
+            }
+            input[type="checkbox"] {
+                display: none;
+            }
+        }
+
+        input[type="submit"] {
+            @include utility.button(
+                $background-colour: theme.$primary,
+                $text-colour: theme.$primary-contrast,
+                $font-size: theme.$services-button-size,
+                $width: 8rem,
+                $height: 3rem,
+            );
+            border: none;
+            margin-bottom: 16px;
         }
     }
 
-    input[type="submit"] {
-        @include utility.button(
-            $background-colour: theme.$primary,
-            $text-colour: theme.$primary-contrast,
-            $font-size: theme.$services-button-size,
-            $width: 8rem,
-            $height: 3rem,
-        );
-        border: none;
-        margin-bottom: 16px;
+    .contact-details {
+        font-size: theme.$about-heading-size;
+
+        a {
+            display: block;
+            color: theme.$link-colour;
+            text-decoration: none;
+            font-weight: 600;
+
+            margin-bottom: 32px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        h3,
+        .business-hours {
+            font-size: theme.$about-para-size;
+            margin: 0;
+            margin-bottom: 6px;
+        }
     }
 }

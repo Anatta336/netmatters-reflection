@@ -25,13 +25,25 @@ $formView = new FormView();
                 include __DIR__ . '/../src/partials/navigationBar.html';
                 ?>
             </div>
-            <?php
-            $formResults->dump();
-            ?>
             <section class="contact">
                 <div class="wrapper">
                     <h2>Contact Us</h2>
-                    <?= $formView->htmlForm($formResults) ?>
+                    <div class="content">
+                        <?= $formView->htmlForm($formResults) ?>
+                        <div class="contact-details">
+                            <h3>Call us on:</h3>
+                            <a href="tel:01603704020">01603 70 40 20</a>
+                            
+                            <h3>Email us on:</h3>
+                            <a href="mailto:sales@netmatters.com">sales@netmatters.com</a>
+                            
+                            <h3>Call us at our Gorleston branch on:</h3>
+                            <a href="tel:01493603204">01493 603204</a>
+                            
+                            <h3>Business hours:</h3>
+                            <p class="business-hours">Monday - Friday 07:00 - 18:00</p>
+                        </div>
+                    </div>
                 </div>
             </section>
             <?php
