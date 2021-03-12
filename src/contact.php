@@ -1,5 +1,15 @@
 <?php declare(strict_types=1);
+
+use Netmatters\Contact\FormResults;
+use Netmatters\Contact\FormView;
+
 require_once __DIR__ . '/../vendor/autoload.php';
+
+// retrieve data from the form
+$formResults = new FormResults();
+$formResults->receiveFromPost();
+
+$formView = new FormView();
 
 ?>
 <!DOCTYPE html>
@@ -15,10 +25,13 @@ require_once __DIR__ . '/../vendor/autoload.php';
                 include __DIR__ . '/../src/partials/navigationBar.html';
                 ?>
             </div>
+            <?php
+            $formResults->dump();
+            ?>
             <section class="contact">
                 <div class="wrapper">
                     <h2>Contact Us</h2>
-                    <p>Form goes here</p>
+                    <?= $formView->htmlForm($formResults) ?>
                 </div>
             </section>
             <?php

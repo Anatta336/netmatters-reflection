@@ -18,4 +18,17 @@ section.contact {
             padding-right: 0;
         }
     }
+
+    label {
+        cursor: pointer;
+    }
+
+    .error {
+        // initially hidden
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
 }
