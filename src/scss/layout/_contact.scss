@@ -1,0 +1,21 @@
+@use "../theme";
+@use "../utility";
+@use "../icons";
+
+section.contact {
+    .wrapper {
+        @include utility.margin-x-center;
+        @include theme.content-width-by-breakpoint(
+            $width-add: utility.px-to-rem(-30px)
+        );
+
+        box-sizing: border-box;
+        padding: 0 utility.px-to-rem(15px);
+
+        // remove horizontal padding once outside of "mobile" breakpoint
+        @include theme.above-breakpoint("small") {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}

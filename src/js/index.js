@@ -8,16 +8,18 @@ document.querySelectorAll('.hidden-if-no-script').forEach((element) => {
   element.style.display = 'block';
 });
 
-const glide = new Glide('.glide', {
-  type: 'carousel',
-  startAt: 0,
-  perView: 1,
-  perTouch: 1,
-  gap: 0,
-  autoplay: 4500,
-  hoverpause: true,
-  animationDuration: 250,
-}).mount();
+if (document.querySelector('.glide')) {
+  const glide = new Glide('.glide', {
+    type: 'carousel',
+    startAt: 0,
+    perView: 1,
+    perTouch: 1,
+    gap: 0,
+    autoplay: 4500,
+    hoverpause: true,
+    animationDuration: 250,
+  }).mount();
+}
 
 const header = floatingHeader(
   document.querySelector('.sticky-header'),
@@ -30,14 +32,11 @@ const menu = sideMenu(
   document.querySelectorAll('.hamburger-menu'),
   document.querySelector('.page-holder'),
 );
-
 menu.addInformOnMenuOpen(document.querySelector('.menu-content'));
 menu.addInformOnMenuOpen(document.querySelector('.cloned-header'));
 
-
-const permission = cookies();
-
 // check if user has previously accepted the use of cookies
+const permission = cookies();
 if (!permission.checkForPermissionCookie()) {
   // if user hasn't yet accepted cookies, display the .cookie-check modal (was hidden by default in CSS)
   const cookieModal = document.querySelector('.cookie-check');
