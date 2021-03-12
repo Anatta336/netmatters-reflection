@@ -2,6 +2,7 @@ import Glide from '@glidejs/glide';
 import cookies from './cookies';
 import sideMenu from './sideMenu';
 import floatingHeader from './floatingHeader';
+import phoneCleaner from './phoneCleaner';
 
 // unhide anything waiting to know that JavaScript is available
 document.querySelectorAll('.hidden-if-no-script').forEach((element) => {
@@ -19,6 +20,11 @@ if (document.querySelector('.glide')) {
     hoverpause: true,
     animationDuration: 250,
   }).mount();
+}
+
+const phoneInputField = document.querySelector('.contact input[name="user-phone"]');
+if (phoneInputField) {
+  const cleaner = phoneCleaner(phoneInputField);
 }
 
 const header = floatingHeader(
