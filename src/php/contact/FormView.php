@@ -30,7 +30,7 @@ class FormView
                     <label>Email:
                         <input type="email" name="user-email" placeholder="jane.smith@example.com" value="{$formResults->getEmail()}">
                     </label>
-                    <p class="error{$this->show($formResults->getIsSubmitted() && !$formResults->getIsEmailValid())}" id="invalid-email">Please double-check your email address, this doesn't appear to be valid.</p>
+                    <p class="error{$this->show($formResults->getIsSubmitted() && !!$formResults->getEmail() && !$formResults->getIsEmailValid())}" id="invalid-email">Please double-check your email address, this doesn't appear to be valid.</p>
                 </div>
                 
                 <div class="user-phone">

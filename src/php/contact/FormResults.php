@@ -14,13 +14,13 @@ class FormResults
     protected string $optInFieldName = 'user-opt-in';
     protected string $messageFieldName = 'user-message';
 
-    protected bool $isSubmitted;
-    protected string $name;
-    protected string $email;
-    protected string $phone;
-    protected bool $isOptIn;
-    protected string $message;
-    protected bool $isEmailValid;
+    protected bool $isSubmitted = false;
+    protected string $name = '';
+    protected string $email = '';
+    protected string $phone = '';
+    protected bool $isOptIn = false;
+    protected string $message = '';
+    protected bool $isEmailValid = false;
 
     public function getSubmittedFieldName(): string
     {
@@ -132,7 +132,10 @@ class FormResults
         }
 
         if (isset($_POST[$this->phoneFieldName])) {
-            $this->phone = filter_input($inputType, $this->phoneFieldName, FILTER_SANITIZE_STRING);
+            $phoneCleaner = new PhoneCleaner();
+            $this->phone = $phoneCleaner->clean(
+                filter_input($inputType, $this->phoneFieldName, FILTER_SANITIZE_STRING)
+            );
         }
 
         $this->isOptIn = isset($_POST[$this->optInFieldName]);
@@ -150,6 +153,10 @@ class FormResults
 
     public function dump()
     {
+        if (!$this->getIsSubmitted()) {
+            echo "<pre>No form submission yet</pre>\n";
+            return;
+        }
         echo "<pre>\n";
         echo $this->getName() . "\n";
         echo $this->getEmail() . "\n";
