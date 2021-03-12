@@ -1,0 +1,80 @@
+@use '../utility/rounded-corners';
+
+@mixin checkmark(
+    $background,
+    $border-colour,
+    $tick-colour,
+    $focus-colour,
+    $checkbox-size: 2.0rem,
+    $border-thickness: 3px,
+    $tick-thickness: 2px) {
+
+    // Example use for HTML like this:
+    // 
+    //   <label class="something">
+    //     <input type="checkbox">
+    //     <span class="checkmark"></span>
+    //   </label>
+    //
+    // Sass:
+    // .something {
+    //   @include checkmark;
+    // }
+
+    // Create a custom checkbox
+    .checkmark {
+        @include rounded-corners.rounded-corners;
+
+        position: relative;
+        height: $checkbox-size;
+        width: $checkbox-size;
+        min-width: $checkbox-size;
+        flex-shrink: 0;
+        flex-grow: 0;
+
+        background-color: $background;
+        border: $border-thickness solid $border-colour;
+
+        margin-right: 15px;
+    }
+
+    // change background when checked
+    input:checked ~ .checkmark {
+        background-color: $border-colour;
+    }
+
+    // hover colour depends on checked state
+    // &:hover input ~ .checkmark {
+    //     background-color: $hover-inactive;
+    // }
+    // &:hover input:checked ~ .checkmark {
+    //     background-color: $hover-active;
+    // }
+
+    input:focus ~ .checkmark {
+        box-shadow: inset 0 0 4px 2px $focus-colour;
+    }
+
+    // create an indicator within checkmark box
+    .checkmark::after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    // show indicator when selected
+    input:checked ~ .checkmark::after {
+        display: block;
+    }
+
+    // create a tick shape by rotating a rectangle with borders on two sides
+    .checkmark::after {
+        left: $checkbox-size * 0.3;
+        top: $checkbox-size * 0.07;
+        width: $checkbox-size * 0.25;
+        height: $checkbox-size * 0.60;
+        border: solid $background;
+        border-width: 0 $tick-thickness $tick-thickness 0;
+        transform: rotate(45deg);
+    }
+}

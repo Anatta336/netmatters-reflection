@@ -43,16 +43,17 @@ class FormView
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" name="user-opt-in"{$this->checked($formResults->getIsOptIn())}>
-                        <!-- <span class="checkmark"></span> -->
+                        <span class="checkmark"></span>
                         <p>Tick this box if you would like to also receive marketing information from us.<br>Please see our <a href="https://www.netmatters.co.uk/privacy-policy">Privacy Policy</a> for details on how your data is used.</p>
                     </label>
                 </div>
             </fieldset>
 
             <fieldset class="user-message">
-                <legend>Your message:</legend>
-                <textarea name="user-message" cols="45" rows="10">{$formResults->getMessage()}</textarea>
-                <p class="error{$this->show($formResults->getIsSubmitted() && !$formResults->getMessage())}" id="no-message">Please leave a brief message to let us know which services you're looking for.</p>
+                <label>Your message:
+                    <textarea name="user-message" cols="45" rows="10">{$formResults->getMessage()}</textarea>
+                    <p class="error{$this->show($formResults->getIsSubmitted() && !$formResults->getMessage())}" id="no-message">Please leave a brief message to let us know how we can help.</p>
+                </label>
             </fieldset>
 
             <!--
@@ -70,7 +71,7 @@ class FormView
                 }
             </script>
             -->
-            <button type="submit">Send</button>
+            <input type="submit" value="Send">
         </form>
         EOT;
 
