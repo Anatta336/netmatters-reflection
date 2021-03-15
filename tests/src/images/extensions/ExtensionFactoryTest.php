@@ -16,9 +16,9 @@ class ExtensionFactoryTest extends TestCase
     {
         $factory = new ExtensionFactory();
         $extension = $factory->createFromQueryResult([
-            'extensionId' => 2,
+            'extension_id' => 2,
             'extension' => 'jpg',
-            'pictureType' => 'image/jpeg',
+            'picture_type' => 'image/jpeg',
         ]);
         $this->assertInstanceOf(Extension::class, $extension);
     }
@@ -28,7 +28,7 @@ class ExtensionFactoryTest extends TestCase
         $factory = new ExtensionFactory();
         $extension = $factory->createFromQueryResult([
             'extension' => 'jpg',
-            'pictureType' => 'image/jpeg',
+            'picture_type' => 'image/jpeg',
         ]);
         $this->assertNull($extension);
     }
@@ -37,8 +37,8 @@ class ExtensionFactoryTest extends TestCase
     {
         $factory = new ExtensionFactory();
         $extension = $factory->createFromQueryResult([
-            'extensionId' => 2,
-            'pictureType' => 'image/jpeg',
+            'extension_id' => 2,
+            'picture_type' => 'image/jpeg',
         ]);
         $this->assertNull($extension);
     }
@@ -47,7 +47,7 @@ class ExtensionFactoryTest extends TestCase
     {
         $factory = new ExtensionFactory();
         $extension = $factory->createFromQueryResult([
-            'extensionId' => 2,
+            'extension_id' => 2,
             'extension' => 'jpg',
         ]);
         $this->assertNull($extension);
@@ -57,9 +57,9 @@ class ExtensionFactoryTest extends TestCase
     {
         $factory = new ExtensionFactory();
         $extension = $factory->createFromQueryResult([
-            'extensionId' => 'png',
+            'extension_id' => 'png',
             'extension' => 'jpg',
-            'pictureType' => 'image/jpeg',
+            'picture_type' => 'image/jpeg',
         ]);
         $this->assertNull($extension);
     }
@@ -68,9 +68,9 @@ class ExtensionFactoryTest extends TestCase
     {
         $factory = new ExtensionFactory();
         $extension = $factory->createFromQueryResult([
-            'extensionId' => '1',
+            'extension_id' => '1',
             'extension' => 'jpg',
-            'pictureType' => 'image/jpeg',
+            'picture_type' => 'image/jpeg',
         ]);
         $this->assertInstanceOf(Extension::class, $extension);
     }
@@ -79,10 +79,10 @@ class ExtensionFactoryTest extends TestCase
     {
         $factory = new ExtensionFactory();
         $extension = $factory->createFromQueryResult([
-            'extensionId' => '1',
-            'isDefault' => true,
+            'extension_id' => '1',
+            'is_default' => true,
             'extension' => 'jpg',
-            'pictureType' => 'image/jpeg',
+            'picture_type' => 'image/jpeg',
             'unexpectedItem' => $factory,
         ]);
         $this->assertInstanceOf(Extension::class, $extension);
