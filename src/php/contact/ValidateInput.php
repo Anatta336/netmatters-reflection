@@ -20,8 +20,10 @@ class ValidateInput
     public function getIsValid(): bool
     {
         return $this->getHasName()
+            && $this->getHasMessage()
             && $this->getHasContactMethod()
-            && $this->getHasMessage();
+            && (!$this->getHasEmail() || $this->getIsEmailValid())
+            && (!$this->getHasPhone() || $this->getIsPhoneValid());
     }
 
     /**
@@ -55,9 +57,9 @@ class ValidateInput
      * True if message field is not empty.
      * @return bool
      */
-    protected function getHasMessage(): bool
+    public function getHasMessage(): bool
     {
-        return $this->rawResults->getPhone() !== '';
+        return $this->rawResults->getMessage() !== '';
     }
 
     /**
@@ -82,7 +84,10 @@ class ValidateInput
             return false;
         }
 
-        return (filter_var($raw, FILTER_VALIDATE_EMAIL));
+        $sanitized = filter_var($raw, FILTER_SANITIZE_EMAIL);
+
+        return $sanitized === $raw
+            && !!filter_var($sanitized, FILTER_VALIDATE_EMAIL);
     }
 
     /**
