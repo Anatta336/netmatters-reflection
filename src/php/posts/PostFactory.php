@@ -14,14 +14,14 @@ class PostFactory
         return new Post(
             $results['title'],
             $results['slug'],
-            new DateTime($results['postedDate']),
-            $results['categoryName'],
-            $results['categorySlug'],
-            $results['typeName'],
-            $results['typeSlug'],
-            $results['posterName'],
+            new DateTime($results['posted_date']),
+            $results['category_name'],
+            $results['category_slug'],
+            $results['post_type_name'],
+            $results['post_type_slug'],
+            $results['poster_name'],
             $posterImage,
-            $results['contentShort'],
+            $results['content_short'],
             $headerImage,
         );
     }

@@ -7,9 +7,9 @@ class ExtensionFactory
      * @param array $results Associative array, as might be part of
      * what's returned from an SQL query. Example value:
      * [
-     *     'extensionId' => 2,
+     *     'extension_id' => 2,
      *     'extension' => 'jpg',
-     *     'pictureType' => 'image/jpeg',
+     *     'picture_type' => 'image/jpeg',
      * ]
      * There may also be other items in the array, which will be ignored.
      * 
@@ -18,18 +18,18 @@ class ExtensionFactory
      */
     public function createFromQueryResult(array $result): ?Extension
     {
-        if (!isset($result['extensionId'])
-        || !is_numeric($result['extensionId'])
+        if (!isset($result['extension_id'])
+        || !is_numeric($result['extension_id'])
         || !isset($result['extension'])
-        || !isset($result['pictureType'])) {
+        || !isset($result['picture_type'])) {
             // TODO: log warning
             return null;
         }
         
         return new Extension(
-            (int)$result['extensionId'],
+            (int)$result['extension_id'],
             $result['extension'],
-            $result['pictureType'],
+            $result['picture_type'],
         );
     }
 }

@@ -23,20 +23,20 @@ class PostsModel
     public function getRecentPostsArray(int $count): array
     {
         $sql = "SELECT post.slug AS slug, post.title AS title,
-                    post.postedDate AS postedDate,
-                    post.contentShort AS contentShort,
-                    post.headImageId AS headerImageId,
-                    category.name AS categoryName,
-                    category.slug AS categorySlug,
-                    postType.name AS typeName,
-                    postType.slug AS typeSlug,
-                    poster.name AS posterName,
-                    poster.imageId AS posterImageId
+                    post.posted_date AS posted_date,
+                    post.content_short AS content_short,
+                    post.image_id AS header_image_id,
+                    category.name AS category_name,
+                    category.slug AS category_slug,
+                    post_type.name AS post_type_name,
+                    post_type.slug AS post_type_slug,
+                    poster.name AS poster_name,
+                    poster.image_id AS poster_image_id
                 FROM post
-                JOIN category ON post.categoryId = category.id
-                JOIN postType ON post.typeId = postType.id
-                JOIN poster ON post.posterId = poster.id
-                ORDER BY postedDate DESC
+                JOIN category ON post.category_id = category.id
+                JOIN post_type ON post.post_type_id = post_type.id
+                JOIN poster ON post.poster_id = poster.id
+                ORDER BY posted_date DESC
                 LIMIT ?";
         return $this->database->fetchResults($sql, $count);
     }
@@ -50,21 +50,21 @@ class PostsModel
     {
         $posts = [];
         foreach ($this->getRecentPostsArray($count) as $postData) {
-            if (!isset($postData['headerImageId'])) {
+            if (!isset($postData['header_image_id'])) {
                 // TODO: log warning
                 echo "no header image id";
                 continue;
             }
             $headerImage = $this->imagesModel
-                ->getImageById((int)$postData['headerImageId']);
+                ->getImageById((int)$postData['header_image_id']);
 
-            if (!isset($postData['posterImageId'])) {
+            if (!isset($postData['poster_image_id'])) {
                 // TODO: log warning
                 echo "no poster image id";
                 continue;
             }
             $posterImage = $this->imagesModel
-                ->getImageById((int)$postData['posterImageId']);
+                ->getImageById((int)$postData['poster_image_id']);
 
             $post = $this->postFactory->createFromResults(
                 $postData, $headerImage, $posterImage);

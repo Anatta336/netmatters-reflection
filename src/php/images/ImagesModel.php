@@ -19,14 +19,14 @@ class ImagesModel
     protected function getImageByIdAsArray($id): array
     {
         $sql = "SELECT image.id AS id,
-                    image.imageUrl AS imageUrl,
-                    extension.id AS extensionId,
+                    image.image_url AS image_url,
+                    extension.id AS extension_id,
                     extension.extension AS extension,
-                    extension.pictureType AS pictureType,
-                    imageHasExtension.isDefault AS isDefault
-                FROM imageHasExtension
-                JOIN image ON imageHasExtension.imageId = image.id
-                JOIN extension ON imageHasExtension.extensionid = extension.id
+                    extension.picture_type AS picture_type,
+                    image_has_extension.is_default AS is_default
+                FROM image_has_extension
+                JOIN image ON image_has_extension.image_id = image.id
+                JOIN extension ON image_has_extension.extension_id = extension.id
                 WHERE image.id = ?;";
         return $this->database->fetchResults($sql, $id);
     }

@@ -20,19 +20,19 @@ class ImageFactory
      * [
      *   [
      *      'id' => 1,
-     *      'imageUrl' => 'img/one',
-     *      'extensionId => 2,
+     *      'image_url' => 'img/one',
+     *      'extension_id => 2,
      *      'extension' => 'jpg',
-     *      'pictureType' => 'image/jpeg'
-     *      'isDefault' => 1
+     *      'picture_type' => 'image/jpeg'
+     *      'is_default' => 1
      *   ],
      *   [
      *      'id' => 1,
-     *      'imageUrl' => 'img/one',
-     *      'extensionId => 3,
+     *      'image_url' => 'img/one',
+     *      'extension_id => 3,
      *      'extension' => 'webp',
-     *      'pictureType' => 'image/webp'
-     *      'isDefault' => 0
+     *      'picture_type' => 'image/webp'
+     *      'is_default' => 0
      *   ],
      * ]
      * 
@@ -58,7 +58,7 @@ class ImageFactory
                     return null;
                 }
 
-                $imageUrl = $result['imageUrl'];
+                $imageUrl = $result['image_url'];
                 if (!is_string($imageUrl)) {
                     // TODO: log a warning
                     echo "imageUrl not string\n";
@@ -74,14 +74,14 @@ class ImageFactory
                 echo "multiple image ids in one set of results\n";
                 return null;
             }
-            if ($result['imageUrl'] !== $imageUrl) {
+            if ($result['image_url'] !== $imageUrl) {
                 // multiple imageUrls, these results aren't valid for creating a single image
                 // TODO: log a warning
                 echo "multiple image URLs in one set of results\n";
                 return null;
             }
 
-            $extensionId = (int)$result['extensionId'];
+            $extensionId = (int)$result['extension_id'];
             if (!is_int($extensionId)) {
                 // TODO: log a warning, missing extension Id
                 echo "missing extensionId\n";
@@ -106,10 +106,10 @@ class ImageFactory
             }
             array_push($extensions, $extension);
 
-            if ($result['isDefault'] && $defaultExtension !== null) {
+            if ($result['is_default'] && $defaultExtension !== null) {
                 // TODO: log warning, multiple extensions marked as default
                 echo "multiple default extensions\n";
-            } else if ($result['isDefault']) {
+            } else if ($result['is_default']) {
                 $defaultExtension = $extension;
             }
         }

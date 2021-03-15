@@ -3,61 +3,69 @@
 ## Schema
 This schema was designed for SQLite 3 so the `TEXT` type is used for all text content.
 
-### Post
+### post
 One row for each post. Contains the actual post's content.
 * id - INTEGER PRIMARY KEY
-* categoryId - INTEGER
-* typeId - INTEGER
-* posterId - INTEGER
-* postedDate - DATE
+* category_id - INTEGER - Foreign key for category table.
+* post_type_id - INTEGER - Foreign key for post_type table.
+* poster_id - INTEGER - Foreign key for poster table.
+* image_id - INTEGER - Foreign key for image table.
+* posted_date - DATE
 * slug - TEXT - 'netmatters-is-carbon-neutral'
 * title - TEXT - 'Netmatters is Carbon Neutral!'
-* contentShort - TEXT - 'As a business, Netmatters pledged that 2021 would be the year that we became carbon neutral' - Don't include open and close `<p>` or trailing `...`
-* headImageId - INTEGER - Foreign key for image table.
+* content_short - TEXT - 'As a business, Netmatters pledged that 2021 would be the year that we became carbon neutral' - Don't include any HTML (it would be escaped on display) nor trailing `...`
 
-### Category
+### category
 One for each part of the business. e.g. web design, it support, telecoms, etc.
 * id - INTEGER PRIMARY KEY
 * slug - TEXT - 'web-design'
 * name - TEXT - 'Web Design'
 
-### PostType
+### post_type
 One for each type of post. e.g. news, careers, guides, etc.
 * id - INTEGER PRIMARY KEY
 * slug - TEXT - 'news'
 * name - TEXT - 'News'
 
-### Poster
+### poster
 * id - INTEGER PRIMARY KEY
+* image_id - INTEGER - Foreign key for image table.
 * name - TEXT - 'Netmatters Ltd'
-* imageId - INTEGER - Foreign key for image table.
 
-### Image
+### image
 * id - INTEGER PRIMARY KEY
-* imageUrl - TEXT - img/netmatters-brand/logo-small
+* image_url - TEXT - img/netmatters-brand/logo-small
 
-### Extension
+### extension
 * id - INTEGER PRIMARY KEY
 * extension - TEXT - 'jpg' - Doesn't include the `.` dot.
-* pictureType - TEXT - 'image/jpeg' - As used in the HTML `<source srcset="..." type="image/jpeg">`.
+* picture_type - TEXT - 'image/jpeg' - As used for type attribute in: `<source srcset="..." type="image/jpeg">`.
 
-### ImageHasExtension
+### image_has_extension
 * imageId - INTEGER
-* extensionId - INTEGER
-* isDefault - BOOLEAN - true if this should be the "fallback" version of the image, should work in as many browsers as possible and provide reasonable image quality.
+* extension_id - INTEGER
+* is_default - BOOLEAN - true if this should be the "fallback" version of the image, should work in as many browsers as possible and provide reasonable image quality.
+
+### contact_message
+* id - INTEGER PRIMARY KEY
+* name - TEXT
+* email - TEXT
+* phone - TEXT
+* marketing_opt_in - BOOLEAN
+* message - TEXT
+* time_sent - DATETIME
 
 ## SQL to create and populate with sample data
-Note that because the `post` table uses foreign key constraints, the other tables should be populated first. Similarly `image`, `extension`, then `imageHasExtension` should be populated before the other tables. Running the commands in the order listed here will satisfy foreign key constraints.
+Because of foreign key constraints, the order that tables are populated matters. Running the commands in the order listed here will satisfy the constraints.
 
-### Image
+### image
 ```sql
 CREATE TABLE image (
     id INTEGER PRIMARY KEY,
-    imageUrl TEXT
+    image_url TEXT
 );
-```
-```sql
-INSERT INTO image (imageUrl)
+
+INSERT INTO image (image_url)
 VALUES ('img/netmatters-brand/logo-small'),
     ('img/blog-posts/bethany-shakespeare'),
     ('img/blog-posts/faizel-achieves-the'),
@@ -66,33 +74,31 @@ VALUES ('img/netmatters-brand/logo-small'),
     ('img/blog-posts/office-administrator');
 ```
 
-### Extension
+### extension
 ```sql
 CREATE TABLE extension (
     id INTEGER PRIMARY KEY,
     extension TEXT,
-    pictureType TEXT
+    picture_type TEXT
 );
-```
-```sql
-INSERT INTO extension (extension, pictureType)
+
+INSERT INTO extension (extension, picture_type)
 VALUES ('jpg', 'image/jpeg'),
     ('webp', 'image/webp'),
     ('png', 'image/png');
 ```
 
-### ImageHasExtension
+### image_has_extension
 ```sql
-CREATE TABLE imageHasExtension (
-    imageId INTEGER,
-    extensionId INTEGER,
-    isDefault BOOLEAN,
-    FOREIGN KEY (imageId) REFERENCES image(id),
-    FOREIGN KEY (extensionId) REFERENCES extension(id)
+CREATE TABLE image_has_extension (
+    image_id INTEGER,
+    extension_id INTEGER,
+    is_default BOOLEAN,
+    FOREIGN KEY (image_id) REFERENCES image(id),
+    FOREIGN KEY (extension_id) REFERENCES extension(id)
 );
-```
-```sql
-INSERT INTO imageHasExtension (imageId, extensionId, isDefault)
+
+INSERT INTO image_has_extension (image_id, extension_id, is_default)
 VALUES (1, 3, true), (1, 2, false),
     (2, 1, true), (2, 2, false),
     (3, 1, true), (3, 2, false),
@@ -101,31 +107,29 @@ VALUES (1, 3, true), (1, 2, false),
     (6, 1, true), (6, 2, false);
 ```
 
-### Poster
+### poster
 ```sql
 CREATE TABLE poster (
     id INTEGER PRIMARY KEY,
-    imageId INTEGER NOT NULL,
+    image_id INTEGER NOT NULL,
     name TEXT,
-    FOREIGN KEY (imageId) REFERENCES image(id)
+    FOREIGN KEY (image_id) REFERENCES image(id)
 );
-```
-```sql
-INSERT INTO poster (name, imageId)
+
+INSERT INTO poster (name, image_id)
 VALUES ('Netmatters Ltd', 1),
     ('Bethany Shakespeare', 2);
 ```
 
-### PostType
+### post_type
 ```sql
-CREATE TABLE postType (
+CREATE TABLE post_type (
     id INTEGER PRIMARY KEY,
     slug TEXT UNIQUE,
     name TEXT
 );
-```
-```sql
-INSERT INTO postType (slug, name)
+
+INSERT INTO post_type (slug, name)
 VALUES ('news', 'News'),
     ('case-studies', 'Case Studies'),
     ('portfolio', 'Portfolio'),
@@ -134,15 +138,14 @@ VALUES ('news', 'News'),
     ('our-careers', 'Careers');
 ```
 
-### Category
+### category
 ```sql
 CREATE TABLE category (
     id INTEGER PRIMARY KEY,
     slug TEXT UNIQUE,
     name TEXT
 );
-```
-```sql
+
 INSERT INTO category (slug, name)
 VALUES ('web-design', 'Web Design'),
     ('it-support', 'IT Support'),
@@ -152,26 +155,25 @@ VALUES ('web-design', 'Web Design'),
     ('cyber-security', 'Cyber Security');
 ```
 
-### Post
+### post
 ```sql
 CREATE TABLE post (
     id INTEGER PRIMARY KEY,
-    categoryId INTEGER NOT NULL,
-    typeId INTEGER NOT NULL,
-    posterId INTEGER NOT NULL,
-    headImageId INTEGER NOT NULL,
-    postedDate DATE CONSTRAINT DF_posts_date DEFAULT (DATE('now')),
+    category_id INTEGER NOT NULL,
+    post_type_id INTEGER NOT NULL,
+    poster_id INTEGER NOT NULL,
+    image_id INTEGER NOT NULL,
+    posted_date DATE CONSTRAINT default_posted_date DEFAULT (DATE('now')),
     slug TEXT UNIQUE,
     title TEXT,
-    contentShort TEXT,
-    FOREIGN KEY (categoryId) REFERENCES category(id),
-    FOREIGN KEY (typeId) REFERENCES postType(id),
-    FOREIGN KEY (posterId) REFERENCES poster(id),
-    FOREIGN KEY (headImageId) REFERENCES image(id)
+    content_short TEXT,
+    FOREIGN KEY (category_id) REFERENCES category(id),
+    FOREIGN KEY (post_type_id) REFERENCES post_type(id),
+    FOREIGN KEY (poster_id) REFERENCES poster(id),
+    FOREIGN KEY (image_id) REFERENCES image(id)
 );
-```
-```sql
-INSERT INTO post (categoryId, typeId, posterId, headImageId, postedDate, slug, title, contentShort)
+
+INSERT INTO post (category_id, post_type_id, poster_id, head_image_id, posted_date, slug, title, content_short)
 VALUES 
     (1, 1, 1, 3, '2021-02-26',
     'news/faizel-achieves-the-long-service-award', 'Faizel Achieves the Long Service Award',
@@ -188,23 +190,23 @@ VALUES
 ```
 
 ## Images
-The URL stored for an image doesn't include a file extension, as generally both .jpg and .webp versions are stored.
+The URL stored for an image doesn't include a file extension, as many images have multiple encodings stored in separate files. The path and name of the file is always the same for a single image, but the extension is different.
 
 To show all the images and their versions:
 ```sql
-SELECT image.id, image.imageUrl || '.' || extension.extension AS url
-FROM imageHasExtension
-JOIN image ON imageHasExtension.imageId = image.id
-JOIN extension ON imageHasExtension.extensionId = extension.id;
+SELECT image.id, image.image_url || '.' || extension.extension AS url
+FROM image_has_extension
+JOIN image ON image_has_extension.image_id = image.id
+JOIN extension ON image_has_extension.extension_id = extension.id;
 ```
 
 To show the default version of each image (should be exactly one per image, although that's not enforced in the schema.)
 ```sql
-SELECT image.id, image.imageUrl || '.' || extension.extension AS url
-FROM imageHasExtension
-JOIN image ON imageHasExtension.imageId = image.id
-JOIN extension ON imageHasExtension.extensionId = extension.id
-WHERE isDefault;
+SELECT image.id, image.image_url || '.' || extension.extension AS default_url
+FROM image_has_extension
+JOIN image ON image_has_extension.image_id = image.id
+JOIN extension ON image_has_extension.extension_id = extension.id
+WHERE is_default;
 ```
 
 ## SQLite3 CLI
