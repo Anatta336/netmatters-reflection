@@ -173,7 +173,7 @@ CREATE TABLE post (
     FOREIGN KEY (image_id) REFERENCES image(id)
 );
 
-INSERT INTO post (category_id, post_type_id, poster_id, head_image_id, posted_date, slug, title, content_short)
+INSERT INTO post (category_id, post_type_id, poster_id, image_id, posted_date, slug, title, content_short)
 VALUES 
     (1, 1, 1, 3, '2021-02-26',
     'news/faizel-achieves-the-long-service-award', 'Faizel Achieves the Long Service Award',
@@ -188,6 +188,30 @@ VALUES
     'our-careers/office-administrator-receptionist', 'Office Administrator / Receptionist',
     'Salary: £18k-£24k + Bonuses + Pension Hours: 40 hours per week, Monday - Friday Location: W');
 ```
+
+### contact_message
+```sql
+CREATE TABLE contact_message (
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    email TEXT,
+    phone TEXT,
+    marketing_opt_in BOOLEAN,
+    message TEXT,
+    time_sent DATETIME CONSTRAINT default_contact_message_date DEFAULT (DATE('now'))
+);
+
+INSERT INTO contact_message (name, email, phone, marketing_opt_in, message, time_sent)
+VALUES ('Jane Smith', 'jane@example.com', '', TRUE, 'I''m looking to improve my search ranking.', '2021-01-02 12:45:32');
+```
+
+* id - INTEGER PRIMARY KEY
+* name - TEXT
+* email - TEXT
+* phone - TEXT
+* marketing_opt_in - BOOLEAN
+* message - TEXT
+* time_sent - DATETIME
 
 ## Images
 The URL stored for an image doesn't include a file extension, as many images have multiple encodings stored in separate files. The path and name of the file is always the same for a single image, but the extension is different.
