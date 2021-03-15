@@ -15,7 +15,7 @@ class ExtensionCollectionTest extends TestCase
         return $stub;
     }
 
-    public function testInstantiate(): void
+    public function testInstantiates(): void
     {
         $collection = new ExtensionCollection();
         $this->assertInstanceOf(ExtensionCollection::class, $collection);

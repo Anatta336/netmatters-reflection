@@ -1,10 +1,8 @@
 <?php declare(strict_types=1);
 namespace Netmatters\Contact;
 
-
 class FormView
 {
-
     protected function show(bool $isShown): string
     {
         return $isShown ? ' show' : '';

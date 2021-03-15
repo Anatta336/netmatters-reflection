@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class ExtensionFactoryTest extends TestCase
 {
-   public function testInstantiate(): void
+   public function testInstantiates(): void
     {
         $factory = new ExtensionFactory();
         $this->assertInstanceOf(ExtensionFactory::class, $factory);
