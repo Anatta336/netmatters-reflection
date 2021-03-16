@@ -73,7 +73,7 @@ class MessageFactoryTest extends TestCase
     {
         $factory = new MessageFactory($this->cleaner);
         $message = $factory->createEmpty();
-        $this->assertFalse($message->getHasAnyValues());
+        $this->assertFalse($message->getHasAnyStoredValues());
     }
 
     public function testCreateFromRaw(): void

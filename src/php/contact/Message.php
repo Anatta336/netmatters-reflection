@@ -45,10 +45,14 @@ class Message
         }
     }
 
-    public function getHasAnyValues(): bool
+    /**
+     * True if any of the properties except for timeSent have a value.
+     * @return bool True if one or more properties except for timeSent
+     * on this object have a value.
+     */
+    public function getHasAnyStoredValues(): bool
     {
-        return isset($this->timeSent)
-            || isset($this->name)
+        return isset($this->name)
             || isset($this->email)
             || isset($this->phone)
             || isset($this->isOptIn)

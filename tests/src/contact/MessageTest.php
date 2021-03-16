@@ -154,7 +154,7 @@ class MessageTest extends TestCase
             new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
         );
-        $this->assertTrue($message->getHasAnyValues());
+        $this->assertTrue($message->getHasAnyStoredValues());
     }
 
     public function testHasValuesWhenAllValuesSet(): void
@@ -167,12 +167,17 @@ class MessageTest extends TestCase
             true,
             'I want to improve SEO.',
         );
-        $this->assertTrue($message->getHasAnyValues());
+        $this->assertTrue($message->getHasAnyStoredValues());
     }
 
     public function testHasNoValuesWhenNoValuesSet(): void
     {
         $message = new Message();
-        $this->assertFalse($message->getHasAnyValues());
+        $this->assertFalse($message->getHasAnyStoredValues());
+    }
+    public function testHasNoValuesWhenOnlyDateSet(): void
+    {
+        $message = new Message(new DateTime('2021-01-02 12:00:34'));
+        $this->assertFalse($message->getHasAnyStoredValues());
     }
 }
