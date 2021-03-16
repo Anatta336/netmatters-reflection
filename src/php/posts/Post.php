@@ -29,7 +29,7 @@ class Post
     {
         $this->title = htmlspecialchars($title, ENT_QUOTES);
         $this->slug = htmlspecialchars($slug, ENT_QUOTES);
-        $this->date = $date;
+        $this->date = clone $date; // clone to prevent mutability of Post
         $this->categoryName = htmlspecialchars($categoryName, ENT_QUOTES);
         $this->categorySlug = htmlspecialchars($categorySlug, ENT_QUOTES);
         $this->typeName = htmlspecialchars($typeName, ENT_QUOTES);
@@ -50,7 +50,8 @@ class Post
     }
     public function getDate(): DateTime
     {
-        return $this->date;
+        // return a reference to a clone so Post remains immutable.
+        return clone $this->date;
     }
     public function getCategoryName(): string
     {
@@ -74,6 +75,8 @@ class Post
     }
     public function getPosterImage(): Image
     {
+        // although this returns a reference, Image itself is immutable so
+        // doing so doesn't break the immutability of Post.
         return $this->posterImage;
     }
     public function getContentShort(): string
@@ -82,6 +85,8 @@ class Post
     }
     public function getHeaderImage(): Image
     {
+        // although this returns a reference, Image itself is immutable so
+        // doing so doesn't break the immutability of Post.
         return $this->headerImage;
     }
 }
