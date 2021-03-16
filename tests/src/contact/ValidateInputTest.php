@@ -9,12 +9,12 @@ class ValidateInputTest extends TestCase
     protected $rawResults;
 
     protected function createStubRawResults(
-        string $submitted,
-        string $name,
-        string $email,
-        string $phone,
-        string $optIn,
-        string $message): RawResults
+        ?string $submitted,
+        ?string $name,
+        ?string $email,
+        ?string $phone,
+        ?string $optIn,
+        ?string $message): RawResults
     {
         $stub = $this->createStub(RawResults::class);
         $stub->method('getSubmitted')->willReturn($submitted);
@@ -175,6 +175,15 @@ class ValidateInputTest extends TestCase
         $validate = new ValidateInput($results);
         $this->assertFalse($validate->getIsEmailValid());
     }
+    public function testInvalidEmailWhenNull(): void
+    {
+        $results = $this->createStubRawResults(
+            '1', 'Jane Smith', null, '(+44) 01234 555 234', '1', 'I want to improve SEO.'
+        );
+
+        $validate = new ValidateInput($results);
+        $this->assertFalse($validate->getIsEmailValid());
+    }
 
     // ---- getIsPhoneValid ----
 
@@ -200,6 +209,15 @@ class ValidateInputTest extends TestCase
     {
         $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 abc 234', '1', 'I want to improve SEO.'
+        );
+
+        $validate = new ValidateInput($results);
+        $this->assertFalse($validate->getIsPhoneValid());
+    }
+    public function testInvalidPhoneWhenNull(): void
+    {
+        $results = $this->createStubRawResults(
+            '1', 'Jane Smith', 'jane@example.com', null, '1', 'I want to improve SEO.'
         );
 
         $validate = new ValidateInput($results);
@@ -353,5 +371,34 @@ class ValidateInputTest extends TestCase
 
         $validate = new ValidateInput($results);
         $this->assertFalse($validate->getIsValid());
+    }
+
+    // ---- getIsFormSubmission ----
+    public function testIsFormSubmissionWhenPartiallyFilled(): void
+    {
+        $results = $this->createStubRawResults(
+            '1', '', 'jane@example.com', 'invalid phone number', '1', ''
+        );
+
+        $validate = new ValidateInput($results);
+        $this->assertTrue($validate->getIsFormSubmission());
+    }
+    public function testIsFormSubmissionFalseWhenEmptyString(): void
+    {
+        $results = $this->createStubRawResults(
+            '', '', 'jane@example.com', 'invalid phone number', '1', ''
+        );
+
+        $validate = new ValidateInput($results);
+        $this->assertFalse($validate->getIsFormSubmission());
+    }
+    public function testIsFormSubmissionFalseWhenNull(): void
+    {
+        $results = $this->createStubRawResults(
+            null, '', 'jane@example.com', 'invalid phone number', '1', ''
+        );
+
+        $validate = new ValidateInput($results);
+        $this->assertFalse($validate->getIsFormSubmission());
     }
 }
