@@ -20,8 +20,6 @@ $messageFactory = new MessageFactory(new PhoneCleaner());
 $message = $messageFactory->createFromRaw($rawResults);
 $validate = new ValidateInput($rawResults);
 
-//TODO: if message is valid then store
-
 $feedback = '';
 $hasSubmittedMessage = false;
 if ($validate->getIsValid()) {
@@ -29,14 +27,17 @@ if ($validate->getIsValid()) {
     $store = new MessageStore($database);
     $hasSubmittedMessage = $store->StoreMessage($message);
     
+    // TODO: better feedback messages?
     if ($hasSubmittedMessage) {
         $feedback = 'Thanks for your message!';
     } else {
         $feedback = 'Unable to submit your message.';
+        // TODO: if unable to submit should display the form with what was entered
     }
 }
 
 $formView = new FormView($message, $validate);
+// TODO: feedback view
 // $feedbackView = ...
 
 ?>
