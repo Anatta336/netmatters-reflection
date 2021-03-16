@@ -6,6 +6,8 @@ use Netmatters\Contact\MessageFactory;
 use Netmatters\Contact\PhoneCleaner;
 use Netmatters\Contact\RawResultsFactory;
 use Netmatters\Contact\ValidateInput;
+use Netmatters\Contact\MessageStore;
+use Netmatters\Database\SQLiteDatabase;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -23,13 +25,15 @@ $validate = new ValidateInput($rawResults);
 $feedback = '';
 $hasSubmittedMessage = false;
 if ($validate->getIsValid()) {
-    // submit message
-    $feedback = 'Would have submitted your message.';
-
-
-    $hasSubmittedMessage = true;
-    // as the message was submitted, clear it
-    $message = $messageFactory->createEmpty();
+    $database = new SQLiteDatabase(__DIR__ . '/../db/netmatters.db');
+    $store = new MessageStore($database);
+    $hasSubmittedMessage = $store->StoreMessage($message);
+    
+    if ($hasSubmittedMessage) {
+        $feedback = 'Thanks for your message!';
+    } else {
+        $feedback = 'Unable to submit your message.';
+    }
 }
 
 $formView = new FormView($message, $validate);
