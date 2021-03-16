@@ -13,6 +13,12 @@ class ValidateInput
         $this->rawResults = $rawResults;
     }
 
+    public function getIsFormSubmission(): bool
+    {
+        return $this->rawResults->getSubmitted() !== null
+            && $this->rawResults->getSubmitted() !== '';
+    }
+
     /**
      * True if there's zero validation problems.
      * @return bool
@@ -32,7 +38,8 @@ class ValidateInput
      */
     public function getHasName(): bool
     {
-        return $this->rawResults->getName() !== '';
+        return $this->rawResults->getName() !== null
+            && $this->rawResults->getName() !== '';
     }
     
     /**
@@ -41,7 +48,8 @@ class ValidateInput
      */
     public function getHasEmail(): bool
     {
-        return $this->rawResults->getEmail() !== '';
+        return $this->rawResults->getEmail() !== null
+            && $this->rawResults->getEmail() !== '';
     }
 
     /**
@@ -50,7 +58,8 @@ class ValidateInput
      */
     public function getHasPhone(): bool
     {
-        return $this->rawResults->getPhone() !== '';
+        return $this->rawResults->getPhone() !== null
+            && $this->rawResults->getPhone() !== '';
     }
 
     /**
@@ -59,7 +68,8 @@ class ValidateInput
      */
     public function getHasMessage(): bool
     {
-        return $this->rawResults->getMessage() !== '';
+        return $this->rawResults->getMessage() !== null
+            && $this->rawResults->getMessage() !== '';
     }
 
     /**
@@ -79,6 +89,10 @@ class ValidateInput
      */
     public function getIsEmailValid(): bool
     {
+        if ($this->rawResults->getEmail() === null) {
+            return false;
+        }
+
         $raw = $this->rawResults->getEmail();
         if ($raw === '') {
             return false;
@@ -97,6 +111,10 @@ class ValidateInput
      */
     public function getIsPhoneValid(): bool
     {
+        if ($this->rawResults->getPhone() === null) {
+            return false;
+        }
+
         $raw = $this->rawResults->getPhone();
         if ($raw === '') {
             return false;

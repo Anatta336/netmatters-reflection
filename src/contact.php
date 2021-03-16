@@ -1,13 +1,26 @@
 <?php declare(strict_types=1);
 
-use Netmatters\Contact\FormResults;
+use Netmatters\Contact\FormFieldNames;
 use Netmatters\Contact\FormView;
+use Netmatters\Contact\MessageFactory;
+use Netmatters\Contact\PhoneCleaner;
+use Netmatters\Contact\RawResultsFactory;
+use Netmatters\Contact\ValidateInput;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // retrieve data from the form
-$formResults = new FormResults();
-$formResults->receiveFromPost();
+$rawFactory = new RawResultsFactory(new FormFieldNames());
+$rawResults = $rawFactory->buildResultsFromPost();
+
+// filter and validate
+$messageFactory = new MessageFactory(new PhoneCleaner());
+$message = $messageFactory->createFromRaw($rawResults);
+$validate = new ValidateInput($rawResults);
+
+//TODO: if message is valid then store
+// show a success message
+// show the form with fields cleared (or replace the form with the message?)
 
 $formView = new FormView();
 
@@ -29,7 +42,7 @@ $formView = new FormView();
                 <div class="wrapper">
                     <h2>Contact Us</h2>
                     <div class="content">
-                        <?= $formView->htmlForm($formResults) ?>
+                        <?= $formView->htmlForm($message, $validate) ?>
                         <div class="contact-details">
                             <h3>Call us on:</h3>
                             <a href="tel:01603704020">01603 70 40 20</a>
