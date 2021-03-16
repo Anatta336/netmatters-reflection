@@ -17,7 +17,7 @@ class RawResultsFactory
         $this->fields = $formFieldNames;
     }
 
-    public function buildResults(): RawResults
+    public function buildResultsFromPost(): RawResults
     {
         return new RawResults(
             $_POST[$this->fields->getSubmittedFieldName()],

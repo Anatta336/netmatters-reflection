@@ -7,20 +7,20 @@ namespace Netmatters\Contact;
  */
 class RawResults
 {
-    protected string $submitted;
-    protected string $name;
-    protected string $email;
-    protected string $phone;
-    protected string $optIn;
-    protected string $message;
+    protected ?string $submitted;
+    protected ?string $name;
+    protected ?string $email;
+    protected ?string $phone;
+    protected ?string $optIn;
+    protected ?string $message;
 
     function __construct(
-        string $submitted,
-        string $name,
-        string $email,
-        string $phone,
-        string $optIn,
-        string $message
+        ?string $submitted,
+        ?string $name,
+        ?string $email,
+        ?string $phone,
+        ?string $optIn,
+        ?string $message
     )
     {
         $this->submitted = $submitted;
@@ -31,27 +31,27 @@ class RawResults
         $this->message = $message;
     }
 
-    public function getSubmitted(): string
+    public function getSubmitted(): ?string
     {
         return $this->submitted;
     }
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
-    public function getOptIn(): string
+    public function getOptIn(): ?string
     {
         return $this->optIn;
     }
-    public function getMessage(): string
+    public function getMessage(): ?string
     {
         return $this->message;
     }

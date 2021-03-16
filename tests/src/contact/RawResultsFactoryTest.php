@@ -41,42 +41,42 @@ class RawResultsFactoryTest extends TestCase
     {
         $factory = new RawResultsFactory($this->fields);
         $_POST['form-submitted'] = 'arbitrary';
-        $results = $factory->buildResults();
+        $results = $factory->buildResultsFromPost();
         $this->assertSame('arbitrary', $results->getSubmitted());
     }
     public function testStoresRawName(): void
     {
         $factory = new RawResultsFactory($this->fields);
         $_POST['user-name'] = 'Some namé!';
-        $results = $factory->buildResults();
+        $results = $factory->buildResultsFromPost();
         $this->assertSame('Some namé!', $results->getName());
     }
     public function testStoresRawEmail(): void
     {
         $factory = new RawResultsFactory($this->fields);
         $_POST['user-email'] = 'not a valid email';
-        $results = $factory->buildResults();
+        $results = $factory->buildResultsFromPost();
         $this->assertSame('not a valid email', $results->getEmail());
     }
     public function testStoresRawPhone(): void
     {
         $factory = new RawResultsFactory($this->fields);
         $_POST['user-phone'] = 'undefined';
-        $results = $factory->buildResults();
+        $results = $factory->buildResultsFromPost();
         $this->assertSame('undefined', $results->getPhone());
     }
     public function testStoresRawOptIn(): void
     {
         $factory = new RawResultsFactory($this->fields);
         $_POST['user-opt-in'] = '0';
-        $results = $factory->buildResults();
+        $results = $factory->buildResultsFromPost();
         $this->assertSame('0', $results->getOptIn());
     }
     public function testStoresRawMessage(): void
     {
         $factory = new RawResultsFactory($this->fields);
         $_POST['user-message'] = '<script>alert(1)</script>';
-        $results = $factory->buildResults();
+        $results = $factory->buildResultsFromPost();
         $this->assertSame('<script>alert(1)</script>', $results->getMessage());
     }
 }
