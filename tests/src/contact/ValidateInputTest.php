@@ -8,7 +8,7 @@ class ValidateInputTest extends TestCase
 {
     protected $rawResults;
 
-    protected function createRawResultsStub(
+    protected function createStubRawResults(
         string $submitted,
         string $name,
         string $email,
@@ -28,7 +28,7 @@ class ValidateInputTest extends TestCase
 
     public function testInstantiates(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -40,7 +40,7 @@ class ValidateInputTest extends TestCase
 
     public function testHasNameFalseWhenEmpty(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', '', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -49,7 +49,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasNameTrueWhenPresent(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -61,7 +61,7 @@ class ValidateInputTest extends TestCase
 
     public function testHasEmailFalseWhenEmpty(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', '', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -70,7 +70,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasEmailTrueWhenPresent(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -82,7 +82,7 @@ class ValidateInputTest extends TestCase
 
     public function testHasPhoneFalseWhenEmpty(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '', '1', 'I want to improve SEO.'
         );
 
@@ -91,7 +91,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasPhoneTrueWhenPresent(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -103,7 +103,7 @@ class ValidateInputTest extends TestCase
 
     public function testHasMessageFalseWhenEmpty(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', ''
         );
 
@@ -112,7 +112,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasMessageTrueWhenEmpty(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -123,7 +123,7 @@ class ValidateInputTest extends TestCase
     // ---- getIsEmailValid ----
     public function testValidEmail(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -132,7 +132,7 @@ class ValidateInputTest extends TestCase
     }
     public function testInvalidEmailNoAtSymbol(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'janeexample.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -141,7 +141,7 @@ class ValidateInputTest extends TestCase
     }
     public function testInvalidEmailNoDomain(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -150,7 +150,7 @@ class ValidateInputTest extends TestCase
     }
     public function testInvalidEmailNoIdentifier(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', '@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -159,7 +159,7 @@ class ValidateInputTest extends TestCase
     }
     public function testInvalidEmailBlank(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', '', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -168,7 +168,7 @@ class ValidateInputTest extends TestCase
     }
     public function testInvalidEmailInvalidCharacter(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane/smith@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -180,7 +180,7 @@ class ValidateInputTest extends TestCase
 
     public function testValidPhone(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -189,7 +189,7 @@ class ValidateInputTest extends TestCase
     }
     public function testInvalidPhoneBlank(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '', '1', 'I want to improve SEO.'
         );
 
@@ -198,7 +198,7 @@ class ValidateInputTest extends TestCase
     }
     public function testInvalidPhoneContainsLetters(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 abc 234', '1', 'I want to improve SEO.'
         );
 
@@ -210,7 +210,7 @@ class ValidateInputTest extends TestCase
 
     public function testHasContactFalseWhenNoEmailAndNoPhone(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', '', '', '1', 'I want to improve SEO.'
         );
 
@@ -219,7 +219,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasContactTrueWhenHasEmail(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '', '1', 'I want to improve SEO.'
         );
 
@@ -228,7 +228,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasContactTrueWhenHasPhone(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', '', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -237,7 +237,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasContactTrueWhenHasEmailAndPhone(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -246,7 +246,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasContactFalseWhenInvalidEmailAndNoPhone(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane-example.com', '', '1', 'I want to improve SEO.'
         );
 
@@ -255,7 +255,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasContactFalseWhenInvalidPhoneAndNoEmail(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', '', '(+44) abcde 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -264,7 +264,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasContactTrueWhenInvalidPhoneAndValidEmail(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) abcde 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -273,7 +273,7 @@ class ValidateInputTest extends TestCase
     }
     public function testHasContactTrueWhenInvalidEmailAndValidPhone(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'janeexample.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -284,7 +284,7 @@ class ValidateInputTest extends TestCase
     // ---- getIsValid ----
     public function testIsValid(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -293,7 +293,7 @@ class ValidateInputTest extends TestCase
     }
     public function testIsValidWhenOptOut(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '0', 'I want to improve SEO.'
         );
 
@@ -302,7 +302,7 @@ class ValidateInputTest extends TestCase
     }
     public function testIsValidFalseWhenMissingName(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', '', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -311,7 +311,7 @@ class ValidateInputTest extends TestCase
     }
     public function testIsValidFalseWhenInvalidEmail(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane-example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -320,7 +320,7 @@ class ValidateInputTest extends TestCase
     }
     public function testIsValidFalseWhenInvalidPhone(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 abc 234', '1', 'I want to improve SEO.'
         );
 
@@ -329,7 +329,7 @@ class ValidateInputTest extends TestCase
     }
     public function testIsValidWhenOnlyEmail(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '', '1', 'I want to improve SEO.'
         );
 
@@ -338,7 +338,7 @@ class ValidateInputTest extends TestCase
     }
     public function testIsValidWhenOnlyPhone(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', '', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
@@ -347,7 +347,7 @@ class ValidateInputTest extends TestCase
     }
     public function testIsValidFalseWhenNoMessage(): void
     {
-        $results = $this->createRawResultsStub(
+        $results = $this->createStubRawResults(
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', ''
         );
 

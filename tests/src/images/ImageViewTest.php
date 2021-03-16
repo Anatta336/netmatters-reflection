@@ -11,28 +11,40 @@ class ImageViewTest extends TestCase
     protected $pngExtensionStub;
     protected $webpExtensionStub;
 
+    protected function createStubExtension(string $extension, string $pictureType): Extension
+    {
+        $stub = $this->createStub(Extension::class);
+        $stub->method('getExtension')->willReturn($extension);
+        $stub->method('getPictureType')->willReturn($pictureType);
+        return $stub;
+    }
+
+    protected function createStubImage(int $id, string $imageUrl,
+        array $extensions, Extension $defaultExtension): Image
+    {
+        $stub = $this->createStub(Image::class);
+        $stub->method('getId')->willReturn($id);
+        $stub->method('getImageUrl')->willReturn($imageUrl);
+        $stub->method('getExtensions')->willReturn($extensions);
+        $stub->method('getDefaultExtension')->willReturn($defaultExtension);
+        return $stub;
+    }
+
     protected function setUp(): void
     {
-        $this->jpgExtensionStub = $this->createStub(Extension::class);
-        $this->jpgExtensionStub->method('getExtension')->willReturn('jpg');
-        $this->jpgExtensionStub->method('getPictureType')->willReturn('image/jpeg');
-
-        $this->pngExtensionStub = $this->createStub(Extension::class);
-        $this->pngExtensionStub->method('getExtension')->willReturn('png');
-        $this->pngExtensionStub->method('getPictureType')->willReturn('image/png');
-
-        $this->webpExtensionStub = $this->createStub(Extension::class);
-        $this->webpExtensionStub->method('getExtension')->willReturn('webp');
-        $this->webpExtensionStub->method('getPictureType')->willReturn('image/webp');
+        $this->jpgExtensionStub = $this->createStubExtension('jpg', 'image/jpeg');
+        $this->pngExtensionStub = $this->createStubExtension('png', 'image/png');
+        $this->webpExtensionStub = $this->createStubExtension('webp', 'image/webp');
     }
 
     public function testSingleExtension(): void
     {
-        $imageStub = $this->createStub(Image::class);
-        $imageStub->method('getId')->willReturn(123);
-        $imageStub->method('getImageUrl')->willReturn('img/something/picture');
-        $imageStub->method('getExtensions')->willReturn([$this->jpgExtensionStub]);
-        $imageStub->method('getDefaultExtension')->willReturn($this->jpgExtensionStub);
+        $imageStub = $this->createStubImage(
+            123,
+            'img/something/picture',
+            [$this->jpgExtensionStub],
+            $this->jpgExtensionStub,
+        );
 
         $imageView = new ImageView();
         $result = $imageView->pictureHtml($imageStub, 'http://example.com/', 'alternate text');
@@ -45,15 +57,16 @@ class ImageViewTest extends TestCase
 
     public function testMultipleExtensions(): void
     {
-        $imageStub = $this->createStub(Image::class);
-        $imageStub->method('getId')->willReturn(123);
-        $imageStub->method('getImageUrl')->willReturn('img/something/picture');
-        $imageStub->method('getExtensions')->willReturn([
+        $imageStub = $this->createStubImage(
+            123,
+            'img/something/picture',
+            [
+                $this->jpgExtensionStub,
+                $this->pngExtensionStub,
+                $this->webpExtensionStub
+            ],
             $this->jpgExtensionStub,
-            $this->pngExtensionStub,
-            $this->webpExtensionStub
-        ]);
-        $imageStub->method('getDefaultExtension')->willReturn($this->jpgExtensionStub);
+        );
 
         $imageView = new ImageView();
         $result = $imageView->pictureHtml($imageStub, 'http://example.com/', 'alternate text');
@@ -68,11 +81,12 @@ class ImageViewTest extends TestCase
 
     public function testZeroExtensions(): void
     {
-        $imageStub = $this->createStub(Image::class);
-        $imageStub->method('getId')->willReturn(123);
-        $imageStub->method('getImageUrl')->willReturn('img/something/picture');
-        $imageStub->method('getExtensions')->willReturn([]);
-        $imageStub->method('getDefaultExtension')->willReturn($this->jpgExtensionStub);
+        $imageStub = $this->createStubImage(
+            123,
+            'img/something/picture',
+            [],
+            $this->jpgExtensionStub,
+        );
 
         $imageView = new ImageView();
         $result = $imageView->pictureHtml($imageStub, 'http://example.com/', 'alternate text');
@@ -84,15 +98,16 @@ class ImageViewTest extends TestCase
 
     public function testMultipleExtensionsAndDifferentDefault(): void
     {
-        $imageStub = $this->createStub(Image::class);
-        $imageStub->method('getId')->willReturn(123);
-        $imageStub->method('getImageUrl')->willReturn('img/something/picture');
-        $imageStub->method('getExtensions')->willReturn([
-            $this->jpgExtensionStub,
+        $imageStub = $this->createStubImage(
+            123,
+            'img/something/picture',
+            [
+                $this->jpgExtensionStub,
+                $this->pngExtensionStub,
+                $this->webpExtensionStub
+            ],
             $this->pngExtensionStub,
-            $this->webpExtensionStub
-        ]);
-        $imageStub->method('getDefaultExtension')->willReturn($this->pngExtensionStub);
+        );
 
         $imageView = new ImageView();
         $result = $imageView->pictureHtml($imageStub, 'http://example.com/', 'alternate text');
