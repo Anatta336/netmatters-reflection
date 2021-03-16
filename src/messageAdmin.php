@@ -1,11 +1,5 @@
 <?php declare(strict_types=1);
 
-use Netmatters\Contact\FormFieldNames;
-use Netmatters\Contact\FormView;
-use Netmatters\Contact\MessageFactory;
-use Netmatters\Contact\PhoneCleaner;
-use Netmatters\Contact\RawResultsFactory;
-use Netmatters\Contact\ValidateInput;
 use Netmatters\Contact\MessageStore;
 use Netmatters\Database\SQLiteDatabase;
 
