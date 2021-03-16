@@ -8,6 +8,7 @@ use DateTime;
  */
 class Message
 {
+    protected bool $hasAnyValues = false;
     protected string $name;
     protected string $email;
     protected string $phone;
@@ -15,17 +16,46 @@ class Message
     protected string $message;
     protected \DateTime $timeSent;
 
-    function __construct(string $name, string $email, string $phone,
-        bool $isOptIn, string $message, \DateTime $timeSent)
+    function __construct(
+        ?string $name = null,
+        ?string $email = null,
+        ?string $phone = null,
+        ?bool $isOptIn = null,
+        ?string $message = null,
+        ?\DateTime $timeSent = null)
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->phone = $phone;
-        $this->isOptIn = $isOptIn;
-        $this->message = $message;
+        if ($name != null) {
+            $this->name = $name;
+        }
+        if ($email != null) {
+            $this->email = $email;
+        }
+        if ($phone != null) {
+            $this->phone = $phone;
+        }
+        if ($isOptIn != null) {
+            $this->isOptIn = $isOptIn;
+        }
+        if ($message != null) {
+            $this->message = $message;
+        }
 
         // store reference to a local clone, so Message remains immutable
-        $this->timeSent = (clone $timeSent);
+        if ($timeSent != null) {
+            $this->timeSent = (clone $timeSent);
+        }
+
+        $this->hasAnyValues = (isset($this->name)
+            || isset($this->email)
+            || isset($this->phone)
+            || isset($this->isOptIn)
+            || isset($this->message)
+            || isset($this->timeSent));
+    }
+
+    public function getHasAnyValues(): bool
+    {
+        return $this->hasAnyValues;
     }
 
     public function getName(): string

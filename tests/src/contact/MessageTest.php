@@ -2,7 +2,6 @@
 
 use Netmatters\Contact\Message;
 use PHPUnit\Framework\TestCase;
-use DateTime;
 
 class MessageTest extends TestCase
 {
@@ -141,5 +140,38 @@ class MessageTest extends TestCase
         $timeUsedToCreate->modify('3 days');
         $this->assertNotEquals($timeUsedToCreate, $message->getTimeSent());
         $this->assertEquals(new DateTime('2021-01-02 12:00:34'), $message->getTimeSent());
+    }
+
+    public function testInstantiatesWithMissingValues(): void
+    {
+        $message = new Message();
+        $this->assertInstanceOf(Message::class, $message);
+    }
+
+    public function testHasValuesWhenOneValueSet(): void
+    {
+        $message = new Message(
+            'Jane Smith',
+        );
+        $this->assertTrue($message->getHasAnyValues());
+    }
+
+    public function testHasValuesWhenAllValuesSet(): void
+    {
+        $message = new Message(
+            'Jane Smith',
+            'jane@example.com',
+            '(+44) 01234 555 234',
+            true,
+            'I want to improve SEO.',
+            new DateTime('2021-01-02 12:00:34')
+        );
+        $this->assertTrue($message->getHasAnyValues());
+    }
+
+    public function testHasNoValuesWhenNoValuesSet(): void
+    {
+        $message = new Message();
+        $this->assertFalse($message->getHasAnyValues());
     }
 }
