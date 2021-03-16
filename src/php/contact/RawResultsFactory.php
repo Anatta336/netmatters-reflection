@@ -17,15 +17,37 @@ class RawResultsFactory
         $this->fields = $formFieldNames;
     }
 
+    /**
+     * Fetches the UNFILTERED value from $_POST for the given key
+     * if there is a value with that key. Returns null if it's not set.
+     * @param mixed $key Key to load the value for.
+     * @return string|null Value stored for the given key, or null if
+     * the key isn't found in $_POST.
+     */
+    protected function getFromPostUnfiltered($key): ?string
+    {
+        if (!isset($_POST)) {
+            return null;
+        }
+        if (!isset($_POST[$key])) {
+            return null;
+        }
+        return $_POST[$key];
+    }
+
     public function buildResultsFromPost(): RawResults
     {
+        if (!isset($_POST)) {
+            return new RawResults();
+        }
+
         return new RawResults(
-            $_POST[$this->fields->getSubmittedFieldName()],
-            $_POST[$this->fields->getNameFieldName()],
-            $_POST[$this->fields->getEmailFieldName()],
-            $_POST[$this->fields->getPhoneFieldName()],
-            $_POST[$this->fields->getOptInFieldName()],
-            $_POST[$this->fields->getMessageFieldName()]
+            $this->getFromPostUnfiltered($this->fields->getSubmittedFieldName()),
+            $this->getFromPostUnfiltered($this->fields->getNameFieldName()),
+            $this->getFromPostUnfiltered($this->fields->getEmailFieldName()),
+            $this->getFromPostUnfiltered($this->fields->getPhoneFieldName()),
+            $this->getFromPostUnfiltered($this->fields->getOptInFieldName()),
+            $this->getFromPostUnfiltered($this->fields->getMessageFieldName()),
         );
     }
 }

@@ -15,12 +15,12 @@ class RawResults
     protected ?string $message;
 
     function __construct(
-        ?string $submitted,
-        ?string $name,
-        ?string $email,
-        ?string $phone,
-        ?string $optIn,
-        ?string $message
+        ?string $submitted = null,
+        ?string $name = null,
+        ?string $email = null,
+        ?string $phone = null,
+        ?string $optIn = null,
+        ?string $message = null
     )
     {
         $this->submitted = $submitted;

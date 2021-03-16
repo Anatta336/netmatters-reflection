@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use Netmatters\Contact\FormFieldNames;
+use Netmatters\Contact\RawResults;
 use Netmatters\Contact\RawResultsFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -78,5 +79,34 @@ class RawResultsFactoryTest extends TestCase
         $_POST['user-message'] = '<script>alert(1)</script>';
         $results = $factory->buildResultsFromPost();
         $this->assertSame('<script>alert(1)</script>', $results->getMessage());
+    }
+    
+    public function testStoresNullWhenOnePostValueUnset(): void
+    {
+        $factory = new RawResultsFactory($this->fields);
+        unset($_POST['user-message']);
+        $results = $factory->buildResultsFromPost();
+        $this->assertNull($results->getMessage());
+    }
+
+    public function testInstantiatesWhenAllPostValuesUnset(): void
+    {
+        $factory = new RawResultsFactory($this->fields);
+        unset($_POST['form-submitted']);
+        unset($_POST['user-name']);
+        unset($_POST['user-email']);
+        unset($_POST['user-phone']);
+        unset($_POST['user-opt-in']);
+        unset($_POST['user-message']);
+        $results = $factory->buildResultsFromPost();
+        $this->assertNull($results->getMessage());
+    }
+
+    public function testInstantiatesIfPostUnavailable(): void
+    {
+        $factory = new RawResultsFactory($this->fields);
+        unset($_POST);
+        $results = $factory->buildResultsFromPost();
+        $this->assertInstanceOf(RawResults::class, $results);
     }
 }
