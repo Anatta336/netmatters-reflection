@@ -8,22 +8,26 @@ use DateTime;
  */
 class Message
 {
-    protected bool $hasAnyValues = false;
+    protected \DateTime $timeSent;
     protected string $name;
     protected string $email;
     protected string $phone;
     protected bool $isOptIn;
     protected string $message;
-    protected \DateTime $timeSent;
 
     function __construct(
+        ?\DateTime $timeSent = null,
         ?string $name = null,
         ?string $email = null,
         ?string $phone = null,
         ?bool $isOptIn = null,
-        ?string $message = null,
-        ?\DateTime $timeSent = null)
+        ?string $message = null)
     {
+        // store reference to a local clone, so Message remains immutable
+        if ($timeSent != null) {
+            $this->timeSent = (clone $timeSent);
+        }
+
         if ($name != null) {
             $this->name = $name;
         }
@@ -39,48 +43,66 @@ class Message
         if ($message != null) {
             $this->message = $message;
         }
-
-        // store reference to a local clone, so Message remains immutable
-        if ($timeSent != null) {
-            $this->timeSent = (clone $timeSent);
-        }
-
-        $this->hasAnyValues = (isset($this->name)
-            || isset($this->email)
-            || isset($this->phone)
-            || isset($this->isOptIn)
-            || isset($this->message)
-            || isset($this->timeSent));
     }
 
     public function getHasAnyValues(): bool
     {
-        return $this->hasAnyValues;
+        return isset($this->timeSent)
+            || isset($this->name)
+            || isset($this->email)
+            || isset($this->phone)
+            || isset($this->isOptIn)
+            || isset($this->message);
     }
 
     public function getName(): string
     {
-        return $this->name;
+        if (isset($this->name)) {
+            return $this->name;
+        } else {
+            return '';
+        }
     }
     public function getEmail(): string
     {
-        return $this->email;
+        if (isset($this->email)) {
+            return $this->email;
+        } else {
+            return '';
+        }
     }
     public function getPhone(): string
     {
-        return $this->phone;
+        if (isset($this->phone)) {
+            return $this->phone;
+        } else {
+            return '';
+        }
     }
     public function getIsOptIn(): bool
     {
-        return $this->isOptIn;
+        if (isset($this->isOptIn)) {
+            return $this->isOptIn;
+        } else {
+            return false;
+        }
     }
     public function getMessage(): string
     {
-        return $this->message;
+        if (isset($this->message)) {
+            return $this->message;
+        } else {
+            return '';
+        }
     }
-    public function getTimeSent(): DateTime
+    public function getTimeSent(): ?DateTime
     {
-        // Message is immutable, so give reference to a clone
-        return clone $this->timeSent;
+        if (isset($this->timeSent)) {
+            // Message is immutable, so return reference to a clone
+            return clone $this->timeSent;
+        } else 
+        {
+            return null;
+        }
     }
 }

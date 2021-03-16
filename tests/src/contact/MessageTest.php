@@ -8,12 +8,12 @@ class MessageTest extends TestCase
     public function testInstantiates(): void
     {
         $message = new Message(
+            new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
             'jane@example.com',
             '(+44) 01234 555 234',
             true,
             'I want to improve SEO.',
-            new DateTime('2021-01-02 12:00:34')
         );
         $this->assertInstanceOf(Message::class, $message);
     }
@@ -21,12 +21,12 @@ class MessageTest extends TestCase
     public function testStoresName(): void
     {
         $message = new Message(
+            new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
             'jane@example.com',
             '(+44) 01234 555 234',
             true,
             'I want to improve SEO.',
-            new DateTime('2021-01-02 12:00:34')
         );
         $this->assertSame('Jane Smith', $message->getName());
     }
@@ -34,12 +34,12 @@ class MessageTest extends TestCase
     public function testStoresEmail(): void
     {
         $message = new Message(
+            new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
             'jane@example.com',
             '(+44) 01234 555 234',
             true,
             'I want to improve SEO.',
-            new DateTime('2021-01-02 12:00:34')
         );
         $this->assertSame('jane@example.com', $message->getEmail());
     }
@@ -47,12 +47,12 @@ class MessageTest extends TestCase
     public function testStoresPhone(): void
     {
         $message = new Message(
+            new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
             'jane@example.com',
             '(+44) 01234 555 234',
             true,
             'I want to improve SEO.',
-            new DateTime('2021-01-02 12:00:34')
         );
         $this->assertSame('(+44) 01234 555 234', $message->getPhone());
     }
@@ -60,12 +60,12 @@ class MessageTest extends TestCase
     public function testStoresIsOptIn(): void
     {
         $message = new Message(
+            new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
             'jane@example.com',
             '(+44) 01234 555 234',
             true,
             'I want to improve SEO.',
-            new DateTime('2021-01-02 12:00:34')
         );
         $this->assertTrue($message->getIsOptIn());
     }
@@ -73,12 +73,12 @@ class MessageTest extends TestCase
     public function testStoresMessage(): void
     {
         $message = new Message(
+            new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
             'jane@example.com',
             '(+44) 01234 555 234',
             true,
             'I want to improve SEO.',
-            new DateTime('2021-01-02 12:00:34')
         );
         $this->assertSame('I want to improve SEO.', $message->getMessage());
     }
@@ -86,12 +86,12 @@ class MessageTest extends TestCase
     public function testStoresTimeSent(): void
     {
         $message = new Message(
+            new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
             'jane@example.com',
             '(+44) 01234 555 234',
             true,
             'I want to improve SEO.',
-            new DateTime('2021-01-02 12:00:34')
         );
         // equals instead of same, as they'll be different DateTime objects
         $this->assertEquals(new DateTime('2021-01-02 12:00:34'), $message->getTimeSent());
@@ -104,12 +104,12 @@ class MessageTest extends TestCase
     public function testCannotChangeTimeWithReturnedObject(): void
     {
         $message = new Message(
+            new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
             'jane@example.com',
             '(+44) 01234 555 234',
             true,
             'I want to improve SEO.',
-            new DateTime('2021-01-02 12:00:34')
         );
 
         $timeFromObject = $message->getTimeSent();
@@ -129,12 +129,12 @@ class MessageTest extends TestCase
         $timeUsedToCreate = new DateTime('2021-01-02 12:00:34');
 
         $message = new Message(
+            $timeUsedToCreate,
             'Jane Smith',
             'jane@example.com',
             '(+44) 01234 555 234',
             true,
             'I want to improve SEO.',
-            $timeUsedToCreate
         );
 
         $timeUsedToCreate->modify('3 days');
@@ -142,7 +142,7 @@ class MessageTest extends TestCase
         $this->assertEquals(new DateTime('2021-01-02 12:00:34'), $message->getTimeSent());
     }
 
-    public function testInstantiatesWithMissingValues(): void
+    public function testInstantiatesWithNoValues(): void
     {
         $message = new Message();
         $this->assertInstanceOf(Message::class, $message);
@@ -151,6 +151,7 @@ class MessageTest extends TestCase
     public function testHasValuesWhenOneValueSet(): void
     {
         $message = new Message(
+            new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
         );
         $this->assertTrue($message->getHasAnyValues());
@@ -159,12 +160,12 @@ class MessageTest extends TestCase
     public function testHasValuesWhenAllValuesSet(): void
     {
         $message = new Message(
+            new DateTime('2021-01-02 12:00:34'),
             'Jane Smith',
             'jane@example.com',
             '(+44) 01234 555 234',
             true,
             'I want to improve SEO.',
-            new DateTime('2021-01-02 12:00:34')
         );
         $this->assertTrue($message->getHasAnyValues());
     }
