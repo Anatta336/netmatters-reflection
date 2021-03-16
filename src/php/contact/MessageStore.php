@@ -34,4 +34,10 @@ class MessageStore
 
         return $this->database->runQuery($sql, ...$values);
     }
+
+    public function FetchAllMessages(): array
+    {
+        $sql = "SELECT * FROM contact_message ORDER BY time_sent DESC;";
+        return $this->database->fetchResults($sql);
+    }
 }
