@@ -3,6 +3,15 @@ namespace Netmatters\Contact;
 
 class FormView
 {
+    protected Message $message;
+    protected ValidateInput $validation;
+
+    function __construct(Message $message, ValidateInput $validation)
+    {
+        $this->message = $message;
+        $this->validation = $validation;
+    }
+
     protected function show(bool $isShown): string
     {
         return $isShown ? ' show' : '';
@@ -20,8 +29,11 @@ class FormView
      * being passed to this method.
      * @return string HTML representing a contact form.
      */
-    public function htmlForm(Message $message, ValidateInput $validation): string
+    public function htmlForm(): string
     {
+        $message = $this->message;
+        $validation = $this->validation;
+
         $result = <<<"EOT"
         <form class="message-form" method="POST" action="contact.php">
             <input type="hidden" name="form-submitted" value="1">

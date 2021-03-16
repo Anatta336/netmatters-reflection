@@ -19,10 +19,21 @@ $message = $messageFactory->createFromRaw($rawResults);
 $validate = new ValidateInput($rawResults);
 
 //TODO: if message is valid then store
-// show a success message
-// show the form with fields cleared (or replace the form with the message?)
 
-$formView = new FormView();
+$feedback = '';
+$hasSubmittedMessage = false;
+if ($validate->getIsValid()) {
+    // submit message
+    $feedback = 'Would have submitted your message.';
+
+
+    $hasSubmittedMessage = true;
+    // as the message was submitted, clear it
+    $message = $messageFactory->createEmpty();
+}
+
+$formView = new FormView($message, $validate);
+// $feedbackView = ...
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +53,14 @@ $formView = new FormView();
                 <div class="wrapper">
                     <h2>Contact Us</h2>
                     <div class="content">
-                        <?= $formView->htmlForm($message, $validate) ?>
+                        <?php
+                        if ($hasSubmittedMessage) {
+                            // TODO: replace with a feedback display view?
+                            echo "<p class=\"feedback\">$feedback</a>";
+                        } else {
+                            echo $formView->htmlForm();
+                        }
+                        ?>
                         <div class="contact-details">
                             <h3>Call us on:</h3>
                             <a href="tel:01603704020">01603 70 40 20</a>

@@ -20,7 +20,7 @@ class ValidateInput
     }
 
     /**
-     * True if there's zero validation problems.
+     * True if message is ready to be submitted.
      * @return bool
      */
     public function getIsValid(): bool
