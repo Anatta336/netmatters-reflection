@@ -106,6 +106,7 @@ class RawResultsFactoryTest extends TestCase
     {
         $factory = new RawResultsFactory($this->fields);
         unset($_POST);
+        $this->assertFalse(isset($_POST));
         $results = $factory->buildResultsFromPost();
         $this->assertInstanceOf(RawResults::class, $results);
     }

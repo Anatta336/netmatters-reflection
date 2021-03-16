@@ -37,10 +37,6 @@ class RawResultsFactory
 
     public function buildResultsFromPost(): RawResults
     {
-        if (!isset($_POST)) {
-            return new RawResults();
-        }
-
         return new RawResults(
             $this->getFromPostUnfiltered($this->fields->getSubmittedFieldName()),
             $this->getFromPostUnfiltered($this->fields->getNameFieldName()),
