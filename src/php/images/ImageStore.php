@@ -18,16 +18,18 @@ class ImageStore
 
     protected function getImageByIdAsArray($id): array
     {
-        $sql = "SELECT image.id AS id,
-                    image.image_url AS image_url,
-                    extension.id AS extension_id,
-                    extension.extension AS extension,
-                    extension.picture_type AS picture_type,
-                    image_has_extension.is_default AS is_default
-                FROM image_has_extension
-                JOIN image ON image_has_extension.image_id = image.id
-                JOIN extension ON image_has_extension.extension_id = extension.id
-                WHERE image.id = ?;";
+        $sql = <<<"EOT"
+            SELECT image.id AS id,
+                image.image_url AS image_url,
+                extension.id AS extension_id,
+                extension.extension AS extension,
+                extension.picture_type AS picture_type,
+                image_has_extension.is_default AS is_default
+            FROM image_has_extension
+            JOIN image ON image_has_extension.image_id = image.id
+            JOIN extension ON image_has_extension.extension_id = extension.id
+            WHERE image.id = ?;
+        EOT;
         return $this->database->fetchResults($sql, $id);
     }
 
