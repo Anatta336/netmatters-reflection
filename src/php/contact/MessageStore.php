@@ -13,11 +13,9 @@ class MessageStore
         $this->database = $database;
     }
 
-    public function StoreMessage(Message $message): bool
+    public function storeMessage(Message $message): bool
     {
-        $sql = "INSERT INTO contact_message (name, email, phone, marketing_opt_in, message, time_sent)
-        VALUES (?, ?, ?, ?, ?, ?);";
-        //time_sent format: '2021-01-02 12:45:32'
+        $sql = "INSERT INTO contact_message (name, email, phone, marketing_opt_in, message, time_sent) VALUES (?, ?, ?, ?, ?, ?);";
         
         $values = [
             $message->getName(),
@@ -35,7 +33,7 @@ class MessageStore
         return $this->database->runQuery($sql, ...$values);
     }
 
-    public function FetchAllMessages(): array
+    public function fetchAllMessages(): array
     {
         $sql = "SELECT * FROM contact_message ORDER BY time_sent DESC;";
         return $this->database->fetchResults($sql);

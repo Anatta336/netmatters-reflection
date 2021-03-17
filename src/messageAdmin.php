@@ -7,7 +7,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $database = new SQLiteDatabase(__DIR__ . '/../db/netmatters.db');
 $storage = new MessageStore($database);
-$messages = $storage->FetchAllMessages();
+$messages = $storage->fetchAllMessages();
 ?>
 <!DOCTYPE html>
 <html lang="en">

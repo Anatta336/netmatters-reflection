@@ -25,7 +25,7 @@ $hasSubmittedMessage = false;
 if ($validate->getIsValid()) {
     $database = new SQLiteDatabase(__DIR__ . '/../db/netmatters.db');
     $store = new MessageStore($database);
-    $hasSubmittedMessage = $store->StoreMessage($message);
+    $hasSubmittedMessage = $store->storeMessage($message);
     
     // TODO: better feedback messages?
     if ($hasSubmittedMessage) {
