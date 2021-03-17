@@ -4,7 +4,7 @@ namespace Netmatters\Posts;
 use Netmatters\Database\DatabaseInterface;
 use Netmatters\Images\ImageStore;
 
-class PostsModel
+class PostStore
 {
     protected DatabaseInterface $database;
     protected ImageStore $imagesModel;

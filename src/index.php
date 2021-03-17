@@ -6,7 +6,7 @@ use Netmatters\Images\Extensions\ExtensionCollection;
 use Netmatters\Images\ImageFactory;
 use Netmatters\Images\ImageStore;
 use Netmatters\Posts\PostFactory;
-use Netmatters\Posts\PostsModel;
+use Netmatters\Posts\PostStore;
 use Netmatters\Posts\PostsView;
 
 $database = new SQLiteDatabase(__DIR__ . '/../db/netmatters.db');
@@ -16,7 +16,7 @@ $imageFactory = new ImageFactory($extensions);
 $postFactory = new PostFactory();
 
 $imageStore = new ImageStore($database, $imageFactory);
-$postStore = new PostsModel($database, $imageStore, $postFactory);
+$postStore = new PostStore($database, $imageStore, $postFactory);
 
 ?>
 <!DOCTYPE html>

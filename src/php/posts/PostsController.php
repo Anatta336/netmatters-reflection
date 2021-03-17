@@ -5,7 +5,7 @@ use Netmatters\Database\DatabaseInterface;
 
 class PostsController
 {
-    private PostsModel $model;
+    private PostStore $model;
     private PostsView $view;
 
     function __construct(DatabaseInterface $database)
