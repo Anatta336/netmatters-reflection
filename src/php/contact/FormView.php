@@ -49,7 +49,7 @@ class FormView
                     </label>
                     <p class="error{$this->show($validation->getIsFormSubmission() && $validation->getHasEmail() && !$validation->getIsEmailValid())}" id="invalid-email">Please double-check your email address, this doesn't appear to be valid.</p>
                 </div>
-                
+
                 <div class="user-phone">
                     <label>Telephone:
                         <input type="text" name="user-phone" maxlength="32" placeholder="01367 587621" value="{$message->getPhone()}">
