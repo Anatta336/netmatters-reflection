@@ -4,7 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Netmatters\Database\SQLiteDatabase;
 use Netmatters\Images\Extensions\ExtensionCollection;
 use Netmatters\Images\ImageFactory;
-use Netmatters\Images\ImagesModel;
+use Netmatters\Images\ImageStore;
 use Netmatters\Posts\PostFactory;
 use Netmatters\Posts\PostsModel;
 use Netmatters\Posts\PostsView;
@@ -15,8 +15,8 @@ $extensions = new ExtensionCollection();
 $imageFactory = new ImageFactory($extensions);
 $postFactory = new PostFactory();
 
-$imagesModel = new ImagesModel($database, $imageFactory);
-$postsModel = new PostsModel($database, $imagesModel, $postFactory);
+$imageStore = new ImageStore($database, $imageFactory);
+$postStore = new PostsModel($database, $imageStore, $postFactory);
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@ $postsModel = new PostsModel($database, $imagesModel, $postFactory);
             <?php
             include __DIR__ . '/../src/partials/services.html';
             include __DIR__ . '/../src/partials/about.html';
-            echo (new PostsView())->htmlLatestPosts($postsModel->getRecentPosts(3));
+            echo (new PostsView())->htmlLatestPosts($postStore->getRecentPosts(3));
             include __DIR__ . '/../src/partials/clients.html';
             include __DIR__ . '/../src/partials/footer.html';
             include __DIR__ . '/../src/partials/accreditations.html';

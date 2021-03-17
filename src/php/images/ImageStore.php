@@ -3,7 +3,7 @@ namespace Netmatters\Images;
 
 use Netmatters\Database\DatabaseInterface;
 
-class ImagesModel
+class ImageStore
 {
     protected DatabaseInterface $database;
     protected ImageFactory $factory;

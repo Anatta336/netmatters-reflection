@@ -2,17 +2,17 @@
 namespace Netmatters\Posts;
 
 use Netmatters\Database\DatabaseInterface;
-use Netmatters\Images\ImagesModel;
+use Netmatters\Images\ImageStore;
 
 class PostsModel
 {
     protected DatabaseInterface $database;
-    protected ImagesModel $imagesModel;
+    protected ImageStore $imagesModel;
     protected PostFactory $postFactory;
 
     function __construct(
         DatabaseInterface $database,
-        ImagesModel $imagesModel,
+        ImageStore $imagesModel,
         PostFactory $postFactory)
     {
         $this->database = $database;

@@ -21,17 +21,17 @@ class ImageFactory
      *   [
      *      'id' => 1,
      *      'image_url' => 'img/one',
-     *      'extension_id => 2,
+     *      'extension_id' => 2,
      *      'extension' => 'jpg',
-     *      'picture_type' => 'image/jpeg'
+     *      'picture_type' => 'image/jpeg',
      *      'is_default' => 1
      *   ],
      *   [
      *      'id' => 1,
      *      'image_url' => 'img/one',
-     *      'extension_id => 3,
+     *      'extension_id' => 3,
      *      'extension' => 'webp',
-     *      'picture_type' => 'image/webp'
+     *      'picture_type' => 'image/webp',
      *      'is_default' => 0
      *   ],
      * ]
@@ -51,27 +51,37 @@ class ImageFactory
 
         foreach ($results as $result) {
             if ($isFirst) {
+                if (!isset($result['id']) || !is_int($result['id'])) {
+                    // TODO: log a warning
+                    echo "no integer id\n";
+                    return null;
+                }
                 $id = (int)$result['id'];
-                if (!is_int($id)) {
-                    // TODO: log a warning
-                    echo "id not int\n";
-                    return null;
-                }
 
-                $imageUrl = $result['image_url'];
-                if (!is_string($imageUrl)) {
+                if (!isset($result['image_url']) || !is_string($result['image_url'])) {
                     // TODO: log a warning
-                    echo "imageUrl not string\n";
+                    echo "no imageUrl string\n";
                     return null;
                 }
+                $imageUrl = $result['image_url'];
 
                 $isFirst = false;
             }
 
+            if (!isset($result['id']) || !is_int($result['id'])) {
+                //TODO: warning
+                echo "no integer id\n";
+                return null;
+            }
             if (((int)$result['id']) !== $id) {
                 // multiple ids, these results aren't valid for creating a single image
                 // TODO: log a warning
                 echo "multiple image ids in one set of results\n";
+                return null;
+            }
+            if (!isset($result['image_url']) || !is_string($result['image_url'])) {
+                //TODO: warning
+                echo "no string image url";
                 return null;
             }
             if ($result['image_url'] !== $imageUrl) {
@@ -81,12 +91,12 @@ class ImageFactory
                 return null;
             }
 
-            $extensionId = (int)$result['extension_id'];
-            if (!is_int($extensionId)) {
+            if (!isset($result['extension_id']) || !is_int($result['extension_id'])) {
                 // TODO: log a warning, missing extension Id
                 echo "missing extensionId\n";
                 return null;
             }
+            $extensionId = (int)$result['extension_id'];
 
 
             $extension = null;
@@ -106,10 +116,11 @@ class ImageFactory
             }
             array_push($extensions, $extension);
 
-            if ($result['is_default'] && $defaultExtension !== null) {
+            if (isset($result['is_default']) && $result['is_default'] && $defaultExtension !== null) {
                 // TODO: log warning, multiple extensions marked as default
                 echo "multiple default extensions\n";
-            } else if ($result['is_default']) {
+                return null;
+            } else if (isset($result['is_default']) && $result['is_default']) {
                 $defaultExtension = $extension;
             }
         }
@@ -117,6 +128,7 @@ class ImageFactory
         if ($defaultExtension === null) {
             // TODO: log warning, no default extension for image
             echo "no default extension\n";
+            return null;
         }
 
         return new Image($id, $imageUrl, $extensions, $defaultExtension);
