@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 namespace Netmatters\Contact;
 
-class ValidateInput
+class Validation
 {    
     /**
-     * @var RawResults The results that have been checked.
+     * @var RawResults The results that are being checked.
      */
     protected RawResults $rawResults;
 

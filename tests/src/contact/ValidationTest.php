@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-use Netmatters\Contact\ValidateInput;
+use Netmatters\Contact\Validation;
 use Netmatters\Contact\RawResults;
 use PHPUnit\Framework\TestCase;
 
-class ValidateInputTest extends TestCase
+class ValidationTest extends TestCase
 {
     protected $rawResults;
 
@@ -32,8 +32,8 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
-        $this->assertInstanceOf(ValidateInput::class, $validate);
+        $validate = new Validation($results);
+        $this->assertInstanceOf(Validation::class, $validate);
     }
 
     // ---- getHasName ----
@@ -44,7 +44,7 @@ class ValidateInputTest extends TestCase
             '1', '', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getHasName());
     }
     public function testHasNameTrueWhenPresent(): void
@@ -53,7 +53,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getHasName());
     }
     
@@ -65,7 +65,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', '', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getHasEmail());
     }
     public function testHasEmailTrueWhenPresent(): void
@@ -74,7 +74,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getHasEmail());
     }
 
@@ -86,7 +86,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getHasPhone());
     }
     public function testHasPhoneTrueWhenPresent(): void
@@ -95,7 +95,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getHasPhone());
     }
 
@@ -107,7 +107,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', ''
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getHasMessage());
     }
     public function testHasMessageTrueWhenEmpty(): void
@@ -116,7 +116,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getHasMessage());
     }
 
@@ -127,7 +127,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getIsEmailValid());
     }
     public function testInvalidEmailNoAtSymbol(): void
@@ -136,7 +136,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'janeexample.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsEmailValid());
     }
     public function testInvalidEmailNoDomain(): void
@@ -145,7 +145,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsEmailValid());
     }
     public function testInvalidEmailNoIdentifier(): void
@@ -154,7 +154,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', '@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsEmailValid());
     }
     public function testInvalidEmailBlank(): void
@@ -163,7 +163,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', '', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsEmailValid());
     }
     public function testInvalidEmailInvalidCharacter(): void
@@ -172,7 +172,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane/smith@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsEmailValid());
     }
     public function testInvalidEmailWhenNull(): void
@@ -181,7 +181,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', null, '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsEmailValid());
     }
 
@@ -193,7 +193,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getIsPhoneValid());
     }
     public function testInvalidPhoneBlank(): void
@@ -202,7 +202,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsPhoneValid());
     }
     public function testInvalidPhoneContainsLetters(): void
@@ -211,7 +211,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 abc 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsPhoneValid());
     }
     public function testInvalidPhoneWhenNull(): void
@@ -220,7 +220,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', null, '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsPhoneValid());
     }
 
@@ -232,7 +232,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', '', '', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getHasContactMethod());
     }
     public function testHasContactTrueWhenHasEmail(): void
@@ -241,7 +241,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getHasContactMethod());
     }
     public function testHasContactTrueWhenHasPhone(): void
@@ -250,7 +250,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', '', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getHasContactMethod());
     }
     public function testHasContactTrueWhenHasEmailAndPhone(): void
@@ -259,7 +259,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getHasContactMethod());
     }
     public function testHasContactFalseWhenInvalidEmailAndNoPhone(): void
@@ -268,7 +268,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane-example.com', '', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getHasContactMethod());
     }
     public function testHasContactFalseWhenInvalidPhoneAndNoEmail(): void
@@ -277,7 +277,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', '', '(+44) abcde 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getHasContactMethod());
     }
     public function testHasContactTrueWhenInvalidPhoneAndValidEmail(): void
@@ -286,7 +286,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) abcde 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getHasContactMethod());
     }
     public function testHasContactTrueWhenInvalidEmailAndValidPhone(): void
@@ -295,7 +295,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'janeexample.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getHasContactMethod());
     }
 
@@ -306,7 +306,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getIsValid());
     }
     public function testIsValidWhenOptOut(): void
@@ -315,7 +315,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '0', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getIsValid());
     }
     public function testIsValidFalseWhenMissingName(): void
@@ -324,7 +324,7 @@ class ValidateInputTest extends TestCase
             '1', '', 'jane@example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsValid());
     }
     public function testIsValidFalseWhenInvalidEmail(): void
@@ -333,7 +333,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane-example.com', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsValid());
     }
     public function testIsValidFalseWhenInvalidPhone(): void
@@ -342,7 +342,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 abc 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsValid());
     }
     public function testIsValidWhenOnlyEmail(): void
@@ -351,7 +351,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getIsValid());
     }
     public function testIsValidWhenOnlyPhone(): void
@@ -360,7 +360,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', '', '(+44) 01234 555 234', '1', 'I want to improve SEO.'
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getIsValid());
     }
     public function testIsValidFalseWhenNoMessage(): void
@@ -369,7 +369,7 @@ class ValidateInputTest extends TestCase
             '1', 'Jane Smith', 'jane@example.com', '(+44) 01234 555 234', '1', ''
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsValid());
     }
 
@@ -380,7 +380,7 @@ class ValidateInputTest extends TestCase
             '1', '', 'jane@example.com', 'invalid phone number', '1', ''
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertTrue($validate->getIsFormSubmission());
     }
     public function testIsFormSubmissionFalseWhenEmptyString(): void
@@ -389,7 +389,7 @@ class ValidateInputTest extends TestCase
             '', '', 'jane@example.com', 'invalid phone number', '1', ''
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsFormSubmission());
     }
     public function testIsFormSubmissionFalseWhenNull(): void
@@ -398,7 +398,7 @@ class ValidateInputTest extends TestCase
             null, '', 'jane@example.com', 'invalid phone number', '1', ''
         );
 
-        $validate = new ValidateInput($results);
+        $validate = new Validation($results);
         $this->assertFalse($validate->getIsFormSubmission());
     }
 }

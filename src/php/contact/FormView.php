@@ -4,9 +4,9 @@ namespace Netmatters\Contact;
 class FormView
 {
     protected Message $message;
-    protected ValidateInput $validation;
+    protected Validation $validation;
 
-    function __construct(Message $message, ValidateInput $validation)
+    function __construct(Message $message, Validation $validation)
     {
         $this->message = $message;
         $this->validation = $validation;
@@ -25,7 +25,7 @@ class FormView
     /**
      * @param Message $message A Message object holding the values for any values
      * already entered in the contact form. 
-     * @param ValidateInput $validation Representation of the validity of the Message
+     * @param Validation $validation Representation of the validity of the Message
      * being passed to this method.
      * @return string HTML representing a contact form.
      */
@@ -72,22 +72,6 @@ class FormView
                     <p class="error{$this->show($validation->getIsFormSubmission() && !$message->getMessage())}" id="no-message">Please leave a brief message to let us know how we can help.</p>
                 </label>
             </fieldset>
-
-            <!--
-            <div class="submit">
-                <div class="g-recaptcha"
-                data-sitekey="6LdkCUsaAAAAAETlRF98CiT4kvYatROoAppbpXS6"
-                data-callback="captchaPassed"></div>
-                <button id="send-message" type="button">Send Message</button>
-            </div>
-            <p class="error" id="captcha-missing">Please complete the "I'm not a robot" reCAPTCHA check before sending a message.</p>
-            <script>
-                // callback function from reCAPTCHA when user shows they're not a robot
-                function captchaPassed() {
-                    formMessages.hideError('captcha-missing');
-                }
-            </script>
-            -->
             <input type="submit" value="Send">
         </form>
         EOT;

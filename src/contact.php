@@ -5,7 +5,7 @@ use Netmatters\Contact\FormView;
 use Netmatters\Contact\MessageFactory;
 use Netmatters\Contact\PhoneCleaner;
 use Netmatters\Contact\RawResultsFactory;
-use Netmatters\Contact\ValidateInput;
+use Netmatters\Contact\Validation;
 use Netmatters\Contact\MessageStore;
 use Netmatters\Database\SQLiteDatabase;
 
@@ -18,7 +18,7 @@ $rawResults = $rawFactory->buildResultsFromPost();
 // filter and validate
 $messageFactory = new MessageFactory(new PhoneCleaner());
 $message = $messageFactory->createFromRaw($rawResults);
-$validate = new ValidateInput($rawResults);
+$validate = new Validation($rawResults);
 
 $feedback = '';
 $hasSubmittedMessage = false;
