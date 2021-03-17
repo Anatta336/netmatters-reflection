@@ -25,11 +25,7 @@ class MessageStore
             $message->getMessage(),
             $message->getTimeSent()->format('Y-m-d H:i:s'),
         ];
-
-        var_dump($sql);
-        echo "\n";
-        var_dump($values);
-
+        
         return $this->database->runQuery($sql, ...$values);
     }
 
