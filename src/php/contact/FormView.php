@@ -31,7 +31,7 @@ class FormView
     {
         $message = $this->message;
         $validation = $this->validation;
-
+        
         $result = <<<"EOT"
         <form class="message-form" method="POST" action="contact.php">
             <input type="hidden" name="form-submitted" value="1">
@@ -52,8 +52,9 @@ class FormView
                     <label>Telephone:
                         <input type="text" name="user-phone" maxlength="32" placeholder="01367 587621" value="{$message->getPhone()}">
                     </label>
+                    <p class="error{$this->show($validation->getIsFormSubmission() && $validation->getHasPhone() && !$validation->getIsPhoneValid())}" id="invalid-phone">Please double-check phone number, what was entered doesn't appear to be valid.</p>
                     <p class="error{$this->show($validation->getIsFormSubmission() && !$validation->getHasContactMethod())}" id="no-contact">Please provide an email address or phone number so we can get back to you.</p>
-                </div class="user-phone">
+                </div>
 
                 <div class="checkbox">
                     <label>
