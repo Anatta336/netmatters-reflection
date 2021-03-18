@@ -2,7 +2,6 @@
 
 use Netmatters\Database\DatabaseInterface;
 use Netmatters\Posts\Post;
-use Netmatters\Posts\PostsView;
 use Netmatters\Images\Image;
 use Netmatters\Images\Extensions\Extension;
 use Netmatters\Images\ImageStore;
@@ -112,7 +111,7 @@ class PostStoreTest extends TestCase
                 'category_slug' => 'web-design',
                 'post_type_name' => 'Case Studies',
                 'post_type_slug' => 'case-studies',
-                'post_name' => 'Netmatters Ltd.',
+                'poster_name' => 'Netmatters Ltd.',
                 'poster_image_id' => 1,
                 'content_short' => 'We made an online art gallery, and it was really successful',
             ]
@@ -145,7 +144,7 @@ class PostStoreTest extends TestCase
                 'category_slug' => 'web-design',
                 'post_type_name' => 'Case Studies',
                 'post_type_slug' => 'case-studies',
-                'post_name' => 'Netmatters Ltd.',
+                'poster_name' => 'Netmatters Ltd.',
                 'poster_image_id' => 1,
                 'content_short' => 'We made an online art gallery, and it was really successful',
             ]
@@ -178,7 +177,7 @@ class PostStoreTest extends TestCase
                 'category_slug' => 'web-design',
                 'post_type_name' => 'Case Studies',
                 'post_type_slug' => 'case-studies',
-                'post_name' => 'Netmatters Ltd.',
+                'poster_name' => 'Netmatters Ltd.',
                 // 'poster_image_id' => 1,
                 'content_short' => 'We made an online art gallery, and it was really successful',
             ]
