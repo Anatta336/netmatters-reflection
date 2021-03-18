@@ -23,10 +23,8 @@ class FormView
     }
 
     /**
-     * @param Message $message A Message object holding the values for any values
-     * already entered in the contact form. 
-     * @param Validation $validation Representation of the validity of the Message
-     * being passed to this method.
+     * Generates HTML for a contact form, reflecting the state
+     * of the Message and Validation used when creating this View.
      * @return string HTML representing a contact form.
      */
     public function htmlForm(): string
