@@ -11,6 +11,7 @@ use Netmatters\Contact\MessageStore;
 use Netmatters\Database\SQLiteDatabase;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Netmatters\Contact\SuccessView;
 
 $logger = new Logger('main_logger');
 $logger->pushHandler(new StreamHandler(__DIR__ . '/../logs/full.log', Logger::DEBUG));
@@ -23,24 +24,18 @@ $rawResults = $rawFactory->buildResultsFromPost();
 // filter and validate
 $messageFactory = new MessageFactory(new PhoneCleaner());
 $message = $messageFactory->createFromRaw($rawResults);
-$validate = new Validation($rawResults);
+$validation = new Validation($rawResults);
 
-$feedback = '';
+// if valid, store the message
 $hasSubmittedMessage = false;
-if ($validate->getIsValid()) {
+if ($validation->getIsValid()) {
     $database = new SQLiteDatabase($logger, __DIR__ . '/../db/netmatters.db');
     $store = new MessageStore($database);
     $hasSubmittedMessage = $store->storeMessage($message);
-    
-    // TODO: better feedback messages?
-    if ($hasSubmittedMessage) {
-        $feedback = 'Thanks for your message!';
-    }
 }
 
-$formView = new FormView($message, $validate);
-// TODO: feedback view?
-// $feedbackView = ...
+$formView = new FormView($message, $validation);
+$successView = new SuccessView($logger, $message, $validation);
 
 ?>
 <!DOCTYPE html>
@@ -62,8 +57,7 @@ $formView = new FormView($message, $validate);
                     <div class="content">
                         <?php
                         if ($hasSubmittedMessage) {
-                            // TODO: replace with a feedback display view?
-                            echo "<p class=\"feedback\">$feedback</a>";
+                            echo $successView->html();
                         } else {
                             echo $formView->htmlForm();
                         }
