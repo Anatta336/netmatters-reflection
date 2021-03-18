@@ -76,4 +76,3 @@ class PostStore
         return $posts;
     }
 }
-
