@@ -51,7 +51,7 @@ class ImageFactory
 
         foreach ($results as $result) {
             if ($isFirst) {
-                if (!isset($result['id']) || !is_int($result['id'])) {
+                if (!isset($result['id']) || !is_numeric($result['id'])) {
                     // TODO: log a warning
                     echo "no integer id\n";
                     return null;
@@ -68,7 +68,7 @@ class ImageFactory
                 $isFirst = false;
             }
 
-            if (!isset($result['id']) || !is_int($result['id'])) {
+            if (!isset($result['id']) || !is_numeric($result['id'])) {
                 //TODO: warning
                 echo "no integer id\n";
                 return null;
@@ -91,7 +91,7 @@ class ImageFactory
                 return null;
             }
 
-            if (!isset($result['extension_id']) || !is_int($result['extension_id'])) {
+            if (!isset($result['extension_id']) || !is_numeric($result['extension_id'])) {
                 // TODO: log a warning, missing extension Id
                 echo "missing extensionId\n";
                 return null;
