@@ -1,11 +1,16 @@
 <?php declare(strict_types=1);
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Netmatters\Contact\MessageStore;
 use Netmatters\Database\SQLiteDatabase;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$logger = new Logger('main_logger');
+$logger->pushHandler(new StreamHandler(__DIR__ . '/../logs/full.log', Logger::DEBUG));
+$logger->pushHandler(new StreamHandler(__DIR__ . '/../logs/error.log', Logger::ERROR));
 
-$database = new SQLiteDatabase(__DIR__ . '/../db/netmatters.db');
+$database = new SQLiteDatabase($logger, __DIR__ . '/../db/netmatters.db');
 $storage = new MessageStore($database);
 $messages = $storage->fetchAllMessages();
 ?>

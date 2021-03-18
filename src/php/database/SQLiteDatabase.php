@@ -1,15 +1,19 @@
 <?php
 namespace Netmatters\Database;
 
+use Psr\Log\LoggerInterface;
+
 class SQLiteDatabase implements DatabaseInterface
 {
     protected \PDO $pdo;
+    protected LoggerInterface $logger;
 
-    function __construct(string $pathToFile)
+    function __construct(LoggerInterface $logger, string $pathToFile)
     {
-        $dataSourceName = "sqlite:$pathToFile";
+        $this->logger = $logger;
 
         try {
+            $dataSourceName = "sqlite:$pathToFile";
             $this->pdo = new \PDO($dataSourceName, '', '',
                 [
                     \PDO::ATTR_EMULATE_PREPARES => false,
@@ -18,9 +22,8 @@ class SQLiteDatabase implements DatabaseInterface
                 ]
             );
         } catch (\Exception $e) {
-            // TODO: log this instead of a random echo
-            echo "Unable to access SQLite database at $pathToFile\n"
-                . $e->getMessage();
+            $logger->alert("Unable to access SQLite database.",
+                [$pathToFile, $e->getMessage(), $e]);
         }
     }
 
@@ -34,9 +37,8 @@ class SQLiteDatabase implements DatabaseInterface
             }
             $statement->execute();
         } catch (\Exception $e) {
-            // TODO: log this
-            echo "Unable to fetch results.\n"
-                . $e->getMessage();
+            $this->logger->critical("Unable to fetch results.",
+                [$sqlQuery, $values, $e->getMessage(), $e]);
         }
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -52,9 +54,8 @@ class SQLiteDatabase implements DatabaseInterface
             }
             $result = $statement->execute();
         } catch (\Exception $e) {
-            // TODO: log this
-            echo "Unable to store values.\n"
-                . $e->getMessage();
+            $this->logger->critical("Unable to store values.",
+                [$sqlQuery, $values, $e->getMessage(), $e]);
         }
         return $result;
     }

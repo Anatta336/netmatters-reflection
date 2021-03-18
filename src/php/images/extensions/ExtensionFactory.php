@@ -1,8 +1,17 @@
 <?php declare(strict_types=1);
 namespace Netmatters\Images\Extensions;
 
+use Psr\Log\LoggerInterface;
+
 class ExtensionFactory
 {
+    protected LoggerInterface $logger;
+
+    function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     /**
      * @param array $results Associative array, as might be part of
      * what's returned from an SQL query. Example value:
@@ -22,7 +31,8 @@ class ExtensionFactory
         || !is_numeric($result['extension_id'])
         || !isset($result['extension'])
         || !isset($result['picture_type'])) {
-            // TODO: log warning
+            $this->logger->error("Unable to create Extension from array.",
+                [$result]);
             return null;
         }
         

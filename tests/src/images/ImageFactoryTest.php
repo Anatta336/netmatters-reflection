@@ -5,10 +5,18 @@ use Netmatters\Images\Extensions\ExtensionCollection;
 use Netmatters\Images\ImageFactory;
 use Netmatters\Images\Image;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 
 class ImageFactoryTest extends TestCase
 {
     protected ExtensionCollection $extensions;
+    protected LoggerInterface $logger;
+
+    protected function createStubLogger(): LoggerInterface
+    {
+        $stub = $this->createStub(LoggerInterface::class);
+        return $stub;
+    }
 
     protected function createStubExtensionCollection(): ExtensionCollection
     {
@@ -25,11 +33,12 @@ class ImageFactoryTest extends TestCase
     protected function setUp(): void
     {
         $this->extensions = $this->createStubExtensionCollection();
+        $this->logger = $this->createStubLogger();
     }
 
     public function testInstantiates(): void
     {
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $this->assertInstanceOf(ImageFactory::class, $factory);
     }
 
@@ -53,7 +62,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertInstanceOf(Image::class, $image);
     }
@@ -77,7 +86,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertSame('img/one', $image->getImageUrl());
     }
@@ -102,7 +111,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -126,7 +135,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -151,7 +160,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -176,7 +185,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -200,7 +209,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -224,7 +233,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -249,7 +258,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -274,7 +283,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -298,7 +307,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -333,7 +342,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 1,
             ]
         ];
-        $factory = new ImageFactory($extensions);
+        $factory = new ImageFactory($this->logger, $extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertInstanceOf(Image::class, $image);
     }
@@ -350,7 +359,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 1,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -375,7 +384,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 1,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }
@@ -400,7 +409,7 @@ class ImageFactoryTest extends TestCase
                 'is_default' => 0,
             ],
         ];
-        $factory = new ImageFactory($this->extensions);
+        $factory = new ImageFactory($this->logger, $this->extensions);
         $image = $factory->createFromQueryResults($input);
         $this->assertNull($image);
     }

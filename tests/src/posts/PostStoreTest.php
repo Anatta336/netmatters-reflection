@@ -8,9 +8,16 @@ use Netmatters\Images\ImageStore;
 use Netmatters\Posts\PostFactory;
 use Netmatters\Posts\PostStore;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 
 class PostStoreTest extends TestCase
 {
+    protected function createStubLogger(): LoggerInterface
+    {
+        $stub = $this->createStub(LoggerInterface::class);
+        return $stub;
+    }
+
     protected function createStubDatabase(): DatabaseInterface
     {
         $stub = $this->createStub(DatabaseInterface::class);
@@ -82,19 +89,21 @@ class PostStoreTest extends TestCase
 
     public function testInstantiates(): void
     {
+        $logger = $this->createStubLogger();
         $database = $this->createStubDatabase();
         $imageStore = $this->createPartialStubImageStore();
         $postFactory = $this->createPartialStubPostFactory();
-        $postStore = new PostStore($database, $imageStore, $postFactory);
+        $postStore = new PostStore($logger, $database, $imageStore, $postFactory);
         $this->assertInstanceOf(PostStore::class, $postStore);
     }
 
     public function testGetRecentPostsAssociativeArray(): void
     {
+        $logger = $this->createStubLogger();
         $database = $this->createStubDatabase();
         $imageStore = $this->createPartialStubImageStore();
         $postFactory = $this->createPartialStubPostFactory();
-        $postStore = new PostStore($database, $imageStore, $postFactory);
+        $postStore = new PostStore($logger, $database, $imageStore, $postFactory);
         $this->assertSame(['posts', 'would', 'be', 'here'], $postStore->getRecentPostsArray(4));
     }
 
@@ -126,8 +135,9 @@ class PostStoreTest extends TestCase
             [2, $galleryImage],
         ]));
         
+        $logger = $this->createStubLogger();
         $postFactory = $this->createPartialStubPostFactory();
-        $postStore = new PostStore($database, $imageStore, $postFactory);
+        $postStore = new PostStore($logger, $database, $imageStore, $postFactory);
         $this->assertEquals([$this->createGalleryPost()], $postStore->getRecentPosts(1));
     }
 
@@ -159,8 +169,9 @@ class PostStoreTest extends TestCase
             [2, $galleryImage],
         ]));
         
+        $logger = $this->createStubLogger();
         $postFactory = $this->createPartialStubPostFactory();
-        $postStore = new PostStore($database, $imageStore, $postFactory);
+        $postStore = new PostStore($logger, $database, $imageStore, $postFactory);
         $this->assertEquals([], $postStore->getRecentPosts(1));
     }
 
@@ -192,8 +203,9 @@ class PostStoreTest extends TestCase
             [2, $galleryImage],
         ]));
         
+        $logger = $this->createStubLogger();
         $postFactory = $this->createPartialStubPostFactory();
-        $postStore = new PostStore($database, $imageStore, $postFactory);
+        $postStore = new PostStore($logger, $database, $imageStore, $postFactory);
         $this->assertEquals([], $postStore->getRecentPosts(1));
     }
 }

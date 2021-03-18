@@ -3,13 +3,16 @@ namespace Netmatters\Images;
 
 use Netmatters\Images\Extensions\ExtensionCollection;
 use Netmatters\Images\Extensions\ExtensionFactory;
+use Psr\Log\LoggerInterface;
 
 class ImageFactory
 {
-    private ExtensionCollection $extensionCollection;
+    protected LoggerInterface $logger;
+    protected ExtensionCollection $extensionCollection;
 
-    function __construct(ExtensionCollection $extensionCollection)
+    function __construct(LoggerInterface $logger, ExtensionCollection $extensionCollection)
     {
+        $this->logger = $logger;
         $this->extensionCollection = $extensionCollection;
     }
 
@@ -41,7 +44,7 @@ class ImageFactory
      */
     public function createFromQueryResults(array $results): ?Image
     {
-        $extensionFactory = new ExtensionFactory();
+        $extensionFactory = new ExtensionFactory($this->logger);
 
         $isFirst = true;
         $id = null;
@@ -52,15 +55,15 @@ class ImageFactory
         foreach ($results as $result) {
             if ($isFirst) {
                 if (!isset($result['id']) || !is_numeric($result['id'])) {
-                    // TODO: log a warning
-                    echo "no integer id\n";
+                    $this->logger
+                        ->error("Given input with no id in first result.", [$result]);
                     return null;
                 }
                 $id = (int)$result['id'];
 
                 if (!isset($result['image_url']) || !is_string($result['image_url'])) {
-                    // TODO: log a warning
-                    echo "no imageUrl string\n";
+                    $this->logger
+                        ->error("Given input with no image_url in first result.", [$result]);
                     return null;
                 }
                 $imageUrl = $result['image_url'];
@@ -69,31 +72,27 @@ class ImageFactory
             }
 
             if (!isset($result['id']) || !is_numeric($result['id'])) {
-                //TODO: warning
-                echo "no integer id\n";
+                $this->logger->error("Given input with no id.", [$result]);
                 return null;
             }
             if (((int)$result['id']) !== $id) {
                 // multiple ids, these results aren't valid for creating a single image
-                // TODO: log a warning
-                echo "multiple image ids in one set of results\n";
+                $this->logger->error("Given input with multiple ids.", [$results]);
                 return null;
             }
             if (!isset($result['image_url']) || !is_string($result['image_url'])) {
-                //TODO: warning
-                echo "no string image url";
+                $this->logger->error("Given input with no image_url.", [$result]);
                 return null;
             }
             if ($result['image_url'] !== $imageUrl) {
                 // multiple imageUrls, these results aren't valid for creating a single image
-                // TODO: log a warning
-                echo "multiple image URLs in one set of results\n";
+                $this->logger->error("Given input with multiple image_urls.",
+                    [$results]);
                 return null;
             }
 
             if (!isset($result['extension_id']) || !is_numeric($result['extension_id'])) {
-                // TODO: log a warning, missing extension Id
-                echo "missing extensionId\n";
+                $this->logger->error("Given input with no extension_id.", [$result]);
                 return null;
             }
             $extensionId = (int)$result['extension_id'];
@@ -106,8 +105,8 @@ class ImageFactory
             } else {
                 $extension = $extensionFactory->createFromQueryResult($result);
                 if ($extension === null) {
-                    // TODO: log a warning, unable to create extension
-                    echo "extension couldn't be created\n";
+                    $this->logger->error("Didn't receive Extension from ExtensionFactory.",
+                        [$result, $extensionFactory]);
                     return null;
                 }
 
@@ -117,8 +116,8 @@ class ImageFactory
             array_push($extensions, $extension);
 
             if (isset($result['is_default']) && $result['is_default'] && $defaultExtension !== null) {
-                // TODO: log warning, multiple extensions marked as default
-                echo "multiple default extensions\n";
+                $this->logger->error("Multiple extensions are marked as default.",
+                    [$result, $results, $extensions]);
                 return null;
             } else if (isset($result['is_default']) && $result['is_default']) {
                 $defaultExtension = $extension;
@@ -126,8 +125,8 @@ class ImageFactory
         }
 
         if ($defaultExtension === null) {
-            // TODO: log warning, no default extension for image
-            echo "no default extension\n";
+            $this->logger->error("No extension is marked as default.",
+                [$results, $extensions]);
             return null;
         }
 

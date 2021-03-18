@@ -15,14 +15,14 @@ npm run watch
 ```
 
 ## Testing
+Testing is provided by PHPUnit, with the tests defined in `tests/src`
+
 To run the PHP unit tests:
 ```
 npm test
 ```
 
-Results can be found in `tests/log/`
-
-A coverage report will be available at `tests/log/coverage-report/index.html`
+Results can be found in `tests/log/`, and a coverage report will be available at `tests/log/coverage-report/index.html`
 
 ## Usage
 After building - assuming PHP is installed and available in PATH - start a local server using:
@@ -44,6 +44,9 @@ The form requires a user to provide either a phone number or an email address (o
 
 ## Graceful Degradation
 If JavaScript is disabled in the user's browser there is minimal client-side validation, but the form still functions. Server-side validation still occurs and will display error messages within the form indicating what failed.
+
+## Logging
+Logging is provided by monolog, which will write any messages into `logs/full.log` and `logs/error.log` with the second only containing the more important messages.
 
 ## Future Improvements
 * Use AJAX for the contact form submission. If JS is unavailable the form would still behave as it does now. With JS available the submit button click can be intercepted and instead send a POST request and await a response. That way the user doesn't need to see the page reload when they submit a message.

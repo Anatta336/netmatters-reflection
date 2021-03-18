@@ -8,15 +8,21 @@ use Netmatters\Images\ImageStore;
 use Netmatters\Posts\PostFactory;
 use Netmatters\Posts\PostStore;
 use Netmatters\Posts\PostsView;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
-$database = new SQLiteDatabase(__DIR__ . '/../db/netmatters.db');
+$logger = new Logger('main_logger');
+$logger->pushHandler(new StreamHandler(__DIR__ . '/../logs/full.log', Logger::DEBUG));
+$logger->pushHandler(new StreamHandler(__DIR__ . '/../logs/error.log', Logger::ERROR));
+
+$database = new SQLiteDatabase($logger, __DIR__ . '/../db/netmatters.db');
 
 $extensions = new ExtensionCollection();
-$imageFactory = new ImageFactory($extensions);
+$imageFactory = new ImageFactory($logger, $extensions);
 $postFactory = new PostFactory();
 
 $imageStore = new ImageStore($database, $imageFactory);
-$postStore = new PostStore($database, $imageStore, $postFactory);
+$postStore = new PostStore($logger, $database, $imageStore, $postFactory);
 
 ?>
 <!DOCTYPE html>

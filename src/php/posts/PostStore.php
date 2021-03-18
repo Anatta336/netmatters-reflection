@@ -3,18 +3,22 @@ namespace Netmatters\Posts;
 
 use Netmatters\Database\DatabaseInterface;
 use Netmatters\Images\ImageStore;
+use Psr\Log\LoggerInterface;
 
 class PostStore
 {
+    protected LoggerInterface $logger;
     protected DatabaseInterface $database;
     protected ImageStore $imageStore;
     protected PostFactory $postFactory;
 
     function __construct(
+        LoggerInterface $logger,
         DatabaseInterface $database,
         ImageStore $imageStore,
         PostFactory $postFactory)
     {
+        $this->logger = $logger;
         $this->database = $database;
         $this->imageStore = $imageStore;
         $this->postFactory = $postFactory;
@@ -51,16 +55,14 @@ class PostStore
         $posts = [];
         foreach ($this->getRecentPostsArray($count) as $postData) {
             if (!isset($postData['header_image_id'])) {
-                // TODO: log warning
-                echo "no header image id";
+                $this->logger->error("Missing header_image_id", [$postData]);
                 continue;
             }
             $headerImage = $this->imageStore
                 ->getImageById((int)$postData['header_image_id']);
 
             if (!isset($postData['poster_image_id'])) {
-                // TODO: log warning
-                echo "no poster image id";
+                $this->logger->error("Missing poster_image_id", [$postData]);
                 continue;
             }
             $posterImage = $this->imageStore

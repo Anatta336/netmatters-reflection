@@ -3,18 +3,32 @@
 use Netmatters\Images\Extensions\Extension;
 use Netmatters\Images\Extensions\ExtensionFactory;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 
 class ExtensionFactoryTest extends TestCase
 {
-   public function testInstantiates(): void
+    protected LoggerInterface $logger;
+
+    protected function createStubLogger(): LoggerInterface
     {
-        $factory = new ExtensionFactory();
+        $stub = $this->createStub(LoggerInterface::class);
+        return $stub;
+    }
+
+    protected function setUp(): void
+    {
+        $this->logger = $this->createStubLogger();
+    }
+
+    public function testInstantiates(): void
+    {
+        $factory = new ExtensionFactory($this->logger);
         $this->assertInstanceOf(ExtensionFactory::class, $factory);
     }
 
     public function testBuildExtension(): void
     {
-        $factory = new ExtensionFactory();
+        $factory = new ExtensionFactory($this->logger);
         $extension = $factory->createFromQueryResult([
             'extension_id' => 2,
             'extension' => 'jpg',
@@ -25,7 +39,7 @@ class ExtensionFactoryTest extends TestCase
 
     public function testNoBuildWhenMissingId(): void
     {
-        $factory = new ExtensionFactory();
+        $factory = new ExtensionFactory($this->logger);
         $extension = $factory->createFromQueryResult([
             'extension' => 'jpg',
             'picture_type' => 'image/jpeg',
@@ -35,7 +49,7 @@ class ExtensionFactoryTest extends TestCase
 
     public function testNoBuildWhenMissingExtension(): void
     {
-        $factory = new ExtensionFactory();
+        $factory = new ExtensionFactory($this->logger);
         $extension = $factory->createFromQueryResult([
             'extension_id' => 2,
             'picture_type' => 'image/jpeg',
@@ -45,7 +59,7 @@ class ExtensionFactoryTest extends TestCase
 
     public function testNoBuildWhenMissingPictureType(): void
     {
-        $factory = new ExtensionFactory();
+        $factory = new ExtensionFactory($this->logger);
         $extension = $factory->createFromQueryResult([
             'extension_id' => 2,
             'extension' => 'jpg',
@@ -55,7 +69,7 @@ class ExtensionFactoryTest extends TestCase
 
     public function testNoBuildWhenIdNotNumber(): void
     {
-        $factory = new ExtensionFactory();
+        $factory = new ExtensionFactory($this->logger);
         $extension = $factory->createFromQueryResult([
             'extension_id' => 'png',
             'extension' => 'jpg',
@@ -66,7 +80,7 @@ class ExtensionFactoryTest extends TestCase
 
     public function testBuildWhenIdNumericString(): void
     {
-        $factory = new ExtensionFactory();
+        $factory = new ExtensionFactory($this->logger);
         $extension = $factory->createFromQueryResult([
             'extension_id' => '1',
             'extension' => 'jpg',
@@ -77,7 +91,7 @@ class ExtensionFactoryTest extends TestCase
 
     public function testBuildWhenExtraDataPresent(): void
     {
-        $factory = new ExtensionFactory();
+        $factory = new ExtensionFactory($this->logger);
         $extension = $factory->createFromQueryResult([
             'extension_id' => '1',
             'is_default' => true,

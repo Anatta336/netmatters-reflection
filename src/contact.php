@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Netmatters\Contact\FormFieldNames;
 use Netmatters\Contact\FormView;
@@ -8,8 +9,12 @@ use Netmatters\Contact\RawResultsFactory;
 use Netmatters\Contact\Validation;
 use Netmatters\Contact\MessageStore;
 use Netmatters\Database\SQLiteDatabase;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$logger = new Logger('main_logger');
+$logger->pushHandler(new StreamHandler(__DIR__ . '/../logs/full.log', Logger::DEBUG));
+$logger->pushHandler(new StreamHandler(__DIR__ . '/../logs/error.log', Logger::ERROR));
 
 // retrieve data from the form
 $rawFactory = new RawResultsFactory(new FormFieldNames());
@@ -23,21 +28,18 @@ $validate = new Validation($rawResults);
 $feedback = '';
 $hasSubmittedMessage = false;
 if ($validate->getIsValid()) {
-    $database = new SQLiteDatabase(__DIR__ . '/../db/netmatters.db');
+    $database = new SQLiteDatabase($logger, __DIR__ . '/../db/netmatters.db');
     $store = new MessageStore($database);
     $hasSubmittedMessage = $store->storeMessage($message);
     
     // TODO: better feedback messages?
     if ($hasSubmittedMessage) {
         $feedback = 'Thanks for your message!';
-    } else {
-        $feedback = 'Unable to submit your message.';
-        // TODO: if unable to submit should display the form with what was entered
     }
 }
 
 $formView = new FormView($message, $validate);
-// TODO: feedback view
+// TODO: feedback view?
 // $feedbackView = ...
 
 ?>
