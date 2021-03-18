@@ -3,6 +3,7 @@ import cookies from './cookies';
 import sideMenu from './sideMenu';
 import floatingHeader from './floatingHeader';
 import phoneCleaner from './phoneCleaner';
+import contactValidation from './contactValidation';
 
 // unhide anything waiting to know that JavaScript is available
 document.querySelectorAll('.hidden-if-no-script').forEach((element) => {
@@ -20,6 +21,21 @@ if (document.querySelector('.glide')) {
     hoverpause: true,
     animationDuration: 250,
   }).mount();
+}
+
+const contactForm = document.querySelector('.message-form');
+if (contactForm) {
+  const validation = contactValidation(
+    contactForm,
+    contactForm.querySelector('[name="user-name"]'),
+    contactForm.querySelector('#no-name'),
+    contactForm.querySelector('[name="user-email"]'),
+    contactForm.querySelector('[name="user-phone"]'),
+    contactForm.querySelector('#no-contact'),
+    contactForm.querySelector('[name="user-message"]'),
+    contactForm.querySelector('#no-message'),
+    contactForm.querySelector('input[type="submit"]'),
+  );
 }
 
 const phoneInputField = document.querySelector('.contact input[name="user-phone"]');
