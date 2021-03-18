@@ -121,42 +121,44 @@ class PostsViewTest extends TestCase
     {
         $expected = <<<'EOT'
         <section class="latest-posts">
-        <div class="heading-wrapper">
-        <h2>Latest</h2>
-        </div>
-        <div class="wrapper">
-        <div class="content">
+            <div class=\"heading-wrapper\">
+                <h2>Latest</h2>
+            </div>
+            <div class="wrapper">
+            <div class="content">
         <article class="it-support">
-        <a class="category" href="page/case-studies/it-support" title="View all: IT Support / Case Studies">
-        Case Studies
-        <div class="tooltip-wrapper"><div class="tooltip-content"><p>View all: IT Support / Case Studies</p>
-        </div>
-        </div>
-        </a>
-        <a class="lead" href="page/online-art-gallery-case-study">
-        <picture>
+            <a class="category" href="page/case-studies/it-support" title="View all: IT Support / Case Studies">
+                Case Studies
+                <div class="tooltip-wrapper">
+                <div class="tooltip-content">
+                    <p>View all: IT Support / Case Studies</p>
+                </div>
+                </div>
+            </a>
+            <a class="lead" href="page/online-art-gallery-case-study">
+                <picture>
         <source srcset="img/case-studies/gallery-header.jpg" type="image/jpeg">
         <img src="img/case-studies/gallery-header.jpg" alt="Online Art Gallery Case Study">
         </picture>
-        </a>
-        <a href="page/online-art-gallery-case-study">
-        <h3>Online Art Gallery Case Study</h3>
-        </a>
-        <p>We made an online art gallery, and it was really successful&#8230;</p>
-        <a class="button" href="page/online-art-gallery-case-study" aria-label="Read more">
-        Read More
-        </a>
-        <div class="poster">
-        <picture>
+        
+            </a>
+            <a href="page/online-art-gallery-case-study">
+                <h3>Online Art Gallery Case Study"</h3>
+            </a>
+            <p>We made an online art gallery, and it was really successful&#8230</p>    
+            <a class="button" href="page/online-art-gallery-case-study" aria-label="Read more">Read More</a>
+            <div class="poster">
+                <picture>
         <source srcset="img/users/netmatters-logo.jpg" type="image/jpeg">
         <img src="img/users/netmatters-logo.jpg" alt="Netmatters Ltd.">
         </picture>
-        <p>Posted by Netmatters Ltd.</p>
-        <p class="date">2nd January 2020</p>
-        </div>
+        
+                <p>Posted by Netmatters Ltd.</p>
+                <p class="date">2nd January 2020</p>
+            </div>
         </article>
-        </div>
-        </div>
+            </div>
+            </div>
         </section>
 
         EOT;
