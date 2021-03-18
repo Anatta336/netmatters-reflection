@@ -93,7 +93,7 @@ class PostsViewTest extends TestCase
             $jpg,
         );
         $imageOne = $this->createStubImage(
-            1,
+            2,
             'img/case-studies/gallery-header',
             [$jpg],
             $jpg,

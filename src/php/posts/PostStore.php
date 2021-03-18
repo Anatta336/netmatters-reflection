@@ -7,16 +7,16 @@ use Netmatters\Images\ImageStore;
 class PostStore
 {
     protected DatabaseInterface $database;
-    protected ImageStore $imagesModel;
+    protected ImageStore $imageStore;
     protected PostFactory $postFactory;
 
     function __construct(
         DatabaseInterface $database,
-        ImageStore $imagesModel,
+        ImageStore $imageStore,
         PostFactory $postFactory)
     {
         $this->database = $database;
-        $this->imagesModel = $imagesModel;
+        $this->imageStore = $imageStore;
         $this->postFactory = $postFactory;
     }
 
@@ -55,7 +55,7 @@ class PostStore
                 echo "no header image id";
                 continue;
             }
-            $headerImage = $this->imagesModel
+            $headerImage = $this->imageStore
                 ->getImageById((int)$postData['header_image_id']);
 
             if (!isset($postData['poster_image_id'])) {
@@ -63,7 +63,7 @@ class PostStore
                 echo "no poster image id";
                 continue;
             }
-            $posterImage = $this->imagesModel
+            $posterImage = $this->imageStore
                 ->getImageById((int)$postData['poster_image_id']);
 
             $post = $this->postFactory->createFromResults(
