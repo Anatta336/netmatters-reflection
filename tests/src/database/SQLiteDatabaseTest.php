@@ -6,18 +6,9 @@ use PHPUnit\Framework\TestCase;
 
 class SQLiteDatabaseTest extends TestCase
 {
-    private function createDatabase(): SQLiteDatabase
-    {
-        // shouldn't be using external "real" data like this as part of tests
-        // return new SQLiteDatabase('db/netmatters.db');
-
-        // instead this creates a temporary SQLite database, but can still do these tests
-        return new SQLiteDatabase('');
-    }
-
     public function testImplementsDatabaseInterface(): void
     {
-        $database = $this->createDatabase();
+        $database = new SQLiteDatabase('');
         $this->assertInstanceOf(DatabaseInterface::class, $database);
     }
 }
