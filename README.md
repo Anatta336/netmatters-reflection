@@ -40,4 +40,12 @@ Details of the database schema together with SQL to rebuild the sample database 
 ## Validation
 Phone validation allows some non-number values, for example `(+44) 01324 345 232` is a valid phone number. This validation is carried out both server side and client side.
 
-The form requires a user to provide either a phone number or an email address (or both) for their message to be accepted. The name and message fields must not be left empty.
+The form requires a user to provide either a phone number or an email address (or both) for their message to be accepted. The name and message fields must not be left empty. This validation is carried out on both the client and server side.
+
+## Graceful Degradation
+If JavaScript is disabled in the user's browser there is minimal client-side validation, but the form still functions. Server-side validation still occurs and will display error messages within the form indicating what failed.
+
+## Future Improvements
+* Use AJAX for the contact form submission. If JS is unavailable the form would still behave as it does now. With JS available the submit button click can be intercepted and instead send a POST request and await a response. That way the user doesn't need to see the page reload when they submit a message.
+* Cache things like the landing page. As the contents only changes occasionally there's no need to spend time querying the database of recent posts separately for every visitor.
+* Direct all HTTP requests to a single PHP script which can read the requested URI from the headers and route the request to create whatever view is required, rather than having discrete .php pages.
