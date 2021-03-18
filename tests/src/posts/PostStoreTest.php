@@ -26,14 +26,9 @@ class PostStoreTest extends TestCase
         return $stub;
     }
 
-    // TODO: is this needed? Or at least is the more complex version needed?
     protected function createPartialStubImageStore(): ImageStore
     {
-        $jpg = new Extension(1, 'jpg', 'image/jpeg');
-        $image = new Image(1, 'img/picture', [$jpg], $jpg);
-
         $stub = $this->createStub(ImageStore::class);
-        $stub->method('getImageById')->willReturn($image);
         return $stub;
     }
 
