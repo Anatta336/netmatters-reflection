@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 class PostsViewTest extends TestCase
 {
+    protected array $posts;
+
     protected function createStubPost(
         $title,
         $slug,
@@ -56,34 +58,7 @@ class PostsViewTest extends TestCase
         return $stub;
     }
 
-    public function testInstantiates(): void
-    {
-        $view = new PostsView();
-        $this->assertInstanceOf(PostsView::class, $view);
-    }
-
-    public function testStoreArticleUrl(): void
-    {
-        $view = new PostsView();
-        $view->setArticleUrlStart('test/something/more');
-        $this->assertSame('test/something/more', $view->getArticleUrlStart());
-    }
-
-    public function testStoreCategoryUrl(): void
-    {
-        $view = new PostsView();
-        $view->setCategoryUrlStart('test/something/more');
-        $this->assertSame('test/something/more', $view->getCategoryUrlStart());
-    }
-
-    public function testStoreImageUrl(): void
-    {
-        $view = new PostsView();
-        $view->setImageUrlStart('test/something/more');
-        $this->assertSame('test/something/more', $view->getImageUrlStart());
-    }
-
-    public function testGenerateHtmlForAPost(): void
+    protected function setUp(): void
     {
         $jpg = $this->createStubExtension('jpg', 'image/jpeg');
         $userImage = $this->createStubImage(
@@ -112,6 +87,38 @@ class PostsViewTest extends TestCase
             $imageOne,
         );
 
+        $this-> posts = [$postOne];
+    }
+
+    public function testInstantiates(): void
+    {
+        $view = new PostsView($this->posts);
+        $this->assertInstanceOf(PostsView::class, $view);
+    }
+
+    public function testStoreArticleUrl(): void
+    {
+        $view = new PostsView($this->posts);
+        $view->setArticleUrlStart('test/something/more');
+        $this->assertSame('test/something/more', $view->getArticleUrlStart());
+    }
+
+    public function testStoreCategoryUrl(): void
+    {
+        $view = new PostsView($this->posts);
+        $view->setCategoryUrlStart('test/something/more');
+        $this->assertSame('test/something/more', $view->getCategoryUrlStart());
+    }
+
+    public function testStoreImageUrl(): void
+    {
+        $view = new PostsView($this->posts);
+        $view->setImageUrlStart('test/something/more');
+        $this->assertSame('test/something/more', $view->getImageUrlStart());
+    }
+
+    public function testGenerateHtmlForAPost(): void
+    {
         $expected = <<<'EOT'
         <section class="latest-posts">
         <div class="heading-wrapper">
@@ -154,8 +161,8 @@ class PostsViewTest extends TestCase
 
         EOT;
 
-        $view = new PostsView();
-        $this->assertSame($expected, $view->htmlLatestPosts([$postOne]));
+        $view = new PostsView($this->posts);
+        $this->assertSame($expected, $view->htmlLatestPosts());
     }
 
 }
