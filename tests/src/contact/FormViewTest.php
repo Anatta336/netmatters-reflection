@@ -119,8 +119,9 @@ class FormViewTest extends TestCase
                     <label>Telephone:
                         <input type="text" name="user-phone" maxlength="32" placeholder="01367 587621" value="">
                     </label>
+                    <p class="error" id="invalid-phone">Please double-check phone number, what was entered doesn't appear to be valid.</p>
                     <p class="error" id="no-contact">Please provide an email address or phone number so we can get back to you.</p>
-                </div class="user-phone">
+                </div>
 
                 <div class="checkbox">
                     <label>
@@ -169,8 +170,9 @@ class FormViewTest extends TestCase
                     <label>Telephone:
                         <input type="text" name="user-phone" maxlength="32" placeholder="01367 587621" value="(+44) 01234 555 234">
                     </label>
+                    <p class="error" id="invalid-phone">Please double-check phone number, what was entered doesn't appear to be valid.</p>
                     <p class="error" id="no-contact">Please provide an email address or phone number so we can get back to you.</p>
-                </div class="user-phone">
+                </div>
 
                 <div class="checkbox">
                     <label>
@@ -221,8 +223,9 @@ class FormViewTest extends TestCase
                     <label>Telephone:
                         <input type="text" name="user-phone" maxlength="32" placeholder="01367 587621" value="(+44) 01234 555 234">
                     </label>
+                    <p class="error show" id="invalid-phone">Please double-check phone number, what was entered doesn't appear to be valid.</p>
                     <p class="error show" id="no-contact">Please provide an email address or phone number so we can get back to you.</p>
-                </div class="user-phone">
+                </div>
 
                 <div class="checkbox">
                     <label>
@@ -273,8 +276,9 @@ class FormViewTest extends TestCase
                     <label>Telephone:
                         <input type="text" name="user-phone" maxlength="32" placeholder="01367 587621" value="(+44) 01234 555 234">
                     </label>
+                    <p class="error" id="invalid-phone">Please double-check phone number, what was entered doesn't appear to be valid.</p>
                     <p class="error" id="no-contact">Please provide an email address or phone number so we can get back to you.</p>
-                </div class="user-phone">
+                </div>
 
                 <div class="checkbox">
                     <label>
