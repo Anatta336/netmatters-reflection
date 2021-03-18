@@ -126,7 +126,7 @@ class FormViewTest extends TestCase
                     <label>
                         <input type="checkbox" name="user-opt-in">
                         <span class="checkmark"></span>
-                        <p>Tick this box if you would like to also receive marketing information from us.<br>Please see our <a href="https://www.netmatters.co.uk/privacy-policy">Privacy Policy</a> for details on how your data is used.</p>
+                        <p>Tick this box if you would like to also receive marketing information from us.<br>Please see our <a href="page/privacy-policy">Privacy Policy</a> for details on how your data is used.</p>
                     </label>
                 </div>
             </fieldset>
@@ -176,7 +176,7 @@ class FormViewTest extends TestCase
                     <label>
                         <input type="checkbox" name="user-opt-in" checked>
                         <span class="checkmark"></span>
-                        <p>Tick this box if you would like to also receive marketing information from us.<br>Please see our <a href="https://www.netmatters.co.uk/privacy-policy">Privacy Policy</a> for details on how your data is used.</p>
+                        <p>Tick this box if you would like to also receive marketing information from us.<br>Please see our <a href="page/privacy-policy">Privacy Policy</a> for details on how your data is used.</p>
                     </label>
                 </div>
             </fieldset>
@@ -228,7 +228,7 @@ class FormViewTest extends TestCase
                     <label>
                         <input type="checkbox" name="user-opt-in" checked>
                         <span class="checkmark"></span>
-                        <p>Tick this box if you would like to also receive marketing information from us.<br>Please see our <a href="https://www.netmatters.co.uk/privacy-policy">Privacy Policy</a> for details on how your data is used.</p>
+                        <p>Tick this box if you would like to also receive marketing information from us.<br>Please see our <a href="page/privacy-policy">Privacy Policy</a> for details on how your data is used.</p>
                     </label>
                 </div>
             </fieldset>
@@ -280,7 +280,7 @@ class FormViewTest extends TestCase
                     <label>
                         <input type="checkbox" name="user-opt-in" checked>
                         <span class="checkmark"></span>
-                        <p>Tick this box if you would like to also receive marketing information from us.<br>Please see our <a href="https://www.netmatters.co.uk/privacy-policy">Privacy Policy</a> for details on how your data is used.</p>
+                        <p>Tick this box if you would like to also receive marketing information from us.<br>Please see our <a href="page/privacy-policy">Privacy Policy</a> for details on how your data is used.</p>
                     </label>
                 </div>
             </fieldset>
