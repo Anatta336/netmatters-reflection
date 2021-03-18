@@ -8,18 +8,23 @@ class ImageView
         $urlStart = htmlspecialchars($urlStart, ENT_QUOTES);
         $altText = htmlspecialchars($altText, ENT_QUOTES);
 
-        $result = "<picture>\n";
+        $result = <<<"EOT"
+        <picture>
+
+        EOT;
+
+        /** @var Extension $extension */
         foreach ($image->getExtensions() as $extension) {
-            $result .= "<source srcset=\""
-                . $urlStart . $image->getImageUrl() . "." . $extension->getExtension()
-                . "\" type=\"" . $extension->getPictureType() . "\">\n";
+            $result .= <<<"EOT"
+                <source srcset="$urlStart{$image->getImageUrl()}.{$extension->getExtension()}" type="{$extension->getPictureType()}">
+
+            EOT;
         }
 
-        $defaultExt = $image->getDefaultExtension();
-        $result .= "<img src=\""
-                . $urlStart . $image->getImageUrl() . "." . $defaultExt->getExtension() . "\" "
-                . "alt=\"" . $altText . "\">\n";
-        $result .= "</picture>\n";
+        $result .= <<<"EOT"
+            <img src="$urlStart{$image->getImageUrl()}.{$image->getDefaultExtension()->getExtension()}" alt="$altText">
+        </picture>
+        EOT;
 
         return $result;
     }

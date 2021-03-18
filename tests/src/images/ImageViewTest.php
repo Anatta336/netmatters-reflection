@@ -48,11 +48,13 @@ class ImageViewTest extends TestCase
 
         $imageView = new ImageView();
         $result = $imageView->pictureHtml($imageStub, 'http://example.com/', 'alternate text');
-        $expected = '<picture>' . "\n"
-            . '<source srcset="http://example.com/img/something/picture.jpg" type="image/jpeg">' . "\n"
-            . '<img src="http://example.com/img/something/picture.jpg" alt="alternate text">' . "\n"
-            . '</picture>' . "\n";
-        $this->assertSame($expected, $result);
+        $expected = <<<'EOT'
+        <picture>
+            <source srcset="http://example.com/img/something/picture.jpg" type="image/jpeg">
+            <img src="http://example.com/img/something/picture.jpg" alt="alternate text">
+        </picture>
+        EOT;
+        $this->assertEquals($expected, $result);
     }
 
     public function testMultipleExtensions(): void
@@ -70,13 +72,15 @@ class ImageViewTest extends TestCase
 
         $imageView = new ImageView();
         $result = $imageView->pictureHtml($imageStub, 'http://example.com/', 'alternate text');
-        $expected = '<picture>' . "\n"
-            . '<source srcset="http://example.com/img/something/picture.jpg" type="image/jpeg">' . "\n"
-            . '<source srcset="http://example.com/img/something/picture.png" type="image/png">' . "\n"
-            . '<source srcset="http://example.com/img/something/picture.webp" type="image/webp">' . "\n"
-            . '<img src="http://example.com/img/something/picture.jpg" alt="alternate text">' . "\n"
-            . '</picture>' . "\n";
-        $this->assertSame($expected, $result);
+        $expected = <<<'EOT'
+        <picture>
+            <source srcset="http://example.com/img/something/picture.jpg" type="image/jpeg">
+            <source srcset="http://example.com/img/something/picture.png" type="image/png">
+            <source srcset="http://example.com/img/something/picture.webp" type="image/webp">
+            <img src="http://example.com/img/something/picture.jpg" alt="alternate text">
+        </picture>
+        EOT;
+        $this->assertEquals($expected, $result);
     }
 
     public function testZeroExtensions(): void
@@ -90,10 +94,12 @@ class ImageViewTest extends TestCase
 
         $imageView = new ImageView();
         $result = $imageView->pictureHtml($imageStub, 'http://example.com/', 'alternate text');
-        $expected = '<picture>' . "\n"
-            . '<img src="http://example.com/img/something/picture.jpg" alt="alternate text">' . "\n"
-            . '</picture>' . "\n";
-        $this->assertSame($expected, $result);
+        $expected = <<<'EOT'
+        <picture>
+            <img src="http://example.com/img/something/picture.jpg" alt="alternate text">
+        </picture>
+        EOT;
+        $this->assertEquals($expected, $result);
     }
 
     public function testMultipleExtensionsAndDifferentDefault(): void
@@ -111,12 +117,14 @@ class ImageViewTest extends TestCase
 
         $imageView = new ImageView();
         $result = $imageView->pictureHtml($imageStub, 'http://example.com/', 'alternate text');
-        $expected = '<picture>' . "\n"
-            . '<source srcset="http://example.com/img/something/picture.jpg" type="image/jpeg">' . "\n"
-            . '<source srcset="http://example.com/img/something/picture.png" type="image/png">' . "\n"
-            . '<source srcset="http://example.com/img/something/picture.webp" type="image/webp">' . "\n"
-            . '<img src="http://example.com/img/something/picture.png" alt="alternate text">' . "\n"
-            . '</picture>' . "\n";
-        $this->assertSame($expected, $result);
+        $expected = <<<'EOT'
+        <picture>
+            <source srcset="http://example.com/img/something/picture.jpg" type="image/jpeg">
+            <source srcset="http://example.com/img/something/picture.png" type="image/png">
+            <source srcset="http://example.com/img/something/picture.webp" type="image/webp">
+            <img src="http://example.com/img/something/picture.png" alt="alternate text">
+        </picture>
+        EOT;
+        $this->assertEquals($expected, $result);
     }
 }

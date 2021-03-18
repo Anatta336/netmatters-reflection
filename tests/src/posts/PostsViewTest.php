@@ -137,10 +137,9 @@ class PostsViewTest extends TestCase
             </a>
             <a class="lead" href="page/online-art-gallery-case-study">
                 <picture>
-        <source srcset="img/case-studies/gallery-header.jpg" type="image/jpeg">
-        <img src="img/case-studies/gallery-header.jpg" alt="Online Art Gallery Case Study">
+            <source srcset="img/case-studies/gallery-header.jpg" type="image/jpeg">
+            <img src="img/case-studies/gallery-header.jpg" alt="Online Art Gallery Case Study">
         </picture>
-        
             </a>
             <a href="page/online-art-gallery-case-study">
                 <h3>Online Art Gallery Case Study"</h3>
@@ -149,10 +148,9 @@ class PostsViewTest extends TestCase
             <a class="button" href="page/online-art-gallery-case-study" aria-label="Read more">Read More</a>
             <div class="poster">
                 <picture>
-        <source srcset="img/users/netmatters-logo.jpg" type="image/jpeg">
-        <img src="img/users/netmatters-logo.jpg" alt="Netmatters Ltd.">
+            <source srcset="img/users/netmatters-logo.jpg" type="image/jpeg">
+            <img src="img/users/netmatters-logo.jpg" alt="Netmatters Ltd.">
         </picture>
-        
                 <p>Posted by Netmatters Ltd.</p>
                 <p class="date">2nd January 2020</p>
             </div>

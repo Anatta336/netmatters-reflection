@@ -63,6 +63,7 @@ class PostsView
             <div class="content">
 
         EOT;
+        
         /** @var Post $post */
         foreach ($this->posts as $post) {
             $result .= <<<"EOT"
