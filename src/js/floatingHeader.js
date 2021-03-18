@@ -22,8 +22,18 @@ export default function floatingHeader(
   clonedHeader.classList.add(cloneClassName);
   cloneHolder.appendChild(clonedHeader);
 
-  const replacementDiv = document.createElement('div');
-  replacementDiv.style.height = header.clientHeight + "px";
+  /**
+   * @type {HTMLInputElement}
+   */
+  const searchInputOnClone = clonedHeader.querySelector("input[type='search']");
+  
+  /**
+   * @type {HTMLInputElement}
+   */
+  const searchInputOnOriginal = header.querySelector("input[type='search']");
+
+  mimicInput(searchInputOnClone, searchInputOnOriginal);
+  mimicInput(searchInputOnOriginal, searchInputOnClone);
 
   let prevScrollTop = 0;
   scrollingElement.addEventListener('scroll', function(event) {
@@ -37,6 +47,17 @@ export default function floatingHeader(
   });
 
   let isActive = false;
+
+  /**
+   * 
+   * @param {HTMLInputElement} source
+   * @param {HTMLInputElement} destination 
+   */
+  function mimicInput(source, destination) {
+    source.addEventListener('input', () => {
+      destination.value = source.value;
+    });
+  }
 
   function makeActive() {
     if (isActive) {
