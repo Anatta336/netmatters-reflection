@@ -162,7 +162,7 @@ class PostsViewTest extends TestCase
         EOT;
 
         $view = new PostsView($this->posts);
-        $this->assertSame($expected, $view->htmlLatestPosts());
+        $this->assertEquals($expected, $view->htmlLatestPosts());
     }
 
 }
