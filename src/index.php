@@ -23,8 +23,7 @@ $postFactory = new PostFactory();
 
 $imageStore = new ImageStore($database, $imageFactory);
 $postStore = new PostStore($logger, $database, $imageStore, $postFactory);
-
-$postsView = new PostsView();
+$postsView = new PostsView($postStore->getRecentPosts(3));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +44,7 @@ $postsView = new PostsView();
             <?php
             include __DIR__ . '/../src/partials/services.html';
             include __DIR__ . '/../src/partials/about.html';
-            echo (new PostsView())->htmlLatestPosts($postStore->getRecentPosts(3));
+            echo $postsView->htmlLatestPosts();
             include __DIR__ . '/../src/partials/clients.html';
             include __DIR__ . '/../src/partials/footer.html';
             include __DIR__ . '/../src/partials/accreditations.html';

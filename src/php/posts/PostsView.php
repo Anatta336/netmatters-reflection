@@ -8,6 +8,15 @@ class PostsView
     protected string $categoryUrlStart = 'page/';
     protected string $articleUrlStart = 'page/';
     protected string $imageUrlStart = '';
+    protected array $posts;
+
+    /**
+     * @param array Array of Post objects. The posts that this will display.
+     */
+    function __construct(array $posts)
+    {
+        $this->posts = $posts;
+    }
 
     public function getCategoryUrlStart(): string
     {
@@ -39,7 +48,7 @@ class PostsView
         return $this->imageUrlStart;
     }
 
-    public function htmlLatestPosts(array $posts): string
+    public function htmlLatestPosts(): string
     {
         /** @var ImageView $imageView */
         $imageView = new ImageView();
@@ -54,7 +63,7 @@ class PostsView
             . "<div class=\"content\">\n";
 
         /** @var Post $post */
-        foreach ($posts as $post) {
+        foreach ($this->posts as $post) {
 
             $result .= "<article class=\"" . $post->getCategorySlug() . "\">\n"
                 . "<a class=\"category\" href=\""
