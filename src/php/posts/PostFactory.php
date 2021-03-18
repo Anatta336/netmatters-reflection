@@ -2,6 +2,7 @@
 namespace Netmatters\Posts;
 
 use DateTime;
+use DateTimeZone;
 use Netmatters\Images\Image;
 
 class PostFactory
@@ -14,7 +15,7 @@ class PostFactory
         return new Post(
             $results['title'],
             $results['slug'],
-            new DateTime($results['posted_date']),
+            new DateTime($results['posted_date'], new DateTimeZone('UTC')),
             $results['category_name'],
             $results['category_slug'],
             $results['post_type_name'],
