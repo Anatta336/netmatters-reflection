@@ -9,17 +9,17 @@ use Netmatters\Images\Image;
  */
 class Post
 {
-    private string $title;
-    private string $slug;
-    private DateTime $date;
-    private string $categoryName;
-    private string $categorySlug;
-    private string $typeName;
-    private string $typeSlug;
-    private string $posterName;
-    private Image $headerImage;
-    private string $contentShort;
-    private Image $posterImage;
+    protected string $title;
+    protected string $slug;
+    protected DateTime $date;
+    protected string $categoryName;
+    protected string $categorySlug;
+    protected string $typeName;
+    protected string $typeSlug;
+    protected string $posterName;
+    protected Image $headerImage;
+    protected string $contentShort;
+    protected Image $posterImage;
 
     function __construct(string $title, string $slug, DateTime $date,
         string $categoryName, string $categorySlug,

@@ -24,6 +24,7 @@ $postFactory = new PostFactory();
 $imageStore = new ImageStore($database, $imageFactory);
 $postStore = new PostStore($logger, $database, $imageStore, $postFactory);
 
+$postsView = new PostsView();
 ?>
 <!DOCTYPE html>
 <html lang="en">

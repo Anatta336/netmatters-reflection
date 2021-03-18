@@ -8,15 +8,15 @@ use Netmatters\Images\Extensions\Extension;
  */
 class Image
 {
-    private int $id;
-    private string $imageUrl;
+    protected int $id;
+    protected string $imageUrl;
 
     /**
      * @var array Array of Extension objects.
      */
-    private array $extensions;
+    protected array $extensions;
 
-    private Extension $defaultExtension;
+    protected Extension $defaultExtension;
 
     function __construct(int $id, string $imageUrl,
         array $extensions, Extension $defaultExtension)

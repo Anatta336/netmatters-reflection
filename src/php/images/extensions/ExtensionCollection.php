@@ -3,7 +3,7 @@ namespace Netmatters\Images\Extensions;
 
 class ExtensionCollection
 {
-    private array $extensions;
+    protected array $extensions;
 
     function __construct()
     {

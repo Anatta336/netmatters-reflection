@@ -3,7 +3,7 @@ namespace Netmatters\Images;
 
 class ImageCollection
 {
-    private array $images;
+    protected array $images;
 
     function __construct()
     {

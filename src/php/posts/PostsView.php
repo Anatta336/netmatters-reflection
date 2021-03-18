@@ -5,9 +5,9 @@ use Netmatters\Images\ImageView;
 
 class PostsView
 {
-    private string $categoryUrlStart = 'page/';
-    private string $articleUrlStart = 'page/';
-    private string $imageUrlStart = '';
+    protected string $categoryUrlStart = 'page/';
+    protected string $articleUrlStart = 'page/';
+    protected string $imageUrlStart = '';
 
     public function getCategoryUrlStart(): string
     {

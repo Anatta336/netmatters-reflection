@@ -6,9 +6,9 @@ namespace Netmatters\Images\Extensions;
  */
 class Extension
 {
-    private int $id;
-    private string $extension;
-    private string $pictureType;
+    protected int $id;
+    protected string $extension;
+    protected string $pictureType;
 
     function __construct(int $id, string $extension, string $pictureType)
     {
