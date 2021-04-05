@@ -24,7 +24,7 @@ class FormViewTest extends TestCase
         string $phone,
         bool $isOptIn,
         string $message,
-        DateTime $timeSent,
+        DateTime $timeSent
     ): Message
     {
         $stub = $this->createStub(Message::class);
@@ -47,7 +47,7 @@ class FormViewTest extends TestCase
         bool $hasMessage,
         bool $hasContactMethod,
         bool $isEmailValid,
-        bool $isPhoneValid,
+        bool $isPhoneValid
     ): Validation
     {
         $stub = $this->createStub(Validation::class);

@@ -25,7 +25,7 @@ class SuccessViewTest extends TestCase
         string $phone,
         bool $isOptIn,
         string $message,
-        DateTime $timeSent,
+        DateTime $timeSent
     ): Message
     {
         $stub = $this->createStub(Message::class);
@@ -48,7 +48,7 @@ class SuccessViewTest extends TestCase
         bool $hasMessage,
         bool $hasContactMethod,
         bool $isEmailValid,
-        bool $isPhoneValid,
+        bool $isPhoneValid
     ): Validation
     {
         $stub = $this->createStub(Validation::class);
@@ -80,7 +80,7 @@ class SuccessViewTest extends TestCase
         $view = new SuccessView($this->logger, $this->message, $this->validation);
         $this->assertInstanceOf(SuccessView::class, $view);
     }
-    
+
     public function testGeneratesHtml(): void
     {
         $expected = <<<'EOT'

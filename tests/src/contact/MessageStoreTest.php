@@ -22,7 +22,7 @@ class MessageStoreTest extends TestCase
         $phone,
         $isOptIn,
         $message,
-        $timeSent,
+        $timeSent
     ): Message
     {
         $stub = $this->createStub(Message::class);
@@ -50,7 +50,7 @@ class MessageStoreTest extends TestCase
         // expect to call runQuery once
         $database->expects($this->once())
             ->method('runQuery');
-    
+
         $message = $this->createStubMessage(true, 'Jane Smith',
             'jane@example.com', '(+44) 01234 555 234', true,
             'I want to improve SEO.', new DateTime('2021-01-02 12:00:34')
@@ -115,5 +115,5 @@ class MessageStoreTest extends TestCase
         $store = new MessageStore($database);
         $store->fetchAllMessages();
     }
-    
+
 }
