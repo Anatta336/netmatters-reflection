@@ -3,57 +3,138 @@ namespace Netmatters\Posts;
 
 use Netmatters\Images\ImageView;
 
+/**
+ * Creates the HTML for the "latest posts" section, from an
+ * array of Post objects.
+ *
+ * @package Post
+ */
 class PostsView
 {
+    /**
+     * Path to be prefixed on every category slug.
+     *
+     * @var string
+     */
     protected string $categoryUrlStart = 'page/';
+
+    /**
+     * Path to be prefixed on every article slug.
+     *
+     * @var string
+     */
     protected string $articleUrlStart = 'page/';
+
+    /**
+     * Path to be prefixed on every image url.
+     *
+     * @var string
+     */
     protected string $imageUrlStart = '';
+
+    /**
+     * The posts that will have their details displayed.
+     *
+     * @var Post[]
+     */
     protected array $posts;
 
     /**
-     * @param array Array of Post objects. The posts that this will display.
+     * @param Post[] $posts Array of Post objects, which will be represented in HTML.
      */
-    function __construct(array $posts)
+    public function __construct(array $posts)
     {
         $this->posts = $posts;
     }
 
+    /**
+     * Get the path to be prefixed on every category slug.
+     *
+     * @return string
+     */
     public function getCategoryUrlStart(): string
     {
         return $this->categoryUrlStart;
     }
+
+    /**
+     * Set the path to be prefixed on every category slug.
+     * The string has HTML special characters escaped before being stored.
+     *
+     * @param string $value
+     *
+     * @return string The value that was stored.
+     */
     public function setCategoryUrlStart(string $value): string
     {
         $this->categoryUrlStart = htmlspecialchars($value, ENT_QUOTES);
         return $this->categoryUrlStart;
     }
 
+    /**
+     * Get the path to be prefixed on every article slug.
+     *
+     * @return string
+     */
     public function getArticleUrlStart(): string
     {
         return $this->articleUrlStart;
     }
+
+    /**
+     * Set the path to be prefixed on every article slug.
+     * The string has HTML special characters escaped before being stored.
+     *
+     * @param string $value
+     *
+     * @return string The value that was stored.
+     */
     public function setArticleUrlStart(string $value): string
     {
         $this->articleUrlStart = htmlspecialchars($value, ENT_QUOTES);
         return $this->articleUrlStart;
     }
 
+    /**
+     * Get the path to be prefixed on every image url.
+     *
+     * @return string
+     */
     public function getImageUrlStart(): string
     {
         return $this->imageUrlStart;
     }
+
+    /**
+     * Set the path to be prefixed on every image url.
+     * HTML special characters will be escaped.
+     *
+     * @param string $value
+     *
+     * @return string The value that was stored.
+     */
     public function setImageUrlStart(string $value): string
     {
         $this->imageUrlStart = htmlspecialchars($value, ENT_QUOTES);
         return $this->imageUrlStart;
     }
 
+    /**
+     * Generate HTML for a "latest-posts" section that previews the
+     * posts passed into this object on construction.
+     *
+     * @return string A string containing valid HTML.
+     */
     public function htmlLatestPosts(): string
     {
-        /** @var ImageView $imageView */
+        /**
+         * @var ImageView $imageView
+         */
         $imageView = new ImageView();
 
-        /** @var string $result */
+        /**
+         * @var string $result
+         */
         $result = <<<"EOT"
         <section class="latest-posts">
             <div class="heading-wrapper">
@@ -64,11 +145,16 @@ class PostsView
 
         EOT;
 
-        /** @var Post $post */
+        /**
+         * @var Post $post
+         * */
         foreach ($this->posts as $post) {
             $result .= <<<"EOT"
             <article class="{$post->getCategorySlug()}">
-                <a class="category" href="{$this->getCategoryUrlStart()}{$post->getTypeSlug()}/{$post->getCategorySlug()}" title="View all: {$post->getCategoryName()} / {$post->getTypeName()}">
+                <a class="category"
+                    href="{$this->getCategoryUrlStart()}{$post->getTypeSlug()}/{$post->getCategorySlug()}"
+                    title="View all: {$post->getCategoryName()} / {$post->getTypeName()}"
+                >
                     {$post->getTypeName()}
                     <div class="tooltip-wrapper">
                     <div class="tooltip-content">
