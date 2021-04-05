@@ -5,13 +5,28 @@ use DateTime;
 use DateTimeZone;
 use Netmatters\Images\Image;
 
+/**
+ * Builds a Post object.
+ *
+ * @package Post
+ */
 class PostFactory
 {
+    /**
+     * Builds a Post object from an associative array, of the
+     * sort given by DatabaseInterface's fetchResults method.
+     *
+     * @param array $results     Associative array of data for one post.
+     * @param Image $headerImage Image to use for post.
+     * @param Image $posterImage Image to use for post creator.
+     *
+     * @return Post
+     */
     public function createFromResults(
         array $results,
         Image $headerImage,
-        Image $posterImage): Post
-    {
+        Image $posterImage
+    ): Post {
         return new Post(
             $results['title'],
             $results['slug'],
