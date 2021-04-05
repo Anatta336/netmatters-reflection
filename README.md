@@ -29,6 +29,10 @@ After building - assuming PHP is installed and available in PATH - start a local
 ```
 php -S localhost:8000 -t public/
 ```
+*or*
+```
+npm start
+```
 
 You should then be able to access the site by navigating to `http://localhost:8000/` in a web browser. The contact page can be reached from the main menu, or at `http://localhost:8000/contact.php`. For convenience there is also a very basic page that displays all received contact form messages: `http://localhost:8000/messageAdmin.php`
 
