@@ -5,25 +5,58 @@ use Netmatters\Database\DatabaseInterface;
 use Netmatters\Images\ImageStore;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Handles fetching recent posts from a database.
+ *
+ * @package Post
+ */
 class PostStore
 {
+    /**
+     * @var LoggerInterface A logger implementation.
+     */
     protected LoggerInterface $logger;
+
+    /**
+     * @var DatabaseInterface The database to fetch from.
+     */
     protected DatabaseInterface $database;
+
+    /**
+     * @var ImageStore An image store to use.
+     */
     protected ImageStore $imageStore;
+
+    /**
+     * @var PostFactory A post factory to use.
+     */
     protected PostFactory $postFactory;
 
-    function __construct(
+    /**
+     * @param LoggerInterface   $logger
+     * @param DatabaseInterface $database
+     * @param ImageStore        $imageStore
+     * @param PostFactory       $postFactory
+     */
+    public function __construct(
         LoggerInterface $logger,
         DatabaseInterface $database,
         ImageStore $imageStore,
-        PostFactory $postFactory)
-    {
-        $this->logger = $logger;
-        $this->database = $database;
-        $this->imageStore = $imageStore;
+        PostFactory $postFactory
+    ) {
+        $this->logger      = $logger;
+        $this->database    = $database;
+        $this->imageStore  = $imageStore;
         $this->postFactory = $postFactory;
     }
 
+    /**
+     * Fetch an associative array representing recent posts.
+     *
+     * @param int $count How many posts to fetch
+     *
+     * @return array
+     */
     public function getRecentPostsArray(int $count): array
     {
         $sql = "SELECT post.slug AS slug, post.title AS title,
@@ -47,8 +80,10 @@ class PostStore
 
     /**
      * Retrieves the most recent posts.
+     *
      * @param int $count How many posts to fetch.
-     * @return array Array of Post objects
+     *
+     * @return Post[] The most recent posts, newest first.
      */
     public function getRecentPosts(int $count): array
     {
@@ -69,7 +104,10 @@ class PostStore
                 ->getImageById((int)$postData['poster_image_id']);
 
             $post = $this->postFactory->createFromResults(
-                $postData, $headerImage, $posterImage);
+                $postData,
+                $headerImage,
+                $posterImage
+            );
             array_push($posts, $post);
         }
 
