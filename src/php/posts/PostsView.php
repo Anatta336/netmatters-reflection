@@ -56,14 +56,14 @@ class PostsView
         /** @var string $result */
         $result = <<<"EOT"
         <section class="latest-posts">
-            <div class=\"heading-wrapper\">
+            <div class="heading-wrapper">
                 <h2>Latest</h2>
             </div>
             <div class="wrapper">
             <div class="content">
 
         EOT;
-        
+
         /** @var Post $post */
         foreach ($this->posts as $post) {
             $result .= <<<"EOT"
@@ -82,7 +82,7 @@ class PostsView
                 <a href="{$this->getArticleUrlStart()}{$post->getSlug()}">
                     <h3>{$post->getTitle()}"</h3>
                 </a>
-                <p>{$post->getContentShort()}&#8230</p>    
+                <p>{$post->getContentShort()}&#8230</p>
                 <a class="button" href="{$this->getArticleUrlStart()}{$post->getSlug()}" aria-label="Read more">Read More</a>
                 <div class="poster">
                     {$imageView->pictureHtml($post->getPosterImage(), $this->getImageUrlStart(), $post->getPosterName())}
