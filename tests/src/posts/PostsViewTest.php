@@ -21,7 +21,7 @@ class PostsViewTest extends TestCase
         $posterName,
         $posterImage,
         $contentShort,
-        $headerImage,
+        $headerImage
     ): Post
     {
         $stub = $this->createStub(Post::class);
@@ -121,7 +121,7 @@ class PostsViewTest extends TestCase
     {
         $expected = <<<'EOT'
         <section class="latest-posts">
-            <div class=\"heading-wrapper\">
+            <div class="heading-wrapper">
                 <h2>Latest</h2>
             </div>
             <div class="wrapper">
@@ -144,7 +144,7 @@ class PostsViewTest extends TestCase
             <a href="page/online-art-gallery-case-study">
                 <h3>Online Art Gallery Case Study"</h3>
             </a>
-            <p>We made an online art gallery, and it was really successful&#8230</p>    
+            <p>We made an online art gallery, and it was really successful&#8230</p>
             <a class="button" href="page/online-art-gallery-case-study" aria-label="Read more">Read More</a>
             <div class="poster">
                 <picture>
